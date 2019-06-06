@@ -10,13 +10,13 @@ import {
   CardContent,
   Typography,
   Link,
-  CircularProgress,
   Box
 } from "@material-ui/core";
 import { Link as RouterLink } from "react-router-dom";
 import InfiniteScrollWrapper from "./InfiniteScrollWrapper";
 import CharacterSearch from "./CharacterSearch";
 import queryString from "query-string";
+import LoadingIndicator from "./LoadingIndicator";
 
 const GET_CHARACTERS = gql`
   query getCharacters($page: Int, $filter: FilterCharacter) {
@@ -42,6 +42,11 @@ const useStyles = makeStyles({
   },
   media: {
     height: 320
+  },
+  link: {
+    "&:hover": {
+      textDecoration: "none"
+    }
   }
 });
 
@@ -54,27 +59,30 @@ function CharacterList({ location: { search } }) {
   };
 
   return (
-    <Query
-      query={GET_CHARACTERS}
-      variables={{ filter }}
-      notifyOnNetworkStatusChange
-    >
-      {({ data, loading, error, fetchMore }) => {
-        if (error) {
-          return error;
-        }
+    <>
+      <Box mb={2}>
+        <CharacterSearch />
+      </Box>
+      <Query
+        query={GET_CHARACTERS}
+        variables={{ filter }}
+        notifyOnNetworkStatusChange
+      >
+        {({ data, loading, error, fetchMore }) => {
+          if (error) {
+            return error;
+          }
 
-        if (loading && !data.characters) {
-          return "Loading...";
-        }
+          if (loading && !data.characters) {
+            return <LoadingIndicator />;
+          }
 
-        const { characters } = data;
+          const { characters } = data;
 
-        const results = characters.results || [];
-        const info = characters.info || null;
+          const results = characters.results || [];
+          const info = characters.info || null;
 
-        return (
-          <>
+          return (
             <InfiniteScrollWrapper
               hasNextPage={info ? info.next : null}
               loading={loading}
@@ -102,14 +110,12 @@ function CharacterList({ location: { search } }) {
               }
             >
               <Grid container spacing={2}>
-                <Grid item xs={12}>
-                  <CharacterSearch />
-                </Grid>
                 {results.map(character => (
                   <Grid key={character.id} item xs={12} sm={6} md={4} lg={3}>
                     <Link
                       to={`/characters/${character.id}`}
                       component={RouterLink}
+                      className={classes.link}
                     >
                       <Card>
                         <CardActionArea>
@@ -134,18 +140,14 @@ function CharacterList({ location: { search } }) {
                   </Grid>
                 ))}
                 <Grid item xs={12}>
-                  {loading ? (
-                    <Box display="flex" justifyContent="center">
-                      <CircularProgress size={64} />
-                    </Box>
-                  ) : null}
+                  {loading ? <LoadingIndicator /> : null}
                 </Grid>
               </Grid>
             </InfiniteScrollWrapper>
-          </>
-        );
-      }}
-    </Query>
+          );
+        }}
+      </Query>
+    </>
   );
 }
 

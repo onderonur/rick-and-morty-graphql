@@ -1,75 +1,92 @@
-import React from "react";
-import { Query } from "react-apollo";
-import gql from "graphql-tag";
+import React, { useState } from "react";
 import {
-  Card,
-  CardActionArea,
-  CardMedia,
-  CardContent,
   Typography,
-  makeStyles
+  Container,
+  List,
+  ListItem,
+  ListItemText,
+  Grid,
+  Card,
+  CardContent
 } from "@material-ui/core";
+import { Link as RouterLink } from "react-router-dom";
+import CharacterQuery from "./CharacterQuery";
+import CharacterCard from "./CharacterCard";
 
-const GET_CHARACTER = gql`
-  query getCharacter($id: ID) {
-    character(id: $id) {
-      id
-      name
-      image
-      status
-      species
-      gender
-    }
-  }
-`;
-
-const useStyles = makeStyles({
-  card: {
-    maxWidth: 345
-  },
-  media: {
-    height: 320
-  }
-});
+const MAX_VISIBLE_EPISODE_COUNT = 5;
 
 function Character({
   match: {
     params: { characterId }
   }
 }) {
-  const classes = useStyles();
+  const [expandEpisodeList, setExpandEpisodeList] = useState(false);
 
   return (
-    <Query query={GET_CHARACTER} variables={{ id: characterId }}>
-      {({ data, loading, error }) => {
-        if (error) {
-          return error;
-        }
+    <CharacterQuery characterId={characterId}>
+      {({ character, loading }) => {
+        const { episode } = character;
+        const firstEpisodeDate = new Date(episode[0].air_date);
+        const lastEpisodeDate = new Date(episode[episode.length - 1].air_date);
 
-        if (loading) {
-          return "Loading...";
-        }
-
-        const { character } = data;
         return (
-          <Card>
-            <CardActionArea>
-              <CardMedia
-                className={classes.media}
-                image={character.image}
-                title={character.name}
-              />
-              <CardContent>
-                <Typography variant="h6">{character.name}</Typography>
-                <Typography>Status: {character.status}</Typography>
-                <Typography>Species: {character.species}</Typography>
-                <Typography>Gender: {character.gender}</Typography>
-              </CardContent>
-            </CardActionArea>
-          </Card>
+          <Container maxWidth="lg">
+            <Grid container spacing={2}>
+              <Grid item xs={12} sm={4}>
+                <CharacterCard character={character} />
+              </Grid>
+              <Grid item xs={12} sm={8}>
+                <Grid item xs={12}>
+                  <Card>
+                    <CardContent>
+                      <Typography variant="h6">
+                        Episodes:
+                        {`${
+                          episode.length
+                        } (${firstEpisodeDate.getFullYear()} - ${lastEpisodeDate.getFullYear()})`}
+                      </Typography>
+                      <List dense>
+                        {episode.map((item, index) =>
+                          expandEpisodeList ||
+                          index <= MAX_VISIBLE_EPISODE_COUNT ? (
+                            <ListItem
+                              key={item.id}
+                              button
+                              divider
+                              to="/"
+                              component={RouterLink}
+                            >
+                              <ListItemText
+                                primary={item.name}
+                                secondary={`${item.episode} - ${item.air_date}`}
+                              />
+                            </ListItem>
+                          ) : null
+                        )}
+                        {episode.length > MAX_VISIBLE_EPISODE_COUNT ? (
+                          <ListItem
+                            button
+                            onClick={() =>
+                              setExpandEpisodeList(!expandEpisodeList)
+                            }
+                          >
+                            <ListItemText
+                              secondary={
+                                expandEpisodeList ? "SHOW LESS" : "SHOW MORE"
+                              }
+                            />
+                          </ListItem>
+                        ) : null}
+                      </List>
+                    </CardContent>
+                  </Card>
+                </Grid>
+              </Grid>
+            </Grid>
+          </Container>
         );
       }}
-    </Query>
+    </CharacterQuery>
   );
 }
 

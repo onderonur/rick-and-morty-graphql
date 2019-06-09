@@ -8,6 +8,12 @@ const CHARACTER_FRAGMENT = gql`
     status
     species
     gender
+    episode {
+      id
+      name
+      air_date
+      episode
+    }
     origin {
       id
       name
@@ -37,12 +43,6 @@ export const GET_CHARACTER = gql`
   query getCharacter($id: ID) {
     character(id: $id) {
       ...Character
-      episode {
-        id
-        name
-        air_date
-        episode
-      }
     }
   }
   ${CHARACTER_FRAGMENT}

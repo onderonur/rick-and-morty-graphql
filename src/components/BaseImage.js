@@ -7,6 +7,7 @@ import AspectRatio from "components/AspectRatio";
 
 const useStyles = makeStyles(theme => ({
   img: {
+    display: "block",
     width: "100%",
     height: "100%",
     objectFit: "cover"

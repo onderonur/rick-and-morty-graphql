@@ -5,10 +5,6 @@ import LoadingIndicator from "components/LoadingIndicator";
 import CharacterCard from "./CharacterCard";
 
 const useStyles = makeStyles({
-  card: {
-    // TODO: Yine de bak bu olaya bi
-    height: "100%"
-  },
   link: {
     "&:hover": {
       textDecoration: "none"
@@ -26,7 +22,12 @@ function CharacterGridListItem({ character }) {
         component={RouterLink}
         className={classes.link}
       >
-        <CharacterCard character={character} className={classes.card} />
+        <CharacterCard
+          character={character}
+          hasActionArea
+          imageAspectRatio="4:3"
+          className={classes.card}
+        />
       </Link>
     </Grid>
   );

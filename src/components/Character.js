@@ -6,12 +6,12 @@ import {
   ListItem,
   ListItemText,
   Grid,
-  Card,
   CardContent
 } from "@material-ui/core";
 import { Link as RouterLink } from "react-router-dom";
 import CharacterQuery from "./CharacterQuery";
 import CharacterCard from "./CharacterCard";
+import BaseCard from "./BaseCard";
 
 const MAX_VISIBLE_EPISODE_COUNT = 5;
 
@@ -33,11 +33,11 @@ function Character({
           <Container maxWidth="lg">
             <Grid container spacing={2}>
               <Grid item xs={12} sm={4}>
-                <CharacterCard character={character} />
+                <CharacterCard character={character} showSpecs />
               </Grid>
               <Grid item xs={12} sm={8}>
                 <Grid item xs={12}>
-                  <Card>
+                  <BaseCard>
                     <CardContent>
                       <Typography variant="h6">
                         Episodes:
@@ -79,7 +79,7 @@ function Character({
                         ) : null}
                       </List>
                     </CardContent>
-                  </Card>
+                  </BaseCard>
                 </Grid>
               </Grid>
             </Grid>

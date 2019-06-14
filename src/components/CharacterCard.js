@@ -12,18 +12,24 @@ function CharacterCard({
   showSpecs
 }) {
   const { episode } = character;
-  const firstEpisodeDate = new Date(episode[0].air_date);
-  const lastEpisodeDate = new Date(episode[episode.length - 1].air_date);
+  const firstEpisodeDate = episode ? new Date(episode[0].air_date) : null;
+  const lastEpisodeDate = episode
+    ? new Date(episode[episode.length - 1].air_date)
+    : null;
 
   return (
     <BaseCard hasActionArea={hasActionArea}>
       <BaseImage src={character.image} aspectRatio={imageAspectRatio} />
       <CardHeader
         title={character.name}
-        subheader={`Episodes:
+        subheader={
+          episode
+            ? `Episodes:
   ${
     episode.length
-  } (${firstEpisodeDate.getFullYear()} - ${lastEpisodeDate.getFullYear()})`}
+  } (${firstEpisodeDate.getFullYear()} - ${lastEpisodeDate.getFullYear()})`
+            : null
+        }
       />
       {showSpecs ? (
         <CardContent>

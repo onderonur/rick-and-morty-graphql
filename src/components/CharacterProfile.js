@@ -24,7 +24,7 @@ function CharacterProfile({ character, loading }) {
                 <Typography variant="h6">Episodes</Typography>
                 <EpisodeList
                   episodes={character.episode}
-                  maxVisibleEpisodeCount={MAX_VISIBLE_EPISODE_COUNT}
+                  maxVisibleItemCount={MAX_VISIBLE_EPISODE_COUNT}
                 />
               </CardContent>
             </BaseCard>

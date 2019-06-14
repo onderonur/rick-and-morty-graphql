@@ -1,33 +1,31 @@
 import React from "react";
-import { List, ListItem, ListItemText } from "@material-ui/core";
+import { ListItem, ListItemText } from "@material-ui/core";
 import { Link as RouterLink } from "react-router-dom";
-import { useState } from "react";
+import BaseList from "./BaseList";
 
-function EpisodeList({ episodes = [], maxVisibleEpisodeCount }) {
-  const [expand, setExpand] = useState(!maxVisibleEpisodeCount);
-
-  function toggleExpand() {
-    setExpand(!expand);
-  }
-
+function EpisodeList({ episodes = [], loading, maxVisibleItemCount }) {
   return (
-    <List dense>
-      {episodes.map((item, index) =>
-        expand || index <= maxVisibleEpisodeCount ? (
-          <ListItem key={item.id} button divider to="/" component={RouterLink}>
-            <ListItemText
-              primary={item.name}
-              secondary={`${item.episode} - ${item.air_date}`}
-            />
-          </ListItem>
-        ) : null
-      )}
-      {episodes.length > maxVisibleEpisodeCount ? (
-        <ListItem button onClick={toggleExpand}>
-          <ListItemText secondary={expand ? "SHOW LESS" : "SHOW MORE"} />
+    <BaseList
+      items={episodes}
+      loading={loading}
+      maxVisibleItemCount={maxVisibleItemCount}
+      renderItem={item => (
+        <ListItem
+          key={item.id}
+          button
+          divider
+          to={`/episodes/${item.id}`}
+          component={RouterLink}
+        >
+          <ListItemText
+            primary={item.name}
+            secondary={`${item.episode} - ${item.air_date}`}
+          />
         </ListItem>
-      ) : null}
-    </List>
+      )}
+    >
+      );
+    </BaseList>
   );
 }
 

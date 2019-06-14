@@ -1,5 +1,20 @@
 import gql from "graphql-tag";
 
+const PAGE_INFO_FRAGMENT = gql`
+  fragment PageInfo on Info {
+    next
+  }
+`;
+
+const EPISODE_FRAGMENT = gql`
+  fragment episode on Episode {
+    id
+    name
+    air_date
+    episode
+  }
+`;
+
 const CHARACTER_FRAGMENT = gql`
   fragment Character on Character {
     id
@@ -9,10 +24,7 @@ const CHARACTER_FRAGMENT = gql`
     species
     gender
     episode {
-      id
-      name
-      air_date
-      episode
+      ...episode
     }
     origin {
       id
@@ -23,6 +35,7 @@ const CHARACTER_FRAGMENT = gql`
       name
     }
   }
+  ${EPISODE_FRAGMENT}
 `;
 
 export const GET_CHARACTERS = gql`
@@ -32,11 +45,12 @@ export const GET_CHARACTERS = gql`
         ...Character
       }
       info {
-        next
+        ...PageInfo
       }
     }
   }
   ${CHARACTER_FRAGMENT}
+  ${PAGE_INFO_FRAGMENT}
 `;
 
 export const GET_CHARACTER = gql`
@@ -46,4 +60,33 @@ export const GET_CHARACTER = gql`
     }
   }
   ${CHARACTER_FRAGMENT}
+`;
+
+export const GET_EPISODES = gql`
+  query episodes($page: Int, $filter: FilterEpisode) {
+    episodes(page: $page, filter: $filter) {
+      results {
+        ...episode
+      }
+      info {
+        ...PageInfo
+      }
+    }
+  }
+  ${EPISODE_FRAGMENT}
+  ${PAGE_INFO_FRAGMENT}
+`;
+
+export const GET_EPISODE = gql`
+  query episode($id: ID) {
+    episode(id: $id) {
+      ...episode
+      characters {
+        id
+        name
+        image
+      }
+    }
+  }
+  ${EPISODE_FRAGMENT}
 `;

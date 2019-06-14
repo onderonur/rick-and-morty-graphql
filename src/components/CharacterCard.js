@@ -5,6 +5,13 @@ import TextWithLabel from "./TextWithLabel";
 import BaseImage from "./BaseImage";
 import BaseCard from "./BaseCard";
 
+function getEpisodeAirYear(episode) {
+  if (episode) {
+    return new Date(episode.air_date).getFullYear();
+  }
+  return "";
+}
+
 function CharacterCard({
   character,
   imageAspectRatio,
@@ -12,10 +19,9 @@ function CharacterCard({
   showSpecs
 }) {
   const { episode } = character;
-  const firstEpisodeDate = episode ? new Date(episode[0].air_date) : null;
-  const lastEpisodeDate = episode
-    ? new Date(episode[episode.length - 1].air_date)
-    : null;
+
+  const firstEpisode = episode ? episode[0] : null;
+  const lastEpisode = episode ? episode[episode.length - 1] : null;
 
   return (
     <BaseCard hasActionArea={hasActionArea}>
@@ -23,11 +29,10 @@ function CharacterCard({
       <CardHeader
         title={character.name}
         subheader={
-          episode
-            ? `Episodes:
-  ${
-    episode.length
-  } (${firstEpisodeDate.getFullYear()} - ${lastEpisodeDate.getFullYear()})`
+          firstEpisode && lastEpisode
+            ? `Episodes:${episode.length} (${getEpisodeAirYear(
+                firstEpisode
+              )} - ${getEpisodeAirYear(lastEpisode)})`
             : null
         }
       />

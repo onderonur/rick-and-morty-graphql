@@ -15,7 +15,7 @@ function Header() {
     <AppBar position="fixed">
       <Toolbar>
         <Link to="/" component={RouterLink} color="inherit">
-          <Typography variant="h6">Rick and Morty</Typography>
+          <Typography variant="h6">RickQL</Typography>
         </Link>
         <Box flexGrow={1} />
         <Button color="inherit" to="/characters" component={RouterLink}>

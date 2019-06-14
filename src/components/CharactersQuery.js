@@ -1,6 +1,6 @@
+// OK
 import React from "react";
 import { Query } from "react-apollo";
-import LoadingIndicator from "./LoadingIndicator";
 import { GET_CHARACTERS } from "app-graphql";
 
 function CharactersQuery({ filter, children }) {
@@ -15,14 +15,10 @@ function CharactersQuery({ filter, children }) {
           return error;
         }
 
-        if (loading && !data.characters) {
-          return <LoadingIndicator />;
-        }
-
         const { characters } = data;
 
-        const results = characters.results || [];
-        const info = characters.info || null;
+        const results = characters ? characters.results : [];
+        const info = characters ? characters.info : null;
 
         return children({ results, pageInfo: info, loading, fetchMore });
       }}

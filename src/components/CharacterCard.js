@@ -1,5 +1,6 @@
+// OK
 import React from "react";
-import { CardHeader, CardContent, CardActionArea } from "@material-ui/core";
+import { CardHeader, CardContent } from "@material-ui/core";
 import TextWithLabel from "./TextWithLabel";
 import BaseImage from "./BaseImage";
 import BaseCard from "./BaseCard";
@@ -14,8 +15,8 @@ function CharacterCard({
   const firstEpisodeDate = new Date(episode[0].air_date);
   const lastEpisodeDate = new Date(episode[episode.length - 1].air_date);
 
-  const content = (
-    <>
+  return (
+    <BaseCard hasActionArea={hasActionArea}>
       <BaseImage src={character.image} aspectRatio={imageAspectRatio} />
       <CardHeader
         title={character.name}
@@ -33,12 +34,6 @@ function CharacterCard({
           <TextWithLabel label="Location" text={character.location.name} />
         </CardContent>
       ) : null}
-    </>
-  );
-
-  return (
-    <BaseCard>
-      {hasActionArea ? <CardActionArea>{content}</CardActionArea> : content}
     </BaseCard>
   );
 }

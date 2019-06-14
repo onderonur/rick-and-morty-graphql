@@ -1,6 +1,7 @@
+// OK
 import React from "react";
 import { Route } from "react-router-dom";
-import Character from "./components/Character";
+import Character from "pages/Character";
 import Characters from "pages/Characters";
 
 function Routes() {

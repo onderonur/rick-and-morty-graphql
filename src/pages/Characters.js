@@ -5,7 +5,7 @@ import CharacterSearch from "components/CharacterSearch";
 import queryString from "query-string";
 import { GET_CHARACTERS } from "app-graphql";
 import CharactersQuery from "components/CharactersQuery";
-import CharactersGridList from "components/CharactersGridList";
+import CharacterGridList from "components/CharacterGridList";
 
 function Characters({ location: { search } }) {
   const searcyQuery = useMemo(() => queryString.parse(search), [search]);
@@ -48,7 +48,7 @@ function Characters({ location: { search } }) {
                 })
               }
             >
-              <CharactersGridList characters={results} loading={loading} />
+              <CharacterGridList characters={results} loading={loading} />
             </InfiniteScrollWrapper>
           );
         }}

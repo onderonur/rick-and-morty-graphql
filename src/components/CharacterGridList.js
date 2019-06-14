@@ -1,8 +1,9 @@
+// OK
 import React from "react";
 import { Grid, makeStyles, Link } from "@material-ui/core";
 import { Link as RouterLink } from "react-router-dom";
-import LoadingIndicator from "components/LoadingIndicator";
 import CharacterCard from "./CharacterCard";
+import BaseGridList from "./BaseGridList";
 
 const useStyles = makeStyles({
   link: {
@@ -18,32 +19,31 @@ function CharacterGridListItem({ character }) {
   return (
     <Grid item xs={12} sm={6} md={4} lg={3}>
       <Link
+        className={classes.link}
         to={`/characters/${character.id}`}
         component={RouterLink}
-        className={classes.link}
       >
         <CharacterCard
+          className={classes.card}
           character={character}
           hasActionArea
           imageAspectRatio="4:3"
-          className={classes.card}
         />
       </Link>
     </Grid>
   );
 }
 
-function CharactersGridList({ characters, loading }) {
+function CharacterGridList({ characters, loading }) {
   return (
-    <Grid container spacing={2}>
-      {characters.map(character => (
+    <BaseGridList
+      items={characters}
+      loading={loading}
+      renderItem={character => (
         <CharacterGridListItem key={character.id} character={character} />
-      ))}
-      <Grid item xs={12}>
-        {loading ? <LoadingIndicator /> : null}
-      </Grid>
-    </Grid>
+      )}
+    />
   );
 }
 
-export default CharactersGridList;
+export default CharacterGridList;

@@ -1,4 +1,3 @@
-// OK!!
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/styles";
 import placeholderPng from "assets/placeholder.png";
@@ -27,7 +26,7 @@ function BaseImage({ src, alt = "Not Loaded", aspectRatio }) {
 
   const isOriginalAspectRatio = aspectRatio === "original";
 
-  function handleOnLoad(e) {
+  function handleLoad(e) {
     if (isOriginalAspectRatio) {
       const img = e.target;
       setImgHeight(img.naturalHeight);
@@ -45,7 +44,7 @@ function BaseImage({ src, alt = "Not Loaded", aspectRatio }) {
         className={clsx(classes.img, classes.imgWithAspectRatio)}
         src={src || placeholderPng}
         alt={alt}
-        onLoad={handleOnLoad}
+        onLoad={handleLoad}
       />
     </AspectRatio>
   ) : (

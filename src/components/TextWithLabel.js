@@ -1,4 +1,4 @@
-// OK!!
+// OK
 import React from "react";
 import { Typography, Box, makeStyles } from "@material-ui/core";
 
@@ -8,7 +8,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function TextWithLabel({ label, text }) {
+const TextWithLabel = React.memo(({ label, text }) => {
   const classes = useStyles();
 
   return (
@@ -21,6 +21,6 @@ function TextWithLabel({ label, text }) {
       </Typography>
     </Box>
   );
-}
+});
 
 export default TextWithLabel;

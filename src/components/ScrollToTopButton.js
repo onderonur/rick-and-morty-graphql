@@ -1,4 +1,3 @@
-// OK!!
 import React, { useEffect, useState } from "react";
 import { Fab, Grow } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
@@ -18,15 +17,14 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function ScrollToTopButton() {
+  const [show, setShow] = useState(checkScrollThreshold());
   const classes = useStyles();
 
   function checkScrollThreshold() {
     return window.pageYOffset > THRESHOLD;
   }
 
-  const [show, setShow] = useState(checkScrollThreshold());
-
-  function handleOnClick() {
+  function handleClick() {
     window.scroll({
       top: 0,
       left: 0,
@@ -48,7 +46,7 @@ function ScrollToTopButton() {
 
   return (
     <Grow in={show}>
-      <Fab className={classes.fab} color="secondary" onClick={handleOnClick}>
+      <Fab className={classes.fab} color="secondary" onClick={handleClick}>
         <KeyboardArrowUpIcon />
       </Fab>
     </Grow>

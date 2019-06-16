@@ -1,9 +1,10 @@
 // OK
 import React from "react";
-import { CardHeader, CardContent } from "@material-ui/core";
+import { CardHeader, CardContent, Link } from "@material-ui/core";
 import TextWithLabel from "./TextWithLabel";
 import BaseImage from "./BaseImage";
 import BaseCard from "./BaseCard";
+import { Link as RouterLink } from "react-router-dom";
 
 function getEpisodeAirYear(episode) {
   if (episode) {
@@ -45,8 +46,28 @@ function CharacterCard({
           <TextWithLabel label="Staus" text={character.status} />
           <TextWithLabel label="Species" text={character.species} />
           <TextWithLabel label="Gender" text={character.gender} />
-          <TextWithLabel label="Origin" text={character.origin.name} />
-          <TextWithLabel label="Location" text={character.location.name} />
+          <TextWithLabel
+            label="Origin"
+            text={
+              <Link
+                to={`/locations/${character.origin.id}`}
+                component={RouterLink}
+              >
+                {character.origin.name}
+              </Link>
+            }
+          />
+          <TextWithLabel
+            label="Location"
+            text={
+              <Link
+                to={`/locations/${character.location.id}`}
+                component={RouterLink}
+              >
+                {character.location.name}
+              </Link>
+            }
+          />
         </CardContent>
       ) : null}
     </BaseCard>

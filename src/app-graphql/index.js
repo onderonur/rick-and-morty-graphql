@@ -1,8 +1,18 @@
 import gql from "graphql-tag";
 
+// TODO: Bi kontrol et alanları, fragment'ları vs
+
 const PAGE_INFO_FRAGMENT = gql`
   fragment pageInfo on Info {
     next
+  }
+`;
+
+const LOCATION_FRAGMENT = gql`
+  fragment location on Location {
+    id
+    name
+    type
   }
 `;
 
@@ -21,16 +31,13 @@ const CHARACTER_FRAGMENT = gql`
     name
     image
   }
-  ${EPISODE_FRAGMENT}
 `;
 
 export const GET_CHARACTERS = gql`
   query getCharacters($page: Int, $filter: FilterCharacter) {
     characters(page: $page, filter: $filter) {
       results {
-        id
-        name
-        image
+        ...character
         episode {
           id
           air_date
@@ -41,6 +48,7 @@ export const GET_CHARACTERS = gql`
       }
     }
   }
+  ${CHARACTER_FRAGMENT}
   ${PAGE_INFO_FRAGMENT}
 `;
 
@@ -65,10 +73,11 @@ export const GET_CHARACTER = gql`
     }
   }
   ${CHARACTER_FRAGMENT}
+  ${EPISODE_FRAGMENT}
 `;
 
 export const GET_EPISODES = gql`
-  query episodes($page: Int, $filter: FilterEpisode) {
+  query getEpisodes($page: Int, $filter: FilterEpisode) {
     episodes(page: $page, filter: $filter) {
       results {
         ...episode
@@ -83,7 +92,7 @@ export const GET_EPISODES = gql`
 `;
 
 export const GET_EPISODE = gql`
-  query episode($id: ID) {
+  query getEpisode($id: ID) {
     episode(id: $id) {
       ...episode
       characters {
@@ -92,5 +101,34 @@ export const GET_EPISODE = gql`
     }
   }
   ${EPISODE_FRAGMENT}
+  ${CHARACTER_FRAGMENT}
+`;
+
+export const GET_LOCATIONS = gql`
+  query getLocations($page: Int, $filter: FilterLocation) {
+    locations(page: $page, filter: $filter) {
+      results {
+        ...location
+      }
+      info {
+        ...pageInfo
+      }
+    }
+  }
+  ${LOCATION_FRAGMENT}
+  ${PAGE_INFO_FRAGMENT}
+`;
+
+export const GET_LOCATION = gql`
+  query getLocation($id: ID) {
+    location(id: $id) {
+      ...location
+      dimension
+      residents {
+        ...character
+      }
+    }
+  }
+  ${LOCATION_FRAGMENT}
   ${CHARACTER_FRAGMENT}
 `;

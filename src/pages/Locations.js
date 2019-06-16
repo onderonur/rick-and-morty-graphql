@@ -1,33 +1,32 @@
 import React from "react";
 import InfiniteScrollWrapper from "components/InfiniteScrollWrapper";
-import { GET_EPISODES } from "app-graphql";
-import EpisodeList from "components/EpisodeList";
-import EpisodesConnectionQuery from "containers/EpisodesConnectionQuery";
+import { GET_LOCATIONS } from "app-graphql";
+import LocationsConnectionQuery from "containers/LocationsConnectionQuery";
+import LocationList from "components/LocationList";
 
-function Episodes() {
+function Locations() {
   return (
-    <EpisodesConnectionQuery>
+    <LocationsConnectionQuery>
       {({ results, pageInfo, loading, fetchMore }) => {
         const hasNextPage = pageInfo ? pageInfo.next : null;
-
         return (
           <InfiniteScrollWrapper
             hasNextPage={hasNextPage}
             loading={loading}
             loadMore={() =>
               fetchMore({
-                query: GET_EPISODES,
+                query: GET_LOCATIONS,
                 variables: { page: pageInfo.next },
                 updateQuery: (prevResult, { fetchMoreResult }) => {
                   const newData = {
-                    episodes: {
-                      ...prevResult.episodes,
+                    locations: {
+                      ...prevResult.locations,
                       results: [
-                        ...prevResult.episodes.results,
-                        ...fetchMoreResult.episodes.results
+                        ...prevResult.locations.results,
+                        ...fetchMoreResult.locations.results
                       ],
                       info: {
-                        ...fetchMoreResult.episodes.info
+                        ...fetchMoreResult.locations.info
                       }
                     }
                   };
@@ -37,12 +36,15 @@ function Episodes() {
               })
             }
           >
-            <EpisodeList episodes={results} loading={loading || hasNextPage} />
+            <LocationList
+              locations={results}
+              loading={loading || hasNextPage}
+            />
           </InfiniteScrollWrapper>
         );
       }}
-    </EpisodesConnectionQuery>
+    </LocationsConnectionQuery>
   );
 }
 
-export default Episodes;
+export default Locations;

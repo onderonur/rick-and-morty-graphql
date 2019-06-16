@@ -17,6 +17,9 @@ function Header() {
         <Button color="inherit" to="/episodes" component={RouterLink}>
           Episodes
         </Button>
+        <Button color="inherit" to="/locations" component={RouterLink}>
+          Locations
+        </Button>
       </Toolbar>
     </AppBar>
   );

@@ -7,6 +7,8 @@ import BaseImage from "components/BaseImage";
 import charactersPng from "assets/characters.png";
 import episodesJpg from "assets/episodes.jpg";
 import locationsJpg from "assets/locations.jpg";
+import home01 from "assets/home01.webp";
+import home02 from "assets/home02.gif";
 import BaseGridList from "components/BaseGridList";
 
 const useStyles = makeStyles(theme => ({
@@ -56,11 +58,15 @@ function Home() {
           </Grid>
         )}
       />
-      <Box my={2}>
-        <BaseImage
-          src="https://media.giphy.com/media/q9KaEjVuKcpl6/giphy.gif"
-          alt="rick gif"
-        />
+      <Box my={1}>
+        <Grid container spacing={2}>
+          <Grid item xs={12} sm={6}>
+            <BaseImage src={home01} alt="rick gif" aspectRatio="16:9" />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <BaseImage src={home02} alt="snuffles" aspectRatio="16:9" />
+          </Grid>
+        </Grid>
       </Box>
     </>
   );

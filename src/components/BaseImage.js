@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/styles";
 import placeholderPng from "assets/placeholder.png";
 import clsx from "clsx";
 import AspectRatio from "components/AspectRatio";
 import useVisibilityTracker from "hooks/useVisibilityTracker";
+
+const ORIGINAL = "original";
+const DEFAULT_ALT = "Not Loaded";
 
 const useStyles = makeStyles(theme => ({
   img: {
@@ -22,16 +25,17 @@ const useStyles = makeStyles(theme => ({
 
 function BaseImage({
   src = placeholderPng,
-  alt = "Not Loaded",
-  aspectRatio,
+  alt = DEFAULT_ALT,
+  aspectRatio = ORIGINAL,
   lazyLoad = true
 }) {
   const [imgHeight, setImgHeight] = useState(0);
   const [imgWidth, setImgWidth] = useState(0);
   const classes = useStyles();
   const [ref, { isVisible }] = useVisibilityTracker();
+  const [initialized, setInitialized] = useState(!lazyLoad);
 
-  const isOriginalAspectRatio = aspectRatio === "original";
+  const isOriginalAspectRatio = aspectRatio === ORIGINAL;
 
   function handleLoad(e) {
     if (isOriginalAspectRatio) {
@@ -41,7 +45,20 @@ function BaseImage({
     }
   }
 
-  return aspectRatio ? (
+  useEffect(() => {
+    if (isVisible) {
+      setInitialized(true);
+    }
+  }, [isVisible]);
+
+  function getSrc() {
+    if (lazyLoad && !initialized && !isVisible) {
+      return placeholderPng;
+    }
+    return src;
+  }
+
+  return (
     <AspectRatio
       aspectRatio={
         isOriginalAspectRatio ? `${imgWidth}:${imgHeight}` : aspectRatio
@@ -50,13 +67,11 @@ function BaseImage({
       <img
         ref={lazyLoad ? ref : undefined}
         className={clsx(classes.img, classes.imgWithAspectRatio)}
-        src={lazyLoad ? (isVisible ? src : placeholderPng) : src}
+        src={getSrc()}
         alt={alt}
         onLoad={handleLoad}
       />
     </AspectRatio>
-  ) : (
-    <img className={clsx(classes.img)} src={src} alt={alt} />
   );
 }
 

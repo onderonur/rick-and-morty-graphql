@@ -25,7 +25,11 @@ function CharacterCard({
 
   return (
     <BaseCard hasActionArea={hasActionArea}>
-      <BaseImage src={character.image} aspectRatio={imageAspectRatio} />
+      <BaseImage
+        src={character.image}
+        alt={character.name}
+        aspectRatio={imageAspectRatio}
+      />
       <CardHeader
         title={character.name}
         subheader={

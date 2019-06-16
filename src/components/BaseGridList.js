@@ -3,7 +3,7 @@ import React from "react";
 import { Grid } from "@material-ui/core";
 import LoadingIndicator from "components/LoadingIndicator";
 
-function BaseGridList({ items = [], loading, renderItem }) {
+function BaseGridList({ items = [], loading, renderItem, spacing = 1 }) {
   const loadingIndicator = (
     <Grid item xs={12}>
       <LoadingIndicator />
@@ -13,7 +13,7 @@ function BaseGridList({ items = [], loading, renderItem }) {
   return !items && loading ? (
     loadingIndicator
   ) : items ? (
-    <Grid container spacing={1}>
+    <Grid container spacing={spacing}>
       {items.map((item, index) => renderItem(item, index))}
       {loading && loadingIndicator}
     </Grid>

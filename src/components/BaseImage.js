@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/styles";
 import placeholderPng from "assets/placeholder.png";
 import clsx from "clsx";
 import AspectRatio from "components/AspectRatio";
+import useVisibilityTracker from "hooks/useVisibilityTracker";
 
 const useStyles = makeStyles(theme => ({
   img: {
@@ -19,10 +20,16 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function BaseImage({ src, alt = "Not Loaded", aspectRatio }) {
+function BaseImage({
+  src = placeholderPng,
+  alt = "Not Loaded",
+  aspectRatio,
+  lazyLoad = true
+}) {
   const [imgHeight, setImgHeight] = useState(0);
   const [imgWidth, setImgWidth] = useState(0);
   const classes = useStyles();
+  const [ref, { isVisible }] = useVisibilityTracker();
 
   const isOriginalAspectRatio = aspectRatio === "original";
 
@@ -41,14 +48,15 @@ function BaseImage({ src, alt = "Not Loaded", aspectRatio }) {
       }
     >
       <img
+        ref={lazyLoad ? ref : undefined}
         className={clsx(classes.img, classes.imgWithAspectRatio)}
-        src={src || placeholderPng}
+        src={lazyLoad ? (isVisible ? src : placeholderPng) : src}
         alt={alt}
         onLoad={handleLoad}
       />
     </AspectRatio>
   ) : (
-    <img className={clsx(classes.img)} src={src || placeholderPng} alt={alt} />
+    <img className={clsx(classes.img)} src={src} alt={alt} />
   );
 }
 

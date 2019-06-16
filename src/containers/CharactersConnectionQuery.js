@@ -7,7 +7,7 @@ function CharactersConnectionQuery({ filter, children }) {
   return (
     <Query
       query={GET_CHARACTERS}
-      variables={filter}
+      variables={{ filter }}
       notifyOnNetworkStatusChange
     >
       {({ data, loading, error, fetchMore }) => {

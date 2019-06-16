@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState, useCallback } from "react";
 
 // For more info: https://developers.google.com/web/updates/2016/04/intersectionobserver
 function useVisibilityTracker({
@@ -16,31 +16,43 @@ function useVisibilityTracker({
   // ratio of the observed element crosses a threshold in the list.
   threshold = [0]
 } = {}) {
-  const ref = useRef();
   const [isVisible, setIsVisible] = useState();
+  const observerRef = useRef();
+  const nodeRef = useRef();
 
-  useEffect(() => {
-    const current = ref.current;
-    // TODO: MoviesApp'teki resizeobserver'ı düzelt. Dep'leri vs
-    if (current) {
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) {
-            setIsVisible(true);
-          } else {
-            setIsVisible(false);
-          }
-        },
-        { root, rootMargin, threshold }
-      );
+  // TODO: MoviesApp'teki resizeobserver'ı düzelt. Dep'leri vs
+  const trackedNodeRef = useCallback(
+    node => {
+      if (observerRef.current && nodeRef.current) {
+        // Unobserving the previous node with previous observer
+        observerRef.current.unobserve(nodeRef.current);
 
-      observer.observe(current);
+        observerRef.current = null;
+        nodeRef.current = null;
+      }
 
-      return () => observer.unobserve(current);
-    }
-  });
+      if (node) {
+        const observer = new IntersectionObserver(
+          ([entry]) => {
+            if (entry.isIntersecting) {
+              setIsVisible(true);
+            } else {
+              setIsVisible(false);
+            }
+          },
+          { root, rootMargin, threshold }
+        );
 
-  return [ref, { isVisible }];
+        observer.observe(node);
+
+        observerRef.current = observer;
+        nodeRef.current = node;
+      }
+    },
+    [root, rootMargin, threshold]
+  );
+
+  return [trackedNodeRef, { isVisible }];
 }
 
 export default useVisibilityTracker;

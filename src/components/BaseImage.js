@@ -29,9 +29,9 @@ function BaseImage({
   aspectRatio = ORIGINAL,
   lazyLoad = true
 }) {
+  const classes = useStyles();
   const [imgHeight, setImgHeight] = useState(0);
   const [imgWidth, setImgWidth] = useState(0);
-  const classes = useStyles();
   const [ref, { isVisible }] = useVisibilityTracker();
   const [initialized, setInitialized] = useState(!lazyLoad);
 

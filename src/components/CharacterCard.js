@@ -5,6 +5,7 @@ import TextWithLabel from "./TextWithLabel";
 import BaseImage from "./BaseImage";
 import BaseCard from "./BaseCard";
 import { Link as RouterLink } from "react-router-dom";
+import useVisibilityTracker from "hooks/useVisibilityTracker";
 
 function getEpisodeAirYear(episode) {
   if (episode) {
@@ -20,57 +21,60 @@ function CharacterCard({
   showSpecs
 }) {
   const { episode } = character;
+  const [ref] = useVisibilityTracker();
 
   const firstEpisode = episode ? episode[0] : null;
   const lastEpisode = episode ? episode[episode.length - 1] : null;
 
   return (
-    <BaseCard hasActionArea={hasActionArea}>
-      <BaseImage
-        src={character.image}
-        alt={character.name}
-        aspectRatio={imageAspectRatio}
-      />
-      <CardHeader
-        title={character.name}
-        subheader={
-          firstEpisode && lastEpisode
-            ? `Episodes:${episode.length} (${getEpisodeAirYear(
-                firstEpisode
-              )} - ${getEpisodeAirYear(lastEpisode)})`
-            : null
-        }
-      />
-      {showSpecs ? (
-        <CardContent>
-          <TextWithLabel label="Staus" text={character.status} />
-          <TextWithLabel label="Species" text={character.species} />
-          <TextWithLabel label="Gender" text={character.gender} />
-          <TextWithLabel
-            label="Origin"
-            text={
-              <Link
-                to={`/locations/${character.origin.id}`}
-                component={RouterLink}
-              >
-                {character.origin.name}
-              </Link>
-            }
-          />
-          <TextWithLabel
-            label="Location"
-            text={
-              <Link
-                to={`/locations/${character.location.id}`}
-                component={RouterLink}
-              >
-                {character.location.name}
-              </Link>
-            }
-          />
-        </CardContent>
-      ) : null}
-    </BaseCard>
+    <div ref={ref}>
+      <BaseCard hasActionArea={hasActionArea}>
+        <BaseImage
+          src={character.image}
+          alt={character.name}
+          aspectRatio={imageAspectRatio}
+        />
+        <CardHeader
+          title={character.name}
+          subheader={
+            firstEpisode && lastEpisode
+              ? `Episodes:${episode.length} (${getEpisodeAirYear(
+                  firstEpisode
+                )} - ${getEpisodeAirYear(lastEpisode)})`
+              : null
+          }
+        />
+        {showSpecs ? (
+          <CardContent>
+            <TextWithLabel label="Staus" text={character.status} />
+            <TextWithLabel label="Species" text={character.species} />
+            <TextWithLabel label="Gender" text={character.gender} />
+            <TextWithLabel
+              label="Origin"
+              text={
+                <Link
+                  to={`/locations/${character.origin.id}`}
+                  component={RouterLink}
+                >
+                  {character.origin.name}
+                </Link>
+              }
+            />
+            <TextWithLabel
+              label="Location"
+              text={
+                <Link
+                  to={`/locations/${character.location.id}`}
+                  component={RouterLink}
+                >
+                  {character.location.name}
+                </Link>
+              }
+            />
+          </CardContent>
+        ) : null}
+      </BaseCard>
+    </div>
   );
 }
 

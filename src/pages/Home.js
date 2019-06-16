@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, CardHeader, Box } from "@material-ui/core";
+import { Grid, Box, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import BaseCard from "components/BaseCard";
 import { Link as RouterLink } from "react-router-dom";
@@ -10,10 +10,42 @@ import locationsJpg from "assets/locations.jpg";
 import home01 from "assets/home01.webp";
 import home02 from "assets/home02.gif";
 import BaseGridList from "components/BaseGridList";
+import clsx from "clsx";
 
 const useStyles = makeStyles(theme => ({
   link: {
     textDecoration: "none"
+  },
+  card: {
+    "&:hover": {
+      "& $mask": {
+        opacity: 0.15
+      },
+      "& $titleTypography": {
+        border: "4px solid currentColor"
+      }
+    }
+  },
+  overlay: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    width: "100%",
+    height: "100%"
+  },
+  mask: {
+    backgroundColor: theme.palette.common.black,
+    opacity: 0.4,
+    transition: theme.transitions.create("opacity")
+  },
+  title: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    color: theme.palette.common.white
+  },
+  titleTypography: {
+    padding: theme.spacing(2)
   }
 }));
 
@@ -46,13 +78,18 @@ function Home() {
         renderItem={item => (
           <Grid key={item.to} item xs={12} sm={4}>
             <RouterLink className={classes.link} to={item.to}>
-              <BaseCard hasActionArea>
+              <BaseCard className={classes.card} hasActionArea>
                 <BaseImage
                   src={item.image}
                   alt={item.title}
-                  aspectRatio="1:1"
+                  aspectRatio="16:9"
                 />
-                <CardHeader title={item.title} />
+                <div className={clsx(classes.overlay, classes.mask)} />
+                <div className={clsx(classes.overlay, classes.title)}>
+                  <Typography className={classes.titleTypography} variant="h5">
+                    {item.title}
+                  </Typography>
+                </div>
               </BaseCard>
             </RouterLink>
           </Grid>

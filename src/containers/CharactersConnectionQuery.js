@@ -3,11 +3,11 @@ import React from "react";
 import { Query } from "react-apollo";
 import { GET_CHARACTERS } from "app-graphql";
 
-function CharactersQuery({ filter, children }) {
+function CharactersConnectionQuery({ filter, children }) {
   return (
     <Query
       query={GET_CHARACTERS}
-      variables={{ filter }}
+      variables={filter}
       notifyOnNetworkStatusChange
     >
       {({ data, loading, error, fetchMore }) => {
@@ -26,4 +26,4 @@ function CharactersQuery({ filter, children }) {
   );
 }
 
-export default CharactersQuery;
+export default CharactersConnectionQuery;

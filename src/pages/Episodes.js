@@ -1,16 +1,13 @@
 import React from "react";
 import InfiniteScrollWrapper from "components/InfiniteScrollWrapper";
 import { GET_EPISODES } from "app-graphql";
-import { Query } from "react-apollo";
 import EpisodeList from "components/EpisodeList";
+import EpisodesConnectionQuery from "containers/EpisodesConnectionQuery";
 
-function Episodes() {  return (
-    <Query query={GET_EPISODES} notifyOnNetworkStatusChange={true}>
-      {({ data, loading, fetchMore }) => {
-        const { episodes } = data;
-        const results = episodes ? episodes.results : [];
-        const pageInfo = episodes ? episodes.info : null;
-
+function Episodes() {
+  return (
+    <EpisodesConnectionQuery>
+      {({ results, pageInfo, loading, fetchMore }) => {
         return (
           <InfiniteScrollWrapper
             hasNextPage={pageInfo ? pageInfo.next : null}
@@ -42,7 +39,7 @@ function Episodes() {  return (
           </InfiniteScrollWrapper>
         );
       }}
-    </Query>
+    </EpisodesConnectionQuery>
   );
 }
 

@@ -1,6 +1,6 @@
 // OK
 import React from "react";
-import CharacterQuery from "components/CharacterQuery";
+import CharacterQuery from "containers/CharacterQuery";
 import CharacterProfile from "components/CharacterProfile";
 
 function Character({

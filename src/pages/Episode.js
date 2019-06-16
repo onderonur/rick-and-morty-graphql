@@ -1,7 +1,7 @@
 // OK
 import React from "react";
 import EpisodeProfile from "components/EpisodeProfile";
-import EpisodeQuery from "components/EpisodeQuery";
+import EpisodeQuery from "containers/EpisodeQuery";
 
 function Episode({
   match: {

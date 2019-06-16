@@ -14,11 +14,11 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function CharacterSearch({ history }) {
+function CharacterSearch({ history, location: { search } }) {
   const classes = useStyles();
 
   function handleSearch({ searchValue }) {
-    history.push(`/characters/${searchValue ? `?name=${searchValue}` : ""}`);
+    history.push(`/characters${searchValue ? `?name=${searchValue}` : ""}`);
   }
 
   return (

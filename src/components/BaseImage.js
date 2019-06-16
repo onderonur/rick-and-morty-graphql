@@ -51,26 +51,21 @@ function BaseImage({
     }
   }, [isVisible]);
 
-  function getSrc() {
-    if (lazyLoad && !initialized && !isVisible) {
-      return placeholderPng;
-    }
-    return src;
-  }
-
   return (
     <AspectRatio
+      ref={lazyLoad ? ref : undefined}
       aspectRatio={
         isOriginalAspectRatio ? `${imgWidth}:${imgHeight}` : aspectRatio
       }
     >
-      <img
-        ref={lazyLoad ? ref : undefined}
-        className={clsx(classes.img, classes.imgWithAspectRatio)}
-        src={getSrc()}
-        alt={alt}
-        onLoad={handleLoad}
-      />
+      {lazyLoad && !initialized ? null : (
+        <img
+          className={clsx(classes.img, classes.imgWithAspectRatio)}
+          src={src}
+          alt={alt}
+          onLoad={handleLoad}
+        />
+      )}
     </AspectRatio>
   );
 }

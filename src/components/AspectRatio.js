@@ -8,7 +8,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function AspectRatio({ aspectRatio, children }) {
+const AspectRatio = React.forwardRef(({ aspectRatio, children }, ref) => {
   const classes = useStyles();
 
   const [ratioX, ratioY] = aspectRatio.split(":");
@@ -16,6 +16,7 @@ function AspectRatio({ aspectRatio, children }) {
 
   return (
     <Box
+      ref={ref}
       className={classes.root}
       position="relative"
       height={0}
@@ -24,6 +25,6 @@ function AspectRatio({ aspectRatio, children }) {
       {children}
     </Box>
   );
-}
+});
 
 export default AspectRatio;

@@ -45,7 +45,11 @@ function Home() {
           <Grid key={item.to} item xs={12} sm={4}>
             <RouterLink className={classes.link} to={item.to}>
               <BaseCard hasActionArea>
-                <BaseImage src={item.image} aspectRatio="1:1" />
+                <BaseImage
+                  src={item.image}
+                  alt={item.title}
+                  aspectRatio="1:1"
+                />
                 <CardHeader title={item.title} />
               </BaseCard>
             </RouterLink>

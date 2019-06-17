@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
   card: {
     "&:hover": {
       "& $mask": {
-        opacity: 0.15
+        opacity: 0.2
       },
       "& $titleTypography": {
         border: "4px solid currentColor"

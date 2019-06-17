@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/styles";
-import placeholderPng from "assets/placeholder.png";
+import placeholderPng from "assets/images/placeholder.png";
 import clsx from "clsx";
 import AspectRatio from "components/AspectRatio";
 import useVisibilityTracker from "hooks/useVisibilityTracker";

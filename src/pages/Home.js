@@ -4,11 +4,11 @@ import { makeStyles } from "@material-ui/styles";
 import BaseCard from "components/BaseCard";
 import { Link as RouterLink } from "react-router-dom";
 import BaseImage from "components/BaseImage";
-import charactersPng from "assets/characters.png";
-import episodesJpg from "assets/episodes.jpg";
-import locationsJpg from "assets/locations.jpg";
-import home01 from "assets/home01.webp";
-import home02 from "assets/home02.gif";
+import charactersPng from "assets/images/characters.png";
+import episodesJpg from "assets/images/episodes.jpg";
+import locationsJpg from "assets/images/locations.jpg";
+import home01 from "assets/gifs/home01.webp";
+import home02 from "assets/gifs/home02.gif";
 import BaseGridList from "components/BaseGridList";
 import clsx from "clsx";
 

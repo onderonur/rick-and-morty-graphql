@@ -3,11 +3,11 @@ import React from "react";
 import { RootRef } from "@material-ui/core";
 import { useInfiniteScroll } from "react-infinite-scroll-hook";
 
-function InfiniteScrollWrapper({ hasNextPage, loading, loadMore, children }) {
+function InfiniteScrollWrapper({ hasNextPage, loading, onLoadMore, children }) {
   const infiniteContainerRef = useInfiniteScroll({
     hasNextPage,
     loading,
-    loadMore
+    onLoadMore
   });
 
   return <RootRef rootRef={infiniteContainerRef}>{children}</RootRef>;

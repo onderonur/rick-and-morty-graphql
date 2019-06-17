@@ -14,7 +14,7 @@ function Episodes() {
           <InfiniteScrollWrapper
             hasNextPage={hasNextPage}
             loading={loading}
-            loadMore={() =>
+            onLoadMore={() =>
               fetchMore({
                 query: GET_EPISODES,
                 variables: { page: pageInfo.next },

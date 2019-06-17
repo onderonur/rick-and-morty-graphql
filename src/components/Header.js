@@ -1,27 +1,56 @@
 // OK
-import React from "react";
-import { AppBar, Toolbar, Typography, Box, Button } from "@material-ui/core";
+import React, { useState } from "react";
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  Box,
+  Button,
+  IconButton,
+  Drawer
+} from "@material-ui/core";
 import { Link as RouterLink } from "react-router-dom";
+import MenuIcon from "@material-ui/icons/Menu";
+import { makeStyles } from "@material-ui/styles";
+
+const useStyles = makeStyles(theme => ({
+  drawer: {
+    width: 240
+  }
+}));
 
 function Header() {
+  const classes = useStyles();
+  const [openDrawer, setOpenDrawer] = useState(false);
+
+  function handleOpenDrawer() {
+    setOpenDrawer(true);
+  }
+
+  function handleCloseDrawer() {
+    setOpenDrawer(false);
+  }
+
   return (
-    <AppBar position="fixed">
-      <Toolbar>
-        <Button to="/" component={RouterLink} color="inherit">
-          <Typography variant="h6">RickQL</Typography>
-        </Button>
-        <Box flexGrow={1} />
-        <Button color="inherit" to="/characters" component={RouterLink}>
-          Characters
-        </Button>
-        <Button color="inherit" to="/episodes" component={RouterLink}>
-          Episodes
-        </Button>
-        <Button color="inherit" to="/locations" component={RouterLink}>
-          Locations
-        </Button>
-      </Toolbar>
-    </AppBar>
+    <>
+      <AppBar position="fixed">
+        <Toolbar>
+          <Button to="/" component={RouterLink} color="inherit">
+            <Typography variant="h6">RickQL</Typography>
+          </Button>
+          <Box flexGrow={1} />
+          <IconButton onClick={handleOpenDrawer}>
+            <MenuIcon />
+          </IconButton>
+        </Toolbar>
+      </AppBar>
+      <Drawer
+        classes={{ paper: classes.drawer }}
+        open={openDrawer}
+        anchor="right"
+        onClose={handleCloseDrawer}
+      />
+    </>
   );
 }
 

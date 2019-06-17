@@ -13,7 +13,7 @@ function Locations() {
           <InfiniteScrollWrapper
             hasNextPage={hasNextPage}
             loading={loading}
-            loadMore={() =>
+            onLoadMore={() =>
               fetchMore({
                 query: GET_LOCATIONS,
                 variables: { page: pageInfo.next },

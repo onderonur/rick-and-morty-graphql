@@ -50,7 +50,7 @@ function Characters({ location }) {
             <InfiniteScrollWrapper
               hasNextPage={hasNextPage}
               loading={loading}
-              loadMore={() => handleLoadMore(fetchMore, pageInfo)}
+              onLoadMore={() => handleLoadMore(fetchMore, pageInfo)}
             >
               <CharacterGridList
                 characters={results}

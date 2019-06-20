@@ -4,7 +4,7 @@ import { CardHeader, CardContent, Link } from "@material-ui/core";
 import TextWithLabel from "./TextWithLabel";
 import BaseImage from "./BaseImage";
 import BaseCard from "./BaseCard";
-import { Link as RouterLink } from "react-router-dom";
+import RouterLink from "./RouterLink";
 
 function getEpisodeAirYear(episode) {
   if (episode) {

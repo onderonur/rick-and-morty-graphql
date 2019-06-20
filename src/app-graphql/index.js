@@ -132,3 +132,15 @@ export const GET_LOCATION = gql`
   ${LOCATION_FRAGMENT}
   ${CHARACTER_FRAGMENT}
 `;
+
+export const GET_SHOW_DRAWER = gql`
+  query getShowDrawer {
+    showDrawer @client
+  }
+`;
+
+export const TOGGLE_DRAWER = gql`
+  mutation toggleDrawer($showDrawer: Boolean!) {
+    toggleDrawer(showDrawer: $showDrawer) @client
+  }
+`;

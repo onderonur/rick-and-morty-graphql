@@ -2,7 +2,6 @@ import React from "react";
 import { Grid, Box, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import BaseCard from "components/BaseCard";
-import { Link as RouterLink } from "react-router-dom";
 import BaseImage from "components/BaseImage";
 import charactersPng from "assets/images/characters.png";
 import episodesJpg from "assets/images/episodes.jpg";
@@ -11,6 +10,7 @@ import home01 from "assets/gifs/home01.webp";
 import home02 from "assets/gifs/home02.gif";
 import BaseGridList from "components/BaseGridList";
 import clsx from "clsx";
+import RouterLink from "components/RouterLink";
 
 const useStyles = makeStyles(theme => ({
   link: {

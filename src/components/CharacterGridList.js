@@ -1,9 +1,9 @@
 // OK
 import React from "react";
 import { Grid, makeStyles, Link } from "@material-ui/core";
-import { Link as RouterLink } from "react-router-dom";
 import CharacterCard from "./CharacterCard";
 import BaseGridList from "./BaseGridList";
+import RouterLink from "./RouterLink";
 
 const useStyles = makeStyles({
   link: {

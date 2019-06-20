@@ -1,55 +1,63 @@
 // OK
-import React, { useState } from "react";
+import React from "react";
 import {
   AppBar,
   Toolbar,
   Typography,
   Box,
-  Button,
   IconButton,
-  Drawer
+  Link
 } from "@material-ui/core";
-import { Link as RouterLink } from "react-router-dom";
+import RouterLink from "./RouterLink";
+import AppDrawer from "./AppDrawer";
 import MenuIcon from "@material-ui/icons/Menu";
+import { Mutation } from "react-apollo";
+import { TOGGLE_DRAWER } from "app-graphql";
+import logo from "assets/images/logo.png";
 import { makeStyles } from "@material-ui/styles";
 
-const useStyles = makeStyles(theme => ({
-  drawer: {
-    width: 240
-  }
-}));
+const useStyles = makeStyles(theme => {
+  return {
+    logoLink: {
+      display: "flex",
+      alignItems: "center",
+      "&:hover": {
+        textDecoration: "none"
+      },
+      "& img": {
+        width: 60
+      }
+    }
+  };
+});
 
 function Header() {
   const classes = useStyles();
-  const [openDrawer, setOpenDrawer] = useState(false);
-
-  function handleOpenDrawer() {
-    setOpenDrawer(true);
-  }
-
-  function handleCloseDrawer() {
-    setOpenDrawer(false);
-  }
 
   return (
     <>
-      <AppBar position="fixed">
+      <AppBar position="fixed" color="default">
         <Toolbar>
-          <Button to="/" component={RouterLink} color="inherit">
-            <Typography variant="h6">RickQL</Typography>
-          </Button>
+          <Link className={classes.logoLink} to="/" component={RouterLink}>
+            <img src={logo} alt="Rick and Morty" />
+            <Typography variant="h5" color="textPrimary">
+              RICKQL
+            </Typography>
+          </Link>
           <Box flexGrow={1} />
-          <IconButton onClick={handleOpenDrawer}>
-            <MenuIcon />
-          </IconButton>
+          <Mutation mutation={TOGGLE_DRAWER} variables={{ showDrawer: true }}>
+            {toggleDrawer => {
+              return (
+                <IconButton onClick={toggleDrawer}>
+                  <MenuIcon />
+                </IconButton>
+              );
+            }}
+          </Mutation>
         </Toolbar>
       </AppBar>
-      <Drawer
-        classes={{ paper: classes.drawer }}
-        open={openDrawer}
-        anchor="right"
-        onClose={handleCloseDrawer}
-      />
+      {/* TODO: Close on location change */}
+      <AppDrawer />
     </>
   );
 }

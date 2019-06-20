@@ -1,7 +1,7 @@
 import React from "react";
 import { ListItem, ListItemText } from "@material-ui/core";
-import { Link as RouterLink } from "react-router-dom";
 import BaseList from "./BaseList";
+import RouterLink from "./RouterLink";
 
 function EpisodeList({ episodes = [], loading, maxVisibleItemCount }) {
   return (

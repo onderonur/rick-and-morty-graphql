@@ -1,17 +1,16 @@
-// OK
-import React from "react";
-import { Box, makeStyles } from "@material-ui/core";
+import React from 'react';
+import { Box, makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    overflow: "hidden"
+    overflow: 'hidden'
   }
 }));
 
 const AspectRatio = React.forwardRef(({ aspectRatio, children }, ref) => {
   const classes = useStyles();
 
-  const [ratioX, ratioY] = aspectRatio.split(":");
+  const [ratioX, ratioY] = aspectRatio.split(':');
   const paddingTop = `${(100 * ratioY) / ratioX}%`;
 
   return (

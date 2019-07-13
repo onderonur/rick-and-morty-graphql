@@ -1,9 +1,9 @@
 // OK
-import React from "react";
-import { Container, CssBaseline, makeStyles } from "@material-ui/core";
-import Header from "./components/Header";
-import Routes from "./Routes";
-import BackToTopButton from "components/BackToTopButton";
+import React from 'react';
+import { Container, CssBaseline, makeStyles } from '@material-ui/core';
+import Header from './Header';
+import Routes from './Routes';
+import BackToTopButton from './BackToTopButton';
 
 const useStyles = makeStyles(theme => ({
   toolbar: theme.mixins.toolbar,

@@ -1,17 +1,17 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import App from "./App";
-import * as serviceWorker from "./serviceWorker";
-import ApolloClient from "apollo-boost";
-import { ApolloProvider } from "react-apollo";
-import { ThemeProvider } from "@material-ui/styles";
-import theme from "./theme";
-import { BrowserRouter } from "react-router-dom";
-import typeDefs from "app-graphql/typeDefs";
-import resolvers from "app-graphql/resolvers";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from 'components/App';
+import * as serviceWorker from './serviceWorker';
+import ApolloClient from 'apollo-boost';
+import { ApolloProvider } from 'react-apollo';
+import { ThemeProvider } from '@material-ui/styles';
+import theme from './theme';
+import { BrowserRouter } from 'react-router-dom';
+import typeDefs from 'app-graphql/typeDefs';
+import resolvers from 'app-graphql/resolvers';
 
 const client = new ApolloClient({
-  uri: "https://rickandmortyapi.com/graphql/",
+  uri: 'https://rickandmortyapi.com/graphql/',
   clientState: {
     typeDefs,
     resolvers,
@@ -29,7 +29,7 @@ ReactDOM.render(
       </BrowserRouter>
     </ThemeProvider>
   </ApolloProvider>,
-  document.getElementById("root")
+  document.getElementById('root')
 );
 
 // If you want your app to work offline and load faster, you can change

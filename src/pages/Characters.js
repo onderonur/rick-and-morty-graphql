@@ -8,7 +8,7 @@ import CharacterGridList from "components/CharacterGridList";
 import useQueryString from "hooks/useQueryString";
 
 function Characters({ location }) {
-  const { name } = useQueryString({ location });
+  const { name } = useQueryString(location);
 
   const filter = {
     name

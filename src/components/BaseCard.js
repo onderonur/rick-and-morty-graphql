@@ -1,6 +1,6 @@
 // OK
-import React from "react";
-import { Card, CardActionArea } from "@material-ui/core";
+import React from 'react';
+import { Card, CardActionArea } from '@material-ui/core';
 
 function BaseCard({ hasActionArea, children, ...rest }) {
   return (

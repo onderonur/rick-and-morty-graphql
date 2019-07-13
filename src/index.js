@@ -10,8 +10,6 @@ import { BrowserRouter } from "react-router-dom";
 import typeDefs from "app-graphql/typeDefs";
 import resolvers from "app-graphql/resolvers";
 
-// TODO: Movies için apollo local state e bi bak.
-// Genel olarak option ayarlarına da bak apolloclient'ın ne neymiş
 const client = new ApolloClient({
   uri: "https://rickandmortyapi.com/graphql/",
   clientState: {

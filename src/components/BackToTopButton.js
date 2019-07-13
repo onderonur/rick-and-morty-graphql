@@ -16,8 +16,8 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function ScrollToTopButton() {
-  const [show, setShow] = useState(checkScrollThreshold());
+function BackToTopButton() {
+  const [show, setShow] = useState(() => checkScrollThreshold());
   const classes = useStyles();
 
   function checkScrollThreshold() {
@@ -47,10 +47,10 @@ function ScrollToTopButton() {
   return (
     <Grow in={show}>
       <Fab className={classes.fab} color="secondary" onClick={handleClick}>
-        <KeyboardArrowUpIcon />
+        <KeyboardArrowUpIcon fontSize="large" />
       </Fab>
     </Grow>
   );
 }
 
-export default ScrollToTopButton;
+export default BackToTopButton;

@@ -3,7 +3,7 @@ import React from "react";
 import { Container, CssBaseline, makeStyles } from "@material-ui/core";
 import Header from "./components/Header";
 import Routes from "./Routes";
-import ScrollToTopButton from "components/ScrollToTopButton";
+import BackToTopButton from "components/BackToTopButton";
 
 const useStyles = makeStyles(theme => ({
   toolbar: theme.mixins.toolbar,
@@ -21,7 +21,7 @@ function App() {
       <Header />
       <div className={classes.toolbar} />
       <Container className={classes.main} component="main" maxWidth="lg">
-        <ScrollToTopButton />
+        <BackToTopButton />
         <Routes />
       </Container>
     </>

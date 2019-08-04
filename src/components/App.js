@@ -1,4 +1,3 @@
-// OK
 import React from 'react';
 import { Container, CssBaseline, makeStyles } from '@material-ui/core';
 import Header from './Header';
@@ -21,9 +20,9 @@ function App() {
       <Header />
       <div className={classes.toolbar} />
       <Container className={classes.main} component="main" maxWidth="lg">
-        <BackToTopButton />
         <Routes />
       </Container>
+      <BackToTopButton />
     </>
   );
 }

@@ -1,4 +1,3 @@
-// OK
 import React from 'react';
 import { Card, CardActionArea } from '@material-ui/core';
 

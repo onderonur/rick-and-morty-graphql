@@ -10,14 +10,17 @@ function BaseGridList({ items = [], loading, renderItem, spacing = 1 }) {
     </Grid>
   );
 
-  return !items && loading ? (
-    loadingIndicator
-  ) : items ? (
-    <Grid container spacing={spacing}>
-      {items.map((item, index) => renderItem(item, index))}
-      {loading && loadingIndicator}
-    </Grid>
-  ) : null;
+  const isInitialFetch = loading && !items;
+
+  return (
+    <LoadingIndicator loading={isInitialFetch}>
+      <Grid container spacing={spacing}>
+        {items.map((item, index) => renderItem(item, index))}
+        {loading && loadingIndicator}
+      </Grid>
+      <LoadingIndicator loading={loading} />
+    </LoadingIndicator>
+  );
 }
 
 export default BaseGridList;

@@ -1,4 +1,4 @@
-import { useRef, useState, useCallback, useEffect } from 'react';
+import { useRef, useState, useCallback, useEffect } from "react";
 
 // For more info: https://developers.google.com/web/updates/2016/04/intersectionobserver
 function useVisibilityTracker({
@@ -9,7 +9,7 @@ function useVisibilityTracker({
   // If an explicit root element is specified, components may be percentages of the
   // root element size.  If no explicit root element is specified, using a percentage
   // is an error.
-  rootMargin = '0px',
+  rootMargin = "0px",
   // Threshold(s) at which to trigger callback, specified as a ratio, or list of
   // ratios, of (visible area / total area) of the observed element (hence all
   // entries must be in the range [0, 1]).  Callback will be invoked when the visible
@@ -38,6 +38,7 @@ function useVisibilityTracker({
             { root, rootMargin, threshold }
           );
         }
+
         return observerRef.current;
       }
 

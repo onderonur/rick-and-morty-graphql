@@ -10,7 +10,8 @@ function Locations() {
     notifyOnNetworkStatusChange: true
   });
 
-  const { results, pageInfo } = resolveConnectionResponse(data.locations);
+  const { locations } = data;
+  const { results, pageInfo } = resolveConnectionResponse(locations);
   const { next: hasNextPage } = pageInfo;
 
   return (

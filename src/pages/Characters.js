@@ -20,10 +20,11 @@ function Characters({ location }) {
     notifyOnNetworkStatusChange: true
   });
 
-  const { results, pageInfo } = resolveConnectionResponse(data.characters);
+  const { characters } = data;
+  const { results, pageInfo } = resolveConnectionResponse(characters);
   const { next: hasNextPage } = pageInfo;
 
-  function handleLoadMore(fetchMore, pageInfo) {
+  function handleLoadMore() {
     return fetchMore({
       query: GET_CHARACTERS,
       variables: { filter, page: pageInfo.next },
@@ -54,7 +55,7 @@ function Characters({ location }) {
       <InfiniteScrollWrapper
         hasNextPage={hasNextPage}
         loading={loading}
-        onLoadMore={() => handleLoadMore(fetchMore, pageInfo)}
+        onLoadMore={handleLoadMore}
       >
         <CharacterGridList
           characters={results}

@@ -10,7 +10,8 @@ function Episodes() {
     notifyOnNetworkStatusChange: true
   });
 
-  const { results, pageInfo } = resolveConnectionResponse(data.episodes);
+  const { episodes } = data;
+  const { results, pageInfo } = resolveConnectionResponse(episodes);
   const { next: hasNextPage } = pageInfo;
 
   return (

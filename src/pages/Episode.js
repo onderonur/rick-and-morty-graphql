@@ -1,20 +1,21 @@
 // OK
 import React from "react";
 import EpisodeProfile from "components/EpisodeProfile";
-import EpisodeQuery from "containers/EpisodeQuery";
+import { useQuery } from "@apollo/react-hooks";
+import { GET_EPISODE } from "app-graphql";
 
 function Episode({
   match: {
     params: { episodeId }
   }
 }) {
-  return (
-    <EpisodeQuery episodeId={episodeId}>
-      {({ episode, loading }) => (
-        <EpisodeProfile episode={episode} loading={loading} />
-      )}
-    </EpisodeQuery>
-  );
+  const { data, loading } = useQuery(GET_EPISODE, {
+    variables: { id: episodeId }
+  });
+
+  const { episode } = data;
+
+  return <EpisodeProfile episode={episode} loading={loading} />;
 }
 
 export default Episode;

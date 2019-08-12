@@ -1,20 +1,20 @@
 // OK
 import React from "react";
-import CharacterQuery from "containers/CharacterQuery";
 import CharacterProfile from "components/CharacterProfile";
+import { useQuery } from "@apollo/react-hooks";
+import { GET_CHARACTER } from "app-graphql";
 
 function Character({
   match: {
     params: { characterId }
   }
 }) {
-  return (
-    <CharacterQuery characterId={characterId}>
-      {({ character, loading }) => (
-        <CharacterProfile character={character} loading={loading} />
-      )}
-    </CharacterQuery>
-  );
+  const { data, loading } = useQuery(GET_CHARACTER, {
+    variables: { id: characterId }
+  });
+
+  const { character } = data;
+  return <CharacterProfile character={character} loading={loading} />;
 }
 
 export default Character;

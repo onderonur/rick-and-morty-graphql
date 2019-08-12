@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import App from 'components/App';
 import * as serviceWorker from './serviceWorker';
 import ApolloClient from 'apollo-boost';
-import { ApolloProvider } from 'react-apollo';
+import { ApolloProvider } from '@apollo/react-hooks';
 import { ThemeProvider } from '@material-ui/styles';
 import theme from './theme';
 import { BrowserRouter } from 'react-router-dom';

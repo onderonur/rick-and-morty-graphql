@@ -15,24 +15,26 @@ function BaseList({
     setExpand(!expand);
   }
 
-  return !items.length && loading ? (
-    <LoadingIndicator />
-  ) : (
-    <List {...other}>
-      {items.map((item, i) =>
-        expand || i < maxVisibleItemCount ? renderItem(item, i) : null
-      )}
-      {maxVisibleItemCount && items.length > maxVisibleItemCount ? (
-        <ListItem button onClick={toggleExpand}>
-          <ListItemText secondary={`SHOW ${expand ? "LESS" : "MORE"}`} />
-        </ListItem>
-      ) : null}
-      {loading ? (
-        <ListItem>
-          <LoadingIndicator />
-        </ListItem>
-      ) : null}
-    </List>
+  const isInitialFetch = loading & !items.length;
+
+  return (
+    <LoadingIndicator loading={isInitialFetch}>
+      <List {...other}>
+        {items.map((item, i) =>
+          expand || i < maxVisibleItemCount ? renderItem(item, i) : null
+        )}
+        {maxVisibleItemCount && items.length > maxVisibleItemCount ? (
+          <ListItem button onClick={toggleExpand}>
+            <ListItemText secondary={`SHOW ${expand ? "LESS" : "MORE"}`} />
+          </ListItem>
+        ) : null}
+        {loading ? (
+          <ListItem>
+            <LoadingIndicator loading />
+          </ListItem>
+        ) : null}
+      </List>
+    </LoadingIndicator>
   );
 }
 

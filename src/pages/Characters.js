@@ -3,16 +3,25 @@ import { Box } from "@material-ui/core";
 import InfiniteScrollWrapper from "components/InfiniteScrollWrapper";
 import CharacterSearch from "components/CharacterSearch";
 import { GET_CHARACTERS } from "app-graphql";
-import CharactersConnectionQuery from "containers/CharactersConnectionQuery";
 import CharacterGridList from "components/CharacterGridList";
 import useQueryString from "hooks/useQueryString";
+import { useQuery } from "@apollo/react-hooks";
+import { resolveConnectionResponse } from "utils";
 
 function Characters({ location }) {
   const { name } = useQueryString(location);
-
   const filter = {
     name
   };
+  const { data, loading, fetchMore } = useQuery(GET_CHARACTERS, {
+    variables: {
+      filter
+    },
+    notifyOnNetworkStatusChange: true
+  });
+
+  const { results, pageInfo } = resolveConnectionResponse(data.characters);
+  const { next: hasNextPage } = pageInfo;
 
   function handleLoadMore(fetchMore, pageInfo) {
     return fetchMore({
@@ -42,31 +51,23 @@ function Characters({ location }) {
       <Box mb={2}>
         <CharacterSearch />
       </Box>
-      <CharactersConnectionQuery filter={filter}>
-        {({ results, pageInfo, loading, fetchMore }) => {
-          const hasNextPage = pageInfo ? pageInfo.next : null;
-
-          return (
-            <InfiniteScrollWrapper
-              hasNextPage={hasNextPage}
-              loading={loading}
-              onLoadMore={() => handleLoadMore(fetchMore, pageInfo)}
-            >
-              <CharacterGridList
-                characters={results}
-                // Because this is an infinite list, loading indicator will be shown when
-                // the user scrolls to the bottom of the page if there is a next page.
-                // If we mount/unmount loading indicator and user hits the bottom of the page fast
-                // (especially on mobile devices) loading mounts, height of the scroll increases and
-                // user can not see it before scrolling down a little more.
-                // Thus, we can mount it and not unmount it when there is a next page.
-                // I suppose this is the way 9GAG does.
-                loading={loading || hasNextPage}
-              />
-            </InfiniteScrollWrapper>
-          );
-        }}
-      </CharactersConnectionQuery>
+      <InfiniteScrollWrapper
+        hasNextPage={hasNextPage}
+        loading={loading}
+        onLoadMore={() => handleLoadMore(fetchMore, pageInfo)}
+      >
+        <CharacterGridList
+          characters={results}
+          // Because this is an infinite list, loading indicator will be shown when
+          // the user scrolls to the bottom of the page if there is a next page.
+          // If we mount/unmount loading indicator and user hits the bottom of the page fast
+          // (especially on mobile devices) loading mounts, height of the scroll increases and
+          // user can not see it before scrolling down a little more.
+          // Thus, we can mount it and not unmount it when there is a next page.
+          // I suppose this is the way 9GAG does.
+          loading={loading || hasNextPage}
+        />
+      </InfiniteScrollWrapper>
     </>
   );
 }

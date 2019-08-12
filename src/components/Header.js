@@ -11,10 +11,10 @@ import {
 import RouterLink from "./RouterLink";
 import AppDrawer from "./AppDrawer";
 import MenuIcon from "@material-ui/icons/Menu";
-import { Mutation } from "react-apollo";
 import { TOGGLE_DRAWER } from "app-graphql";
 import logo from "assets/images/logo.png";
 import { makeStyles } from "@material-ui/styles";
+import { useMutation } from "@apollo/react-hooks";
 
 const useStyles = makeStyles(theme => {
   return {
@@ -33,6 +33,9 @@ const useStyles = makeStyles(theme => {
 
 function Header() {
   const classes = useStyles();
+  const [toggleDrawer] = useMutation(TOGGLE_DRAWER, {
+    variables: { showDrawer: true }
+  });
 
   return (
     <>
@@ -45,15 +48,9 @@ function Header() {
             </Typography>
           </Link>
           <Box flexGrow={1} />
-          <Mutation mutation={TOGGLE_DRAWER} variables={{ showDrawer: true }}>
-            {toggleDrawer => {
-              return (
-                <IconButton onClick={toggleDrawer}>
-                  <MenuIcon />
-                </IconButton>
-              );
-            }}
-          </Mutation>
+          <IconButton onClick={toggleDrawer}>
+            <MenuIcon />
+          </IconButton>
         </Toolbar>
       </AppBar>
       {/* TODO: Close on location change */}

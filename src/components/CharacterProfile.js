@@ -1,37 +1,26 @@
 // OK
 import React from "react";
-import { Typography, Container, Grid, CardContent } from "@material-ui/core";
 import CharacterCard from "./CharacterCard";
-import BaseCard from "./BaseCard";
-import LoadingIndicator from "./LoadingIndicator";
 import EpisodeList from "./EpisodeList";
+import Profile from "./Profile";
 
 const MAX_VISIBLE_EPISODE_COUNT = 5;
 
 function CharacterProfile({ character, loading }) {
-  return loading ? (
-    <LoadingIndicator />
-  ) : (
-    <Container maxWidth="lg">
-      <Grid container spacing={2}>
-        <Grid item xs={12} sm={4}>
-          <CharacterCard character={character} showSpecs />
-        </Grid>
-        <Grid item xs={12} sm={8}>
-          <Grid item xs={12}>
-            <BaseCard>
-              <CardContent>
-                <Typography variant="h6">Episodes</Typography>
-                <EpisodeList
-                  episodes={character.episode}
-                  maxVisibleItemCount={MAX_VISIBLE_EPISODE_COUNT}
-                />
-              </CardContent>
-            </BaseCard>
-          </Grid>
-        </Grid>
-      </Grid>
-    </Container>
+  return (
+    <Profile
+      loading={loading}
+      infoCard={<CharacterCard character={character} showSpecs />}
+      mainSectionTitle="Episodes"
+      mainSection={
+        character && (
+          <EpisodeList
+            episodes={character.episode}
+            maxVisibleItemCount={MAX_VISIBLE_EPISODE_COUNT}
+          />
+        )
+      }
+    />
   );
 }
 

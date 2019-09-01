@@ -75,19 +75,19 @@ function Home() {
       <BaseGridList
         items={homeLinks}
         spacing={2}
-        renderItem={item => (
-          <Grid key={item.to} item xs={12} sm={4}>
-            <RouterLink className={classes.link} to={item.to}>
+        renderItem={homeLink => (
+          <Grid key={homeLink.to} item xs={12} sm={4}>
+            <RouterLink className={classes.link} to={homeLink.to}>
               <BaseCard className={classes.card} hasActionArea>
                 <BaseImage
-                  src={item.image}
-                  alt={item.title}
+                  src={homeLink.image}
+                  alt={homeLink.title}
                   aspectRatio="16:9"
                 />
                 <div className={clsx(classes.overlay, classes.mask)} />
                 <div className={clsx(classes.overlay, classes.title)}>
                   <Typography className={classes.titleTypography} variant="h5">
-                    {item.title}
+                    {homeLink.title}
                   </Typography>
                 </div>
               </BaseCard>

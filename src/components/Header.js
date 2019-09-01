@@ -15,20 +15,15 @@ import logo from "assets/images/logo.png";
 import { makeStyles } from "@material-ui/styles";
 import { useMutation } from "@apollo/react-hooks";
 
-const useStyles = makeStyles(theme => {
-  return {
-    logoLink: {
-      display: "flex",
-      alignItems: "center",
-      "&:hover": {
-        textDecoration: "none"
-      },
-      "& img": {
-        width: 60
-      }
+const useStyles = makeStyles(theme => ({
+  logoLink: {
+    display: "flex",
+    alignItems: "center",
+    "& img": {
+      width: 60
     }
-  };
-});
+  }
+}));
 
 function Header() {
   const classes = useStyles();
@@ -52,7 +47,6 @@ function Header() {
           </IconButton>
         </Toolbar>
       </AppBar>
-      {/* TODO: Close on location change */}
       <AppDrawer />
     </>
   );

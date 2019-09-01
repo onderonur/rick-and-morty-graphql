@@ -1,7 +1,6 @@
 import React from "react";
-import { ListItem, ListItemText } from "@material-ui/core";
 import BaseList from "./BaseList";
-import RouterLink from "./RouterLink";
+import LocationListItem from "./LocationListItem";
 
 function LocationList({ locations, loading, maxVisibleItemCount }) {
   return (
@@ -9,20 +8,10 @@ function LocationList({ locations, loading, maxVisibleItemCount }) {
       items={locations}
       loading={loading}
       maxVisibleItemCount={maxVisibleItemCount}
-      renderItem={item => (
-        <ListItem
-          key={item.id}
-          button
-          divider
-          to={`/locations/${item.id}`}
-          component={RouterLink}
-        >
-          <ListItemText primary={item.name} secondary={item.type} />
-        </ListItem>
+      renderItem={location => (
+        <LocationListItem key={location.id} location={location} />
       )}
-    >
-      );
-    </BaseList>
+    />
   );
 }
 

@@ -11,8 +11,8 @@ import Location from "pages/Location";
 function Routes() {
   return (
     <Switch>
-      <Route exact path={"/"} component={Home} />
-      <Route exact path={"/characters"} component={Characters} />
+      <Route exact path="/" component={Home} />
+      <Route exact path="/characters" component={Characters} />
       <Route path="/characters/:characterId" component={Character} />
       <Route exact path="/episodes" component={Episodes} />
       <Route path="/episodes/:episodeId" component={Episode} />

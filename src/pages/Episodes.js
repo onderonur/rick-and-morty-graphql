@@ -4,13 +4,14 @@ import { GET_EPISODES } from "app-graphql";
 import EpisodeList from "components/EpisodeList";
 import { useQuery } from "@apollo/react-hooks";
 import { resolveConnectionResponse } from "utils";
+import produce from "immer";
 
 function Episodes() {
   const { data, loading, fetchMore } = useQuery(GET_EPISODES, {
     notifyOnNetworkStatusChange: true
   });
 
-  const { episodes } = data || {};
+  const { episodes } = data;
   const { results, pageInfo } = resolveConnectionResponse(episodes);
   const { next: hasNextPage } = pageInfo;
 
@@ -23,18 +24,13 @@ function Episodes() {
           query: GET_EPISODES,
           variables: { page: pageInfo.next },
           updateQuery: (prevResult, { fetchMoreResult }) => {
-            const newData = {
-              episodes: {
-                ...prevResult.episodes,
-                results: [
-                  ...prevResult.episodes.results,
-                  ...fetchMoreResult.episodes.results
-                ],
-                info: {
-                  ...fetchMoreResult.episodes.info
-                }
-              }
-            };
+            const { episodes: newEpisodes } = fetchMoreResult;
+
+            const newData = produce(prevResult, draft => {
+              let { episodes } = draft;
+              episodes.results.push(...newEpisodes.results);
+              episodes.info = newEpisodes.info;
+            });
 
             return newData;
           }

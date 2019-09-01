@@ -12,7 +12,7 @@ function Character({
     variables: { id: characterId }
   });
 
-  const { character } = data || {};
+  const { character } = data;
   return <CharacterProfile character={character} loading={loading} />;
 }
 

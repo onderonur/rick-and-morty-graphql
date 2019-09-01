@@ -14,7 +14,7 @@ function Location({
     }
   });
 
-  const { location } = data || {};
+  const { location } = data;
 
   return <LocationProfile location={location} loading={loading} />;
 }

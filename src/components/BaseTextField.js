@@ -5,7 +5,7 @@ import { Field } from "formik";
 function MuiTextField({
   field, // {name, value, onChange, onBlur}
   form, // {touched, errors, values, setXXXX, handleXXXX, dirty, isValid, submitCount,status, etc.}
-  ...props
+  ...rest
 }) {
   const { name } = field;
   const { touched, errors } = form;
@@ -18,7 +18,7 @@ function MuiTextField({
   return (
     <TextField
       {...field}
-      {...props}
+      {...rest}
       error={hasError}
       helperText={hasError ? error : ""}
     />

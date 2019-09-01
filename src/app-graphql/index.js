@@ -1,7 +1,5 @@
 import gql from "graphql-tag";
 
-// TODO: Bi kontrol et alanları, fragment'ları vs
-
 const PAGE_INFO_FRAGMENT = gql`
   fragment pageInfo on Info {
     next

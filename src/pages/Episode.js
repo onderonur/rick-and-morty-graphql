@@ -12,7 +12,7 @@ function Episode({
     variables: { id: episodeId }
   });
 
-  const { episode } = data || {};
+  const { episode } = data;
 
   return <EpisodeProfile episode={episode} loading={loading} />;
 }

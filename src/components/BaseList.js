@@ -7,7 +7,7 @@ function BaseList({
   renderItem,
   loading,
   maxVisibleItemCount,
-  ...other
+  ...rest
 }) {
   const [expand, setExpand] = useState(!maxVisibleItemCount);
 
@@ -19,7 +19,7 @@ function BaseList({
 
   return (
     <LoadingIndicator loading={isInitialFetch}>
-      <List {...other}>
+      <List {...rest}>
         {items.map((item, i) =>
           expand || i < maxVisibleItemCount ? renderItem(item, i) : null
         )}

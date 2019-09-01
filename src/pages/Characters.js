@@ -7,6 +7,7 @@ import CharacterGridList from "components/CharacterGridList";
 import useQueryString from "hooks/useQueryString";
 import { useQuery } from "@apollo/react-hooks";
 import { resolveConnectionResponse } from "utils";
+import { produce } from "immer";
 
 function Characters({ location }) {
   const { name } = useQueryString(location);
@@ -34,18 +35,13 @@ function Characters({ location }) {
       query: GET_CHARACTERS,
       variables: { filter, page: pageInfo.next },
       updateQuery: (prevResult, { fetchMoreResult }) => {
-        const newData = {
-          characters: {
-            ...prevResult.characters,
-            results: [
-              ...prevResult.characters.results,
-              ...fetchMoreResult.characters.results
-            ],
-            info: {
-              ...fetchMoreResult.characters.info
-            }
-          }
-        };
+        const { characters: newCharacters } = fetchMoreResult;
+
+        const newData = produce(prevResult, draft => {
+          let { characters } = draft;
+          characters.results.push(...newCharacters.results);
+          characters.info = newCharacters.info;
+        });
 
         return newData;
       }

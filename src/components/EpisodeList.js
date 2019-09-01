@@ -3,7 +3,7 @@ import { ListItem, ListItemText } from "@material-ui/core";
 import BaseList from "./BaseList";
 import RouterLink from "./RouterLink";
 
-function EpisodeList({ episodes = [], loading, maxVisibleItemCount }) {
+function EpisodeList({ episodes, loading, maxVisibleItemCount }) {
   return (
     <BaseList
       items={episodes}

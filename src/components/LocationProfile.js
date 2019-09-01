@@ -1,4 +1,3 @@
-// OK
 import React from "react";
 import CharacterGridList from "./CharacterGridList";
 import LocationCard from "./LocationCard";

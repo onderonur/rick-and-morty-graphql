@@ -5,6 +5,7 @@ import { withRouter } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import BaseTextField from "./BaseTextField";
 import { Formik, Form } from "formik";
+import useQueryString from "hooks/useQueryString";
 
 const useStyles = makeStyles(theme => ({
   form: {
@@ -14,7 +15,8 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function CharacterSearch({ history, location: { search } }) {
+function CharacterSearch({ history, location }) {
+  const { name } = useQueryString(location);
   const classes = useStyles();
 
   function handleSearch({ searchValue }) {
@@ -24,7 +26,7 @@ function CharacterSearch({ history, location: { search } }) {
   return (
     <Formik
       initialValues={{
-        searchValue: ""
+        searchValue: name || ""
       }}
       onSubmit={values => handleSearch(values)}
     >

@@ -3,7 +3,7 @@ import { ListItem, ListItemText } from "@material-ui/core";
 import BaseList from "./BaseList";
 import RouterLink from "./RouterLink";
 
-function LocationList({ locations = [], loading, maxVisibleItemCount }) {
+function LocationList({ locations, loading, maxVisibleItemCount }) {
   return (
     <BaseList
       items={locations}

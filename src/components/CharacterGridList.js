@@ -1,4 +1,3 @@
-// OK
 import React from "react";
 import { Grid, makeStyles, Link } from "@material-ui/core";
 import CharacterCard from "./CharacterCard";

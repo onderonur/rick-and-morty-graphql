@@ -1,4 +1,3 @@
-// OK
 import React from "react";
 import CharacterProfile from "components/CharacterProfile";
 import { useQuery } from "@apollo/react-hooks";
@@ -13,7 +12,7 @@ function Character({
     variables: { id: characterId }
   });
 
-  const { character } = data;
+  const { character } = data || {};
   return <CharacterProfile character={character} loading={loading} />;
 }
 

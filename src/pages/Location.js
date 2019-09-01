@@ -1,4 +1,3 @@
-// OK
 import React from "react";
 import LocationProfile from "components/LocationProfile";
 import { useQuery } from "@apollo/react-hooks";
@@ -15,7 +14,7 @@ function Location({
     }
   });
 
-  const { location } = data;
+  const { location } = data || {};
 
   return <LocationProfile location={location} loading={loading} />;
 }

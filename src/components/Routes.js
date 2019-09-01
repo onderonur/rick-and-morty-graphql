@@ -1,4 +1,3 @@
-// OK
 import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import Characters from "pages/Characters";

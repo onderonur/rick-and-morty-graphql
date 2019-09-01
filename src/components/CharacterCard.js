@@ -1,4 +1,3 @@
-// OK
 import React from "react";
 import { CardHeader, CardContent, Link } from "@material-ui/core";
 import TextWithLabel from "./TextWithLabel";

@@ -12,12 +12,13 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function AppDrawer({ location, client }) {
+function AppDrawer({ location }) {
   const classes = useStyles();
   const [toggleDrawer] = useMutation(TOGGLE_DRAWER, {
     variables: { showDrawer: false }
   });
   const { data } = useQuery(GET_SHOW_DRAWER);
+  const { showDrawer } = data;
 
   useEffect(() => {
     function handleCloseDrawer() {
@@ -27,7 +28,6 @@ function AppDrawer({ location, client }) {
     handleCloseDrawer();
   }, [location, toggleDrawer]);
 
-  const { showDrawer } = data;
   return (
     <Drawer
       classes={{ paper: classes.drawer }}

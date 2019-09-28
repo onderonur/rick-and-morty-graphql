@@ -7,7 +7,7 @@ After their release, I've migrated this project to [@apollo/react-hooks](https:/
 
 **Live demo on Netlify is [here](https://rick-and-morty-graphql.netlify.com/)**.
 
-To run the project in development mode:
+To run it in development mode:
 
 ### `npm install`
 

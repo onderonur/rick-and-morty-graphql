@@ -25,7 +25,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function Header() {
+const Header = React.forwardRef((props, ref) => {
   const classes = useStyles();
   const [toggleDrawer] = useMutation(TOGGLE_DRAWER, {
     variables: { showDrawer: true }
@@ -33,7 +33,7 @@ function Header() {
 
   return (
     <>
-      <AppBar position="fixed" color="default">
+      <AppBar ref={ref} position="fixed" color="default">
         <Toolbar>
           <Link className={classes.logoLink} to="/" component={RouterLink}>
             <img src={logo} alt="Rick and Morty" />
@@ -50,6 +50,6 @@ function Header() {
       <AppDrawer />
     </>
   );
-}
+});
 
 export default Header;

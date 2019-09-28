@@ -11,7 +11,7 @@ function Episodes() {
     notifyOnNetworkStatusChange: true
   });
 
-  const { episodes } = data;
+  const { episodes } = data || {};
   const { results, pageInfo } = resolveConnectionResponse(episodes);
   const { next: hasNextPage } = pageInfo;
 

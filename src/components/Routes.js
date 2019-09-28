@@ -11,15 +11,31 @@ import Location from "pages/Location";
 function Routes() {
   return (
     <Switch>
-      <Route exact path="/" component={Home} />
-      <Route exact path="/characters" component={Characters} />
-      <Route path="/characters/:characterId" component={Character} />
-      <Route exact path="/episodes" component={Episodes} />
-      <Route path="/episodes/:episodeId" component={Episode} />
-      <Route exact path="/locations" component={Locations} />
-      <Route path="/locations/:locationId" component={Location} />
+      <Route exact path="/">
+        <Home />
+      </Route>
+      <Route exact path="/characters">
+        <Characters />
+      </Route>
+      <Route exact path="/characters/:characterId">
+        <Character />
+      </Route>
+      <Route exact path="/episodes">
+        <Episodes />
+      </Route>
+      <Route path="/episodes/:episodeId">
+        <Episode />
+      </Route>
+      <Route exact path="/locations">
+        <Locations />
+      </Route>
+      <Route path="/locations/:locationId">
+        <Location />
+      </Route>
 
-      <Route path="*" render={() => <Redirect to="/" />} />
+      <Route path="*">
+        <Redirect to="/" />
+      </Route>
     </Switch>
   );
 }

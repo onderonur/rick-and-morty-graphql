@@ -1,8 +1,8 @@
-import React from 'react';
-import { ListItem, ListItemText } from '@material-ui/core';
-import { makeStyles } from '@material-ui/styles';
-import RouterLink from './RouterLink';
-import { withRouter } from 'react-router-dom';
+import React from "react";
+import { ListItem, ListItemText } from "@material-ui/core";
+import { makeStyles } from "@material-ui/styles";
+import RouterLink from "./RouterLink";
+import { useLocation } from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
   emoji: {
@@ -10,16 +10,12 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function AppDrawerLinkItem({ to, ariaLabel, emoji, title, location }) {
+function AppDrawerLinkItem({ to, ariaLabel, emoji, title }) {
   const classes = useStyles();
+  const { pathname } = useLocation();
 
   return (
-    <ListItem
-      button
-      to={to}
-      component={RouterLink}
-      selected={location.pathname === to}
-    >
+    <ListItem button to={to} component={RouterLink} selected={pathname === to}>
       <ListItemText>
         <span className={classes.emoji} role="img" aria-label={ariaLabel}>
           {emoji}
@@ -30,4 +26,4 @@ function AppDrawerLinkItem({ to, ariaLabel, emoji, title, location }) {
   );
 }
 
-export default withRouter(AppDrawerLinkItem);
+export default AppDrawerLinkItem;

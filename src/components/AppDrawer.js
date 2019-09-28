@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Drawer, List } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
-import { withRouter } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { GET_SHOW_DRAWER, TOGGLE_DRAWER } from "app-graphql";
 import AppDrawerLinkItem from "./AppDrawerLinkItem";
 import { useMutation, useQuery } from "@apollo/react-hooks";
@@ -12,8 +12,9 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function AppDrawer({ location }) {
+function AppDrawer() {
   const classes = useStyles();
+  const location = useLocation();
   const [toggleDrawer] = useMutation(TOGGLE_DRAWER, {
     variables: { showDrawer: false }
   });
@@ -59,4 +60,4 @@ function AppDrawer({ location }) {
   );
 }
 
-export default withRouter(AppDrawer);
+export default AppDrawer;

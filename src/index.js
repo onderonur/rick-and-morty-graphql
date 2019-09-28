@@ -20,6 +20,7 @@ const client = new ApolloClient({
   }
 });
 
+// Initial state
 cache.writeData({
   data: {
     showDrawer: false

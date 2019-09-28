@@ -1,7 +1,7 @@
 import React from "react";
 import { IconButton, InputAdornment } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
-import { withRouter } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import BaseTextField from "./BaseTextField";
 import { Formik, Form } from "formik";
@@ -15,8 +15,9 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function CharacterSearch({ history, location }) {
-  const { name } = useQueryString(location);
+function CharacterSearch() {
+  const history = useHistory();
+  const { name } = useQueryString();
   const classes = useStyles();
 
   function handleSearch({ searchValue }) {
@@ -50,4 +51,4 @@ function CharacterSearch({ history, location }) {
   );
 }
 
-export default withRouter(CharacterSearch);
+export default CharacterSearch;

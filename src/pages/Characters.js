@@ -9,8 +9,8 @@ import { useQuery } from "@apollo/react-hooks";
 import { resolveConnectionResponse } from "utils";
 import { produce } from "immer";
 
-function Characters({ location }) {
-  const { name } = useQueryString(location);
+function Characters() {
+  const { name } = useQueryString();
   const filter = {
     name
   };

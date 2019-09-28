@@ -1,8 +1,7 @@
-
 ## RickQL - Rick And Morty GraphQL App
 
 This is a client application which consumes the Rick and Morty API.
-It uses [Apollo Client](https://www.apollographql.com/docs/react/) for fetching and state management.
+It uses [Apollo Client](https://www.apollographql.com/docs/react/) for all the data fetching and state management.
 When I first started this project, there was no official React hooks for Apollo Client.
 After their release, I've migrated this project to [@apollo/react-hooks](https://www.apollographql.com/docs/react/api/react-hooks/).
 
@@ -15,10 +14,10 @@ To run the project in development mode:
 ### `npm start`
 
 ### The Rick and Morty API
-This is a really cool public API which provides you the character, locations and episodes. It has bot Rest and GraphQL implementations. So, you can use it to learn and  explore new techniques, libraries etc.
+
+This is a really cool public API which provides you the character, locations and episodes. It has bot Rest and GraphQL implementations. So, you can use it to learn and explore new techniques, libraries etc.
 
 You can check it out [here](https://rickandmortyapi.com/).
-
 
 ### Netlify Deployment
 

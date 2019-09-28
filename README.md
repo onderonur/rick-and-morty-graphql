@@ -15,7 +15,7 @@ To run it in development mode:
 
 ### The Rick and Morty API
 
-This is a really cool public API which provides you the character, locations and episodes. It has bot Rest and GraphQL implementations. So, you can use it to learn and explore new techniques, libraries etc.
+This is a really cool public API which provides you the characters, locations and episodes. It has both Rest and GraphQL implementations. So, you can use it to learn and explore new techniques, libraries etc.
 
 You can check it out [here](https://rickandmortyapi.com/).
 

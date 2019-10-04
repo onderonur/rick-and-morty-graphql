@@ -21,7 +21,10 @@ function useVisibilityTracker({
 
   useEffect(() => {
     return () => {
-      observerRef.current.disconnect();
+      const observer = observerRef.current;
+      if (observer) {
+        observer.disconnect();
+      }
     };
   }, []);
 

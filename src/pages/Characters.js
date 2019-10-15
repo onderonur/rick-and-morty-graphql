@@ -24,7 +24,7 @@ function Characters() {
   const isSetVariables = networkStatus === 2;
 
   // Even if variables are changed, Apollo still shows previous results as "data".
-  // When the "networkStatus" equals 2, it means variables are changed.
+  // When the "networkStatus" equals 2, it means variables have changed.
   // So we basically check this value and if it's true, we don't use previous "data".
   const { characters } = data && !isSetVariables ? data : {};
   const { results, pageInfo } = resolveConnectionResponse(characters);

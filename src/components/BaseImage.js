@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/styles";
 import placeholderPng from "assets/images/placeholder.png";
 import clsx from "clsx";
 import AspectRatio from "components/AspectRatio";
-import useVisibilityTracker from "hooks/useVisibilityTracker";
+import { useTrackVisibility } from "react-intersection-observer-hook";
 
 const ORIGINAL = "original";
 const DEFAULT_ALT = "Not Loaded";
@@ -32,7 +32,7 @@ function BaseImage({
   const classes = useStyles();
   const [imgHeight, setImgHeight] = useState(0);
   const [imgWidth, setImgWidth] = useState(0);
-  const [ref, { isVisible }] = useVisibilityTracker();
+  const [ref, { isVisible }] = useTrackVisibility();
   const [initialized, setInitialized] = useState(!lazyLoad);
 
   const isOriginalAspectRatio = aspectRatio === ORIGINAL;

@@ -5,7 +5,9 @@ const typeDefs = gql`
     showDrawer: Boolean!
   }
 
-  extend type Mutation {
+  # Rick and Morty API has no "mutation" schema.
+  # So, we can not extend it.
+  type Mutation {
     toggleDrawer(showDrawer: Boolean!): Boolean!
   }
 `;

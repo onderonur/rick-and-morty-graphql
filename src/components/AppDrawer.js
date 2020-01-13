@@ -2,9 +2,16 @@ import React, { useEffect } from "react";
 import { Drawer, List } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import { useLocation } from "react-router-dom";
-import { GET_SHOW_DRAWER, TOGGLE_DRAWER } from "app-graphql";
 import AppDrawerLinkItem from "./AppDrawerLinkItem";
 import { useMutation, useQuery } from "@apollo/react-hooks";
+import gql from "graphql-tag";
+import {TOGGLE_DRAWER} from "shared/mutations"
+
+const GET_SHOW_DRAWER = gql`
+  query getShowDrawer {
+    showDrawer @client
+  }
+`;
 
 const useStyles = makeStyles(theme => ({
   drawer: {

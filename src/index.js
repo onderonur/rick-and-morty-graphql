@@ -1,14 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "components/App";
 import * as serviceWorker from "./serviceWorker";
 import ApolloClient, { InMemoryCache } from "apollo-boost";
 import { ApolloProvider } from "@apollo/react-hooks";
 import { ThemeProvider } from "@material-ui/styles";
 import theme from "./theme";
 import { BrowserRouter } from "react-router-dom";
-import typeDefs from "app-graphql/typeDefs";
-import resolvers from "app-graphql/resolvers";
+import typeDefs from "gql/typeDefs";
+import resolvers from "gql/resolvers";
+import App from "./App";
 
 const cache = new InMemoryCache();
 const client = new ApolloClient({

@@ -1,8 +1,8 @@
 import React from "react";
 import { ListItem, ListItemText } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
-import RouterLink from "./RouterLink";
 import { useLocation } from "react-router-dom";
+import RouterLink from "../shared/components/RouterLink";
 
 const useStyles = makeStyles(theme => ({
   emoji: {

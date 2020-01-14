@@ -31,7 +31,7 @@ function CharacterSearch() {
   return (
     <Formik<CharacterSearchFormValues>
       initialValues={{
-        searchValue: (name as string) || ""
+        searchValue: name && !Array.isArray(name) ? name : ""
       }}
       onSubmit={handleSearch}
     >

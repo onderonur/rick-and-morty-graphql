@@ -2,10 +2,11 @@ import React from "react";
 import CharacterGridListItem from "./CharacterGridListItem";
 import BaseGridList from "shared/components/BaseGridList";
 import gql from "graphql-tag";
-import { CharacterGridList_CharacterFragment, Maybe } from "generated/graphql";
+import { CharacterGridList_CharacterFragment } from "generated/graphql";
+import Maybe from "graphql/tsutils/Maybe";
 
-function renderItem(character: CharacterGridList_CharacterFragment) {
-  if (character.id) {
+function renderItem(character: Maybe<CharacterGridList_CharacterFragment>) {
+  if (character?.id) {
     return <CharacterGridListItem key={character.id} character={character} />;
   }
 
@@ -13,7 +14,7 @@ function renderItem(character: CharacterGridList_CharacterFragment) {
 }
 
 interface CharacterGridListProps {
-  characters: Maybe<CharacterGridList_CharacterFragment>[];
+  characters: Maybe<Array<Maybe<CharacterGridList_CharacterFragment>>>;
   loading?: boolean;
 }
 

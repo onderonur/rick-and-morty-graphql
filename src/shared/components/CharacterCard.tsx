@@ -8,8 +8,9 @@ import gql from "graphql-tag";
 import {
   Episode,
   CharacterCard_CharacterFragment,
-  CharacterCard_CharacterSpecsFragment
+  CharacterCard_CharacterWithSpecsFragment
 } from "generated/graphql";
+import { isOfType } from "shared/utils";
 
 function getEpisodeAirYear(episode: Episode) {
   if (episode.air_date) {
@@ -18,21 +19,32 @@ function getEpisodeAirYear(episode: Episode) {
   return "";
 }
 
-type CharacterWithSpecs = CharacterCard_CharacterFragment &
-  Partial<CharacterCard_CharacterSpecsFragment>;
+function hasSpecs(
+  character:
+    | CharacterCard_CharacterFragment
+    | CharacterCard_CharacterWithSpecsFragment
+): character is CharacterCard_CharacterWithSpecsFragment {
+  return isOfType<CharacterCard_CharacterWithSpecsFragment>(character, [
+    "status",
+    "species",
+    "origin",
+    "gender",
+    "location"
+  ]);
+}
 
 interface CharacterCardProps {
-  character: CharacterWithSpecs;
+  character:
+    | CharacterCard_CharacterFragment
+    | CharacterCard_CharacterWithSpecsFragment;
   imageAspectRatio?: string;
   hasActionArea?: boolean;
-  showSpecs?: boolean;
 }
 
 function CharacterCard({
   character,
   imageAspectRatio,
-  hasActionArea,
-  showSpecs
+  hasActionArea
 }: CharacterCardProps) {
   const { episode } = character;
 
@@ -58,9 +70,9 @@ function CharacterCard({
             : null
         }
       />
-      {showSpecs ? (
+      {hasSpecs(character) ? (
         <CardContent>
-          <TextWithLabel label="Staus" text={character.status} />}
+          <TextWithLabel label="Status" text={character.status} />
           <TextWithLabel label="Species" text={character.species} />
           <TextWithLabel label="Gender" text={character.gender} />
           {character.origin && (
@@ -95,20 +107,23 @@ function CharacterCard({
   );
 }
 
-CharacterCard.fragments = {
-  character: gql`
-    fragment CharacterCard_character on Character {
+const characterFragment = gql`
+  fragment CharacterCard_character on Character {
+    id
+    name
+    image
+    episode {
       id
-      name
-      image
-      episode {
-        id
-        air_date
-      }
+      air_date
     }
-  `,
-  characterSpecs: gql`
-    fragment CharacterCard_characterSpecs on Character {
+  }
+`;
+
+CharacterCard.fragments = {
+  character: characterFragment,
+  characterWithSpecs: gql`
+    fragment CharacterCard_characterWithSpecs on Character {
+      ...CharacterCard_character
       status
       species
       gender
@@ -121,6 +136,7 @@ CharacterCard.fragments = {
         name
       }
     }
+    ${characterFragment}
   `
 };
 

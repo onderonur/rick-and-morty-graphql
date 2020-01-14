@@ -3,10 +3,11 @@ import Profile from "shared/components/Profile";
 import CharacterGridList from "shared/components/CharacterGridList";
 import EpisodeCard from "./EpisodeCard";
 import gql from "graphql-tag";
-import { EpisodeProfile_EpisodeFragment, Maybe } from "generated/graphql";
+import { EpisodeProfile_EpisodeFragment } from "generated/graphql";
+import Maybe from "graphql/tsutils/Maybe";
 
 interface EpisodeProfileProps {
-  episode: Maybe<EpisodeProfile_EpisodeFragment> | undefined;
+  episode: Maybe<EpisodeProfile_EpisodeFragment>;
   loading: boolean;
 }
 
@@ -28,7 +29,6 @@ EpisodeProfile.fragments = {
     fragment EpisodeProfile_episode on Episode {
       ...EpisodeCard_episode
       characters {
-        
         ...CharacterGridList_character
       }
     }

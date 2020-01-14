@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { List, ListItem, ListItemText, ListProps } from "@material-ui/core";
 import LoadingIndicator from "./LoadingIndicator";
-import { Maybe } from "generated/graphql";
+import Maybe from "graphql/tsutils/Maybe";
 
 const DEFAULT_ITEMS: any[] = [];
 
 type BaseListProps<Item> = ListProps & {
-  items: Maybe<Item>[] | undefined;
+  items: Maybe<Array<Maybe<Item>>>;
   renderItem: (item: Item, index: number) => void;
   loading?: boolean;
   maxVisibleItemCount?: number;
@@ -26,7 +26,7 @@ function BaseList<Item>({
   }
 
   const itemCount = items?.length;
-  const isInitialFetch = Boolean(loading && itemCount);
+  const isInitialFetch = Boolean(loading && !itemCount);
 
   return (
     <LoadingIndicator loading={isInitialFetch}>

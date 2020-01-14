@@ -180,7 +180,7 @@ export type CharacterCard_CharacterFragment = (
   )>>> }
 );
 
-export type CharacterCard_CharacterSpecsFragment = (
+export type CharacterCard_CharacterWithSpecsFragment = (
   { __typename?: 'Character' }
   & Pick<Character, 'status' | 'species' | 'gender'>
   & { origin: Maybe<(
@@ -190,6 +190,7 @@ export type CharacterCard_CharacterSpecsFragment = (
     { __typename?: 'Location' }
     & Pick<Location, 'id' | 'name'>
   )> }
+  & CharacterCard_CharacterFragment
 );
 
 export type CharacterGridList_CharacterFragment = (
@@ -233,8 +234,7 @@ export type CharacterProfile_CharacterFragment = (
     { __typename?: 'Episode' }
     & EpisodeList_EpisodeFragment
   )>>> }
-  & CharacterCard_CharacterFragment
-  & CharacterCard_CharacterSpecsFragment
+  & CharacterCard_CharacterWithSpecsFragment
 );
 
 export type GetCharacterQueryVariables = {
@@ -387,8 +387,9 @@ export const CharacterCard_CharacterFragmentDoc = gql`
   }
 }
     `;
-export const CharacterCard_CharacterSpecsFragmentDoc = gql`
-    fragment CharacterCard_characterSpecs on Character {
+export const CharacterCard_CharacterWithSpecsFragmentDoc = gql`
+    fragment CharacterCard_characterWithSpecs on Character {
+  ...CharacterCard_character
   status
   species
   gender
@@ -401,7 +402,7 @@ export const CharacterCard_CharacterSpecsFragmentDoc = gql`
     name
   }
 }
-    `;
+    ${CharacterCard_CharacterFragmentDoc}`;
 export const EpisodeListItem_EpisodeFragmentDoc = gql`
     fragment EpisodeListItem_episode on Episode {
   id
@@ -417,14 +418,12 @@ export const EpisodeList_EpisodeFragmentDoc = gql`
     ${EpisodeListItem_EpisodeFragmentDoc}`;
 export const CharacterProfile_CharacterFragmentDoc = gql`
     fragment CharacterProfile_character on Character {
-  ...CharacterCard_character
-  ...CharacterCard_characterSpecs
+  ...CharacterCard_characterWithSpecs
   episode {
     ...EpisodeList_episode
   }
 }
-    ${CharacterCard_CharacterFragmentDoc}
-${CharacterCard_CharacterSpecsFragmentDoc}
+    ${CharacterCard_CharacterWithSpecsFragmentDoc}
 ${EpisodeList_EpisodeFragmentDoc}`;
 export const EpisodeCard_EpisodeFragmentDoc = gql`
     fragment EpisodeCard_episode on Episode {

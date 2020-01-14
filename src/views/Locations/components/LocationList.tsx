@@ -2,28 +2,24 @@ import React from "react";
 import LocationListItem from "./LocationListItem";
 import BaseList from "shared/components/BaseList";
 import gql from "graphql-tag";
-import {
-  Scalars,
-  LocationListItem_LocationFragment,
-  Maybe
-} from "generated/graphql";
+import { LocationList_LocationFragment } from "generated/graphql";
+import Maybe from "graphql/tsutils/Maybe";
 
 interface LocationListProps {
-  locations: Maybe<Maybe<LocationListItem_LocationFragment>[]> | undefined;
+  locations: Maybe<Array<Maybe<LocationList_LocationFragment>>>;
   loading: boolean;
 }
 
 function LocationList({ locations, loading }: LocationListProps) {
   return (
     <BaseList
-      items={locations || []}
+      items={locations}
       loading={loading}
-      renderItem={location => (
-        <LocationListItem
-          key={location.id as Scalars["ID"]}
-          location={location}
-        />
-      )}
+      renderItem={location =>
+        location.id && (
+          <LocationListItem key={location.id} location={location} />
+        )
+      }
     />
   );
 }

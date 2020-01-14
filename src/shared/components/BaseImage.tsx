@@ -3,10 +3,11 @@ import { makeStyles } from "@material-ui/core";
 import placeholderPng from "assets/images/placeholder.png";
 import clsx from "clsx";
 import { useTrackVisibility } from "react-intersection-observer-hook";
-import AspectRatio from "./AspectRatio";
+import AspectRatio, { getAspectRatioString } from "./AspectRatio";
 
 const ORIGINAL = "original";
 const DEFAULT_ALT = "Not Loaded";
+const DEFAULT_ASPECT_RATIO = getAspectRatioString(1, 1);
 
 const useStyles = makeStyles(theme => ({
   img: {
@@ -37,10 +38,10 @@ function BaseImage({
   lazyLoad = true
 }: BaseImageProps) {
   const classes = useStyles();
-  const [imgHeight, setImgHeight] = useState(0);
-  const [imgWidth, setImgWidth] = useState(0);
+  const [imgHeight, setImgHeight] = useState<number>();
+  const [imgWidth, setImgWidth] = useState<number>();
   const [ref, { isVisible }] = useTrackVisibility();
-  const [initialized, setInitialized] = useState(isVisible);
+  const [lazyLoaded, setLazyLoaded] = useState(isVisible);
 
   const isOriginalAspectRatio = aspectRatio === ORIGINAL;
 
@@ -54,18 +55,22 @@ function BaseImage({
 
   useEffect(() => {
     if (isVisible) {
-      setInitialized(true);
+      setLazyLoaded(true);
     }
   }, [isVisible]);
 
   return (
     <AspectRatio
-      ref={ref}
+      ref={lazyLoad ? ref : undefined}
       aspectRatio={
-        isOriginalAspectRatio ? `${imgWidth}:${imgHeight}` : aspectRatio
+        isOriginalAspectRatio
+          ? imgWidth && imgHeight
+            ? getAspectRatioString(imgWidth, imgHeight)
+            : DEFAULT_ASPECT_RATIO
+          : aspectRatio
       }
     >
-      {lazyLoad && !initialized ? null : (
+      {lazyLoad && !lazyLoaded ? null : (
         <img
           className={clsx(classes.img, classes.imgWithAspectRatio)}
           src={src}

@@ -2,10 +2,11 @@ import React from "react";
 import BaseList from "./BaseList";
 import EpisodeListItem from "./EpisodeListItem";
 import gql from "graphql-tag";
-import { Episode, EpisodeList_EpisodeFragment, Maybe } from "generated/graphql";
+import { Episode, EpisodeList_EpisodeFragment } from "generated/graphql";
+import Maybe from "graphql/tsutils/Maybe";
 
 interface EpisodeListProps {
-  episodes: Maybe<Maybe<EpisodeList_EpisodeFragment>[] | undefined> | undefined;
+  episodes: Maybe<Array<Maybe<EpisodeList_EpisodeFragment>>>;
   loading?: boolean;
   maxVisibleItemCount?: number;
 }
@@ -25,7 +26,7 @@ function EpisodeList({
 }: EpisodeListProps) {
   return (
     <BaseList
-      items={episodes || []}
+      items={episodes}
       loading={loading}
       maxVisibleItemCount={maxVisibleItemCount}
       renderItem={renderItem}

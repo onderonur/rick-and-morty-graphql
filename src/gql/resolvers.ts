@@ -1,7 +1,9 @@
 import { Resolvers } from "generated/graphql";
 import { ApolloClient } from "apollo-boost";
 
-const resolvers: Resolvers<{ client: ApolloClient<any> }> = {
+type CacheShape = any;
+
+const resolvers: Resolvers<{ client: ApolloClient<CacheShape> }> = {
   Mutation: {
     toggleDrawer: (obj, { showDrawer }, { client }) => {
       client.writeData({

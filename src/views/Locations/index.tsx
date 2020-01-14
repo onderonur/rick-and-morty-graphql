@@ -7,8 +7,8 @@ import gql from "graphql-tag";
 import { useGetLocationsQuery } from "generated/graphql";
 
 const GET_LOCATIONS = gql`
-  query GetLocations {
-    locations {
+  query GetLocations($page: Int) {
+    locations(page: $page) {
       results {
         ...LocationList_location
       }
@@ -23,14 +23,15 @@ const GET_LOCATIONS = gql`
 
 function Locations() {
   const { data, loading, fetchMore } = useGetLocationsQuery({
+    query: GET_LOCATIONS,
     notifyOnNetworkStatusChange: true
   });
 
-  const { locations } = data || {};
+  const locations = data?.locations;
   const results = locations?.results;
   const next = locations?.info?.next;
   const hasNextPage = !!next;
-
+console.log(results)
   return (
     <InfiniteScrollWrapper
       hasNextPage={hasNextPage}
@@ -40,13 +41,16 @@ function Locations() {
           query: GET_LOCATIONS,
           variables: { page: next },
           updateQuery: (prevResult, { fetchMoreResult }) => {
-            const newLocations = fetchMoreResult?.locations;
-
+            const newEpisodes = fetchMoreResult?.locations;
             const newData = produce(prevResult, draft => {
-              const { locations } = draft;
-              if (locations?.results && newLocations?.results) {
-                locations.results.push(...newLocations.results);
-                locations.info = newLocations.info;
+              let { locations } = draft;
+              if (
+                locations?.results &&
+                locations.info &&
+                newEpisodes?.results
+              ) {
+                locations.results.push(...newEpisodes.results);
+                locations.info = newEpisodes.info;
               }
             });
 

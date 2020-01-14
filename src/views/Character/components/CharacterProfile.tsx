@@ -3,12 +3,13 @@ import CharacterCard from "shared/components/CharacterCard";
 import Profile from "shared/components/Profile";
 import EpisodeList from "shared/components/EpisodeList";
 import gql from "graphql-tag";
-import { CharacterCard_CharacterFragment, Maybe } from "generated/graphql";
+import { CharacterCard_CharacterFragment } from "generated/graphql";
+import Maybe from "graphql/tsutils/Maybe";
 
 const MAX_VISIBLE_EPISODE_COUNT = 5;
 
 interface CharacterProfileProps {
-  character: Maybe<CharacterCard_CharacterFragment> | undefined;
+  character: Maybe<CharacterCard_CharacterFragment>;
   loading: boolean;
 }
 
@@ -17,7 +18,7 @@ function CharacterProfile({ character, loading }: CharacterProfileProps) {
   return (
     <Profile
       loading={loading}
-      infoCard={character && <CharacterCard character={character} showSpecs />}
+      infoCard={character && <CharacterCard character={character} />}
       mainSectionTitle="Episodes"
       mainSection={
         episode && (
@@ -34,14 +35,12 @@ function CharacterProfile({ character, loading }: CharacterProfileProps) {
 CharacterProfile.fragments = {
   character: gql`
     fragment CharacterProfile_character on Character {
-      ...CharacterCard_character
-      ...CharacterCard_characterSpecs
+      ...CharacterCard_characterWithSpecs
       episode {
         ...EpisodeList_episode
       }
     }
-    ${CharacterCard.fragments.character}
-    ${CharacterCard.fragments.characterSpecs}
+    ${CharacterCard.fragments.characterWithSpecs}
     ${EpisodeList.fragments.episode}
   `
 };

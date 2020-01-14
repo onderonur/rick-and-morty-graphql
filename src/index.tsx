@@ -13,7 +13,7 @@ import App from "./App";
 const cache = new InMemoryCache();
 const client = new ApolloClient({
   cache,
-  uri: "https://rickandmortyapi.com/graphql/",
+  uri: "https://rickandmortyapi.com/graphql",
   clientState: {
     typeDefs,
     resolvers: resolvers as Resolvers

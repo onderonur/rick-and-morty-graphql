@@ -1,0 +1,69 @@
+import React from "react";
+import produce from "immer";
+import InfiniteScrollWrapper from "@/shared/components/InfiniteScrollWrapper";
+import LocationList from "./components/LocationList";
+import PAGE_INFO_FRAGMENT from "@/shared/fragments/pageInfo";
+import gql from "graphql-tag";
+import { useGetLocationsQuery } from "@/generated/graphql";
+import withApollo from "@/shared/lib/withApollo";
+import { getDataFromTree } from "@apollo/react-ssr";
+
+const GET_LOCATIONS = gql`
+  query GetLocations($page: Int) {
+    locations(page: $page) {
+      results {
+        ...LocationList_location
+      }
+      info {
+        ...pageInfo
+      }
+    }
+  }
+  ${LocationList.fragments.location}
+  ${PAGE_INFO_FRAGMENT}
+`;
+
+function Locations() {
+  const { data, loading, fetchMore } = useGetLocationsQuery({
+    query: GET_LOCATIONS,
+    notifyOnNetworkStatusChange: true,
+  });
+
+  const locations = data?.locations;
+  const results = locations?.results;
+  const next = locations?.info?.next;
+  const hasNextPage = !!next;
+
+  return (
+    <InfiniteScrollWrapper
+      hasNextPage={hasNextPage}
+      loading={loading}
+      onLoadMore={() =>
+        fetchMore({
+          query: GET_LOCATIONS,
+          variables: { page: next },
+          updateQuery: (prevResult, { fetchMoreResult }) => {
+            const newEpisodes = fetchMoreResult?.locations;
+            const newData = produce(prevResult, draft => {
+              let { locations } = draft;
+              if (
+                locations?.results &&
+                locations.info &&
+                newEpisodes?.results
+              ) {
+                locations.results.push(...newEpisodes.results);
+                locations.info = newEpisodes.info;
+              }
+            });
+
+            return newData;
+          },
+        })
+      }
+    >
+      <LocationList locations={results} loading={loading || hasNextPage} />
+    </InfiniteScrollWrapper>
+  );
+}
+
+export default withApollo(Locations, { getDataFromTree });

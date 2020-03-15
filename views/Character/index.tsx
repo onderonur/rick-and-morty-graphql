@@ -1,10 +1,7 @@
 import React from "react";
-import { useParams } from "react-router-dom";
 import CharacterProfile from "./components/CharacterProfile";
 import gql from "graphql-tag";
 import { useGetCharacterQuery } from "@/generated/graphql";
-import withApollo from "@/shared/lib/withApollo";
-import { getDataFromTree } from "@apollo/react-ssr";
 import { useRouter } from "next/router";
 
 const GET_CHARACTER = gql`
@@ -33,4 +30,4 @@ function Character() {
   return <CharacterProfile character={character} loading={loading} />;
 }
 
-export default withApollo(Character, { getDataFromTree });
+export default Character;

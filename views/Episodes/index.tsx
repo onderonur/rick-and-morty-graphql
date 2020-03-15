@@ -5,8 +5,6 @@ import EpisodeList from "@/shared/components/EpisodeList";
 import gql from "graphql-tag";
 import PAGE_INFO_FRAGMENT from "@/shared/fragments/pageInfo";
 import { useGetEpisodesQuery } from "@/generated/graphql";
-import withApollo from "@/shared/lib/withApollo";
-import { getDataFromTree } from "@apollo/react-ssr";
 import Head from "next/head";
 import { getDocumentTitle } from "@/shared/utils";
 
@@ -74,4 +72,4 @@ function Episodes() {
   );
 }
 
-export default withApollo(Episodes, { getDataFromTree });
+export default Episodes;

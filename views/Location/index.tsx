@@ -3,8 +3,6 @@ import LocationProfile from "./components/LocationProfile";
 import gql from "graphql-tag";
 import { useGetLocationQuery } from "@/generated/graphql";
 import { useRouter } from "next/router";
-import withApollo from "@/shared/lib/withApollo";
-import { getDataFromTree } from "@apollo/react-ssr";
 
 const GET_LOCATION = gql`
   query GetLocation($id: ID!) {
@@ -32,4 +30,4 @@ function Location() {
   return <LocationProfile location={location} loading={loading} />;
 }
 
-export default withApollo(Location, { getDataFromTree });
+export default Location;

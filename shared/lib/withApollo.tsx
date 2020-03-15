@@ -1,21 +1,32 @@
 import withApollo from "next-with-apollo";
-import ApolloClient, { InMemoryCache } from "apollo-boost";
+import ApolloClient, { InMemoryCache, Resolvers } from "apollo-boost";
 import { ApolloProvider } from "@apollo/react-hooks";
+import resolvers from "@/gql/resolvers";
+import typeDefs from "@/gql/typeDefs";
 
 export default withApollo(
-  ({ initialState }) => {
-    return new ApolloClient({
+  ({ initialState = {} }) => {
+    const cache = new InMemoryCache().restore(initialState);
+    const client = new ApolloClient({
       uri: "https://rickandmortyapi.com/graphql",
-      cache: new InMemoryCache().restore(initialState || {})
+      cache,
+      clientState: {
+        resolvers: resolvers as Resolvers,
+        typeDefs,
+      },
     });
+    // Initial state (for local state management)
+    client.writeData({ data: { showDrawer: false } });
+    return client;
   },
   {
     render: ({ Page, props }) => {
+      const { apollo } = props;
       return (
-        <ApolloProvider client={props.apollo}>
+        <ApolloProvider client={apollo}>
           <Page {...props} />
         </ApolloProvider>
       );
-    }
-  }
+    },
+  },
 );

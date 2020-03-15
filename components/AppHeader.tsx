@@ -10,6 +10,7 @@ import {
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import NextLink from "@/shared/components/NextLink";
+import { useToggleDrawerMutation } from "@/generated/graphql";
 // import { useToggleDrawerMutation } from "@/generated/graphql";
 
 const useStyles = makeStyles(theme => ({
@@ -24,13 +25,13 @@ const useStyles = makeStyles(theme => ({
 
 const AppHeader = React.forwardRef((props, ref) => {
   const classes = useStyles();
-  // const [toggleDrawer] = useToggleDrawerMutation({
-  //   variables: { showDrawer: true },
-  // });
+  const [toggleDrawer] = useToggleDrawerMutation({
+    variables: { showDrawer: true },
+  });
 
-  // const handleClick = useCallback(() => {
-  //   toggleDrawer();
-  // }, [toggleDrawer]);
+  const handleClick = useCallback(() => {
+    toggleDrawer();
+  }, [toggleDrawer]);
 
   return (
     <>
@@ -43,7 +44,7 @@ const AppHeader = React.forwardRef((props, ref) => {
             </Typography>
           </NextLink>
           <Box flexGrow={1} />
-          <IconButton /*onClick={handleClick}*/>
+          <IconButton onClick={handleClick}>
             <MenuIcon />
           </IconButton>
         </Toolbar>

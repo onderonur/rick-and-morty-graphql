@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import { Drawer, List, makeStyles } from "@material-ui/core";
-import { useLocation } from "react-router-dom";
 import AppDrawerLinkItem from "./AppDrawerLinkItem";
 import { useMutation } from "@apollo/react-hooks";
-import { TOGGLE_DRAWER } from "shared/mutations";
+import { TOGGLE_DRAWER } from "@/shared/mutations";
 import gql from "graphql-tag";
-import { useGetShowDrawerQuery } from "generated/graphql";
+import { useGetShowDrawerQuery } from "@/generated/graphql";
+import { useRouter } from "next/router";
 
 /* eslint-disable graphql/template-strings */
 const GET_SHOW_DRAWER = gql`
@@ -23,20 +23,27 @@ const useStyles = makeStyles(theme => ({
 
 function AppDrawer() {
   const classes = useStyles();
-  const location = useLocation();
   const [toggleDrawer] = useMutation(TOGGLE_DRAWER, {
     variables: { showDrawer: false },
   });
   const { data } = useGetShowDrawerQuery({ query: GET_SHOW_DRAWER });
   const showDrawer = data?.showDrawer;
+  const router = useRouter();
 
+  // We close the drawer when a route change gets completed.
   useEffect(() => {
     function handleCloseDrawer() {
       toggleDrawer();
     }
 
-    handleCloseDrawer();
-  }, [location, toggleDrawer]);
+    const eventType = "routeChangeComplete";
+
+    router.events.on(eventType, handleCloseDrawer);
+
+    return () => {
+      router.events.off(eventType, handleCloseDrawer);
+    };
+  }, [toggleDrawer]);
 
   return (
     <Drawer
@@ -47,19 +54,19 @@ function AppDrawer() {
     >
       <List>
         <AppDrawerLinkItem
-          to="/characters"
+          href="/characters"
           emoji="👽"
           ariaLabel="character-emoji"
           title="Characters"
         />
         <AppDrawerLinkItem
-          to="/episodes"
+          href="/episodes"
           emoji="🎬"
           ariaLabel="episode-emoji"
           title="Episodes"
         />
         <AppDrawerLinkItem
-          to="/locations"
+          href="/locations"
           emoji="🌍"
           ariaLabel="location-emoji"
           title="Locations"

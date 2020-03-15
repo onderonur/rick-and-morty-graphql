@@ -4,6 +4,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import { makeStyles } from "@material-ui/core/styles";
 import { Formik, Form } from "formik";
 import BaseTextField from "@/shared/components/BaseTextField";
+import { useRouter } from "next/router";
 
 interface CharacterSearchFormValues {
   searchValue: string;
@@ -19,16 +20,17 @@ const useStyles = makeStyles(theme => ({
 
 function CharacterSearch() {
   const classes = useStyles();
-  // const { name } = useQueryString();
+  const router = useRouter();
+  const { name } = router.query;
 
   function handleSearch({ searchValue }: CharacterSearchFormValues) {
-    // history.push(`/characters${searchValue ? `?name=${searchValue}` : ""}`);
+    router.push({ pathname: router.pathname, query: { name: searchValue } });
   }
 
   return (
     <Formik<CharacterSearchFormValues>
       initialValues={{
-        searchValue: /*name && !Array.isArray(name) ? name :*/ "",
+        searchValue: typeof name === "string" ? name : "",
       }}
       onSubmit={handleSearch}
     >

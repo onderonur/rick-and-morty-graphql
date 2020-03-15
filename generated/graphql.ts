@@ -6,12 +6,12 @@ export type Maybe<T> = T | null;
 export type RequireFields<T, K extends keyof T> = { [X in Exclude<keyof T, K>]?: T[X] } & { [P in K]-?: NonNullable<T[P]> };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
-  ID: string,
-  String: string,
-  Boolean: boolean,
-  Int: number,
-  Float: number,
-  Upload: any,
+  ID: string;
+  String: string;
+  Boolean: boolean;
+  Int: number;
+  Float: number;
+  Upload: any;
 };
 
 export enum CacheControlScope {
@@ -20,83 +20,83 @@ export enum CacheControlScope {
 }
 
 export type Character = {
-   __typename?: 'Character',
-  id?: Maybe<Scalars['ID']>,
-  name?: Maybe<Scalars['String']>,
-  status?: Maybe<Scalars['String']>,
-  species?: Maybe<Scalars['String']>,
-  type?: Maybe<Scalars['String']>,
-  gender?: Maybe<Scalars['String']>,
-  origin?: Maybe<Location>,
-  location?: Maybe<Location>,
-  image?: Maybe<Scalars['String']>,
-  episode?: Maybe<Array<Maybe<Episode>>>,
-  created?: Maybe<Scalars['String']>,
+   __typename?: 'Character';
+  id?: Maybe<Scalars['ID']>;
+  name?: Maybe<Scalars['String']>;
+  status?: Maybe<Scalars['String']>;
+  species?: Maybe<Scalars['String']>;
+  type?: Maybe<Scalars['String']>;
+  gender?: Maybe<Scalars['String']>;
+  origin?: Maybe<Location>;
+  location?: Maybe<Location>;
+  image?: Maybe<Scalars['String']>;
+  episode?: Maybe<Array<Maybe<Episode>>>;
+  created?: Maybe<Scalars['String']>;
 };
 
 export type Characters = {
-   __typename?: 'Characters',
-  info?: Maybe<Info>,
-  results?: Maybe<Array<Maybe<Character>>>,
+   __typename?: 'Characters';
+  info?: Maybe<Info>;
+  results?: Maybe<Array<Maybe<Character>>>;
 };
 
 export type Episode = {
-   __typename?: 'Episode',
-  id?: Maybe<Scalars['ID']>,
-  name?: Maybe<Scalars['String']>,
-  air_date?: Maybe<Scalars['String']>,
-  episode?: Maybe<Scalars['String']>,
-  characters?: Maybe<Array<Maybe<Character>>>,
-  created?: Maybe<Scalars['String']>,
+   __typename?: 'Episode';
+  id?: Maybe<Scalars['ID']>;
+  name?: Maybe<Scalars['String']>;
+  air_date?: Maybe<Scalars['String']>;
+  episode?: Maybe<Scalars['String']>;
+  characters?: Maybe<Array<Maybe<Character>>>;
+  created?: Maybe<Scalars['String']>;
 };
 
 export type Episodes = {
-   __typename?: 'Episodes',
-  info?: Maybe<Info>,
-  results?: Maybe<Array<Maybe<Episode>>>,
+   __typename?: 'Episodes';
+  info?: Maybe<Info>;
+  results?: Maybe<Array<Maybe<Episode>>>;
 };
 
 export type FilterCharacter = {
-  name?: Maybe<Scalars['String']>,
-  status?: Maybe<Scalars['String']>,
-  species?: Maybe<Scalars['String']>,
-  type?: Maybe<Scalars['String']>,
-  gender?: Maybe<Scalars['String']>,
+  name?: Maybe<Scalars['String']>;
+  status?: Maybe<Scalars['String']>;
+  species?: Maybe<Scalars['String']>;
+  type?: Maybe<Scalars['String']>;
+  gender?: Maybe<Scalars['String']>;
 };
 
 export type FilterEpisode = {
-  name?: Maybe<Scalars['String']>,
-  episode?: Maybe<Scalars['String']>,
+  name?: Maybe<Scalars['String']>;
+  episode?: Maybe<Scalars['String']>;
 };
 
 export type FilterLocation = {
-  name?: Maybe<Scalars['String']>,
-  type?: Maybe<Scalars['String']>,
-  dimension?: Maybe<Scalars['String']>,
+  name?: Maybe<Scalars['String']>;
+  type?: Maybe<Scalars['String']>;
+  dimension?: Maybe<Scalars['String']>;
 };
 
 export type Info = {
-   __typename?: 'Info',
-  count?: Maybe<Scalars['Int']>,
-  pages?: Maybe<Scalars['Int']>,
-  next?: Maybe<Scalars['Int']>,
-  prev?: Maybe<Scalars['Int']>,
+   __typename?: 'Info';
+  count?: Maybe<Scalars['Int']>;
+  pages?: Maybe<Scalars['Int']>;
+  next?: Maybe<Scalars['Int']>;
+  prev?: Maybe<Scalars['Int']>;
 };
 
 export type Location = {
-   __typename?: 'Location',
-  id?: Maybe<Scalars['ID']>,
-  name?: Maybe<Scalars['String']>,
-  type?: Maybe<Scalars['String']>,
-  dimension?: Maybe<Scalars['String']>,
-  residents?: Maybe<Array<Maybe<Character>>>,
-  created?: Maybe<Scalars['String']>,
+   __typename?: 'Location';
+  id?: Maybe<Scalars['ID']>;
+  name?: Maybe<Scalars['String']>;
+  type?: Maybe<Scalars['String']>;
+  dimension?: Maybe<Scalars['String']>;
+  residents?: Maybe<Array<Maybe<Character>>>;
+  created?: Maybe<Scalars['String']>;
 };
 
 export type Locations = {
-   __typename?: 'Locations',
-  info?: Maybe<Info>,
-  results?: Maybe<Array<Maybe<Location>>>,
+   __typename?: 'Locations';
+  info?: Maybe<Info>;
+  results?: Maybe<Array<Maybe<Location>>>;
 };
 
 /** 
@@ -104,8 +104,8 @@ export type Locations = {
  * So, we can not extend it.
  */
 export type Mutation = {
-   __typename?: 'Mutation',
-  toggleDrawer: Scalars['Boolean'],
+   __typename?: 'Mutation';
+  toggleDrawer: Scalars['Boolean'];
 };
 
 
@@ -114,51 +114,51 @@ export type Mutation = {
  * So, we can not extend it.
  */
 export type MutationToggleDrawerArgs = {
-  showDrawer: Scalars['Boolean']
+  showDrawer: Scalars['Boolean'];
 };
 
 export type Query = {
-   __typename?: 'Query',
-  character?: Maybe<Character>,
-  characters?: Maybe<Characters>,
-  episode?: Maybe<Episode>,
-  episodes?: Maybe<Episodes>,
-  location?: Maybe<Location>,
-  locations?: Maybe<Locations>,
-  showDrawer: Scalars['Boolean'],
+   __typename?: 'Query';
+  character?: Maybe<Character>;
+  characters?: Maybe<Characters>;
+  episode?: Maybe<Episode>;
+  episodes?: Maybe<Episodes>;
+  location?: Maybe<Location>;
+  locations?: Maybe<Locations>;
+  showDrawer: Scalars['Boolean'];
 };
 
 
 export type QueryCharacterArgs = {
-  id?: Maybe<Scalars['ID']>
+  id?: Maybe<Scalars['ID']>;
 };
 
 
 export type QueryCharactersArgs = {
-  page?: Maybe<Scalars['Int']>,
-  filter?: Maybe<FilterCharacter>
+  page?: Maybe<Scalars['Int']>;
+  filter?: Maybe<FilterCharacter>;
 };
 
 
 export type QueryEpisodeArgs = {
-  id?: Maybe<Scalars['ID']>
+  id?: Maybe<Scalars['ID']>;
 };
 
 
 export type QueryEpisodesArgs = {
-  page?: Maybe<Scalars['Int']>,
-  filter?: Maybe<FilterEpisode>
+  page?: Maybe<Scalars['Int']>;
+  filter?: Maybe<FilterEpisode>;
 };
 
 
 export type QueryLocationArgs = {
-  id?: Maybe<Scalars['ID']>
+  id?: Maybe<Scalars['ID']>;
 };
 
 
 export type QueryLocationsArgs = {
-  page?: Maybe<Scalars['Int']>,
-  filter?: Maybe<FilterLocation>
+  page?: Maybe<Scalars['Int']>;
+  filter?: Maybe<FilterLocation>;
 };
 
 
@@ -218,7 +218,7 @@ export type PageInfoFragment = (
 );
 
 export type ToggleDrawerMutationVariables = {
-  showDrawer: Scalars['Boolean']
+  showDrawer: Scalars['Boolean'];
 };
 
 
@@ -237,7 +237,7 @@ export type CharacterProfile_CharacterFragment = (
 );
 
 export type GetCharacterQueryVariables = {
-  id: Scalars['ID']
+  id: Scalars['ID'];
 };
 
 
@@ -250,8 +250,8 @@ export type GetCharacterQuery = (
 );
 
 export type GetCharactersQueryVariables = {
-  page?: Maybe<Scalars['Int']>,
-  filter?: Maybe<FilterCharacter>
+  page?: Maybe<Scalars['Int']>;
+  filter?: Maybe<FilterCharacter>;
 };
 
 
@@ -284,7 +284,7 @@ export type EpisodeProfile_EpisodeFragment = (
 );
 
 export type GetEpisodeQueryVariables = {
-  id: Scalars['ID']
+  id: Scalars['ID'];
 };
 
 
@@ -297,8 +297,8 @@ export type GetEpisodeQuery = (
 );
 
 export type GetEpisodesQueryVariables = {
-  page?: Maybe<Scalars['Int']>,
-  filter?: Maybe<FilterEpisode>
+  page?: Maybe<Scalars['Int']>;
+  filter?: Maybe<FilterEpisode>;
 };
 
 
@@ -331,7 +331,7 @@ export type LocationProfile_LocationFragment = (
 );
 
 export type GetLocationQueryVariables = {
-  id: Scalars['ID']
+  id: Scalars['ID'];
 };
 
 
@@ -354,7 +354,7 @@ export type LocationListItem_LocationFragment = (
 );
 
 export type GetLocationsQueryVariables = {
-  page?: Maybe<Scalars['Int']>
+  page?: Maybe<Scalars['Int']>;
 };
 
 
@@ -783,13 +783,6 @@ export type GetLocationsQueryResult = ApolloReactCommon.QueryResult<GetLocations
 
 export type ResolverTypeWrapper<T> = Promise<T> | T;
 
-export type ResolverFn<TResult, TParent, TContext, TArgs> = (
-  parent: TParent,
-  args: TArgs,
-  context: TContext,
-  info: GraphQLResolveInfo
-) => Promise<TResult> | TResult;
-
 
 export type StitchingResolver<TResult, TParent, TContext, TArgs> = {
   fragment: string;
@@ -799,6 +792,13 @@ export type StitchingResolver<TResult, TParent, TContext, TArgs> = {
 export type Resolver<TResult, TParent = {}, TContext = {}, TArgs = {}> =
   | ResolverFn<TResult, TParent, TContext, TArgs>
   | StitchingResolver<TResult, TParent, TContext, TArgs>;
+
+export type ResolverFn<TResult, TParent, TContext, TArgs> = (
+  parent: TParent,
+  args: TArgs,
+  context: TContext,
+  info: GraphQLResolveInfo
+) => Promise<TResult> | TResult;
 
 export type SubscriptionSubscribeFn<TResult, TParent, TContext, TArgs> = (
   parent: TParent,
@@ -836,9 +836,9 @@ export type TypeResolveFn<TTypes, TParent = {}, TContext = {}> = (
   parent: TParent,
   context: TContext,
   info: GraphQLResolveInfo
-) => Maybe<TTypes>;
+) => Maybe<TTypes> | Promise<Maybe<TTypes>>;
 
-export type isTypeOfResolverFn = (obj: any, info: GraphQLResolveInfo) => boolean;
+export type isTypeOfResolverFn<T = {}> = (obj: T, info: GraphQLResolveInfo) => boolean | Promise<boolean>;
 
 export type NextResolverFn<T> = () => Promise<T>;
 
@@ -906,13 +906,13 @@ export type CharacterResolvers<ContextType = any, ParentType extends ResolversPa
   image?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>,
   episode?: Resolver<Maybe<Array<Maybe<ResolversTypes['Episode']>>>, ParentType, ContextType>,
   created?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>,
-  __isTypeOf?: isTypeOfResolverFn,
+  __isTypeOf?: isTypeOfResolverFn<ParentType>,
 };
 
 export type CharactersResolvers<ContextType = any, ParentType extends ResolversParentTypes['Characters'] = ResolversParentTypes['Characters']> = {
   info?: Resolver<Maybe<ResolversTypes['Info']>, ParentType, ContextType>,
   results?: Resolver<Maybe<Array<Maybe<ResolversTypes['Character']>>>, ParentType, ContextType>,
-  __isTypeOf?: isTypeOfResolverFn,
+  __isTypeOf?: isTypeOfResolverFn<ParentType>,
 };
 
 export type EpisodeResolvers<ContextType = any, ParentType extends ResolversParentTypes['Episode'] = ResolversParentTypes['Episode']> = {
@@ -922,13 +922,13 @@ export type EpisodeResolvers<ContextType = any, ParentType extends ResolversPare
   episode?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>,
   characters?: Resolver<Maybe<Array<Maybe<ResolversTypes['Character']>>>, ParentType, ContextType>,
   created?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>,
-  __isTypeOf?: isTypeOfResolverFn,
+  __isTypeOf?: isTypeOfResolverFn<ParentType>,
 };
 
 export type EpisodesResolvers<ContextType = any, ParentType extends ResolversParentTypes['Episodes'] = ResolversParentTypes['Episodes']> = {
   info?: Resolver<Maybe<ResolversTypes['Info']>, ParentType, ContextType>,
   results?: Resolver<Maybe<Array<Maybe<ResolversTypes['Episode']>>>, ParentType, ContextType>,
-  __isTypeOf?: isTypeOfResolverFn,
+  __isTypeOf?: isTypeOfResolverFn<ParentType>,
 };
 
 export type InfoResolvers<ContextType = any, ParentType extends ResolversParentTypes['Info'] = ResolversParentTypes['Info']> = {
@@ -936,7 +936,7 @@ export type InfoResolvers<ContextType = any, ParentType extends ResolversParentT
   pages?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>,
   next?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>,
   prev?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>,
-  __isTypeOf?: isTypeOfResolverFn,
+  __isTypeOf?: isTypeOfResolverFn<ParentType>,
 };
 
 export type LocationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Location'] = ResolversParentTypes['Location']> = {
@@ -946,13 +946,13 @@ export type LocationResolvers<ContextType = any, ParentType extends ResolversPar
   dimension?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>,
   residents?: Resolver<Maybe<Array<Maybe<ResolversTypes['Character']>>>, ParentType, ContextType>,
   created?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>,
-  __isTypeOf?: isTypeOfResolverFn,
+  __isTypeOf?: isTypeOfResolverFn<ParentType>,
 };
 
 export type LocationsResolvers<ContextType = any, ParentType extends ResolversParentTypes['Locations'] = ResolversParentTypes['Locations']> = {
   info?: Resolver<Maybe<ResolversTypes['Info']>, ParentType, ContextType>,
   results?: Resolver<Maybe<Array<Maybe<ResolversTypes['Location']>>>, ParentType, ContextType>,
-  __isTypeOf?: isTypeOfResolverFn,
+  __isTypeOf?: isTypeOfResolverFn<ParentType>,
 };
 
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
@@ -960,12 +960,12 @@ export type MutationResolvers<ContextType = any, ParentType extends ResolversPar
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
-  character?: Resolver<Maybe<ResolversTypes['Character']>, ParentType, ContextType, QueryCharacterArgs>,
-  characters?: Resolver<Maybe<ResolversTypes['Characters']>, ParentType, ContextType, QueryCharactersArgs>,
-  episode?: Resolver<Maybe<ResolversTypes['Episode']>, ParentType, ContextType, QueryEpisodeArgs>,
-  episodes?: Resolver<Maybe<ResolversTypes['Episodes']>, ParentType, ContextType, QueryEpisodesArgs>,
-  location?: Resolver<Maybe<ResolversTypes['Location']>, ParentType, ContextType, QueryLocationArgs>,
-  locations?: Resolver<Maybe<ResolversTypes['Locations']>, ParentType, ContextType, QueryLocationsArgs>,
+  character?: Resolver<Maybe<ResolversTypes['Character']>, ParentType, ContextType, RequireFields<QueryCharacterArgs, never>>,
+  characters?: Resolver<Maybe<ResolversTypes['Characters']>, ParentType, ContextType, RequireFields<QueryCharactersArgs, never>>,
+  episode?: Resolver<Maybe<ResolversTypes['Episode']>, ParentType, ContextType, RequireFields<QueryEpisodeArgs, never>>,
+  episodes?: Resolver<Maybe<ResolversTypes['Episodes']>, ParentType, ContextType, RequireFields<QueryEpisodesArgs, never>>,
+  location?: Resolver<Maybe<ResolversTypes['Location']>, ParentType, ContextType, RequireFields<QueryLocationArgs, never>>,
+  locations?: Resolver<Maybe<ResolversTypes['Locations']>, ParentType, ContextType, RequireFields<QueryLocationsArgs, never>>,
   showDrawer?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>,
 };
 

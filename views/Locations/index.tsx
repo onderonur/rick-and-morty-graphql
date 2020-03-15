@@ -5,8 +5,6 @@ import LocationList from "./components/LocationList";
 import PAGE_INFO_FRAGMENT from "@/shared/fragments/pageInfo";
 import gql from "graphql-tag";
 import { useGetLocationsQuery } from "@/generated/graphql";
-import withApollo from "@/shared/lib/withApollo";
-import { getDataFromTree } from "@apollo/react-ssr";
 
 const GET_LOCATIONS = gql`
   query GetLocations($page: Int) {
@@ -66,4 +64,4 @@ function Locations() {
   );
 }
 
-export default withApollo(Locations, { getDataFromTree });
+export default Locations;

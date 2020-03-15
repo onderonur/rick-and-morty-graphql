@@ -3,7 +3,6 @@ import { CardHeader, CardContent, Link } from "@material-ui/core";
 import BaseCard from "./BaseCard";
 import BaseImage from "./BaseImage";
 import TextWithLabel from "./TextWithLabel";
-import RouterLink from "./RouterLink";
 import gql from "graphql-tag";
 import {
   Episode,

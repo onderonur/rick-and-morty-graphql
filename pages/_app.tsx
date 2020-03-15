@@ -13,6 +13,10 @@ import { getDocumentTitle } from "@/shared/utils";
 import HideOnScroll from "@/components/HideOnScroll";
 import AppHeader from "@/components/AppHeader";
 import { Container } from "@material-ui/core";
+import withApollo from "@/shared/lib/withApollo";
+import { getDataFromTree } from "@apollo/react-ssr";
+import AppDrawer from "@/components/AppDrawer";
+import BackToTopButton from "@/components/BackToTopButton";
 
 const styles = (theme: Theme) => ({
   toolbar: { ...theme.mixins.toolbar },
@@ -53,6 +57,8 @@ class MyApp extends App<MyAppProps> {
             <AppHeader />
           </HideOnScroll>
           <div className={classes.toolbar} />
+          <AppDrawer />
+          <BackToTopButton />
           <Container className={classes.main} maxWidth="lg" component="main">
             <Component {...pageProps} />
           </Container>
@@ -62,4 +68,4 @@ class MyApp extends App<MyAppProps> {
   }
 }
 
-export default withStyles(styles)(MyApp);
+export default withStyles(styles)(withApollo(MyApp, { getDataFromTree }));

@@ -2,7 +2,10 @@ overwrite: true
 schema:
   - "https://rickandmortyapi.com/graphql"
   - "gql/typeDefs.ts"
-documents: "./**/*.{ts,tsx}"
+documents:
+  - "./**/*.{ts,tsx}"
+  - "!./.next"
+  - "!./node_modules"
 generates:
   ./generated/graphql.ts:
     plugins:

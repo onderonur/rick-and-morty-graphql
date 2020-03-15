@@ -3,8 +3,6 @@ import EpisodeProfile from "./components/EpisodeProfile";
 import gql from "graphql-tag";
 import { useGetEpisodeQuery } from "@/generated/graphql";
 import { useRouter } from "next/router";
-import withApollo from "@/shared/lib/withApollo";
-import { getDataFromTree } from "@apollo/react-ssr";
 
 const GET_EPISODE = gql`
   query GetEpisode($id: ID!) {
@@ -32,4 +30,4 @@ function Episode() {
   return <EpisodeProfile episode={episode} loading={loading} />;
 }
 
-export default withApollo(Episode, { getDataFromTree });
+export default Episode;

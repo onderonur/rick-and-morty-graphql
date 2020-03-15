@@ -10,8 +10,7 @@ import PAGE_INFO_FRAGMENT from "@/shared/fragments/pageInfo";
 import { useGetCharactersQuery } from "@/generated/graphql";
 import Head from "next/head";
 import { getDocumentTitle } from "@/shared/utils";
-import withApollo from "@/shared/lib/withApollo";
-import { getDataFromTree } from "@apollo/react-ssr";
+import { useRouter } from "next/router";
 
 const GET_CHARACTERS = gql`
   query GetCharacters($page: Int, $filter: FilterCharacter) {
@@ -29,11 +28,12 @@ const GET_CHARACTERS = gql`
 `;
 
 function Characters() {
-  // const { name } = useQueryString();
-  // const variables = typeof name === "string" ? { filter: { name } } : undefined;
+  const router = useRouter();
+  const { name } = router.query;
+  const variables = typeof name === "string" ? { filter: { name } } : undefined;
   const { data, loading, fetchMore, networkStatus } = useGetCharactersQuery({
     query: GET_CHARACTERS,
-    // variables,
+    variables,
     notifyOnNetworkStatusChange: true,
   });
 
@@ -102,4 +102,4 @@ function Characters() {
   );
 }
 
-export default withApollo(Characters, { getDataFromTree });
+export default Characters;

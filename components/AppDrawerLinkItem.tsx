@@ -1,7 +1,7 @@
 import React from "react";
 import { ListItem, ListItemText, makeStyles } from "@material-ui/core";
-import { useLocation } from "react-router-dom";
-import RouterLink, { RouterLinkProps } from "../shared/components/RouterLink";
+import NextLink, { NextLinkProps } from "@/shared/components/NextLink";
+import { useRouter } from "next/router";
 
 const useStyles = makeStyles(theme => ({
   emoji: {
@@ -10,23 +10,28 @@ const useStyles = makeStyles(theme => ({
 }));
 
 interface AppDrawerLinkItemProps {
-  to: RouterLinkProps["to"];
+  href: NextLinkProps["href"];
   ariaLabel: React.AriaAttributes["aria-label"];
   emoji: string;
   title: string;
 }
 
 function AppDrawerLinkItem({
-  to,
+  href,
   ariaLabel,
   emoji,
   title,
 }: AppDrawerLinkItemProps) {
   const classes = useStyles();
-  const { pathname } = useLocation();
+  const router = useRouter();
 
   return (
-    <ListItem button to={to} component={RouterLink} selected={pathname === to}>
+    <ListItem
+      button
+      href={href}
+      component={NextLink}
+      selected={router.pathname === href}
+    >
       <ListItemText>
         <span className={classes.emoji} role="img" aria-label={ariaLabel}>
           {emoji}

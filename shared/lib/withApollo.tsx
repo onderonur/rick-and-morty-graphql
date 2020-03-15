@@ -1,3 +1,4 @@
+import React from "react";
 import withApollo from "next-with-apollo";
 import ApolloClient, { InMemoryCache, Resolvers } from "apollo-boost";
 import { ApolloProvider } from "@apollo/react-hooks";

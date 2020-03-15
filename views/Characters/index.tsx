@@ -1,7 +1,6 @@
 import React from "react";
 import { Box, Typography } from "@material-ui/core";
 import { produce } from "immer";
-import useQueryString from "shared/hooks/useQueryString";
 import CharacterSearch from "./components/CharacterSearch";
 import InfiniteScrollWrapper from "@/shared/components/InfiniteScrollWrapper";
 import CharacterGridList from "@/shared/components/CharacterGridList";

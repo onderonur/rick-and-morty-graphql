@@ -43,7 +43,7 @@ function AppDrawer() {
     return () => {
       router.events.off(eventType, handleCloseDrawer);
     };
-  }, [toggleDrawer]);
+  }, [router.events, toggleDrawer]);
 
   return (
     <Drawer

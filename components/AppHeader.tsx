@@ -5,13 +5,11 @@ import {
   Typography,
   Box,
   IconButton,
-  Link,
   makeStyles,
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import NextLink from "@/shared/components/NextLink";
 import { useToggleDrawerMutation } from "@/generated/graphql";
-// import { useToggleDrawerMutation } from "@/generated/graphql";
 
 const useStyles = makeStyles(theme => ({
   logoLink: {

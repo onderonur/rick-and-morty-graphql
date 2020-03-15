@@ -1,5 +1,5 @@
 module.exports = {
-  extends: ["react-app", "plugin:prettier/recommended"],
+  extends: ["react-app", "prettier"],
   plugins: ["graphql", "prettier"],
   rules: {
     "prettier/prettier": "warn",
@@ -8,8 +8,8 @@ module.exports = {
       "error",
       {
         env: "apollo",
-        schemaJson: require("./graphql.schema.json")
-      }
-    ]
-  }
+        schemaJson: require("./graphql.schema.json"),
+      },
+    ],
+  },
 };

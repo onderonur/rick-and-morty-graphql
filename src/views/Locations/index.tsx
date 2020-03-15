@@ -5,6 +5,8 @@ import LocationList from "./components/LocationList";
 import PAGE_INFO_FRAGMENT from "@/shared/fragments/pageInfo";
 import gql from "graphql-tag";
 import { useGetLocationsQuery } from "@/generated/graphql";
+import Head from "next/head";
+import { getDocumentTitle } from "@/shared/utils";
 
 const GET_LOCATIONS = gql`
   query GetLocations($page: Int) {
@@ -33,34 +35,39 @@ function Locations() {
   const hasNextPage = !!next;
 
   return (
-    <InfiniteScrollWrapper
-      hasNextPage={hasNextPage}
-      loading={loading}
-      onLoadMore={() =>
-        fetchMore({
-          query: GET_LOCATIONS,
-          variables: { page: next },
-          updateQuery: (prevResult, { fetchMoreResult }) => {
-            const newEpisodes = fetchMoreResult?.locations;
-            const newData = produce(prevResult, draft => {
-              let { locations } = draft;
-              if (
-                locations?.results &&
-                locations.info &&
-                newEpisodes?.results
-              ) {
-                locations.results.push(...newEpisodes.results);
-                locations.info = newEpisodes.info;
-              }
-            });
+    <>
+      <Head>
+        <title>{getDocumentTitle("Locations")}</title>
+      </Head>
+      <InfiniteScrollWrapper
+        hasNextPage={hasNextPage}
+        loading={loading}
+        onLoadMore={() =>
+          fetchMore({
+            query: GET_LOCATIONS,
+            variables: { page: next },
+            updateQuery: (prevResult, { fetchMoreResult }) => {
+              const newEpisodes = fetchMoreResult?.locations;
+              const newData = produce(prevResult, draft => {
+                let { locations } = draft;
+                if (
+                  locations?.results &&
+                  locations.info &&
+                  newEpisodes?.results
+                ) {
+                  locations.results.push(...newEpisodes.results);
+                  locations.info = newEpisodes.info;
+                }
+              });
 
-            return newData;
-          },
-        })
-      }
-    >
-      <LocationList locations={results} loading={loading || hasNextPage} />
-    </InfiniteScrollWrapper>
+              return newData;
+            },
+          })
+        }
+      >
+        <LocationList locations={results} loading={loading || hasNextPage} />
+      </InfiniteScrollWrapper>
+    </>
   );
 }
 

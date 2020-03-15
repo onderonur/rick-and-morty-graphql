@@ -1,13 +1,13 @@
 overwrite: true
 schema:
   - "https://rickandmortyapi.com/graphql"
-  - "gql/typeDefs.ts"
+  - "src/gql/typeDefs.ts"
 documents:
-  - "./**/*.{ts,tsx}"
-  - "!./.next"
-  - "!./node_modules"
+  - "src/**/*.{ts,tsx}"
+  - "!.next"
+  - "!node_modules"
 generates:
-  ./generated/graphql.ts:
+  src/generated/graphql.ts:
     plugins:
       - "typescript"
       - "typescript-operations"
@@ -19,6 +19,6 @@ generates:
       withHooks: true
       withHOC: false
       withComponent: false
-  ./graphql.schema.json:
+  graphql.schema.json:
     plugins:
       - "introspection"

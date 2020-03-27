@@ -13,8 +13,6 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    // For using absolute imports:
-    // https://medium.com/anna-coding/how-to-use-absolute-module-import-path-in-next-js-dcbc806272e5
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]

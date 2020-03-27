@@ -6,7 +6,9 @@
       "next/babel",
       {
         "preset-env": {
-          "useBuiltIns": "usage"
+          "useBuiltIns": "usage",
+          // We specify the installed core-js version
+          "corejs": 3
         }
       }
     ]

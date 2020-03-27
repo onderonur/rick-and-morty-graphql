@@ -12,7 +12,7 @@ function handleClick() {
   });
 }
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   fab: {
     position: "fixed",
     bottom: 20,

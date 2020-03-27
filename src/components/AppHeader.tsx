@@ -11,7 +11,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import NextLink from "@/shared/components/NextLink";
 import { useToggleDrawerMutation } from "@/generated/graphql";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   logoLink: {
     display: "flex",
     alignItems: "center",

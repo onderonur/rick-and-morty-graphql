@@ -1,9 +1,11 @@
 import React from "react";
 import CharacterGridListItem from "./CharacterGridListItem";
 import gql from "graphql-tag";
-import Maybe from "graphql/tsutils/Maybe";
 import BaseGridList from "./BaseGridList";
-import { CharacterGridList_CharacterFragment } from "../../generated/graphql";
+import {
+  CharacterGridList_CharacterFragment,
+  Maybe,
+} from "../../generated/graphql";
 
 type ListItem = Maybe<CharacterGridList_CharacterFragment>;
 

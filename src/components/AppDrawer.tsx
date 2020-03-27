@@ -15,7 +15,7 @@ const GET_SHOW_DRAWER = gql`
 `;
 /* eslint-disable graphql/template-strings */
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   drawer: {
     width: 240,
   },

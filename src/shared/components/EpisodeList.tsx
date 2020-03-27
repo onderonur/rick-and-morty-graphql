@@ -2,8 +2,7 @@ import React from "react";
 import BaseList from "./BaseList";
 import EpisodeListItem from "./EpisodeListItem";
 import gql from "graphql-tag";
-import { EpisodeList_EpisodeFragment } from "../../generated/graphql";
-import Maybe from "graphql/tsutils/Maybe";
+import { EpisodeList_EpisodeFragment, Maybe } from "../../generated/graphql";
 
 type ListItem = Maybe<EpisodeList_EpisodeFragment>;
 

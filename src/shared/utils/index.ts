@@ -1,4 +1,7 @@
+import { Maybe } from "@/generated/graphql";
+
 // https://rangle.io/blog/how-to-use-typescript-type-guards/
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function isOfType<T>(obj: any, keys: (keyof T)[]): obj is T {
   for (const key of keys) {
     if (!(key in obj)) {
@@ -9,8 +12,9 @@ export function isOfType<T>(obj: any, keys: (keyof T)[]): obj is T {
 }
 
 const SUFFIX = "RickQL";
-export const getDocumentTitle = (title?: string) =>
+export const getDocumentTitle = (title?: Maybe<string>) =>
   title ? `${title} - ${SUFFIX}` : SUFFIX;
 
-export const isNonEmptyString = (id): id is string =>
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const isNonEmptyString = (id: any): id is string =>
   typeof id === "string" && !!id;

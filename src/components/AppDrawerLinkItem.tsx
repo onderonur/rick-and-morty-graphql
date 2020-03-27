@@ -3,7 +3,7 @@ import { ListItem, ListItemText, makeStyles } from "@material-ui/core";
 import NextLink, { NextLinkProps } from "@/shared/components/NextLink";
 import { useRouter } from "next/router";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   emoji: {
     marginRight: theme.spacing(2),
   },

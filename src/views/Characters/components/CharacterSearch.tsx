@@ -10,7 +10,7 @@ interface CharacterSearchFormValues {
   searchValue: string;
 }
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   form: {
     width: "100%",
     maxWidth: 640,

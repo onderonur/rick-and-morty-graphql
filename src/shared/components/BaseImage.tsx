@@ -9,7 +9,7 @@ const ORIGINAL = "original";
 const DEFAULT_ALT = "Not Loaded";
 const DEFAULT_ASPECT_RATIO = getAspectRatioString(1, 1);
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   img: {
     display: "block",
     objectFit: "cover",
@@ -17,14 +17,15 @@ const useStyles = makeStyles(theme => ({
 }));
 
 interface BaseImageProps {
-  src: string;
+  src: string | undefined;
   alt: string;
   aspectRatio?: string;
   lazyLoad?: boolean;
 }
 
 function BaseImage({
-  src = null /*placeholderPng*/,
+  // TODO: Will fix the placeholder image
+  src = undefined /*placeholderPng*/,
   alt = DEFAULT_ALT,
   aspectRatio = ORIGINAL,
   lazyLoad = true,

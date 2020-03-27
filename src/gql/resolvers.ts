@@ -1,6 +1,7 @@
 import { Resolvers } from "@/generated/graphql";
 import { ApolloClient } from "apollo-boost";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type CacheShape = any;
 
 const resolvers: Resolvers<{ client: ApolloClient<CacheShape> }> = {

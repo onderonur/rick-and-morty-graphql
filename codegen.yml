@@ -19,6 +19,8 @@ generates:
       withHooks: true
       withHOC: false
       withComponent: false
+      # https://graphql-code-generator.com/docs/generated-config/typescript#maybevalue-string-default-value-t--null
+      maybeValue: T | null | undefined
   graphql.schema.json:
     plugins:
       - "introspection"

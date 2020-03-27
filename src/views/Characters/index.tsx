@@ -64,9 +64,9 @@ function Characters() {
               query: GET_CHARACTERS,
               variables: { /*...variables,*/ page: next },
               updateQuery: (prevResult, { fetchMoreResult }) => {
-                const newCharacters = (fetchMoreResult as any)?.characters;
-                const newData = produce(prevResult, draft => {
-                  let { characters } = draft as any;
+                const newCharacters = fetchMoreResult?.characters;
+                const newData = produce(prevResult, (draft) => {
+                  let { characters } = draft;
                   if (
                     characters?.results &&
                     newCharacters?.results &&

@@ -11,7 +11,7 @@ import BaseCard from "@/shared/components/BaseCard";
 import BaseImage from "@/shared/components/BaseImage";
 import NextLink from "@/shared/components/NextLink";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   card: {
     "&:hover": {
       "& $mask": {
@@ -71,7 +71,7 @@ function Home() {
       <BaseGridList
         items={homeLinks}
         spacing={2}
-        renderItem={homeLink => (
+        renderItem={(homeLink) => (
           <Grid key={homeLink.to} item xs={12} sm={4}>
             <NextLink href={homeLink.to}>
               <BaseCard className={classes.card} hasActionArea>

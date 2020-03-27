@@ -3,7 +3,7 @@ import Link, { LinkProps } from "next/link";
 import { makeStyles } from "@material-ui/core";
 import clsx from "clsx";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   anchor: {
     textDecoration: "none",
   },
@@ -13,6 +13,7 @@ export type NextLinkProps = React.PropsWithChildren<LinkProps> & {
   className?: string;
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const NextLink: React.ForwardRefRenderFunction<any, NextLinkProps> = (
   {
     children,

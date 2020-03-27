@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { List, ListItem, ListItemText, ListProps } from "@material-ui/core";
 import LoadingIndicator from "./LoadingIndicator";
-import Maybe from "graphql/tsutils/Maybe";
+import { Maybe } from "@/generated/graphql";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const DEFAULT_ITEMS: any[] = [];
 
 type BaseListProps<Item> = ListProps & {

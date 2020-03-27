@@ -49,7 +49,7 @@ function Episodes() {
             variables: { page: next },
             updateQuery: (prevResult, { fetchMoreResult }) => {
               const newEpisodes = fetchMoreResult?.episodes;
-              const newData = produce(prevResult, draft => {
+              const newData = produce(prevResult, (draft) => {
                 let { episodes } = draft;
                 if (
                   episodes?.results &&

@@ -23,7 +23,7 @@ function Episode() {
     skip: !isNonEmptyString(id),
   });
 
-  const { episode } = data || {};
+  const episode = data?.episode;
 
   return <EpisodeProfile episode={episode} loading={loading} />;
 }

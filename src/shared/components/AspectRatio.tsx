@@ -11,7 +11,7 @@ interface StyleProps {
 
 type ClassKeys = "root";
 
-const useStyles = makeStyles<Theme, StyleProps, ClassKeys>(theme => ({
+const useStyles = makeStyles<Theme, StyleProps, ClassKeys>((theme) => ({
   root: {
     overflow: "hidden",
     position: "relative",
@@ -35,7 +35,9 @@ const AspectRatio: React.ForwardRefRenderFunction<
   HTMLDivElement,
   AspectRatioProps
 > = ({ aspectRatio, children }, ref) => {
-  const [ratioX, ratioY] = aspectRatio.split(":").map(ratio => parseInt(ratio));
+  const [ratioX, ratioY] = aspectRatio
+    .split(":")
+    .map((ratio) => parseInt(ratio));
   const ratio = (100 * ratioY) / ratioX;
   const paddingTop = isNaN(ratio) ? undefined : `${ratio}%`;
   const classes = useStyles({ paddingTop });

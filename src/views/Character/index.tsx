@@ -3,11 +3,13 @@ import CharacterProfile from "./components/CharacterProfile";
 import gql from "graphql-tag";
 import { useGetCharacterQuery } from "@/generated/graphql";
 import { useRouter } from "next/router";
-import { isNonEmptyString } from "@/shared/utils";
+import { isNonEmptyString, getDocumentTitle } from "@/shared/utils";
+import Head from "next/head";
 
 const GET_CHARACTER = gql`
   query GetCharacter($id: ID!) {
     character(id: $id) {
+      name
       ...CharacterProfile_character
     }
   }
@@ -23,9 +25,16 @@ function Character() {
     skip: !isNonEmptyString(id),
   });
 
-  const { character } = data || {};
+  const character = data?.character;
 
-  return <CharacterProfile character={character} loading={loading} />;
+  return (
+    <>
+      <Head>
+        <title>{getDocumentTitle(character?.name)}</title>
+      </Head>
+      <CharacterProfile character={character} loading={loading} />
+    </>
+  );
 }
 
 export default Character;

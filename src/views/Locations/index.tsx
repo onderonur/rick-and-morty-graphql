@@ -48,7 +48,7 @@ function Locations() {
             variables: { page: next },
             updateQuery: (prevResult, { fetchMoreResult }) => {
               const newEpisodes = fetchMoreResult?.locations;
-              const newData = produce(prevResult, draft => {
+              const newData = produce(prevResult, (draft) => {
                 let { locations } = draft;
                 if (
                   locations?.results &&

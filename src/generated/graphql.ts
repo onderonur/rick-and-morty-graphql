@@ -2,7 +2,7 @@ import { GraphQLResolveInfo, GraphQLScalarType, GraphQLScalarTypeConfig } from '
 import gql from 'graphql-tag';
 import * as ApolloReactCommon from '@apollo/react-common';
 import * as ApolloReactHooks from '@apollo/react-hooks';
-export type Maybe<T> = T | null;
+export type Maybe<T> = T | null | undefined;
 export type RequireFields<T, K extends keyof T> = { [X in Exclude<keyof T, K>]?: T[X] } & { [P in K]-?: NonNullable<T[P]> };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
@@ -245,6 +245,7 @@ export type GetCharacterQuery = (
   { __typename?: 'Query' }
   & { character: Maybe<(
     { __typename?: 'Character' }
+    & Pick<Character, 'name'>
     & CharacterProfile_CharacterFragment
   )> }
 );
@@ -545,6 +546,7 @@ export type ToggleDrawerMutationOptions = ApolloReactCommon.BaseMutationOptions<
 export const GetCharacterDocument = gql`
     query GetCharacter($id: ID!) {
   character(id: $id) {
+    name
     ...CharacterProfile_character
   }
 }

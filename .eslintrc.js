@@ -4,6 +4,7 @@ module.exports = {
   rules: {
     "prettier/prettier": "warn",
     "no-console": "warn",
+    "@typescript-eslint/no-explicit-any": "warn",
     "graphql/template-strings": [
       "error",
       {

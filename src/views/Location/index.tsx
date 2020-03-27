@@ -3,6 +3,7 @@ import LocationProfile from "./components/LocationProfile";
 import gql from "graphql-tag";
 import { useGetLocationQuery } from "@/generated/graphql";
 import { useRouter } from "next/router";
+import { isNonEmptyString } from "@/shared/utils";
 
 const GET_LOCATION = gql`
   query GetLocation($id: ID!) {
@@ -16,13 +17,10 @@ const GET_LOCATION = gql`
 function Location() {
   const router = useRouter();
   const { id } = router.query;
-  // TODO: I've copy-pasted this function for router queries.
-  // Will look for a solid solution.
-  const isValidId = (id): id is string => typeof id === "string" && !!id;
   const { data, loading } = useGetLocationQuery({
     query: GET_LOCATION,
-    variables: isValidId(id) ? { id } : undefined,
-    skip: !isValidId(id),
+    variables: isNonEmptyString(id) ? { id } : undefined,
+    skip: !isNonEmptyString(id),
   });
 
   const { location } = data || {};

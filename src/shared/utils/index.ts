@@ -11,3 +11,6 @@ export function isOfType<T>(obj: any, keys: (keyof T)[]): obj is T {
 const SUFFIX = "RickQL";
 export const getDocumentTitle = (title?: string) =>
   title ? `${title} - ${SUFFIX}` : SUFFIX;
+
+export const isNonEmptyString = (id): id is string =>
+  typeof id === "string" && !!id;

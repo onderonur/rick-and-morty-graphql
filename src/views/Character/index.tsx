@@ -3,6 +3,7 @@ import CharacterProfile from "./components/CharacterProfile";
 import gql from "graphql-tag";
 import { useGetCharacterQuery } from "@/generated/graphql";
 import { useRouter } from "next/router";
+import { isNonEmptyString } from "@/shared/utils";
 
 const GET_CHARACTER = gql`
   query GetCharacter($id: ID!) {
@@ -16,13 +17,10 @@ const GET_CHARACTER = gql`
 function Character() {
   const router = useRouter();
   const { id } = router.query;
-  // TODO: I've copy-pasted this function for router queries.
-  // Will look for a solid solution.
-  const isValidId = (id): id is string => typeof id === "string" && !!id;
   const { data, loading } = useGetCharacterQuery({
     query: GET_CHARACTER,
-    variables: isValidId(id) ? { id } : undefined,
-    skip: !isValidId(id),
+    variables: isNonEmptyString(id) ? { id } : undefined,
+    skip: !isNonEmptyString(id),
   });
 
   const { character } = data || {};

@@ -1,30 +1,32 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/zeit/next.js/tree/canary/packages/create-next-app).
+## RickQL - Rick And Morty GraphQL App
 
-## Getting Started
+This is a client application which consumes the Rick and Morty API.
+It uses [Apollo Client](https://www.apollographql.com/docs/react/) for all the data fetching and state management.
+When I first started this project, there was no official React hooks for Apollo Client.
+After their release, I've migrated this project to [@apollo/react-hooks](https://www.apollographql.com/docs/react/api/react-hooks/).
 
-First, run the development server:
+The project was written in JavaScript at first. But I've migrated to TypeScript eventually.
+I've used [graphql-codegen](https://graphql-code-generator.com/) to create type definitions automatically.
+Also, configured Apollo to show the GraphQL errors and warnings as explained [here](https://www.apollographql.com/docs/devtools/apollo-config/).
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+Also, refactored the folder structure (inspired from the example made by [@ryanflorance](https://gist.github.com/ryanflorence/daafb1e3cb8ad740b346)).
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**Live demo on Netlify is [here](https://rick-and-morty-graphql.netlify.com/)**.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+To run it in development mode:
 
-## Learn More
+### `npm install`
 
-To learn more about Next.js, take a look at the following resources:
+### `npm start`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### The Rick and Morty API
 
-You can check out [the Next.js GitHub repository](https://github.com/zeit/next.js/) - your feedback and contributions are welcome!
+This is a really cool public API which provides you the characters, locations and episodes. It has both Rest and GraphQL implementations. So, you can use it to learn and explore new techniques, libraries etc.
 
-## Deploy on ZEIT Now
+You can check it out [here](https://rickandmortyapi.com/).
 
-The easiest way to deploy your Next.js app is to use the [ZEIT Now Platform](https://zeit.co/) from the creators of Next.js.
+### Netlify Deployment
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+You can see the configurations for [Netlify](https://www.netlify.com/) in the `netlify.toml` file. These configurations are required for Single Page Applications to run correctly when deployed to Netlify. Otherwise, application won't be loaded if you refresh the page when you are not at the root of the app (like if you have a search query, url param or routing path etc.) or directly enter a Url like these.
+
+This configuration specifies the build command, output folder for the build process and it tells Netlify to return the `index.html` file for every possible path (`/*`).

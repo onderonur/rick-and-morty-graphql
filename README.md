@@ -11,7 +11,9 @@ Also, configured Apollo to show the GraphQL errors and warnings as explained [he
 
 Also, refactored the folder structure (inspired from the example made by [@ryanflorance](https://gist.github.com/ryanflorence/daafb1e3cb8ad740b346)).
 
-**Live demo on Netlify is [here](https://rick-and-morty-graphql.netlify.com/)**.
+The project was created with `create-react-app`, but then I wanted to try the server-side rendering and then used the most anticipated framework for that. [Next.js](https://nextjs.org/). Migrating to `Next.js` was just easy. I just changed the routing, made some configurations for `apollo` and `material-ui`. And that's it! Most of these setups can be found from the [examples] (https://github.com/zeit/next.js/tree/canary/examples) folder of `Next.js`.
+
+**Live demo on Netlify is [here](rick-and-morty-graphql.now.sh)**.
 
 To run it in development mode:
 
@@ -25,8 +27,6 @@ This is a really cool public API which provides you the characters, locations an
 
 You can check it out [here](https://rickandmortyapi.com/).
 
-### Netlify Deployment
+### Now Deployment
 
-You can see the configurations for [Netlify](https://www.netlify.com/) in the `netlify.toml` file. These configurations are required for Single Page Applications to run correctly when deployed to Netlify. Otherwise, application won't be loaded if you refresh the page when you are not at the root of the app (like if you have a search query, url param or routing path etc.) or directly enter a Url like these.
-
-This configuration specifies the build command, output folder for the build process and it tells Netlify to return the `index.html` file for every possible path (`/*`).
+[Zeit Now](https://zeit.co/) is one of the simplest deployment options ever. [Deployin a Next.js App](https://nextjs.org/learn/basics/deploying-a-nextjs-app) guide is just what you would need. I just downloaded the [official cli](https://zeit.co/download) and run `now`. That's it!

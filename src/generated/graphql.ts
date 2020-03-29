@@ -99,7 +99,7 @@ export type Locations = {
   results?: Maybe<Array<Maybe<Location>>>;
 };
 
-/** 
+/**
  * Rick and Morty API has no "mutation" schema.
  * So, we can not extend it.
  */
@@ -109,7 +109,7 @@ export type Mutation = {
 };
 
 
-/** 
+/**
  * Rick and Morty API has no "mutation" schema.
  * So, we can not extend it.
  */
@@ -173,7 +173,7 @@ export type GetShowDrawerQuery = (
 export type CharacterCard_CharacterFragment = (
   { __typename?: 'Character' }
   & Pick<Character, 'id' | 'name' | 'image'>
-  & { episode: Maybe<Array<Maybe<(
+  & { episode?: Maybe<Array<Maybe<(
     { __typename?: 'Episode' }
     & Pick<Episode, 'id' | 'air_date'>
   )>>> }
@@ -182,10 +182,10 @@ export type CharacterCard_CharacterFragment = (
 export type CharacterCard_CharacterWithSpecsFragment = (
   { __typename?: 'Character' }
   & Pick<Character, 'status' | 'species' | 'gender'>
-  & { origin: Maybe<(
+  & { origin?: Maybe<(
     { __typename?: 'Location' }
     & Pick<Location, 'id' | 'name'>
-  )>, location: Maybe<(
+  )>, location?: Maybe<(
     { __typename?: 'Location' }
     & Pick<Location, 'id' | 'name'>
   )> }
@@ -229,7 +229,7 @@ export type ToggleDrawerMutation = (
 
 export type CharacterProfile_CharacterFragment = (
   { __typename?: 'Character' }
-  & { episode: Maybe<Array<Maybe<(
+  & { episode?: Maybe<Array<Maybe<(
     { __typename?: 'Episode' }
     & EpisodeList_EpisodeFragment
   )>>> }
@@ -243,7 +243,7 @@ export type GetCharacterQueryVariables = {
 
 export type GetCharacterQuery = (
   { __typename?: 'Query' }
-  & { character: Maybe<(
+  & { character?: Maybe<(
     { __typename?: 'Character' }
     & Pick<Character, 'name'>
     & CharacterProfile_CharacterFragment
@@ -258,12 +258,12 @@ export type GetCharactersQueryVariables = {
 
 export type GetCharactersQuery = (
   { __typename?: 'Query' }
-  & { characters: Maybe<(
+  & { characters?: Maybe<(
     { __typename?: 'Characters' }
-    & { results: Maybe<Array<Maybe<(
+    & { results?: Maybe<Array<Maybe<(
       { __typename?: 'Character' }
       & CharacterGridList_CharacterFragment
-    )>>>, info: Maybe<(
+    )>>>, info?: Maybe<(
       { __typename?: 'Info' }
       & PageInfoFragment
     )> }
@@ -277,7 +277,7 @@ export type EpisodeCard_EpisodeFragment = (
 
 export type EpisodeProfile_EpisodeFragment = (
   { __typename?: 'Episode' }
-  & { characters: Maybe<Array<Maybe<(
+  & { characters?: Maybe<Array<Maybe<(
     { __typename?: 'Character' }
     & CharacterGridList_CharacterFragment
   )>>> }
@@ -291,8 +291,9 @@ export type GetEpisodeQueryVariables = {
 
 export type GetEpisodeQuery = (
   { __typename?: 'Query' }
-  & { episode: Maybe<(
+  & { episode?: Maybe<(
     { __typename?: 'Episode' }
+    & Pick<Episode, 'name'>
     & EpisodeProfile_EpisodeFragment
   )> }
 );
@@ -305,12 +306,12 @@ export type GetEpisodesQueryVariables = {
 
 export type GetEpisodesQuery = (
   { __typename?: 'Query' }
-  & { episodes: Maybe<(
+  & { episodes?: Maybe<(
     { __typename?: 'Episodes' }
-    & { results: Maybe<Array<Maybe<(
+    & { results?: Maybe<Array<Maybe<(
       { __typename?: 'Episode' }
       & EpisodeList_EpisodeFragment
-    )>>>, info: Maybe<(
+    )>>>, info?: Maybe<(
       { __typename?: 'Info' }
       & PageInfoFragment
     )> }
@@ -324,7 +325,7 @@ export type LocationCard_LocationFragment = (
 
 export type LocationProfile_LocationFragment = (
   { __typename?: 'Location' }
-  & { residents: Maybe<Array<Maybe<(
+  & { residents?: Maybe<Array<Maybe<(
     { __typename?: 'Character' }
     & CharacterGridList_CharacterFragment
   )>>> }
@@ -338,8 +339,9 @@ export type GetLocationQueryVariables = {
 
 export type GetLocationQuery = (
   { __typename?: 'Query' }
-  & { location: Maybe<(
+  & { location?: Maybe<(
     { __typename?: 'Location' }
+    & Pick<Location, 'name'>
     & LocationProfile_LocationFragment
   )> }
 );
@@ -361,12 +363,12 @@ export type GetLocationsQueryVariables = {
 
 export type GetLocationsQuery = (
   { __typename?: 'Query' }
-  & { locations: Maybe<(
+  & { locations?: Maybe<(
     { __typename?: 'Locations' }
-    & { results: Maybe<Array<Maybe<(
+    & { results?: Maybe<Array<Maybe<(
       { __typename?: 'Location' }
       & LocationList_LocationFragment
-    )>>>, info: Maybe<(
+    )>>>, info?: Maybe<(
       { __typename?: 'Info' }
       & PageInfoFragment
     )> }
@@ -620,6 +622,7 @@ export type GetCharactersQueryResult = ApolloReactCommon.QueryResult<GetCharacte
 export const GetEpisodeDocument = gql`
     query GetEpisode($id: ID!) {
   episode(id: $id) {
+    name
     ...EpisodeProfile_episode
   }
 }
@@ -693,6 +696,7 @@ export type GetEpisodesQueryResult = ApolloReactCommon.QueryResult<GetEpisodesQu
 export const GetLocationDocument = gql`
     query GetLocation($id: ID!) {
   location(id: $id) {
+    name
     ...LocationProfile_location
   }
 }

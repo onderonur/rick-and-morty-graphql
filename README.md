@@ -13,7 +13,7 @@ Also, refactored the folder structure (inspired from the example made by [@ryanf
 
 The project was created with `create-react-app`, but then I wanted to try the server-side rendering and then used the most anticipated framework for that. [Next.js](https://nextjs.org/). Migrating to `Next.js` was just easy. I just changed the routing, made some configurations for `apollo` and `material-ui`. And that's it! Most of these setups can be found from the [examples](https://github.com/zeit/next.js/tree/canary/examples) folder of `Next.js`.
 
-**Live demo on Now is [here](rick-and-morty-graphql.now.sh)**.
+**Live demo on Now is [here](https://rick-and-morty-graphql.now.sh/)**.
 
 To run it in development mode:
 

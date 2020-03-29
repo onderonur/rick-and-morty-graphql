@@ -3,11 +3,13 @@ import EpisodeProfile from "./components/EpisodeProfile";
 import gql from "graphql-tag";
 import { useGetEpisodeQuery } from "@/generated/graphql";
 import { useRouter } from "next/router";
-import { isNonEmptyString } from "@/shared/utils";
+import { isNonEmptyString, getDocumentTitle } from "@/shared/utils";
+import Head from "next/head";
 
 const GET_EPISODE = gql`
   query GetEpisode($id: ID!) {
     episode(id: $id) {
+      name
       ...EpisodeProfile_episode
     }
   }
@@ -25,7 +27,14 @@ function Episode() {
 
   const episode = data?.episode;
 
-  return <EpisodeProfile episode={episode} loading={loading} />;
+  return (
+    <>
+      <Head>
+        <title>{getDocumentTitle(episode?.name)}</title>
+      </Head>
+      <EpisodeProfile episode={episode} loading={loading} />
+    </>
+  );
 }
 
 export default Episode;

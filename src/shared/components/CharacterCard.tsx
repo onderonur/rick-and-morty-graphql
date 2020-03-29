@@ -64,7 +64,7 @@ function CharacterCard({
         title={character.name}
         subheader={
           firstEpisode && lastEpisode
-            ? `Episodes:${episode?.length} (${getEpisodeAirYear(
+            ? `Episodes: ${episode?.length} (${getEpisodeAirYear(
                 firstEpisode,
               )} - ${getEpisodeAirYear(lastEpisode)})`
             : null

@@ -767,25 +767,6 @@ export type GetLocationsQueryHookResult = ReturnType<typeof useGetLocationsQuery
 export type GetLocationsLazyQueryHookResult = ReturnType<typeof useGetLocationsLazyQuery>;
 export type GetLocationsQueryResult = ApolloReactCommon.QueryResult<GetLocationsQuery, GetLocationsQueryVariables>;
 
-      export interface IntrospectionResultData {
-        __schema: {
-          types: {
-            kind: string;
-            name: string;
-            possibleTypes: {
-              name: string;
-            }[];
-          }[];
-        };
-      }
-      const result: IntrospectionResultData = {
-  "__schema": {
-    "types": []
-  }
-};
-      export default result;
-    
-
 
 export type ResolverTypeWrapper<T> = Promise<T> | T;
 

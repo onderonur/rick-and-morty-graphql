@@ -9,7 +9,7 @@ export default withApollo(
   ({ initialState = {} }) => {
     const cache = new InMemoryCache().restore(initialState);
     const client = new ApolloClient({
-      uri: "https://rickandmortyapi.com/graphql",
+      uri: process.env.API_URL,
       cache,
       clientState: {
         resolvers: resolvers as Resolvers,

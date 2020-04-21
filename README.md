@@ -19,7 +19,7 @@ To run it in development mode:
 
 ### `npm install`
 
-### `npm start`
+### `npm run dev`
 
 ### The Rick and Morty API
 

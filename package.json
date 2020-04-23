@@ -20,6 +20,7 @@
     "formik": "^2.1.4",
     "graphql": "^14.6.0",
     "graphql-tag": "^2.10.1",
+    "http-proxy-middleware": "^1.0.3",
     "immer": "^6.0.3",
     "next": "^9.3.4",
     "next-with-apollo": "^5.0.0",

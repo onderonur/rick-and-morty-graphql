@@ -9,7 +9,7 @@ export default withApollo(
   ({ initialState = {} }) => {
     const cache = new InMemoryCache().restore(initialState);
     const client = new ApolloClient({
-      uri: process.env.API_URL,
+      uri: `${process.env.BASE_URL}/api/graphql`,
       cache,
       clientState: {
         resolvers: resolvers as Resolvers,

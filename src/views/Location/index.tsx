@@ -3,8 +3,8 @@ import LocationProfile from "./components/LocationProfile";
 import gql from "graphql-tag";
 import { useGetLocationQuery } from "@/generated/graphql";
 import { useRouter } from "next/router";
-import { isNonEmptyString, getDocumentTitle } from "@/shared/utils";
-import Head from "next/head";
+import { isNonEmptyString } from "@/shared/utils";
+import { NextSeo } from "next-seo";
 
 const GET_LOCATION = gql`
   query GetLocation($id: ID!) {
@@ -29,9 +29,7 @@ function Location() {
 
   return (
     <>
-      <Head>
-        <title>{getDocumentTitle(location?.name)}</title>
-      </Head>
+      <NextSeo title={location?.name || ""} />
       <LocationProfile location={location} loading={loading} />
     </>
   );

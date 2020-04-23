@@ -7,9 +7,8 @@ import CharacterGridList from "@/shared/components/CharacterGridList";
 import gql from "graphql-tag";
 import PAGE_INFO_FRAGMENT from "@/shared/fragments/pageInfo";
 import { useGetCharactersQuery } from "@/generated/graphql";
-import Head from "next/head";
-import { getDocumentTitle } from "@/shared/utils";
 import { useRouter } from "next/router";
+import { NextSeo } from "next-seo";
 
 const GET_CHARACTERS = gql`
   query GetCharacters($page: Int, $filter: FilterCharacter) {
@@ -49,9 +48,17 @@ function Characters() {
 
   return (
     <>
-      <Head>
-        <title>{getDocumentTitle("Characters")}</title>
-      </Head>
+      <NextSeo
+        title="Characters"
+        description="Character list of Rick and Morty TV Series"
+        openGraph={{
+          images: [
+            {
+              url: `${process.env.BASE_URL}/images/characters.png`,
+            },
+          ],
+        }}
+      />
       <Box mb={2}>
         <CharacterSearch />
       </Box>

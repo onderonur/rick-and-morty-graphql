@@ -5,8 +5,7 @@ import LocationList from "./components/LocationList";
 import PAGE_INFO_FRAGMENT from "@/shared/fragments/pageInfo";
 import gql from "graphql-tag";
 import { useGetLocationsQuery } from "@/generated/graphql";
-import Head from "next/head";
-import { getDocumentTitle } from "@/shared/utils";
+import { NextSeo } from "next-seo";
 
 const GET_LOCATIONS = gql`
   query GetLocations($page: Int) {
@@ -36,9 +35,17 @@ function Locations() {
 
   return (
     <>
-      <Head>
-        <title>{getDocumentTitle("Locations")}</title>
-      </Head>
+      <NextSeo
+        title="Locations"
+        description="Location list of Rick and Morty TV Series"
+        openGraph={{
+          images: [
+            {
+              url: `${process.env.BASE_URL}/images/locations.jpg`,
+            },
+          ],
+        }}
+      />
       <InfiniteScrollWrapper
         hasNextPage={hasNextPage}
         loading={loading}

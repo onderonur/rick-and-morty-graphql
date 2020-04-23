@@ -1,6 +1,5 @@
 import React from "react";
 import App from "next/app";
-import Head from "next/head";
 import {
   ThemeProvider,
   Theme,
@@ -9,7 +8,6 @@ import {
 } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import theme from "@/theme";
-import { getDocumentTitle } from "@/shared/utils";
 import HideOnScroll from "@/components/HideOnScroll";
 import AppHeader from "@/components/AppHeader";
 import { Container } from "@material-ui/core";
@@ -17,6 +15,43 @@ import withApollo from "@/shared/lib/withApollo";
 import { getDataFromTree } from "@apollo/react-ssr";
 import AppDrawer from "@/components/AppDrawer";
 import BackToTopButton from "@/components/BackToTopButton";
+import { DefaultSeo, DefaultSeoProps } from "next-seo";
+
+const { BASE_URL } = process.env;
+
+const DEFAULT_SEO_CONFIG: DefaultSeoProps = {
+  titleTemplate: "%s | RickQL",
+  description:
+    "RickQL is a client application for Rick and Morty GraphQL API. It's created with Next.js, Apollo-Client and TypeScript.",
+  canonical: BASE_URL,
+  openGraph: {
+    title: "Rick and Morty GraphQL Application",
+    type: "website",
+    locale: "en_IE",
+    url: BASE_URL,
+    site_name: "RickQL",
+    images: [
+      {
+        width: 728,
+        height: 413,
+        url: `${BASE_URL}/images/characters.png`,
+        alt: "Rick and Morty Characters",
+      },
+      {
+        width: 728,
+        height: 409,
+        url: `${BASE_URL}/images/episodes.jpg`,
+        alt: "Rick and Morty Episodes",
+      },
+      {
+        width: 728,
+        height: 405,
+        url: `${BASE_URL}/images/locations.jpg`,
+        alt: "Rick and Morty Locations",
+      },
+    ],
+  },
+};
 
 const styles = (theme: Theme) => ({
   toolbar: { ...theme.mixins.toolbar },
@@ -41,13 +76,7 @@ class MyApp extends App<MyAppProps> {
 
     return (
       <React.Fragment>
-        <Head>
-          <title>{getDocumentTitle()}</title>
-          <meta
-            name="viewport"
-            content="minimum-scale=1, initial-scale=1, width=device-width"
-          />
-        </Head>
+        <DefaultSeo {...DEFAULT_SEO_CONFIG} />
         <ThemeProvider theme={theme}>
           {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
           <CssBaseline />

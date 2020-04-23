@@ -3,13 +3,14 @@ import CharacterProfile from "./components/CharacterProfile";
 import gql from "graphql-tag";
 import { useGetCharacterQuery } from "@/generated/graphql";
 import { useRouter } from "next/router";
-import { isNonEmptyString, getDocumentTitle } from "@/shared/utils";
-import Head from "next/head";
+import { isNonEmptyString } from "@/shared/utils";
+import { NextSeo } from "next-seo";
 
 const GET_CHARACTER = gql`
   query GetCharacter($id: ID!) {
     character(id: $id) {
       name
+      image
       ...CharacterProfile_character
     }
   }
@@ -29,9 +30,12 @@ function Character() {
 
   return (
     <>
-      <Head>
-        <title>{getDocumentTitle(character?.name)}</title>
-      </Head>
+      <NextSeo
+        title={character?.name || ""}
+        openGraph={{
+          images: [{ url: character?.image || "" }],
+        }}
+      />
       <CharacterProfile character={character} loading={loading} />
     </>
   );

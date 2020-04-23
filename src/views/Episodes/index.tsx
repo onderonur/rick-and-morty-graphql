@@ -5,8 +5,7 @@ import EpisodeList from "@/shared/components/EpisodeList";
 import gql from "graphql-tag";
 import PAGE_INFO_FRAGMENT from "@/shared/fragments/pageInfo";
 import { useGetEpisodesQuery } from "@/generated/graphql";
-import Head from "next/head";
-import { getDocumentTitle } from "@/shared/utils";
+import { NextSeo } from "next-seo";
 
 const GET_EPISODES = gql`
   query GetEpisodes($page: Int, $filter: FilterEpisode) {
@@ -37,9 +36,17 @@ function Episodes() {
 
   return (
     <>
-      <Head>
-        <title>{getDocumentTitle("Episodes")}</title>
-      </Head>
+      <NextSeo
+        title="Episodes"
+        description="Episode list of Rick and Morty TV Series"
+        openGraph={{
+          images: [
+            {
+              url: `${process.env.BASE_URL}/images/episodes.jpg`,
+            },
+          ],
+        }}
+      />
       <InfiniteScrollWrapper
         hasNextPage={hasNextPage}
         loading={loading}

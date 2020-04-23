@@ -3,8 +3,8 @@ import EpisodeProfile from "./components/EpisodeProfile";
 import gql from "graphql-tag";
 import { useGetEpisodeQuery } from "@/generated/graphql";
 import { useRouter } from "next/router";
-import { isNonEmptyString, getDocumentTitle } from "@/shared/utils";
-import Head from "next/head";
+import { isNonEmptyString } from "@/shared/utils";
+import { NextSeo } from "next-seo";
 
 const GET_EPISODE = gql`
   query GetEpisode($id: ID!) {
@@ -29,9 +29,7 @@ function Episode() {
 
   return (
     <>
-      <Head>
-        <title>{getDocumentTitle(episode?.name)}</title>
-      </Head>
+      <NextSeo title={episode?.name || ""} />
       <EpisodeProfile episode={episode} loading={loading} />
     </>
   );

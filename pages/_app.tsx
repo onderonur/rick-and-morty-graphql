@@ -51,6 +51,16 @@ const DEFAULT_SEO_CONFIG: DefaultSeoProps = {
       },
     ],
   },
+  additionalMetaTags: [
+    {
+      property: "dc:creator",
+      content: "Onur ÖNDER",
+    },
+    {
+      name: "application-name",
+      content: "RickQL",
+    },
+  ],
 };
 
 const styles = (theme: Theme) => ({

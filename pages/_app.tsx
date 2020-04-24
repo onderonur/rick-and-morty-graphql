@@ -16,6 +16,15 @@ import { getDataFromTree } from "@apollo/react-ssr";
 import AppDrawer from "@/components/AppDrawer";
 import BackToTopButton from "@/components/BackToTopButton";
 import { DefaultSeo, DefaultSeoProps } from "next-seo";
+import Head from "next/head";
+import NProgress from "nprogress";
+import { Router } from "next/router";
+
+Router.events.on("routeChangeStart", () => {
+  NProgress.start();
+});
+Router.events.on("routeChangeComplete", () => NProgress.done());
+Router.events.on("routeChangeError", () => NProgress.done());
 
 const { BASE_URL } = process.env;
 
@@ -86,9 +95,12 @@ class MyApp extends App<MyAppProps> {
 
     return (
       <React.Fragment>
+        <Head>
+          {/* Import CSS for nprogress */}
+          <link rel="stylesheet" type="text/css" href="/nprogress.css" />
+        </Head>
         <DefaultSeo {...DEFAULT_SEO_CONFIG} />
         <ThemeProvider theme={theme}>
-          {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
           <CssBaseline />
           <HideOnScroll>
             <AppHeader />

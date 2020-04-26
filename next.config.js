@@ -6,8 +6,8 @@ module.exports = (phase) => {
     env: {
       BASE_URL:
         phase === PHASE_DEVELOPMENT_SERVER
-          ? "https://rick-and-morty-graphql.now.sh"
-          : "http://localhost:3000",
+          ? "http://localhost:3000"
+          : "https://rick-and-morty-graphql.now.sh",
       API_URL: "https://rickandmortyapi.com",
     },
   };

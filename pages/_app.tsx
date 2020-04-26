@@ -26,7 +26,9 @@ Router.events.on("routeChangeStart", () => {
 Router.events.on("routeChangeComplete", () => NProgress.done());
 Router.events.on("routeChangeError", () => NProgress.done());
 
-const { BASE_URL } = process.env;
+// https://nextjs.org/docs/api-reference/next.config.js/environment-variables
+// Trying to destructure process.env variables won't work due to the nature of webpack DefinePlugin.
+const BASE_URL = process.env.BASE_URL;
 
 const DEFAULT_SEO_CONFIG: DefaultSeoProps = {
   titleTemplate: "%s | RickQL",

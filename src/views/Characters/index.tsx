@@ -54,7 +54,7 @@ function Characters() {
         openGraph={{
           images: [
             {
-              url: `${process.env.BASE_URL}/images/characters.png`,
+              url: `${process.env.BASE_URL}/images/characters.jpg`,
             },
           ],
         }}

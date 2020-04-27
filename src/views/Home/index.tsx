@@ -1,10 +1,5 @@
 import React from "react";
 import { Grid, Box, Typography, makeStyles } from "@material-ui/core";
-// import charactersPng from "assets/images/characters.png";
-// import episodesJpg from "assets/images/episodes.jpg";
-// import locationsJpg from "assets/images/locations.jpg";
-// import home01 from "assets/gifs/home01.webp";
-// import home02 from "assets/gifs/home02.gif";
 import clsx from "clsx";
 import BaseGridList from "@/shared/components/BaseGridList";
 import BaseCard from "@/shared/components/BaseCard";
@@ -50,7 +45,7 @@ const homeLinks = [
   {
     title: "Characters",
     to: "/characters",
-    image: "/images/characters.png",
+    image: "/images/characters.jpg",
   },
   {
     title: "Episodes",

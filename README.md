@@ -16,10 +16,10 @@ The project was created with `create-react-app`, but then I wanted to try the se
 
 **Live demo on Now is [here](https://rick-and-morty-graphql.now.sh/)**.
 
-* [Next.js]([https://nextjs.org/](https://nextjs.org/))
-* [Apollo-Client]([https://www.apollographql.com/docs/react/](https://www.apollographql.com/docs/react/))
-* [Material-UI]([https://material-ui.com/](https://material-ui.com/))
-* [GraphQL Code Generator]([https://graphql-code-generator.com/](https://graphql-code-generator.com/))
+* [Next.js](https://nextjs.org/)
+* [Apollo-Client](https://www.apollographql.com/docs/react/)
+* [Material-UI](https://material-ui.com/)
+* [GraphQL Code Generator](https://graphql-code-generator.com/))
 
 To run it in development mode:
 

@@ -1,3 +1,4 @@
+
 ## RickQL - Rick And Morty GraphQL App
 
 This is a client application which consumes the Rick and Morty API.
@@ -14,6 +15,11 @@ Also, refactored the folder structure (inspired from the example made by [@ryanf
 The project was created with `create-react-app`, but then I wanted to try the server-side rendering and then used the most anticipated framework for that. [Next.js](https://nextjs.org/). Migrating to `Next.js` was just easy. I just changed the routing, made some configurations for `apollo` and `material-ui`. And that's it! Most of these setups can be found from the [examples](https://github.com/zeit/next.js/tree/canary/examples) folder of `Next.js`.
 
 **Live demo on Now is [here](https://rick-and-morty-graphql.now.sh/)**.
+
+* [Next.js]([https://nextjs.org/](https://nextjs.org/))
+* [Apollo-Client]([https://www.apollographql.com/docs/react/](https://www.apollographql.com/docs/react/))
+* [Material-UI]([https://material-ui.com/](https://material-ui.com/))
+* [GraphQL Code Generator]([https://graphql-code-generator.com/](https://graphql-code-generator.com/))
 
 To run it in development mode:
 

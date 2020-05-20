@@ -38,7 +38,6 @@ function Characters() {
     query: GET_CHARACTERS,
     variables,
     notifyOnNetworkStatusChange: true,
-    fetchPolicy: "network-only",
   });
 
   const isSetVariables = networkStatus === 2;

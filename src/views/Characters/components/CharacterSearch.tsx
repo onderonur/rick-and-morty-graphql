@@ -24,7 +24,10 @@ function CharacterSearch() {
   const { name } = router.query;
 
   function handleSearch({ searchValue }: CharacterSearchFormValues) {
-    router.push({ pathname: router.pathname, query: { name: searchValue } });
+    router.push({
+      pathname: router.pathname,
+      query: searchValue ? { name: searchValue } : undefined,
+    });
   }
 
   return (

@@ -1,5 +1,6 @@
 {
   "__schema": {
+    "description": null,
     "queryType": {
       "name": "Query"
     },
@@ -9,17 +10,37 @@
     "subscriptionType": null,
     "types": [
       {
+        "kind": "SCALAR",
+        "name": "String",
+        "description": "The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.",
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "SCALAR",
+        "name": "Boolean",
+        "description": "The `Boolean` scalar type represents `true` or `false`.",
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
         "kind": "OBJECT",
         "name": "Query",
         "description": "",
         "fields": [
           {
             "name": "character",
-            "description": "",
+            "description": "Get a specific character by ID",
             "args": [
               {
                 "name": "id",
-                "description": "",
+                "description": null,
                 "type": {
                   "kind": "SCALAR",
                   "name": "ID",
@@ -38,11 +59,11 @@
           },
           {
             "name": "characters",
-            "description": "",
+            "description": "Get the list of all characters",
             "args": [
               {
                 "name": "page",
-                "description": "",
+                "description": null,
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
@@ -52,7 +73,7 @@
               },
               {
                 "name": "filter",
-                "description": "",
+                "description": null,
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "FilterCharacter",
@@ -71,11 +92,11 @@
           },
           {
             "name": "episode",
-            "description": "",
+            "description": "Get a specific episode by ID",
             "args": [
               {
                 "name": "id",
-                "description": "",
+                "description": null,
                 "type": {
                   "kind": "SCALAR",
                   "name": "ID",
@@ -94,11 +115,11 @@
           },
           {
             "name": "episodes",
-            "description": "",
+            "description": "Get the list of all episodes",
             "args": [
               {
                 "name": "page",
-                "description": "",
+                "description": null,
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
@@ -108,7 +129,7 @@
               },
               {
                 "name": "filter",
-                "description": "",
+                "description": null,
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "FilterEpisode",
@@ -127,11 +148,11 @@
           },
           {
             "name": "location",
-            "description": "",
+            "description": "Get a specific locations by ID",
             "args": [
               {
                 "name": "id",
-                "description": "",
+                "description": null,
                 "type": {
                   "kind": "SCALAR",
                   "name": "ID",
@@ -150,11 +171,11 @@
           },
           {
             "name": "locations",
-            "description": "",
+            "description": "Get the list of all locations",
             "args": [
               {
                 "name": "page",
-                "description": "",
+                "description": null,
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
@@ -164,7 +185,7 @@
               },
               {
                 "name": "filter",
-                "description": "",
+                "description": null,
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "FilterLocation",
@@ -183,7 +204,7 @@
           },
           {
             "name": "showDrawer",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -214,13 +235,23 @@
         "possibleTypes": null
       },
       {
+        "kind": "SCALAR",
+        "name": "Int",
+        "description": "The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.",
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
         "kind": "OBJECT",
         "name": "Character",
         "description": "",
         "fields": [
           {
             "name": "id",
-            "description": "",
+            "description": "The id of the character.",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -232,7 +263,7 @@
           },
           {
             "name": "name",
-            "description": "",
+            "description": "The name of the character.",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -244,7 +275,7 @@
           },
           {
             "name": "status",
-            "description": "",
+            "description": "The status of the character ('Alive', 'Dead' or 'unknown').",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -256,7 +287,7 @@
           },
           {
             "name": "species",
-            "description": "",
+            "description": "The species of the character.",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -268,7 +299,7 @@
           },
           {
             "name": "type",
-            "description": "",
+            "description": "The type or subspecies of the character.",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -280,7 +311,7 @@
           },
           {
             "name": "gender",
-            "description": "",
+            "description": "The gender of the character ('Female', 'Male', 'Genderless' or 'unknown').",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -292,7 +323,7 @@
           },
           {
             "name": "origin",
-            "description": "",
+            "description": "The character's origin location",
             "args": [],
             "type": {
               "kind": "OBJECT",
@@ -304,7 +335,7 @@
           },
           {
             "name": "location",
-            "description": "",
+            "description": "The character's last known location",
             "args": [],
             "type": {
               "kind": "OBJECT",
@@ -316,7 +347,7 @@
           },
           {
             "name": "image",
-            "description": "",
+            "description": "Link to the character's image.\nAll images are 300x300px and most are medium shots or portraits since they are intended to be used as avatars.",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -328,7 +359,7 @@
           },
           {
             "name": "episode",
-            "description": "",
+            "description": "Episodes in which this character appeared.",
             "args": [],
             "type": {
               "kind": "LIST",
@@ -344,7 +375,7 @@
           },
           {
             "name": "created",
-            "description": "",
+            "description": "Time at which the character was created in the database.",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -361,23 +392,13 @@
         "possibleTypes": null
       },
       {
-        "kind": "SCALAR",
-        "name": "String",
-        "description": "The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.",
-        "fields": null,
-        "inputFields": null,
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
         "kind": "OBJECT",
         "name": "Location",
         "description": "",
         "fields": [
           {
             "name": "id",
-            "description": "",
+            "description": "The id of the location.",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -389,7 +410,7 @@
           },
           {
             "name": "name",
-            "description": "",
+            "description": "The name of the location.",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -401,7 +422,7 @@
           },
           {
             "name": "type",
-            "description": "",
+            "description": "The type of the location.",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -413,7 +434,7 @@
           },
           {
             "name": "dimension",
-            "description": "",
+            "description": "The dimension in which the location is located.",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -425,7 +446,7 @@
           },
           {
             "name": "residents",
-            "description": "",
+            "description": "List of characters who have been last seen in the location.",
             "args": [],
             "type": {
               "kind": "LIST",
@@ -441,7 +462,7 @@
           },
           {
             "name": "created",
-            "description": "",
+            "description": "Time at which the location was created in the database.",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -464,7 +485,7 @@
         "fields": [
           {
             "name": "id",
-            "description": "",
+            "description": "The id of the episode.",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -476,7 +497,7 @@
           },
           {
             "name": "name",
-            "description": "",
+            "description": "The name of the episode.",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -488,7 +509,7 @@
           },
           {
             "name": "air_date",
-            "description": "",
+            "description": "The air date of the episode.",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -500,7 +521,7 @@
           },
           {
             "name": "episode",
-            "description": "",
+            "description": "The code of the episode.",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -512,7 +533,7 @@
           },
           {
             "name": "characters",
-            "description": "",
+            "description": "List of characters who have been seen in the episode.",
             "args": [],
             "type": {
               "kind": "LIST",
@@ -528,7 +549,7 @@
           },
           {
             "name": "created",
-            "description": "",
+            "description": "Time at which the episode was created in the database.",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -541,16 +562,6 @@
         ],
         "inputFields": null,
         "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "SCALAR",
-        "name": "Int",
-        "description": "The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.",
-        "fields": null,
-        "inputFields": null,
-        "interfaces": null,
         "enumValues": null,
         "possibleTypes": null
       },
@@ -661,7 +672,7 @@
         "fields": [
           {
             "name": "count",
-            "description": "",
+            "description": "The length of the response.",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -673,7 +684,7 @@
           },
           {
             "name": "pages",
-            "description": "",
+            "description": "The amount of pages.",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -685,7 +696,7 @@
           },
           {
             "name": "next",
-            "description": "",
+            "description": "Number of the next page (if it exists)",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -697,82 +708,12 @@
           },
           {
             "name": "prev",
-            "description": "",
+            "description": "Number of the previous page (if it exists)",
             "args": [],
             "type": {
               "kind": "SCALAR",
               "name": "Int",
               "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "INPUT_OBJECT",
-        "name": "FilterEpisode",
-        "description": "",
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "name",
-            "description": "",
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "episode",
-            "description": "",
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
-        "name": "Episodes",
-        "description": "",
-        "fields": [
-          {
-            "name": "info",
-            "description": "",
-            "args": [],
-            "type": {
-              "kind": "OBJECT",
-              "name": "Info",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "results",
-            "description": "",
-            "args": [],
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "Episode",
-                "ofType": null
-              }
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -864,9 +805,102 @@
         "possibleTypes": null
       },
       {
+        "kind": "INPUT_OBJECT",
+        "name": "FilterEpisode",
+        "description": "",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "name",
+            "description": "",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "episode",
+            "description": "",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "Episodes",
+        "description": "",
+        "fields": [
+          {
+            "name": "info",
+            "description": "",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "Info",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "results",
+            "description": "",
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Episode",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "ENUM",
+        "name": "CacheControlScope",
+        "description": "",
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": [
+          {
+            "name": "PUBLIC",
+            "description": "",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "PRIVATE",
+            "description": "",
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "possibleTypes": null
+      },
+      {
         "kind": "SCALAR",
-        "name": "Boolean",
-        "description": "The `Boolean` scalar type represents `true` or `false`.",
+        "name": "Upload",
+        "description": "The `Upload` scalar type represents a file upload.",
         "fields": null,
         "inputFields": null,
         "interfaces": null,
@@ -876,15 +910,15 @@
       {
         "kind": "OBJECT",
         "name": "Mutation",
-        "description": "Rick and Morty API has no \"mutation\" schema.\nSo, we can not extend it.",
+        "description": null,
         "fields": [
           {
             "name": "toggleDrawer",
-            "description": "",
+            "description": null,
             "args": [
               {
                 "name": "showDrawer",
-                "description": "",
+                "description": null,
                 "type": {
                   "kind": "NON_NULL",
                   "name": null,
@@ -920,6 +954,18 @@
         "name": "__Schema",
         "description": "A GraphQL Schema defines the capabilities of a GraphQL server. It exposes all available types and directives on the server, as well as the entry points for query, mutation, and subscription operations.",
         "fields": [
+          {
+            "name": "description",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
           {
             "name": "types",
             "description": "A list of all types supported by this server.",
@@ -1221,7 +1267,7 @@
           },
           {
             "name": "INTERFACE",
-            "description": "Indicates this type is an interface. `fields` and `possibleTypes` are valid fields.",
+            "description": "Indicates this type is an interface. `fields`, `interfaces`, and `possibleTypes` are valid fields.",
             "isDeprecated": false,
             "deprecationReason": null
           },
@@ -1533,6 +1579,22 @@
             "deprecationReason": null
           },
           {
+            "name": "isRepeatable",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "locations",
             "description": null,
             "args": [],
@@ -1710,45 +1772,13 @@
           }
         ],
         "possibleTypes": null
-      },
-      {
-        "kind": "ENUM",
-        "name": "CacheControlScope",
-        "description": "",
-        "fields": null,
-        "inputFields": null,
-        "interfaces": null,
-        "enumValues": [
-          {
-            "name": "PUBLIC",
-            "description": "",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "PRIVATE",
-            "description": "",
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "possibleTypes": null
-      },
-      {
-        "kind": "SCALAR",
-        "name": "Upload",
-        "description": null,
-        "fields": null,
-        "inputFields": null,
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
       }
     ],
     "directives": [
       {
         "name": "skip",
         "description": "Directs the executor to skip this field or fragment when the `if` argument is true.",
+        "isRepeatable": false,
         "locations": [
           "FIELD",
           "FRAGMENT_SPREAD",
@@ -1774,6 +1804,7 @@
       {
         "name": "include",
         "description": "Directs the executor to include this field or fragment only when the `if` argument is true.",
+        "isRepeatable": false,
         "locations": [
           "FIELD",
           "FRAGMENT_SPREAD",
@@ -1799,6 +1830,7 @@
       {
         "name": "deprecated",
         "description": "Marks an element of a GraphQL schema as no longer supported.",
+        "isRepeatable": false,
         "locations": [
           "FIELD_DEFINITION",
           "ENUM_VALUE"
@@ -1806,7 +1838,7 @@
         "args": [
           {
             "name": "reason",
-            "description": "Explains why this element was deprecated, usually also including a suggestion for how to access supported similar data. Formatted using the Markdown syntax (as specified by [CommonMark](https://commonmark.org/).",
+            "description": "Explains why this element was deprecated, usually also including a suggestion for how to access supported similar data. Formatted using the Markdown syntax, as specified by [CommonMark](https://commonmark.org/).",
             "type": {
               "kind": "SCALAR",
               "name": "String",

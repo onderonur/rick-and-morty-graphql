@@ -28,42 +28,42 @@ Router.events.on("routeChangeError", () => NProgress.done());
 
 // https://nextjs.org/docs/api-reference/next.config.js/environment-variables
 // Trying to destructure process.env variables won't work due to the nature of webpack DefinePlugin.
-const BASE_URL = process.env.BASE_URL;
+const NEXT_PUBLIC_BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 const DEFAULT_SEO_CONFIG: DefaultSeoProps = {
   titleTemplate: "%s | RickQL",
   description:
     "RickQL is a client application for Rick and Morty GraphQL API. It's created with Next.js, Apollo-Client and TypeScript.",
-  canonical: BASE_URL,
+  canonical: NEXT_PUBLIC_BASE_URL,
   openGraph: {
     title: "Rick and Morty GraphQL Application",
     type: "website",
     locale: "en_IE",
-    url: BASE_URL,
+    url: NEXT_PUBLIC_BASE_URL,
     site_name: "RickQL",
     images: [
       {
         width: 600,
         height: 600,
-        url: `${BASE_URL}/images/logo.png`,
+        url: `${NEXT_PUBLIC_BASE_URL}/images/logo.png`,
         alt: "RickQL Logo",
       },
       {
         width: 600,
         height: 334,
-        url: `${BASE_URL}/images/locations.jpg`,
+        url: `${NEXT_PUBLIC_BASE_URL}/images/locations.jpg`,
         alt: "Rick and Morty Locations",
       },
       {
         width: 600,
         height: 337,
-        url: `${BASE_URL}/images/episodes.jpg`,
+        url: `${NEXT_PUBLIC_BASE_URL}/images/episodes.jpg`,
         alt: "Rick and Morty Episodes",
       },
       {
         width: 600,
         height: 341,
-        url: `${BASE_URL}/images/characters.jpg`,
+        url: `${NEXT_PUBLIC_BASE_URL}/images/characters.jpg`,
         alt: "Rick and Morty Characters",
       },
     ],

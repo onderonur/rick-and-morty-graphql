@@ -42,7 +42,7 @@ function Episodes() {
         openGraph={{
           images: [
             {
-              url: `${process.env.BASE_URL}/images/episodes.jpg`,
+              url: `${process.env.NEXT_PUBLIC_BASE_URL}/images/episodes.jpg`,
             },
           ],
         }}

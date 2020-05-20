@@ -28,11 +28,17 @@ const GET_CHARACTERS = gql`
 function Characters() {
   const router = useRouter();
   const { name } = router.query;
-  const variables = typeof name === "string" ? { filter: { name } } : undefined;
+  const variables =
+    typeof name === "string"
+      ? {
+          filter: { name },
+        }
+      : {};
   const { data, loading, fetchMore, networkStatus } = useGetCharactersQuery({
     query: GET_CHARACTERS,
     variables,
     notifyOnNetworkStatusChange: true,
+    fetchPolicy: "network-only",
   });
 
   const isSetVariables = networkStatus === 2;
@@ -54,7 +60,7 @@ function Characters() {
         openGraph={{
           images: [
             {
-              url: `${process.env.BASE_URL}/images/characters.jpg`,
+              url: `${process.env.NEXT_PUBLIC_BASE_URL}/images/characters.jpg`,
             },
           ],
         }}

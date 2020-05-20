@@ -41,7 +41,7 @@ function Locations() {
         openGraph={{
           images: [
             {
-              url: `${process.env.BASE_URL}/images/locations.jpg`,
+              url: `${process.env.NEXT_PUBLIC_BASE_URL}/images/locations.jpg`,
             },
           ],
         }}

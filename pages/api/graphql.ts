@@ -12,7 +12,7 @@ export const config = {
 };
 
 export default proxy({
-  target: process.env.API_URL,
+  target: process.env.NEXT_PUBLIC_API_URL,
   changeOrigin: true,
   pathRewrite: { "^/api": "" },
 });

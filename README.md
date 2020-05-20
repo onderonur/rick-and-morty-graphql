@@ -1,3 +1,4 @@
+
 ## RickQL - Rick And Morty GraphQL App
 
 This is a client application which consumes the Rick and Morty API.
@@ -15,6 +16,11 @@ The project was created with `create-react-app`, but then I wanted to try the se
 
 **Live demo on Now is [here](https://rick-and-morty-graphql.now.sh/)**.
 
+* [Next.js](https://nextjs.org/)
+* [Apollo-Client](https://www.apollographql.com/docs/react/)
+* [Material-UI](https://material-ui.com/)
+* [GraphQL Code Generator](https://graphql-code-generator.com/)
+
 To run it in development mode:
 
 ### `npm install`
@@ -29,4 +35,4 @@ You can check it out [here](https://rickandmortyapi.com/).
 
 ### Now Deployment
 
-[Zeit Now](https://zeit.co/) is one of the simplest deployment options ever. [Deployin a Next.js App](https://nextjs.org/learn/basics/deploying-a-nextjs-app) guide is just what you would need. I just downloaded the [official cli](https://zeit.co/download) and run `now`. That's it!
+[Vercel's Now](https://vercel.com/) is one of the simplest deployment options ever. [Deploying a Next.js App](https://nextjs.org/learn/basics/deploying-a-nextjs-app) guide is just what you would need. I just downloaded the [official cli](https://vercel.com/download) and run `now`. That's it!

@@ -18,7 +18,8 @@ import BackToTopButton from "@/components/BackToTopButton";
 import { DefaultSeo, DefaultSeoProps } from "next-seo";
 import Head from "next/head";
 import NProgress from "nprogress";
-import { Router } from "next/router";
+import { Router, withRouter } from "next/router";
+import { WithRouterProps } from "next/dist/client/with-router";
 
 Router.events.on("routeChangeStart", () => {
   NProgress.start();
@@ -30,7 +31,7 @@ Router.events.on("routeChangeError", () => NProgress.done());
 // Trying to destructure process.env variables won't work due to the nature of webpack DefinePlugin.
 const NEXT_PUBLIC_BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
-const DEFAULT_SEO_CONFIG: DefaultSeoProps = {
+const getDefaultSeoConfig = (pathname: string): DefaultSeoProps => ({
   titleTemplate: "%s | RickQL",
   description:
     "RickQL is a client application for Rick and Morty GraphQL API. It's created with Next.js, Apollo-Client and TypeScript.",
@@ -39,7 +40,7 @@ const DEFAULT_SEO_CONFIG: DefaultSeoProps = {
     title: "Rick and Morty GraphQL Application",
     type: "website",
     locale: "en_IE",
-    url: NEXT_PUBLIC_BASE_URL,
+    url: `${NEXT_PUBLIC_BASE_URL}${pathname}`,
     site_name: "RickQL",
     images: [
       {
@@ -78,7 +79,7 @@ const DEFAULT_SEO_CONFIG: DefaultSeoProps = {
       content: "RickQL",
     },
   ],
-};
+});
 
 const styles = (theme: Theme) => ({
   toolbar: { ...theme.mixins.toolbar },
@@ -87,7 +88,7 @@ const styles = (theme: Theme) => ({
   },
 });
 
-type MyAppProps = WithStyles<typeof styles>;
+type MyAppProps = WithStyles<typeof styles> & WithRouterProps;
 
 // Example for material-ui with next-js:
 // https://github.com/mui-org/material-ui/tree/master/examples/nextjs
@@ -99,7 +100,7 @@ class MyApp extends App<MyAppProps> {
   }
 
   render() {
-    const { Component, pageProps, classes } = this.props;
+    const { Component, pageProps, classes, router } = this.props;
 
     return (
       <React.Fragment>
@@ -107,7 +108,7 @@ class MyApp extends App<MyAppProps> {
           {/* Import CSS for nprogress */}
           <link rel="stylesheet" type="text/css" href="/nprogress.css" />
         </Head>
-        <DefaultSeo {...DEFAULT_SEO_CONFIG} />
+        <DefaultSeo {...getDefaultSeoConfig(router.pathname)} />
         <ThemeProvider theme={theme}>
           <CssBaseline />
           <HideOnScroll>
@@ -125,4 +126,6 @@ class MyApp extends App<MyAppProps> {
   }
 }
 
-export default withStyles(styles)(withApollo(MyApp, { getDataFromTree }));
+export default withStyles(styles)(
+  withApollo(withRouter(MyApp), { getDataFromTree }),
+);

@@ -35,7 +35,7 @@ const getDefaultSeoConfig = (pathname: string): DefaultSeoProps => ({
   titleTemplate: "%s | RickQL",
   description:
     "RickQL is a client application for Rick and Morty GraphQL API. It's created with Next.js, Apollo-Client and TypeScript.",
-  canonical: NEXT_PUBLIC_BASE_URL,
+  canonical: `${NEXT_PUBLIC_BASE_URL}${pathname}`,
   openGraph: {
     title: "Rick and Morty GraphQL Application",
     type: "website",

@@ -20,6 +20,7 @@ import Head from "next/head";
 import NProgress from "nprogress";
 import { Router, withRouter } from "next/router";
 import { WithRouterProps } from "next/dist/client/with-router";
+import { APP_TITLE } from "@/constants";
 
 Router.events.on("routeChangeStart", () => {
   NProgress.start();
@@ -31,55 +32,57 @@ Router.events.on("routeChangeError", () => NProgress.done());
 // Trying to destructure process.env variables won't work due to the nature of webpack DefinePlugin.
 const NEXT_PUBLIC_BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
-const getDefaultSeoConfig = (pathname: string): DefaultSeoProps => ({
-  titleTemplate: "%s | RickQL",
-  description:
-    "RickQL is a client application for Rick and Morty GraphQL API. It's created with Next.js, Apollo-Client and TypeScript.",
-  canonical: `${NEXT_PUBLIC_BASE_URL}${pathname}`,
-  openGraph: {
-    title: "Rick and Morty GraphQL Application",
-    type: "website",
-    locale: "en_IE",
-    url: `${NEXT_PUBLIC_BASE_URL}${pathname}`,
-    site_name: "RickQL",
-    images: [
+const getDefaultSeoConfig = (pathname: string): DefaultSeoProps => {
+  const url = `${NEXT_PUBLIC_BASE_URL}${pathname}`;
+  return {
+    titleTemplate: `%s | ${APP_TITLE}`,
+    description: `${APP_TITLE} is a client application for Rick and Morty GraphQL API. It's created with Next.js, Apollo-Client and TypeScript.`,
+    canonical: url,
+    openGraph: {
+      title: "Rick and Morty GraphQL Application",
+      type: "website",
+      locale: "en_IE",
+      url,
+      site_name: APP_TITLE,
+      images: [
+        {
+          width: 600,
+          height: 600,
+          url: `${NEXT_PUBLIC_BASE_URL}/images/logo.png`,
+          alt: `${APP_TITLE} Log`,
+        },
+        {
+          width: 600,
+          height: 334,
+          url: `${NEXT_PUBLIC_BASE_URL}/images/locations.jpg`,
+          alt: "Rick and Morty Locations",
+        },
+        {
+          width: 600,
+          height: 337,
+          url: `${NEXT_PUBLIC_BASE_URL}/images/episodes.jpg`,
+          alt: "Rick and Morty Episodes",
+        },
+        {
+          width: 600,
+          height: 341,
+          url: `${NEXT_PUBLIC_BASE_URL}/images/characters.jpg`,
+          alt: "Rick and Morty Characters",
+        },
+      ],
+    },
+    additionalMetaTags: [
       {
-        width: 600,
-        height: 600,
-        url: `${NEXT_PUBLIC_BASE_URL}/images/logo.png`,
-        alt: "RickQL Logo",
+        property: "dc:creator",
+        content: "Onur ÖNDER",
       },
       {
-        width: 600,
-        height: 334,
-        url: `${NEXT_PUBLIC_BASE_URL}/images/locations.jpg`,
-        alt: "Rick and Morty Locations",
-      },
-      {
-        width: 600,
-        height: 337,
-        url: `${NEXT_PUBLIC_BASE_URL}/images/episodes.jpg`,
-        alt: "Rick and Morty Episodes",
-      },
-      {
-        width: 600,
-        height: 341,
-        url: `${NEXT_PUBLIC_BASE_URL}/images/characters.jpg`,
-        alt: "Rick and Morty Characters",
+        name: "application-name",
+        content: APP_TITLE,
       },
     ],
-  },
-  additionalMetaTags: [
-    {
-      property: "dc:creator",
-      content: "Onur ÖNDER",
-    },
-    {
-      name: "application-name",
-      content: "RickQL",
-    },
-  ],
-});
+  };
+};
 
 const styles = (theme: Theme) => ({
   toolbar: { ...theme.mixins.toolbar },

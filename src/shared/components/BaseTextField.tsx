@@ -10,7 +10,12 @@ function BaseTextField(props: BaseTextFieldProps) {
   const hasError = Boolean(error && touched);
 
   return (
-    <TextField {...props} {...field} error={hasError} helperText={error} />
+    <TextField
+      {...props}
+      {...field}
+      error={hasError}
+      helperText={hasError && error}
+    />
   );
 }
 

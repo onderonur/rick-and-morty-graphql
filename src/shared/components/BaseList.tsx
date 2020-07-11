@@ -4,7 +4,7 @@ import LoadingIndicator from "./LoadingIndicator";
 import { Maybe } from "@/generated/graphql";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const DEFAULT_ITEMS: any[] = [];
+const defaultItems: any[] = [];
 
 type BaseListProps<Item> = ListProps & {
   items: Maybe<Array<Item>>;
@@ -14,7 +14,7 @@ type BaseListProps<Item> = ListProps & {
 };
 
 function BaseList<Item>({
-  items = DEFAULT_ITEMS as Item[],
+  items = defaultItems as Item[],
   renderItem,
   loading,
   maxVisibleItemCount,

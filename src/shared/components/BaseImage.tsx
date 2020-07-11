@@ -5,9 +5,9 @@ import { useTrackVisibility } from "react-intersection-observer-hook";
 import AspectRatio, { getAspectRatioString } from "./AspectRatio";
 import { isOfType } from "../utils";
 
-const ORIGINAL = "original";
-const DEFAULT_ALT = "Not Loaded";
-const DEFAULT_ASPECT_RATIO = getAspectRatioString(1, 1);
+const original = "original";
+const defaultAlt = "Not Loaded";
+const defaultAspectRatio = getAspectRatioString(1, 1);
 
 const useStyles = makeStyles((theme) => ({
   img: {
@@ -26,8 +26,8 @@ interface BaseImageProps {
 function BaseImage({
   // TODO: Will fix the placeholder image
   src = undefined /*placeholderPng*/,
-  alt = DEFAULT_ALT,
-  aspectRatio = ORIGINAL,
+  alt = defaultAlt,
+  aspectRatio = original,
   lazyLoad = true,
 }: BaseImageProps) {
   const classes = useStyles();
@@ -36,7 +36,7 @@ function BaseImage({
   const [ref, { isVisible }] = useTrackVisibility();
   const [lazyLoaded, setLazyLoaded] = useState(isVisible);
 
-  const isOriginalAspectRatio = aspectRatio === ORIGINAL;
+  const isOriginalAspectRatio = aspectRatio === original;
 
   function handleLoad(e: React.SyntheticEvent<HTMLImageElement, Event>) {
     if (isOriginalAspectRatio) {
@@ -61,7 +61,7 @@ function BaseImage({
         isOriginalAspectRatio
           ? imgWidth && imgHeight
             ? getAspectRatioString(imgWidth, imgHeight)
-            : DEFAULT_ASPECT_RATIO
+            : defaultAspectRatio
           : aspectRatio
       }
     >

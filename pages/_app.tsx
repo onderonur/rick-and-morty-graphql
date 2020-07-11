@@ -20,7 +20,7 @@ import Head from "next/head";
 import NProgress from "nprogress";
 import { Router, withRouter } from "next/router";
 import { WithRouterProps } from "next/dist/client/with-router";
-import { APP_TITLE } from "@/constants";
+import { appTitle } from "@/constants";
 
 Router.events.on("routeChangeStart", () => {
   NProgress.start();
@@ -34,9 +34,9 @@ const NEXT_PUBLIC_BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 const getDefaultSeoConfig = (pathname: string): DefaultSeoProps => {
   const url = `${NEXT_PUBLIC_BASE_URL}${pathname}`;
-  const description = `${APP_TITLE} is a client application for Rick and Morty GraphQL API. It's created with Next.js, Apollo-Client and TypeScript.`;
+  const description = `${appTitle} is a client application for Rick and Morty GraphQL API. It's created with Next.js, Apollo-Client and TypeScript.`;
   return {
-    titleTemplate: `%s | ${APP_TITLE}`,
+    titleTemplate: `%s | ${appTitle}`,
     description,
     canonical: url,
     openGraph: {
@@ -45,13 +45,13 @@ const getDefaultSeoConfig = (pathname: string): DefaultSeoProps => {
       type: "website",
       locale: "en_IE",
       url,
-      site_name: APP_TITLE,
+      site_name: appTitle,
       images: [
         {
           width: 600,
           height: 600,
           url: `${NEXT_PUBLIC_BASE_URL}/images/logo.png`,
-          alt: `${APP_TITLE} Log`,
+          alt: `${appTitle} Log`,
         },
         {
           width: 600,
@@ -80,7 +80,7 @@ const getDefaultSeoConfig = (pathname: string): DefaultSeoProps => {
       },
       {
         name: "application-name",
-        content: APP_TITLE,
+        content: appTitle,
       },
     ],
   };

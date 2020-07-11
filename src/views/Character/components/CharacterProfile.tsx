@@ -5,7 +5,7 @@ import EpisodeList from "@/shared/components/EpisodeList";
 import gql from "graphql-tag";
 import { CharacterCard_CharacterFragment, Maybe } from "@/generated/graphql";
 
-const MAX_VISIBLE_EPISODE_COUNT = 5;
+const maxVisibleEpisodeCount = 5;
 
 interface CharacterProfileProps {
   character: Maybe<CharacterCard_CharacterFragment>;
@@ -23,7 +23,7 @@ function CharacterProfile({ character, loading }: CharacterProfileProps) {
         episode && (
           <EpisodeList
             episodes={episode}
-            maxVisibleItemCount={MAX_VISIBLE_EPISODE_COUNT}
+            maxVisibleItemCount={maxVisibleEpisodeCount}
           />
         )
       }

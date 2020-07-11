@@ -11,10 +11,10 @@ interface BaseGridListProps<Item> {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const DEFAULT_ITEMS: any[] = [];
+const defaultItems: any[] = [];
 
 function BaseGridList<Item>({
-  items = DEFAULT_ITEMS as Item[],
+  items = defaultItems as Item[],
   loading,
   renderItem,
   spacing = 1,

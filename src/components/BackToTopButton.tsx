@@ -2,7 +2,7 @@ import React from "react";
 import { Fab, Grow, useScrollTrigger, makeStyles } from "@material-ui/core";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 
-const THRESHOLD = 300;
+const threshold = 300;
 
 function handleClick() {
   window.scroll({
@@ -25,7 +25,7 @@ function BackToTopButton() {
   const classes = useStyles();
   const trigger = useScrollTrigger({
     disableHysteresis: true,
-    threshold: THRESHOLD,
+    threshold,
   });
 
   return (

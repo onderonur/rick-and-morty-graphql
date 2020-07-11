@@ -3,6 +3,7 @@ import gql from 'graphql-tag';
 import * as ApolloReactCommon from '@apollo/react-common';
 import * as ApolloReactHooks from '@apollo/react-hooks';
 export type Maybe<T> = T | null | undefined;
+export type Exact<T extends { [key: string]: any }> = { [K in keyof T]: T[K] };
 export type RequireFields<T, K extends keyof T> = { [X in Exclude<keyof T, K>]?: T[X] } & { [P in K]-?: NonNullable<T[P]> };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
@@ -13,131 +14,6 @@ export type Scalars = {
   Float: number;
   /** The `Upload` scalar type represents a file upload. */
   Upload: any;
-};
-
-export enum CacheControlScope {
-  Public = 'PUBLIC',
-  Private = 'PRIVATE'
-}
-
-export type Character = {
-  __typename?: 'Character';
-  /** The id of the character. */
-  id?: Maybe<Scalars['ID']>;
-  /** The name of the character. */
-  name?: Maybe<Scalars['String']>;
-  /** The status of the character ('Alive', 'Dead' or 'unknown'). */
-  status?: Maybe<Scalars['String']>;
-  /** The species of the character. */
-  species?: Maybe<Scalars['String']>;
-  /** The type or subspecies of the character. */
-  type?: Maybe<Scalars['String']>;
-  /** The gender of the character ('Female', 'Male', 'Genderless' or 'unknown'). */
-  gender?: Maybe<Scalars['String']>;
-  /** The character's origin location */
-  origin?: Maybe<Location>;
-  /** The character's last known location */
-  location?: Maybe<Location>;
-  /**
-   * Link to the character's image.
-   * All images are 300x300px and most are medium shots or portraits since they are intended to be used as avatars.
-   */
-  image?: Maybe<Scalars['String']>;
-  /** Episodes in which this character appeared. */
-  episode?: Maybe<Array<Maybe<Episode>>>;
-  /** Time at which the character was created in the database. */
-  created?: Maybe<Scalars['String']>;
-};
-
-export type Characters = {
-  __typename?: 'Characters';
-  info?: Maybe<Info>;
-  results?: Maybe<Array<Maybe<Character>>>;
-};
-
-export type Episode = {
-  __typename?: 'Episode';
-  /** The id of the episode. */
-  id?: Maybe<Scalars['ID']>;
-  /** The name of the episode. */
-  name?: Maybe<Scalars['String']>;
-  /** The air date of the episode. */
-  air_date?: Maybe<Scalars['String']>;
-  /** The code of the episode. */
-  episode?: Maybe<Scalars['String']>;
-  /** List of characters who have been seen in the episode. */
-  characters?: Maybe<Array<Maybe<Character>>>;
-  /** Time at which the episode was created in the database. */
-  created?: Maybe<Scalars['String']>;
-};
-
-export type Episodes = {
-  __typename?: 'Episodes';
-  info?: Maybe<Info>;
-  results?: Maybe<Array<Maybe<Episode>>>;
-};
-
-export type FilterCharacter = {
-  name?: Maybe<Scalars['String']>;
-  status?: Maybe<Scalars['String']>;
-  species?: Maybe<Scalars['String']>;
-  type?: Maybe<Scalars['String']>;
-  gender?: Maybe<Scalars['String']>;
-};
-
-export type FilterEpisode = {
-  name?: Maybe<Scalars['String']>;
-  episode?: Maybe<Scalars['String']>;
-};
-
-export type FilterLocation = {
-  name?: Maybe<Scalars['String']>;
-  type?: Maybe<Scalars['String']>;
-  dimension?: Maybe<Scalars['String']>;
-};
-
-export type Info = {
-  __typename?: 'Info';
-  /** The length of the response. */
-  count?: Maybe<Scalars['Int']>;
-  /** The amount of pages. */
-  pages?: Maybe<Scalars['Int']>;
-  /** Number of the next page (if it exists) */
-  next?: Maybe<Scalars['Int']>;
-  /** Number of the previous page (if it exists) */
-  prev?: Maybe<Scalars['Int']>;
-};
-
-export type Location = {
-  __typename?: 'Location';
-  /** The id of the location. */
-  id?: Maybe<Scalars['ID']>;
-  /** The name of the location. */
-  name?: Maybe<Scalars['String']>;
-  /** The type of the location. */
-  type?: Maybe<Scalars['String']>;
-  /** The dimension in which the location is located. */
-  dimension?: Maybe<Scalars['String']>;
-  /** List of characters who have been last seen in the location. */
-  residents?: Maybe<Array<Maybe<Character>>>;
-  /** Time at which the location was created in the database. */
-  created?: Maybe<Scalars['String']>;
-};
-
-export type Locations = {
-  __typename?: 'Locations';
-  info?: Maybe<Info>;
-  results?: Maybe<Array<Maybe<Location>>>;
-};
-
-export type Mutation = {
-  __typename?: 'Mutation';
-  toggleDrawer: Scalars['Boolean'];
-};
-
-
-export type MutationToggleDrawerArgs = {
-  showDrawer: Scalars['Boolean'];
 };
 
 export type Query = {
@@ -190,8 +66,133 @@ export type QueryLocationsArgs = {
   filter?: Maybe<FilterLocation>;
 };
 
+export type Character = {
+  __typename?: 'Character';
+  /** The id of the character. */
+  id?: Maybe<Scalars['ID']>;
+  /** The name of the character. */
+  name?: Maybe<Scalars['String']>;
+  /** The status of the character ('Alive', 'Dead' or 'unknown'). */
+  status?: Maybe<Scalars['String']>;
+  /** The species of the character. */
+  species?: Maybe<Scalars['String']>;
+  /** The type or subspecies of the character. */
+  type?: Maybe<Scalars['String']>;
+  /** The gender of the character ('Female', 'Male', 'Genderless' or 'unknown'). */
+  gender?: Maybe<Scalars['String']>;
+  /** The character's origin location */
+  origin?: Maybe<Location>;
+  /** The character's last known location */
+  location?: Maybe<Location>;
+  /**
+   * Link to the character's image.
+   * All images are 300x300px and most are medium shots or portraits since they are intended to be used as avatars.
+   */
+  image?: Maybe<Scalars['String']>;
+  /** Episodes in which this character appeared. */
+  episode?: Maybe<Array<Maybe<Episode>>>;
+  /** Time at which the character was created in the database. */
+  created?: Maybe<Scalars['String']>;
+};
 
-export type GetShowDrawerQueryVariables = {};
+export type Location = {
+  __typename?: 'Location';
+  /** The id of the location. */
+  id?: Maybe<Scalars['ID']>;
+  /** The name of the location. */
+  name?: Maybe<Scalars['String']>;
+  /** The type of the location. */
+  type?: Maybe<Scalars['String']>;
+  /** The dimension in which the location is located. */
+  dimension?: Maybe<Scalars['String']>;
+  /** List of characters who have been last seen in the location. */
+  residents?: Maybe<Array<Maybe<Character>>>;
+  /** Time at which the location was created in the database. */
+  created?: Maybe<Scalars['String']>;
+};
+
+export type Episode = {
+  __typename?: 'Episode';
+  /** The id of the episode. */
+  id?: Maybe<Scalars['ID']>;
+  /** The name of the episode. */
+  name?: Maybe<Scalars['String']>;
+  /** The air date of the episode. */
+  air_date?: Maybe<Scalars['String']>;
+  /** The code of the episode. */
+  episode?: Maybe<Scalars['String']>;
+  /** List of characters who have been seen in the episode. */
+  characters?: Maybe<Array<Maybe<Character>>>;
+  /** Time at which the episode was created in the database. */
+  created?: Maybe<Scalars['String']>;
+};
+
+export type FilterCharacter = {
+  name?: Maybe<Scalars['String']>;
+  status?: Maybe<Scalars['String']>;
+  species?: Maybe<Scalars['String']>;
+  type?: Maybe<Scalars['String']>;
+  gender?: Maybe<Scalars['String']>;
+};
+
+export type Characters = {
+  __typename?: 'Characters';
+  info?: Maybe<Info>;
+  results?: Maybe<Array<Maybe<Character>>>;
+};
+
+export type Info = {
+  __typename?: 'Info';
+  /** The length of the response. */
+  count?: Maybe<Scalars['Int']>;
+  /** The amount of pages. */
+  pages?: Maybe<Scalars['Int']>;
+  /** Number of the next page (if it exists) */
+  next?: Maybe<Scalars['Int']>;
+  /** Number of the previous page (if it exists) */
+  prev?: Maybe<Scalars['Int']>;
+};
+
+export type FilterLocation = {
+  name?: Maybe<Scalars['String']>;
+  type?: Maybe<Scalars['String']>;
+  dimension?: Maybe<Scalars['String']>;
+};
+
+export type Locations = {
+  __typename?: 'Locations';
+  info?: Maybe<Info>;
+  results?: Maybe<Array<Maybe<Location>>>;
+};
+
+export type FilterEpisode = {
+  name?: Maybe<Scalars['String']>;
+  episode?: Maybe<Scalars['String']>;
+};
+
+export type Episodes = {
+  __typename?: 'Episodes';
+  info?: Maybe<Info>;
+  results?: Maybe<Array<Maybe<Episode>>>;
+};
+
+export enum CacheControlScope {
+  Public = 'PUBLIC',
+  Private = 'PRIVATE'
+}
+
+
+export type Mutation = {
+  __typename?: 'Mutation';
+  toggleDrawer: Scalars['Boolean'];
+};
+
+
+export type MutationToggleDrawerArgs = {
+  showDrawer: Scalars['Boolean'];
+};
+
+export type GetShowDrawerQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type GetShowDrawerQuery = (
@@ -246,9 +247,9 @@ export type PageInfoFragment = (
   & Pick<Info, 'next'>
 );
 
-export type ToggleDrawerMutationVariables = {
+export type ToggleDrawerMutationVariables = Exact<{
   showDrawer: Scalars['Boolean'];
-};
+}>;
 
 
 export type ToggleDrawerMutation = (
@@ -265,9 +266,9 @@ export type CharacterProfile_CharacterFragment = (
   & CharacterCard_CharacterWithSpecsFragment
 );
 
-export type GetCharacterQueryVariables = {
+export type GetCharacterQueryVariables = Exact<{
   id: Scalars['ID'];
-};
+}>;
 
 
 export type GetCharacterQuery = (
@@ -279,10 +280,10 @@ export type GetCharacterQuery = (
   )> }
 );
 
-export type GetCharactersQueryVariables = {
+export type GetCharactersQueryVariables = Exact<{
   page?: Maybe<Scalars['Int']>;
   filter?: Maybe<FilterCharacter>;
-};
+}>;
 
 
 export type GetCharactersQuery = (
@@ -313,9 +314,9 @@ export type EpisodeProfile_EpisodeFragment = (
   & EpisodeCard_EpisodeFragment
 );
 
-export type GetEpisodeQueryVariables = {
+export type GetEpisodeQueryVariables = Exact<{
   id: Scalars['ID'];
-};
+}>;
 
 
 export type GetEpisodeQuery = (
@@ -327,10 +328,10 @@ export type GetEpisodeQuery = (
   )> }
 );
 
-export type GetEpisodesQueryVariables = {
+export type GetEpisodesQueryVariables = Exact<{
   page?: Maybe<Scalars['Int']>;
   filter?: Maybe<FilterEpisode>;
-};
+}>;
 
 
 export type GetEpisodesQuery = (
@@ -361,9 +362,9 @@ export type LocationProfile_LocationFragment = (
   & LocationCard_LocationFragment
 );
 
-export type GetLocationQueryVariables = {
+export type GetLocationQueryVariables = Exact<{
   id: Scalars['ID'];
-};
+}>;
 
 
 export type GetLocationQuery = (
@@ -385,9 +386,9 @@ export type LocationListItem_LocationFragment = (
   & Pick<Location, 'id' | 'name' | 'type'>
 );
 
-export type GetLocationsQueryVariables = {
+export type GetLocationsQueryVariables = Exact<{
   page?: Maybe<Scalars['Int']>;
-};
+}>;
 
 
 export type GetLocationsQuery = (
@@ -876,44 +877,53 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 export type ResolversTypes = {
   Query: ResolverTypeWrapper<{}>;
   ID: ResolverTypeWrapper<Scalars['ID']>;
+  Int: ResolverTypeWrapper<Scalars['Int']>;
+  Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
   Character: ResolverTypeWrapper<Character>;
   String: ResolverTypeWrapper<Scalars['String']>;
   Location: ResolverTypeWrapper<Location>;
   Episode: ResolverTypeWrapper<Episode>;
-  Int: ResolverTypeWrapper<Scalars['Int']>;
   FilterCharacter: FilterCharacter;
   Characters: ResolverTypeWrapper<Characters>;
   Info: ResolverTypeWrapper<Info>;
-  FilterEpisode: FilterEpisode;
-  Episodes: ResolverTypeWrapper<Episodes>;
   FilterLocation: FilterLocation;
   Locations: ResolverTypeWrapper<Locations>;
-  Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
-  Mutation: ResolverTypeWrapper<{}>;
+  FilterEpisode: FilterEpisode;
+  Episodes: ResolverTypeWrapper<Episodes>;
   CacheControlScope: CacheControlScope;
   Upload: ResolverTypeWrapper<Scalars['Upload']>;
+  Mutation: ResolverTypeWrapper<{}>;
 };
 
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = {
   Query: {};
   ID: Scalars['ID'];
+  Int: Scalars['Int'];
+  Boolean: Scalars['Boolean'];
   Character: Character;
   String: Scalars['String'];
   Location: Location;
   Episode: Episode;
-  Int: Scalars['Int'];
   FilterCharacter: FilterCharacter;
   Characters: Characters;
   Info: Info;
-  FilterEpisode: FilterEpisode;
-  Episodes: Episodes;
   FilterLocation: FilterLocation;
   Locations: Locations;
-  Boolean: Scalars['Boolean'];
-  Mutation: {};
-  CacheControlScope: CacheControlScope;
+  FilterEpisode: FilterEpisode;
+  Episodes: Episodes;
   Upload: Scalars['Upload'];
+  Mutation: {};
+};
+
+export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
+  character?: Resolver<Maybe<ResolversTypes['Character']>, ParentType, ContextType, RequireFields<QueryCharacterArgs, never>>;
+  characters?: Resolver<Maybe<ResolversTypes['Characters']>, ParentType, ContextType, RequireFields<QueryCharactersArgs, never>>;
+  episode?: Resolver<Maybe<ResolversTypes['Episode']>, ParentType, ContextType, RequireFields<QueryEpisodeArgs, never>>;
+  episodes?: Resolver<Maybe<ResolversTypes['Episodes']>, ParentType, ContextType, RequireFields<QueryEpisodesArgs, never>>;
+  location?: Resolver<Maybe<ResolversTypes['Location']>, ParentType, ContextType, RequireFields<QueryLocationArgs, never>>;
+  locations?: Resolver<Maybe<ResolversTypes['Locations']>, ParentType, ContextType, RequireFields<QueryLocationsArgs, never>>;
+  showDrawer?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
 };
 
 export type CharacterResolvers<ContextType = any, ParentType extends ResolversParentTypes['Character'] = ResolversParentTypes['Character']> = {
@@ -931,9 +941,13 @@ export type CharacterResolvers<ContextType = any, ParentType extends ResolversPa
   __isTypeOf?: IsTypeOfResolverFn<ParentType>;
 };
 
-export type CharactersResolvers<ContextType = any, ParentType extends ResolversParentTypes['Characters'] = ResolversParentTypes['Characters']> = {
-  info?: Resolver<Maybe<ResolversTypes['Info']>, ParentType, ContextType>;
-  results?: Resolver<Maybe<Array<Maybe<ResolversTypes['Character']>>>, ParentType, ContextType>;
+export type LocationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Location'] = ResolversParentTypes['Location']> = {
+  id?: Resolver<Maybe<ResolversTypes['ID']>, ParentType, ContextType>;
+  name?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  type?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  dimension?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  residents?: Resolver<Maybe<Array<Maybe<ResolversTypes['Character']>>>, ParentType, ContextType>;
+  created?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType>;
 };
 
@@ -947,9 +961,9 @@ export type EpisodeResolvers<ContextType = any, ParentType extends ResolversPare
   __isTypeOf?: IsTypeOfResolverFn<ParentType>;
 };
 
-export type EpisodesResolvers<ContextType = any, ParentType extends ResolversParentTypes['Episodes'] = ResolversParentTypes['Episodes']> = {
+export type CharactersResolvers<ContextType = any, ParentType extends ResolversParentTypes['Characters'] = ResolversParentTypes['Characters']> = {
   info?: Resolver<Maybe<ResolversTypes['Info']>, ParentType, ContextType>;
-  results?: Resolver<Maybe<Array<Maybe<ResolversTypes['Episode']>>>, ParentType, ContextType>;
+  results?: Resolver<Maybe<Array<Maybe<ResolversTypes['Character']>>>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType>;
 };
 
@@ -961,51 +975,37 @@ export type InfoResolvers<ContextType = any, ParentType extends ResolversParentT
   __isTypeOf?: IsTypeOfResolverFn<ParentType>;
 };
 
-export type LocationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Location'] = ResolversParentTypes['Location']> = {
-  id?: Resolver<Maybe<ResolversTypes['ID']>, ParentType, ContextType>;
-  name?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  type?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  dimension?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  residents?: Resolver<Maybe<Array<Maybe<ResolversTypes['Character']>>>, ParentType, ContextType>;
-  created?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType>;
-};
-
 export type LocationsResolvers<ContextType = any, ParentType extends ResolversParentTypes['Locations'] = ResolversParentTypes['Locations']> = {
   info?: Resolver<Maybe<ResolversTypes['Info']>, ParentType, ContextType>;
   results?: Resolver<Maybe<Array<Maybe<ResolversTypes['Location']>>>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType>;
 };
 
-export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
-  toggleDrawer?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationToggleDrawerArgs, 'showDrawer'>>;
-};
-
-export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
-  character?: Resolver<Maybe<ResolversTypes['Character']>, ParentType, ContextType, RequireFields<QueryCharacterArgs, never>>;
-  characters?: Resolver<Maybe<ResolversTypes['Characters']>, ParentType, ContextType, RequireFields<QueryCharactersArgs, never>>;
-  episode?: Resolver<Maybe<ResolversTypes['Episode']>, ParentType, ContextType, RequireFields<QueryEpisodeArgs, never>>;
-  episodes?: Resolver<Maybe<ResolversTypes['Episodes']>, ParentType, ContextType, RequireFields<QueryEpisodesArgs, never>>;
-  location?: Resolver<Maybe<ResolversTypes['Location']>, ParentType, ContextType, RequireFields<QueryLocationArgs, never>>;
-  locations?: Resolver<Maybe<ResolversTypes['Locations']>, ParentType, ContextType, RequireFields<QueryLocationsArgs, never>>;
-  showDrawer?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
+export type EpisodesResolvers<ContextType = any, ParentType extends ResolversParentTypes['Episodes'] = ResolversParentTypes['Episodes']> = {
+  info?: Resolver<Maybe<ResolversTypes['Info']>, ParentType, ContextType>;
+  results?: Resolver<Maybe<Array<Maybe<ResolversTypes['Episode']>>>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType>;
 };
 
 export interface UploadScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['Upload'], any> {
   name: 'Upload';
 }
 
+export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
+  toggleDrawer?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationToggleDrawerArgs, 'showDrawer'>>;
+};
+
 export type Resolvers<ContextType = any> = {
-  Character?: CharacterResolvers<ContextType>;
-  Characters?: CharactersResolvers<ContextType>;
-  Episode?: EpisodeResolvers<ContextType>;
-  Episodes?: EpisodesResolvers<ContextType>;
-  Info?: InfoResolvers<ContextType>;
-  Location?: LocationResolvers<ContextType>;
-  Locations?: LocationsResolvers<ContextType>;
-  Mutation?: MutationResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
+  Character?: CharacterResolvers<ContextType>;
+  Location?: LocationResolvers<ContextType>;
+  Episode?: EpisodeResolvers<ContextType>;
+  Characters?: CharactersResolvers<ContextType>;
+  Info?: InfoResolvers<ContextType>;
+  Locations?: LocationsResolvers<ContextType>;
+  Episodes?: EpisodesResolvers<ContextType>;
   Upload?: GraphQLScalarType;
+  Mutation?: MutationResolvers<ContextType>;
 };
 
 

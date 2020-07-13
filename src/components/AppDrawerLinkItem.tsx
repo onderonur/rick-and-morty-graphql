@@ -1,6 +1,6 @@
 import React from "react";
 import { ListItem, ListItemText, makeStyles } from "@material-ui/core";
-import NextLink, { NextLinkProps } from "@/shared/components/NextLink";
+import NextLink, { NextLinkProps } from "@/components/NextLink";
 import { useRouter } from "next/router";
 
 const useStyles = makeStyles((theme) => ({

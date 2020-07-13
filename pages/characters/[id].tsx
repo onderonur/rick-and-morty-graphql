@@ -1,3 +1,3 @@
-import Character from "@/views/Character";
+import Character from "@/views/Characters/views/Character";
 
 export default Character;

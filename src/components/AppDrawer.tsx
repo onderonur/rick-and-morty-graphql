@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Drawer, List, makeStyles } from "@material-ui/core";
 import AppDrawerLinkItem from "./AppDrawerLinkItem";
 import { useMutation } from "@apollo/react-hooks";
-import { TOGGLE_DRAWER } from "@/shared/mutations";
+import { TOGGLE_DRAWER } from "@/gql/mutations";
 import gql from "graphql-tag";
 import { useGetShowDrawerQuery } from "@/generated/graphql";
 import { useRouter } from "next/router";

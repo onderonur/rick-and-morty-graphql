@@ -9,7 +9,7 @@ import {
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import GitHubIcon from "@material-ui/icons/GitHub";
-import NextLink from "@/shared/components/NextLink";
+import NextLink from "@/components/NextLink";
 import { useToggleDrawerMutation } from "@/generated/graphql";
 
 const useStyles = makeStyles((theme) => ({

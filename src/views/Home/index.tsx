@@ -1,10 +1,10 @@
 import React from "react";
 import { Grid, Box, Typography, makeStyles } from "@material-ui/core";
 import clsx from "clsx";
-import BaseGridList from "@/shared/components/BaseGridList";
-import BaseCard from "@/shared/components/BaseCard";
-import BaseImage from "@/shared/components/BaseImage";
-import NextLink from "@/shared/components/NextLink";
+import BaseGridList from "@/components/BaseGridList";
+import BaseCard from "@/components/BaseCard";
+import BaseImage from "@/components/BaseImage";
+import NextLink from "@/components/NextLink";
 import { NextSeo } from "next-seo";
 
 const useStyles = makeStyles((theme) => ({

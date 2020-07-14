@@ -1,3 +1,3 @@
-import Location from "@/views/Locations/views/Location";
+import Location from "@/views/Locations/views/Detail";
 
 export default Location;

@@ -22,7 +22,7 @@ const GET_LOCATIONS = gql`
   ${PAGE_INFO_FRAGMENT}
 `;
 
-function Locations() {
+function LocationListing() {
   const { data, loading, fetchMore } = useGetLocationsQuery({
     query: GET_LOCATIONS,
     notifyOnNetworkStatusChange: true,
@@ -78,4 +78,4 @@ function Locations() {
   );
 }
 
-export default Locations;
+export default LocationListing;

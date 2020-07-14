@@ -22,7 +22,7 @@ const GET_EPISODES = gql`
   ${PAGE_INFO_FRAGMENT}
 `;
 
-function Episodes() {
+function EpisodeListing() {
   const { data, loading, fetchMore } = useGetEpisodesQuery({
     query: GET_EPISODES,
     notifyOnNetworkStatusChange: true,
@@ -79,4 +79,4 @@ function Episodes() {
   );
 }
 
-export default Episodes;
+export default EpisodeListing;

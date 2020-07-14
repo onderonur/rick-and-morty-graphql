@@ -16,7 +16,7 @@ const GET_LOCATION = gql`
   ${LocationProfile.fragments.location}
 `;
 
-function Location() {
+function LocationDetail() {
   const router = useRouter();
   const { id } = router.query;
   const { data, loading } = useGetLocationQuery({
@@ -35,4 +35,4 @@ function Location() {
   );
 }
 
-export default Location;
+export default LocationDetail;

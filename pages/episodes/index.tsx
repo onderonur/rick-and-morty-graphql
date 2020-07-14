@@ -1,3 +1,3 @@
-import Episodes from "@/views/Episodes/views/Episodes";
+import Episodes from "@/views/Episodes/views/Listing";
 
 export default Episodes;

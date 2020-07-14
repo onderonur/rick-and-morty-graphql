@@ -17,7 +17,7 @@ const GET_CHARACTER = gql`
   ${CharacterProfile.fragments.character}
 `;
 
-function Character() {
+function CharacterDetailView() {
   const router = useRouter();
   const { id } = router.query;
   const { data, loading } = useGetCharacterQuery({
@@ -41,4 +41,4 @@ function Character() {
   );
 }
 
-export default Character;
+export default CharacterDetailView;

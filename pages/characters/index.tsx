@@ -1,3 +1,3 @@
-import Characters from "@/views/Characters/views/Characters";
+import Characters from "@/views/Characters/views/Listing";
 
 export default Characters;

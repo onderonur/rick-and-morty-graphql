@@ -1,5 +1,5 @@
 import React from "react";
-import BaseListItem from "./BaseListItem";
+import ListItemLink from "./ListItemLink";
 import gql from "graphql-tag";
 import { EpisodeListItem_EpisodeFragment } from "@/generated/graphql";
 
@@ -9,7 +9,8 @@ interface EpisodeListItemProps {
 
 function EpisodeListItem({ episode }: EpisodeListItemProps) {
   return (
-    <BaseListItem
+    <ListItemLink
+      divider
       href="/episodes/[id]"
       as={`/episodes/${episode.id}`}
       primaryText={episode.name}

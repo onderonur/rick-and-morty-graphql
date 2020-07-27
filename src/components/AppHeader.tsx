@@ -10,7 +10,7 @@ import {
 import MenuIcon from "@material-ui/icons/Menu";
 import GitHubIcon from "@material-ui/icons/GitHub";
 import NextLink from "@/components/NextLink";
-import { useToggleDrawerMutation } from "@/generated/graphql";
+import { showDrawerVar } from "@/gql/cache";
 
 const useStyles = makeStyles((theme) => ({
   logoLink: {
@@ -24,13 +24,10 @@ const useStyles = makeStyles((theme) => ({
 
 const AppHeader = React.forwardRef((props, ref) => {
   const classes = useStyles();
-  const [toggleDrawer] = useToggleDrawerMutation({
-    variables: { showDrawer: true },
-  });
 
   const handleClick = useCallback(() => {
-    toggleDrawer();
-  }, [toggleDrawer]);
+    showDrawerVar(true);
+  }, []);
 
   return (
     <>

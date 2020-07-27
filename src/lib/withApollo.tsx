@@ -1,23 +1,17 @@
 import React from "react";
 import withApollo from "next-with-apollo";
-import ApolloClient, { InMemoryCache, Resolvers } from "apollo-boost";
-import { ApolloProvider } from "@apollo/react-hooks";
-import resolvers from "@/gql/resolvers";
+import { ApolloProvider, ApolloClient } from "@apollo/client";
+import cache from "@/gql/cache";
 import typeDefs from "@/gql/typeDefs";
 
 export default withApollo(
   ({ initialState = {} }) => {
-    const cache = new InMemoryCache().restore(initialState);
+    cache.restore(initialState);
     const client = new ApolloClient({
       uri: `${process.env.NEXT_PUBLIC_BASE_URL}/api/graphql`,
+      typeDefs,
       cache,
-      clientState: {
-        resolvers: resolvers as Resolvers,
-        typeDefs,
-      },
     });
-    // Initial state (for local state management)
-    client.writeData({ data: { showDrawer: false } });
     return client;
   },
   {

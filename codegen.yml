@@ -20,6 +20,8 @@ generates:
       withComponent: false
       # https://graphql-code-generator.com/docs/generated-config/typescript#maybevalue-string-default-value-t--null
       maybeValue: T | null | undefined
+      # for @apollo/client 3
+      reactApolloVersion: 3
   graphql.schema.json:
     plugins:
       - "introspection"

@@ -1,11 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback } from "react";
 import { Drawer, List, makeStyles } from "@material-ui/core";
 import AppDrawerLinkItem from "./AppDrawerLinkItem";
-import { useMutation } from "@apollo/react-hooks";
-import { TOGGLE_DRAWER } from "@/gql/mutations";
-import gql from "graphql-tag";
-import { useGetShowDrawerQuery } from "@/generated/graphql";
 import { useRouter } from "next/router";
+import { showDrawerVar } from "@/gql/cache";
+import { gql } from "@apollo/client";
+import { useGetShowDrawerQuery } from "@/generated/graphql";
+
+const useStyles = makeStyles((theme) => ({
+  drawer: {
+    width: 240,
+  },
+}));
 
 /* eslint-disable graphql/template-strings */
 const GET_SHOW_DRAWER = gql`
@@ -15,42 +20,34 @@ const GET_SHOW_DRAWER = gql`
 `;
 /* eslint-disable graphql/template-strings */
 
-const useStyles = makeStyles((theme) => ({
-  drawer: {
-    width: 240,
-  },
-}));
-
 function AppDrawer() {
   const classes = useStyles();
-  const [toggleDrawer] = useMutation(TOGGLE_DRAWER, {
-    variables: { showDrawer: false },
-  });
-  const { data } = useGetShowDrawerQuery({ query: GET_SHOW_DRAWER });
-  const showDrawer = data?.showDrawer;
+
   const router = useRouter();
+
+  const { data } = useGetShowDrawerQuery({ query: GET_SHOW_DRAWER });
+
+  const closeDrawer = useCallback(() => {
+    showDrawerVar(false);
+  }, []);
 
   // We close the drawer when a route change gets completed.
   useEffect(() => {
-    function handleCloseDrawer() {
-      toggleDrawer();
-    }
-
     const eventType = "routeChangeComplete";
 
-    router.events.on(eventType, handleCloseDrawer);
+    router.events.on(eventType, closeDrawer);
 
     return () => {
-      router.events.off(eventType, handleCloseDrawer);
+      router.events.off(eventType, closeDrawer);
     };
-  }, [router.events, toggleDrawer]);
+  }, [closeDrawer, router.events]);
 
   return (
     <Drawer
       classes={{ paper: classes.drawer }}
-      open={showDrawer}
+      open={data?.showDrawer}
       anchor="right"
-      onClose={toggleDrawer}
+      onClose={closeDrawer}
     >
       <List>
         <AppDrawerLinkItem

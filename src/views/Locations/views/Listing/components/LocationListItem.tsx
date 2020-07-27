@@ -1,5 +1,5 @@
 import React from "react";
-import BaseListItem from "@/components/BaseListItem";
+import ListItemLink from "@/components/ListItemLink";
 import gql from "graphql-tag";
 import { LocationListItem_LocationFragment } from "@/generated/graphql";
 
@@ -9,7 +9,8 @@ interface LocationListItemProps {
 
 function LocationListItem({ location }: LocationListItemProps) {
   return (
-    <BaseListItem
+    <ListItemLink
+      divider
       href="/locations/[id]"
       as={`/locations/${location.id}`}
       primaryText={location.name}

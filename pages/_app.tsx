@@ -12,7 +12,7 @@ import HideOnScroll from "@/components/HideOnScroll";
 import AppHeader from "@/components/AppHeader";
 import { Container } from "@material-ui/core";
 import withApollo from "@/lib/withApollo";
-import { getDataFromTree } from "@apollo/react-ssr";
+import { getDataFromTree } from "@apollo/client/react/ssr";
 import AppDrawer from "@/components/AppDrawer";
 import BackToTopButton from "@/components/BackToTopButton";
 import { DefaultSeo, DefaultSeoProps } from "next-seo";

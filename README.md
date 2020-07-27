@@ -1,10 +1,9 @@
-
 ## RickQL - Rick And Morty GraphQL App
 
 This is a client application which consumes the Rick and Morty API.
 It uses [Apollo Client](https://www.apollographql.com/docs/react/) for all the data fetching and state management.
 When I first started this project, there was no official React hooks for Apollo Client.
-After their release, I've migrated this project to [@apollo/react-hooks](https://www.apollographql.com/docs/react/api/react-hooks/).
+After their release, I've migrated this project to [@apollo/client](https://www.apollographql.com/docs/react/).
 
 The project was written in JavaScript at first. But I've migrated to TypeScript eventually.
 I've used [graphql-codegen](https://graphql-code-generator.com/) to create type definitions automatically.
@@ -16,10 +15,10 @@ The project was created with `create-react-app`, but then I wanted to try the se
 
 **Live demo on Now is [here](https://rick-and-morty-graphql.now.sh/)**.
 
-* [Next.js](https://nextjs.org/)
-* [Apollo-Client](https://www.apollographql.com/docs/react/)
-* [Material-UI](https://material-ui.com/)
-* [GraphQL Code Generator](https://graphql-code-generator.com/)
+- [Next.js](https://nextjs.org/)
+- [Apollo-Client](https://www.apollographql.com/docs/react/)
+- [Material-UI](https://material-ui.com/)
+- [GraphQL Code Generator](https://graphql-code-generator.com/)
 
 To run it in development mode:
 

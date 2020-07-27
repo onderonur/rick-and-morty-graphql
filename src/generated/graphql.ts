@@ -1,7 +1,7 @@
 import { GraphQLResolveInfo, GraphQLScalarType, GraphQLScalarTypeConfig } from 'graphql';
 import gql from 'graphql-tag';
-import * as ApolloReactCommon from '@apollo/react-common';
-import * as ApolloReactHooks from '@apollo/react-hooks';
+import * as ApolloReactCommon from '@apollo/client';
+import * as ApolloReactHooks from '@apollo/client';
 export type Maybe<T> = T | null | undefined;
 export type Exact<T extends { [key: string]: any }> = { [K in keyof T]: T[K] };
 export type RequireFields<T, K extends keyof T> = { [X in Exclude<keyof T, K>]?: T[X] } & { [P in K]-?: NonNullable<T[P]> };
@@ -182,16 +182,6 @@ export enum CacheControlScope {
 }
 
 
-export type Mutation = {
-  __typename?: 'Mutation';
-  toggleDrawer: Scalars['Boolean'];
-};
-
-
-export type MutationToggleDrawerArgs = {
-  showDrawer: Scalars['Boolean'];
-};
-
 export type GetShowDrawerQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -245,16 +235,6 @@ export type EpisodeListItem_EpisodeFragment = (
 export type PageInfoFragment = (
   { __typename?: 'Info' }
   & Pick<Info, 'next'>
-);
-
-export type ToggleDrawerMutationVariables = Exact<{
-  showDrawer: Scalars['Boolean'];
-}>;
-
-
-export type ToggleDrawerMutation = (
-  { __typename?: 'Mutation' }
-  & Pick<Mutation, 'toggleDrawer'>
 );
 
 export type CharacterProfile_CharacterFragment = (
@@ -545,36 +525,6 @@ export function useGetShowDrawerLazyQuery(baseOptions?: ApolloReactHooks.LazyQue
 export type GetShowDrawerQueryHookResult = ReturnType<typeof useGetShowDrawerQuery>;
 export type GetShowDrawerLazyQueryHookResult = ReturnType<typeof useGetShowDrawerLazyQuery>;
 export type GetShowDrawerQueryResult = ApolloReactCommon.QueryResult<GetShowDrawerQuery, GetShowDrawerQueryVariables>;
-export const ToggleDrawerDocument = gql`
-    mutation toggleDrawer($showDrawer: Boolean!) {
-  toggleDrawer(showDrawer: $showDrawer) @client
-}
-    `;
-export type ToggleDrawerMutationFn = ApolloReactCommon.MutationFunction<ToggleDrawerMutation, ToggleDrawerMutationVariables>;
-
-/**
- * __useToggleDrawerMutation__
- *
- * To run a mutation, you first call `useToggleDrawerMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useToggleDrawerMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [toggleDrawerMutation, { data, loading, error }] = useToggleDrawerMutation({
- *   variables: {
- *      showDrawer: // value for 'showDrawer'
- *   },
- * });
- */
-export function useToggleDrawerMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<ToggleDrawerMutation, ToggleDrawerMutationVariables>) {
-        return ApolloReactHooks.useMutation<ToggleDrawerMutation, ToggleDrawerMutationVariables>(ToggleDrawerDocument, baseOptions);
-      }
-export type ToggleDrawerMutationHookResult = ReturnType<typeof useToggleDrawerMutation>;
-export type ToggleDrawerMutationResult = ApolloReactCommon.MutationResult<ToggleDrawerMutation>;
-export type ToggleDrawerMutationOptions = ApolloReactCommon.BaseMutationOptions<ToggleDrawerMutation, ToggleDrawerMutationVariables>;
 export const GetCharacterDocument = gql`
     query GetCharacter($id: ID!) {
   character(id: $id) {
@@ -892,7 +842,6 @@ export type ResolversTypes = {
   Episodes: ResolverTypeWrapper<Episodes>;
   CacheControlScope: CacheControlScope;
   Upload: ResolverTypeWrapper<Scalars['Upload']>;
-  Mutation: ResolverTypeWrapper<{}>;
 };
 
 /** Mapping between all available schema types and the resolvers parents */
@@ -913,7 +862,6 @@ export type ResolversParentTypes = {
   FilterEpisode: FilterEpisode;
   Episodes: Episodes;
   Upload: Scalars['Upload'];
-  Mutation: {};
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
@@ -991,10 +939,6 @@ export interface UploadScalarConfig extends GraphQLScalarTypeConfig<ResolversTyp
   name: 'Upload';
 }
 
-export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
-  toggleDrawer?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationToggleDrawerArgs, 'showDrawer'>>;
-};
-
 export type Resolvers<ContextType = any> = {
   Query?: QueryResolvers<ContextType>;
   Character?: CharacterResolvers<ContextType>;
@@ -1005,7 +949,6 @@ export type Resolvers<ContextType = any> = {
   Locations?: LocationsResolvers<ContextType>;
   Episodes?: EpisodesResolvers<ContextType>;
   Upload?: GraphQLScalarType;
-  Mutation?: MutationResolvers<ContextType>;
 };
 
 

@@ -7,7 +7,7 @@ import {
 } from "@material-ui/core";
 import NextLink, { NextLinkProps } from "./NextLink";
 
-interface BaseListItemProps {
+interface ListItemLinkProps {
   href: NextLinkProps["href"];
   as?: NextLinkProps["as"];
   primaryText: ListItemTextProps["primary"];
@@ -16,14 +16,14 @@ interface BaseListItemProps {
   divider?: ListItemProps["divider"];
 }
 
-function BaseListItem({
+function ListItemLink({
   href,
   as,
   primaryText,
   secondaryText,
   selected,
   divider,
-}: BaseListItemProps) {
+}: ListItemLinkProps) {
   return (
     <ListItem
       button
@@ -38,4 +38,4 @@ function BaseListItem({
   );
 }
 
-export default BaseListItem;
+export default ListItemLink;

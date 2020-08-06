@@ -38,7 +38,16 @@ const NextLink = React.forwardRef<HTMLAnchorElement, NextLinkProps>(
         // it gives a propType warning.
         {...{ href, as, passHref, prefetch, replace, scroll, shallow }}
       >
-        <a ref={ref} className={clsx(classes.anchor, className)} {...rest}>
+        <a
+          ref={ref}
+          className={clsx(
+            classes.anchor,
+            // Material UI passes classes sometimes.
+            // So, we need "className" prop here.
+            className,
+          )}
+          {...rest}
+        >
           {children}
         </a>
       </Link>

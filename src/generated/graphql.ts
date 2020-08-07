@@ -1,10 +1,9 @@
 import { GraphQLResolveInfo, GraphQLScalarType, GraphQLScalarTypeConfig } from 'graphql';
-import gql from 'graphql-tag';
-import * as ApolloReactCommon from '@apollo/client';
-import * as ApolloReactHooks from '@apollo/client';
+import * as Apollo from '@apollo/client';
 export type Maybe<T> = T | null | undefined;
-export type Exact<T extends { [key: string]: any }> = { [K in keyof T]: T[K] };
+export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type RequireFields<T, K extends keyof T> = { [X in Exclude<keyof T, K>]?: T[X] } & { [P in K]-?: NonNullable<T[P]> };
+const gql = Apollo.gql;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -516,15 +515,15 @@ export const GetShowDrawerDocument = gql`
  *   },
  * });
  */
-export function useGetShowDrawerQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<GetShowDrawerQuery, GetShowDrawerQueryVariables>) {
-        return ApolloReactHooks.useQuery<GetShowDrawerQuery, GetShowDrawerQueryVariables>(GetShowDrawerDocument, baseOptions);
+export function useGetShowDrawerQuery(baseOptions?: Apollo.QueryHookOptions<GetShowDrawerQuery, GetShowDrawerQueryVariables>) {
+        return Apollo.useQuery<GetShowDrawerQuery, GetShowDrawerQueryVariables>(GetShowDrawerDocument, baseOptions);
       }
-export function useGetShowDrawerLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<GetShowDrawerQuery, GetShowDrawerQueryVariables>) {
-          return ApolloReactHooks.useLazyQuery<GetShowDrawerQuery, GetShowDrawerQueryVariables>(GetShowDrawerDocument, baseOptions);
+export function useGetShowDrawerLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetShowDrawerQuery, GetShowDrawerQueryVariables>) {
+          return Apollo.useLazyQuery<GetShowDrawerQuery, GetShowDrawerQueryVariables>(GetShowDrawerDocument, baseOptions);
         }
 export type GetShowDrawerQueryHookResult = ReturnType<typeof useGetShowDrawerQuery>;
 export type GetShowDrawerLazyQueryHookResult = ReturnType<typeof useGetShowDrawerLazyQuery>;
-export type GetShowDrawerQueryResult = ApolloReactCommon.QueryResult<GetShowDrawerQuery, GetShowDrawerQueryVariables>;
+export type GetShowDrawerQueryResult = Apollo.QueryResult<GetShowDrawerQuery, GetShowDrawerQueryVariables>;
 export const GetCharacterDocument = gql`
     query GetCharacter($id: ID!) {
   character(id: $id) {
@@ -551,15 +550,15 @@ export const GetCharacterDocument = gql`
  *   },
  * });
  */
-export function useGetCharacterQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<GetCharacterQuery, GetCharacterQueryVariables>) {
-        return ApolloReactHooks.useQuery<GetCharacterQuery, GetCharacterQueryVariables>(GetCharacterDocument, baseOptions);
+export function useGetCharacterQuery(baseOptions?: Apollo.QueryHookOptions<GetCharacterQuery, GetCharacterQueryVariables>) {
+        return Apollo.useQuery<GetCharacterQuery, GetCharacterQueryVariables>(GetCharacterDocument, baseOptions);
       }
-export function useGetCharacterLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<GetCharacterQuery, GetCharacterQueryVariables>) {
-          return ApolloReactHooks.useLazyQuery<GetCharacterQuery, GetCharacterQueryVariables>(GetCharacterDocument, baseOptions);
+export function useGetCharacterLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetCharacterQuery, GetCharacterQueryVariables>) {
+          return Apollo.useLazyQuery<GetCharacterQuery, GetCharacterQueryVariables>(GetCharacterDocument, baseOptions);
         }
 export type GetCharacterQueryHookResult = ReturnType<typeof useGetCharacterQuery>;
 export type GetCharacterLazyQueryHookResult = ReturnType<typeof useGetCharacterLazyQuery>;
-export type GetCharacterQueryResult = ApolloReactCommon.QueryResult<GetCharacterQuery, GetCharacterQueryVariables>;
+export type GetCharacterQueryResult = Apollo.QueryResult<GetCharacterQuery, GetCharacterQueryVariables>;
 export const GetCharactersDocument = gql`
     query GetCharacters($page: Int, $filter: FilterCharacter) {
   characters(page: $page, filter: $filter) {
@@ -591,15 +590,15 @@ ${PageInfoFragmentDoc}`;
  *   },
  * });
  */
-export function useGetCharactersQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<GetCharactersQuery, GetCharactersQueryVariables>) {
-        return ApolloReactHooks.useQuery<GetCharactersQuery, GetCharactersQueryVariables>(GetCharactersDocument, baseOptions);
+export function useGetCharactersQuery(baseOptions?: Apollo.QueryHookOptions<GetCharactersQuery, GetCharactersQueryVariables>) {
+        return Apollo.useQuery<GetCharactersQuery, GetCharactersQueryVariables>(GetCharactersDocument, baseOptions);
       }
-export function useGetCharactersLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<GetCharactersQuery, GetCharactersQueryVariables>) {
-          return ApolloReactHooks.useLazyQuery<GetCharactersQuery, GetCharactersQueryVariables>(GetCharactersDocument, baseOptions);
+export function useGetCharactersLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetCharactersQuery, GetCharactersQueryVariables>) {
+          return Apollo.useLazyQuery<GetCharactersQuery, GetCharactersQueryVariables>(GetCharactersDocument, baseOptions);
         }
 export type GetCharactersQueryHookResult = ReturnType<typeof useGetCharactersQuery>;
 export type GetCharactersLazyQueryHookResult = ReturnType<typeof useGetCharactersLazyQuery>;
-export type GetCharactersQueryResult = ApolloReactCommon.QueryResult<GetCharactersQuery, GetCharactersQueryVariables>;
+export type GetCharactersQueryResult = Apollo.QueryResult<GetCharactersQuery, GetCharactersQueryVariables>;
 export const GetEpisodeDocument = gql`
     query GetEpisode($id: ID!) {
   episode(id: $id) {
@@ -625,15 +624,15 @@ export const GetEpisodeDocument = gql`
  *   },
  * });
  */
-export function useGetEpisodeQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<GetEpisodeQuery, GetEpisodeQueryVariables>) {
-        return ApolloReactHooks.useQuery<GetEpisodeQuery, GetEpisodeQueryVariables>(GetEpisodeDocument, baseOptions);
+export function useGetEpisodeQuery(baseOptions?: Apollo.QueryHookOptions<GetEpisodeQuery, GetEpisodeQueryVariables>) {
+        return Apollo.useQuery<GetEpisodeQuery, GetEpisodeQueryVariables>(GetEpisodeDocument, baseOptions);
       }
-export function useGetEpisodeLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<GetEpisodeQuery, GetEpisodeQueryVariables>) {
-          return ApolloReactHooks.useLazyQuery<GetEpisodeQuery, GetEpisodeQueryVariables>(GetEpisodeDocument, baseOptions);
+export function useGetEpisodeLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetEpisodeQuery, GetEpisodeQueryVariables>) {
+          return Apollo.useLazyQuery<GetEpisodeQuery, GetEpisodeQueryVariables>(GetEpisodeDocument, baseOptions);
         }
 export type GetEpisodeQueryHookResult = ReturnType<typeof useGetEpisodeQuery>;
 export type GetEpisodeLazyQueryHookResult = ReturnType<typeof useGetEpisodeLazyQuery>;
-export type GetEpisodeQueryResult = ApolloReactCommon.QueryResult<GetEpisodeQuery, GetEpisodeQueryVariables>;
+export type GetEpisodeQueryResult = Apollo.QueryResult<GetEpisodeQuery, GetEpisodeQueryVariables>;
 export const GetEpisodesDocument = gql`
     query GetEpisodes($page: Int, $filter: FilterEpisode) {
   episodes(page: $page, filter: $filter) {
@@ -665,15 +664,15 @@ ${PageInfoFragmentDoc}`;
  *   },
  * });
  */
-export function useGetEpisodesQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<GetEpisodesQuery, GetEpisodesQueryVariables>) {
-        return ApolloReactHooks.useQuery<GetEpisodesQuery, GetEpisodesQueryVariables>(GetEpisodesDocument, baseOptions);
+export function useGetEpisodesQuery(baseOptions?: Apollo.QueryHookOptions<GetEpisodesQuery, GetEpisodesQueryVariables>) {
+        return Apollo.useQuery<GetEpisodesQuery, GetEpisodesQueryVariables>(GetEpisodesDocument, baseOptions);
       }
-export function useGetEpisodesLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<GetEpisodesQuery, GetEpisodesQueryVariables>) {
-          return ApolloReactHooks.useLazyQuery<GetEpisodesQuery, GetEpisodesQueryVariables>(GetEpisodesDocument, baseOptions);
+export function useGetEpisodesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetEpisodesQuery, GetEpisodesQueryVariables>) {
+          return Apollo.useLazyQuery<GetEpisodesQuery, GetEpisodesQueryVariables>(GetEpisodesDocument, baseOptions);
         }
 export type GetEpisodesQueryHookResult = ReturnType<typeof useGetEpisodesQuery>;
 export type GetEpisodesLazyQueryHookResult = ReturnType<typeof useGetEpisodesLazyQuery>;
-export type GetEpisodesQueryResult = ApolloReactCommon.QueryResult<GetEpisodesQuery, GetEpisodesQueryVariables>;
+export type GetEpisodesQueryResult = Apollo.QueryResult<GetEpisodesQuery, GetEpisodesQueryVariables>;
 export const GetLocationDocument = gql`
     query GetLocation($id: ID!) {
   location(id: $id) {
@@ -699,15 +698,15 @@ export const GetLocationDocument = gql`
  *   },
  * });
  */
-export function useGetLocationQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<GetLocationQuery, GetLocationQueryVariables>) {
-        return ApolloReactHooks.useQuery<GetLocationQuery, GetLocationQueryVariables>(GetLocationDocument, baseOptions);
+export function useGetLocationQuery(baseOptions?: Apollo.QueryHookOptions<GetLocationQuery, GetLocationQueryVariables>) {
+        return Apollo.useQuery<GetLocationQuery, GetLocationQueryVariables>(GetLocationDocument, baseOptions);
       }
-export function useGetLocationLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<GetLocationQuery, GetLocationQueryVariables>) {
-          return ApolloReactHooks.useLazyQuery<GetLocationQuery, GetLocationQueryVariables>(GetLocationDocument, baseOptions);
+export function useGetLocationLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetLocationQuery, GetLocationQueryVariables>) {
+          return Apollo.useLazyQuery<GetLocationQuery, GetLocationQueryVariables>(GetLocationDocument, baseOptions);
         }
 export type GetLocationQueryHookResult = ReturnType<typeof useGetLocationQuery>;
 export type GetLocationLazyQueryHookResult = ReturnType<typeof useGetLocationLazyQuery>;
-export type GetLocationQueryResult = ApolloReactCommon.QueryResult<GetLocationQuery, GetLocationQueryVariables>;
+export type GetLocationQueryResult = Apollo.QueryResult<GetLocationQuery, GetLocationQueryVariables>;
 export const GetLocationsDocument = gql`
     query GetLocations($page: Int) {
   locations(page: $page) {
@@ -738,15 +737,15 @@ ${PageInfoFragmentDoc}`;
  *   },
  * });
  */
-export function useGetLocationsQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<GetLocationsQuery, GetLocationsQueryVariables>) {
-        return ApolloReactHooks.useQuery<GetLocationsQuery, GetLocationsQueryVariables>(GetLocationsDocument, baseOptions);
+export function useGetLocationsQuery(baseOptions?: Apollo.QueryHookOptions<GetLocationsQuery, GetLocationsQueryVariables>) {
+        return Apollo.useQuery<GetLocationsQuery, GetLocationsQueryVariables>(GetLocationsDocument, baseOptions);
       }
-export function useGetLocationsLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<GetLocationsQuery, GetLocationsQueryVariables>) {
-          return ApolloReactHooks.useLazyQuery<GetLocationsQuery, GetLocationsQueryVariables>(GetLocationsDocument, baseOptions);
+export function useGetLocationsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetLocationsQuery, GetLocationsQueryVariables>) {
+          return Apollo.useLazyQuery<GetLocationsQuery, GetLocationsQueryVariables>(GetLocationsDocument, baseOptions);
         }
 export type GetLocationsQueryHookResult = ReturnType<typeof useGetLocationsQuery>;
 export type GetLocationsLazyQueryHookResult = ReturnType<typeof useGetLocationsLazyQuery>;
-export type GetLocationsQueryResult = ApolloReactCommon.QueryResult<GetLocationsQuery, GetLocationsQueryVariables>;
+export type GetLocationsQueryResult = Apollo.QueryResult<GetLocationsQuery, GetLocationsQueryVariables>;
 
 
 export type ResolverTypeWrapper<T> = Promise<T> | T;

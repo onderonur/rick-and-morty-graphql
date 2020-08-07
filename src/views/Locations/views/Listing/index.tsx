@@ -51,7 +51,9 @@ function LocationListing() {
         loading={loading}
         onLoadMore={() =>
           fetchMore({
-            query: GET_LOCATIONS,
+            // This breaks "@apollo/client 3".
+            // It doesn't toggle "loading" even if the "notifyOnNetworkStatusChange" is set to "true".
+            // query: GET_LOCATIONS,
             variables: { page: next },
             updateQuery: (prevResult, { fetchMoreResult }) => {
               const newEpisodes = fetchMoreResult?.locations;

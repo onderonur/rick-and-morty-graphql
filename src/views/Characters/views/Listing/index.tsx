@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React from "react";
 import { Box, Typography } from "@material-ui/core";
 import { produce } from "immer";
@@ -73,8 +74,10 @@ function CharacterListing() {
           loading={loading}
           onLoadMore={() =>
             fetchMore({
-              query: GET_CHARACTERS,
-              variables: { /*...variables,*/ page: next },
+              // This breaks "@apollo/client 3".
+              // It doesn't toggle "loading" even if the "notifyOnNetworkStatusChange" is set to "true".
+              // query: GET_CHARACTERS,
+              variables: { ...variables, page: next },
               updateQuery: (prevResult, { fetchMoreResult }) => {
                 const newCharacters = fetchMoreResult?.characters;
                 const newData = produce(prevResult, (draft) => {

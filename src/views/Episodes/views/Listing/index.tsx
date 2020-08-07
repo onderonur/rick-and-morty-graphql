@@ -52,7 +52,9 @@ function EpisodeListing() {
         loading={loading}
         onLoadMore={() =>
           fetchMore({
-            query: GET_EPISODES,
+            // This breaks "@apollo/client 3".
+            // It doesn't toggle "loading" even if the "notifyOnNetworkStatusChange" is set to "true".
+            // query: GET_EPISODES,
             variables: { page: next },
             updateQuery: (prevResult, { fetchMoreResult }) => {
               const newEpisodes = fetchMoreResult?.episodes;

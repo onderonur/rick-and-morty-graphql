@@ -1,12 +1,11 @@
 import React from "react";
 import { RootRef } from "@material-ui/core";
-import {
-  useInfiniteScroll,
-  useInfiniteScrollProps,
+import useInfiniteScroll, {
+  UseInfiniteScrollArgs,
 } from "react-infinite-scroll-hook";
 
 type InfiniteScrollWrapper = React.PropsWithChildren<
-  Pick<useInfiniteScrollProps, "hasNextPage" | "loading" | "onLoadMore">
+  Pick<UseInfiniteScrollArgs, "hasNextPage" | "loading" | "onLoadMore">
 >;
 
 function InfiniteScrollWrapper({

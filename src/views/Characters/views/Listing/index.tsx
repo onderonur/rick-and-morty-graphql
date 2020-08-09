@@ -9,7 +9,7 @@ import gql from "graphql-tag";
 import PAGE_INFO_FRAGMENT from "@/gql/fragments/pageInfo";
 import { useGetCharactersQuery } from "@/generated/graphql";
 import { useRouter } from "next/router";
-import { NextSeo } from "next-seo";
+import BaseSeo from "@/components/BaseSeo";
 
 const GET_CHARACTERS = gql`
   query GetCharacters($page: Int, $filter: FilterCharacter) {
@@ -54,7 +54,7 @@ function CharacterListing() {
 
   return (
     <>
-      <NextSeo
+      <BaseSeo
         title="Characters"
         description="Character list of Rick and Morty TV Series"
         openGraph={{

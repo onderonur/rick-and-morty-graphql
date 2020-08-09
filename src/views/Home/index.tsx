@@ -5,7 +5,7 @@ import BaseGridList from "@/components/BaseGridList";
 import BaseCard from "@/components/BaseCard";
 import BaseImage from "@/components/BaseImage";
 import NextLink from "@/components/NextLink";
-import { NextSeo } from "next-seo";
+import BaseSeo from "@/components/BaseSeo";
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -64,7 +64,7 @@ function Home() {
 
   return (
     <>
-      <NextSeo title="Home" />
+      <BaseSeo title="Home" />
       <BaseGridList
         items={homeLinks}
         spacing={2}

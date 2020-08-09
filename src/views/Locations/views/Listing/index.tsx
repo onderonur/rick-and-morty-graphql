@@ -5,7 +5,7 @@ import LocationList from "./components/LocationList";
 import PAGE_INFO_FRAGMENT from "@/gql/fragments/pageInfo";
 import gql from "graphql-tag";
 import { useGetLocationsQuery } from "@/generated/graphql";
-import { NextSeo } from "next-seo";
+import BaseSeo from "@/components/BaseSeo";
 
 const GET_LOCATIONS = gql`
   query GetLocations($page: Int) {
@@ -35,7 +35,7 @@ function LocationListing() {
 
   return (
     <>
-      <NextSeo
+      <BaseSeo
         title="Locations"
         description="Location list of Rick and Morty TV Series"
         openGraph={{

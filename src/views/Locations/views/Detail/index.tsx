@@ -4,7 +4,7 @@ import gql from "graphql-tag";
 import { useGetLocationQuery } from "@/generated/graphql";
 import { useRouter } from "next/router";
 import { isNonEmptyString } from "@/utils";
-import { NextSeo } from "next-seo";
+import BaseSeo from "@/components/BaseSeo";
 
 const GET_LOCATION = gql`
   query GetLocation($id: ID!) {
@@ -29,7 +29,7 @@ function LocationDetail() {
 
   return (
     <>
-      <NextSeo title={location?.name || ""} />
+      <BaseSeo title={location?.name || ""} />
       <LocationProfile location={location} loading={loading} />
     </>
   );

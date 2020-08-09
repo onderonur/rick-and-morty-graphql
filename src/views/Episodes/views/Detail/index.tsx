@@ -4,7 +4,7 @@ import gql from "graphql-tag";
 import { useGetEpisodeQuery } from "@/generated/graphql";
 import { useRouter } from "next/router";
 import { isNonEmptyString } from "@/utils";
-import { NextSeo } from "next-seo";
+import BaseSeo from "@/components/BaseSeo";
 
 const GET_EPISODE = gql`
   query GetEpisode($id: ID!) {
@@ -29,7 +29,7 @@ function EpisodeDetail() {
 
   return (
     <>
-      <NextSeo title={episode?.name || ""} />
+      <BaseSeo title={episode?.name || ""} />
       <EpisodeProfile episode={episode} loading={loading} />
     </>
   );

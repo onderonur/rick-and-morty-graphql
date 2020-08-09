@@ -5,7 +5,7 @@ import EpisodeList from "@/components/EpisodeList";
 import gql from "graphql-tag";
 import PAGE_INFO_FRAGMENT from "@/gql/fragments/pageInfo";
 import { useGetEpisodesQuery } from "@/generated/graphql";
-import { NextSeo } from "next-seo";
+import BaseSeo from "@/components/BaseSeo";
 
 const GET_EPISODES = gql`
   query GetEpisodes($page: Int, $filter: FilterEpisode) {
@@ -36,7 +36,7 @@ function EpisodeListing() {
 
   return (
     <>
-      <NextSeo
+      <BaseSeo
         title="Episodes"
         description="Episode list of Rick and Morty TV Series"
         openGraph={{

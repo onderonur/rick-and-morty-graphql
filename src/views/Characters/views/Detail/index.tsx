@@ -4,7 +4,7 @@ import gql from "graphql-tag";
 import { useGetCharacterQuery } from "@/generated/graphql";
 import { useRouter } from "next/router";
 import { isNonEmptyString } from "@/utils";
-import { NextSeo } from "next-seo";
+import BaseSeo from "@/components/BaseSeo";
 
 const GET_CHARACTER = gql`
   query GetCharacter($id: ID!) {
@@ -30,7 +30,7 @@ function CharacterDetailView() {
 
   return (
     <>
-      <NextSeo
+      <BaseSeo
         title={character?.name || ""}
         openGraph={{
           images: [{ url: character?.image || "" }],

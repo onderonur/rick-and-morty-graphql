@@ -3,7 +3,7 @@ import { Button, Box, Typography } from "@material-ui/core";
 import NextLink from "@/components/NextLink";
 import { NextPage } from "next";
 
-interface ErrorPageProps {
+interface ErrorViewProps {
   statusCode?: number;
   message?: string;
 }
@@ -12,7 +12,7 @@ interface ErrorPageProps {
 // In development you’ll get an error with the call
 // stack to know where the error originated from.
 // https://nextjs.org/docs/advanced-features/custom-error-page#customizing-the-error-page
-const ErrorView: NextPage<ErrorPageProps> = ({ statusCode, message }) => {
+const ErrorView: NextPage<ErrorViewProps> = ({ statusCode, message }) => {
   return (
     <Box
       display="flex"
@@ -55,4 +55,4 @@ ErrorView.getInitialProps = async ({ res, err }) => {
   return { statusCode, message };
 };
 
-export default ErrorPage;
+export default ErrorView;

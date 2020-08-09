@@ -113,7 +113,7 @@ class MyApp extends App<MyAppProps> {
           {/* Import CSS for nprogress */}
           <link rel="stylesheet" type="text/css" href="/nprogress.css" />
         </Head>
-        <DefaultSeo {...getDefaultSeoConfig(router.pathname)} />
+        <DefaultSeo {...getDefaultSeoConfig(router.asPath)} />
         <ThemeProvider theme={theme}>
           <CssBaseline />
           <HideOnScroll>

@@ -35,11 +35,21 @@ function CharacterListing() {
           filter: { name },
         }
       : {};
-  const { data, loading, fetchMore, networkStatus } = useGetCharactersQuery({
+  const {
+    data,
+    loading,
+    error,
+    fetchMore,
+    networkStatus,
+  } = useGetCharactersQuery({
     query: GET_CHARACTERS,
     variables,
     notifyOnNetworkStatusChange: true,
   });
+
+  if (error) {
+    throw error;
+  }
 
   const isSetVariables = networkStatus === 2;
 

@@ -1,8 +1,3 @@
-import React from "react";
-import ErrorView from "@/views/Error";
+import NotFound404 from "@/views/NotFound404";
 
-function NotFount404() {
-  return <ErrorView statusCode={404} message="Not Found" />;
-}
-
-export default NotFount404;
+export default NotFound404;

@@ -23,10 +23,14 @@ const GET_LOCATIONS = gql`
 `;
 
 function LocationListing() {
-  const { data, loading, fetchMore } = useGetLocationsQuery({
+  const { data, loading, error, fetchMore } = useGetLocationsQuery({
     query: GET_LOCATIONS,
     notifyOnNetworkStatusChange: true,
   });
+
+  if (error) {
+    throw error;
+  }
 
   const locations = data?.locations;
   const results = locations?.results;

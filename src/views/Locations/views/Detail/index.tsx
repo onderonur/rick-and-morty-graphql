@@ -19,11 +19,15 @@ const GET_LOCATION = gql`
 function LocationDetail() {
   const router = useRouter();
   const { id } = router.query;
-  const { data, loading } = useGetLocationQuery({
+  const { data, loading, error } = useGetLocationQuery({
     query: GET_LOCATION,
     variables: isNonEmptyString(id) ? { id } : undefined,
     skip: !isNonEmptyString(id),
   });
+
+  if (error) {
+    throw error;
+  }
 
   const { location } = data || {};
 

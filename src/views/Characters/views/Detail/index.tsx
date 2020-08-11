@@ -20,11 +20,15 @@ const GET_CHARACTER = gql`
 function CharacterDetailView() {
   const router = useRouter();
   const { id } = router.query;
-  const { data, loading } = useGetCharacterQuery({
+  const { data, loading, error } = useGetCharacterQuery({
     query: GET_CHARACTER,
     variables: isNonEmptyString(id) ? { id } : undefined,
     skip: !isNonEmptyString(id),
   });
+
+  if (error) {
+    throw error;
+  }
 
   const character = data?.character;
 

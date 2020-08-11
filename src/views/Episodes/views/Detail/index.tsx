@@ -19,11 +19,15 @@ const GET_EPISODE = gql`
 function EpisodeDetail() {
   const router = useRouter();
   const { id } = router.query;
-  const { data, loading } = useGetEpisodeQuery({
+  const { data, loading, error } = useGetEpisodeQuery({
     query: GET_EPISODE,
     variables: isNonEmptyString(id) ? { id } : undefined,
     skip: !isNonEmptyString(id),
   });
+
+  if (error) {
+    throw error;
+  }
 
   const episode = data?.episode;
 

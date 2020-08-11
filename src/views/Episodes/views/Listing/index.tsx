@@ -23,10 +23,14 @@ const GET_EPISODES = gql`
 `;
 
 function EpisodeListing() {
-  const { data, loading, fetchMore } = useGetEpisodesQuery({
+  const { data, loading, error, fetchMore } = useGetEpisodesQuery({
     query: GET_EPISODES,
     notifyOnNetworkStatusChange: true,
   });
+
+  if (error) {
+    throw error;
+  }
 
   const { episodes } = data || {};
 

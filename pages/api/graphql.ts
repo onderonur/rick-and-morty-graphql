@@ -15,4 +15,5 @@ export default proxy({
   target: process.env.NEXT_PUBLIC_API_URL,
   changeOrigin: true,
   pathRewrite: { "^/api": "" },
+  logLevel: "silent",
 });

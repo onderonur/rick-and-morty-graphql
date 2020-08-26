@@ -1,9 +1,7 @@
-import { GraphQLResolveInfo, GraphQLScalarType, GraphQLScalarTypeConfig } from 'graphql';
+import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
 export type Maybe<T> = T | null | undefined;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
-export type RequireFields<T, K extends keyof T> = { [X in Exclude<keyof T, K>]?: T[X] } & { [P in K]-?: NonNullable<T[P]> };
-const gql = Apollo.gql;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -21,20 +19,26 @@ export type Query = {
   character?: Maybe<Character>;
   /** Get the list of all characters */
   characters?: Maybe<Characters>;
+  /** Get a list of characters selected by ids */
+  charactersByIds?: Maybe<Array<Maybe<Character>>>;
   /** Get a specific episode by ID */
   episode?: Maybe<Episode>;
   /** Get the list of all episodes */
   episodes?: Maybe<Episodes>;
+  /** Get a list of episodes selected by ids */
+  episodesByIds?: Maybe<Array<Maybe<Episode>>>;
   /** Get a specific locations by ID */
   location?: Maybe<Location>;
   /** Get the list of all locations */
   locations?: Maybe<Locations>;
+  /** Get a list of locations selected by ids */
+  locationsByIds?: Maybe<Array<Maybe<Location>>>;
   showDrawer: Scalars['Boolean'];
 };
 
 
 export type QueryCharacterArgs = {
-  id?: Maybe<Scalars['ID']>;
+  id: Scalars['ID'];
 };
 
 
@@ -44,8 +48,13 @@ export type QueryCharactersArgs = {
 };
 
 
+export type QueryCharactersByIdsArgs = {
+  ids: Array<Scalars['ID']>;
+};
+
+
 export type QueryEpisodeArgs = {
-  id?: Maybe<Scalars['ID']>;
+  id: Scalars['ID'];
 };
 
 
@@ -55,14 +64,24 @@ export type QueryEpisodesArgs = {
 };
 
 
+export type QueryEpisodesByIdsArgs = {
+  ids: Array<Scalars['ID']>;
+};
+
+
 export type QueryLocationArgs = {
-  id?: Maybe<Scalars['ID']>;
+  id: Scalars['ID'];
 };
 
 
 export type QueryLocationsArgs = {
   page?: Maybe<Scalars['Int']>;
   filter?: Maybe<FilterLocation>;
+};
+
+
+export type QueryLocationsByIdsArgs = {
+  ids: Array<Scalars['ID']>;
 };
 
 export type Character = {
@@ -746,213 +765,3 @@ export function useGetLocationsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptio
 export type GetLocationsQueryHookResult = ReturnType<typeof useGetLocationsQuery>;
 export type GetLocationsLazyQueryHookResult = ReturnType<typeof useGetLocationsLazyQuery>;
 export type GetLocationsQueryResult = Apollo.QueryResult<GetLocationsQuery, GetLocationsQueryVariables>;
-
-
-export type ResolverTypeWrapper<T> = Promise<T> | T;
-
-
-export type LegacyStitchingResolver<TResult, TParent, TContext, TArgs> = {
-  fragment: string;
-  resolve: ResolverFn<TResult, TParent, TContext, TArgs>;
-};
-
-export type NewStitchingResolver<TResult, TParent, TContext, TArgs> = {
-  selectionSet: string;
-  resolve: ResolverFn<TResult, TParent, TContext, TArgs>;
-};
-export type StitchingResolver<TResult, TParent, TContext, TArgs> = LegacyStitchingResolver<TResult, TParent, TContext, TArgs> | NewStitchingResolver<TResult, TParent, TContext, TArgs>;
-export type Resolver<TResult, TParent = {}, TContext = {}, TArgs = {}> =
-  | ResolverFn<TResult, TParent, TContext, TArgs>
-  | StitchingResolver<TResult, TParent, TContext, TArgs>;
-
-export type ResolverFn<TResult, TParent, TContext, TArgs> = (
-  parent: TParent,
-  args: TArgs,
-  context: TContext,
-  info: GraphQLResolveInfo
-) => Promise<TResult> | TResult;
-
-export type SubscriptionSubscribeFn<TResult, TParent, TContext, TArgs> = (
-  parent: TParent,
-  args: TArgs,
-  context: TContext,
-  info: GraphQLResolveInfo
-) => AsyncIterator<TResult> | Promise<AsyncIterator<TResult>>;
-
-export type SubscriptionResolveFn<TResult, TParent, TContext, TArgs> = (
-  parent: TParent,
-  args: TArgs,
-  context: TContext,
-  info: GraphQLResolveInfo
-) => TResult | Promise<TResult>;
-
-export interface SubscriptionSubscriberObject<TResult, TKey extends string, TParent, TContext, TArgs> {
-  subscribe: SubscriptionSubscribeFn<{ [key in TKey]: TResult }, TParent, TContext, TArgs>;
-  resolve?: SubscriptionResolveFn<TResult, { [key in TKey]: TResult }, TContext, TArgs>;
-}
-
-export interface SubscriptionResolverObject<TResult, TParent, TContext, TArgs> {
-  subscribe: SubscriptionSubscribeFn<any, TParent, TContext, TArgs>;
-  resolve: SubscriptionResolveFn<TResult, any, TContext, TArgs>;
-}
-
-export type SubscriptionObject<TResult, TKey extends string, TParent, TContext, TArgs> =
-  | SubscriptionSubscriberObject<TResult, TKey, TParent, TContext, TArgs>
-  | SubscriptionResolverObject<TResult, TParent, TContext, TArgs>;
-
-export type SubscriptionResolver<TResult, TKey extends string, TParent = {}, TContext = {}, TArgs = {}> =
-  | ((...args: any[]) => SubscriptionObject<TResult, TKey, TParent, TContext, TArgs>)
-  | SubscriptionObject<TResult, TKey, TParent, TContext, TArgs>;
-
-export type TypeResolveFn<TTypes, TParent = {}, TContext = {}> = (
-  parent: TParent,
-  context: TContext,
-  info: GraphQLResolveInfo
-) => Maybe<TTypes> | Promise<Maybe<TTypes>>;
-
-export type IsTypeOfResolverFn<T = {}> = (obj: T, info: GraphQLResolveInfo) => boolean | Promise<boolean>;
-
-export type NextResolverFn<T> = () => Promise<T>;
-
-export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs = {}> = (
-  next: NextResolverFn<TResult>,
-  parent: TParent,
-  args: TArgs,
-  context: TContext,
-  info: GraphQLResolveInfo
-) => TResult | Promise<TResult>;
-
-/** Mapping between all available schema types and the resolvers types */
-export type ResolversTypes = {
-  Query: ResolverTypeWrapper<{}>;
-  ID: ResolverTypeWrapper<Scalars['ID']>;
-  Int: ResolverTypeWrapper<Scalars['Int']>;
-  Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
-  Character: ResolverTypeWrapper<Character>;
-  String: ResolverTypeWrapper<Scalars['String']>;
-  Location: ResolverTypeWrapper<Location>;
-  Episode: ResolverTypeWrapper<Episode>;
-  FilterCharacter: FilterCharacter;
-  Characters: ResolverTypeWrapper<Characters>;
-  Info: ResolverTypeWrapper<Info>;
-  FilterLocation: FilterLocation;
-  Locations: ResolverTypeWrapper<Locations>;
-  FilterEpisode: FilterEpisode;
-  Episodes: ResolverTypeWrapper<Episodes>;
-  CacheControlScope: CacheControlScope;
-  Upload: ResolverTypeWrapper<Scalars['Upload']>;
-};
-
-/** Mapping between all available schema types and the resolvers parents */
-export type ResolversParentTypes = {
-  Query: {};
-  ID: Scalars['ID'];
-  Int: Scalars['Int'];
-  Boolean: Scalars['Boolean'];
-  Character: Character;
-  String: Scalars['String'];
-  Location: Location;
-  Episode: Episode;
-  FilterCharacter: FilterCharacter;
-  Characters: Characters;
-  Info: Info;
-  FilterLocation: FilterLocation;
-  Locations: Locations;
-  FilterEpisode: FilterEpisode;
-  Episodes: Episodes;
-  Upload: Scalars['Upload'];
-};
-
-export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
-  character?: Resolver<Maybe<ResolversTypes['Character']>, ParentType, ContextType, RequireFields<QueryCharacterArgs, never>>;
-  characters?: Resolver<Maybe<ResolversTypes['Characters']>, ParentType, ContextType, RequireFields<QueryCharactersArgs, never>>;
-  episode?: Resolver<Maybe<ResolversTypes['Episode']>, ParentType, ContextType, RequireFields<QueryEpisodeArgs, never>>;
-  episodes?: Resolver<Maybe<ResolversTypes['Episodes']>, ParentType, ContextType, RequireFields<QueryEpisodesArgs, never>>;
-  location?: Resolver<Maybe<ResolversTypes['Location']>, ParentType, ContextType, RequireFields<QueryLocationArgs, never>>;
-  locations?: Resolver<Maybe<ResolversTypes['Locations']>, ParentType, ContextType, RequireFields<QueryLocationsArgs, never>>;
-  showDrawer?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
-};
-
-export type CharacterResolvers<ContextType = any, ParentType extends ResolversParentTypes['Character'] = ResolversParentTypes['Character']> = {
-  id?: Resolver<Maybe<ResolversTypes['ID']>, ParentType, ContextType>;
-  name?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  status?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  species?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  type?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  gender?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  origin?: Resolver<Maybe<ResolversTypes['Location']>, ParentType, ContextType>;
-  location?: Resolver<Maybe<ResolversTypes['Location']>, ParentType, ContextType>;
-  image?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  episode?: Resolver<Maybe<Array<Maybe<ResolversTypes['Episode']>>>, ParentType, ContextType>;
-  created?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType>;
-};
-
-export type LocationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Location'] = ResolversParentTypes['Location']> = {
-  id?: Resolver<Maybe<ResolversTypes['ID']>, ParentType, ContextType>;
-  name?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  type?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  dimension?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  residents?: Resolver<Maybe<Array<Maybe<ResolversTypes['Character']>>>, ParentType, ContextType>;
-  created?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType>;
-};
-
-export type EpisodeResolvers<ContextType = any, ParentType extends ResolversParentTypes['Episode'] = ResolversParentTypes['Episode']> = {
-  id?: Resolver<Maybe<ResolversTypes['ID']>, ParentType, ContextType>;
-  name?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  air_date?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  episode?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  characters?: Resolver<Maybe<Array<Maybe<ResolversTypes['Character']>>>, ParentType, ContextType>;
-  created?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType>;
-};
-
-export type CharactersResolvers<ContextType = any, ParentType extends ResolversParentTypes['Characters'] = ResolversParentTypes['Characters']> = {
-  info?: Resolver<Maybe<ResolversTypes['Info']>, ParentType, ContextType>;
-  results?: Resolver<Maybe<Array<Maybe<ResolversTypes['Character']>>>, ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType>;
-};
-
-export type InfoResolvers<ContextType = any, ParentType extends ResolversParentTypes['Info'] = ResolversParentTypes['Info']> = {
-  count?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
-  pages?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
-  next?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
-  prev?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType>;
-};
-
-export type LocationsResolvers<ContextType = any, ParentType extends ResolversParentTypes['Locations'] = ResolversParentTypes['Locations']> = {
-  info?: Resolver<Maybe<ResolversTypes['Info']>, ParentType, ContextType>;
-  results?: Resolver<Maybe<Array<Maybe<ResolversTypes['Location']>>>, ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType>;
-};
-
-export type EpisodesResolvers<ContextType = any, ParentType extends ResolversParentTypes['Episodes'] = ResolversParentTypes['Episodes']> = {
-  info?: Resolver<Maybe<ResolversTypes['Info']>, ParentType, ContextType>;
-  results?: Resolver<Maybe<Array<Maybe<ResolversTypes['Episode']>>>, ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType>;
-};
-
-export interface UploadScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['Upload'], any> {
-  name: 'Upload';
-}
-
-export type Resolvers<ContextType = any> = {
-  Query?: QueryResolvers<ContextType>;
-  Character?: CharacterResolvers<ContextType>;
-  Location?: LocationResolvers<ContextType>;
-  Episode?: EpisodeResolvers<ContextType>;
-  Characters?: CharactersResolvers<ContextType>;
-  Info?: InfoResolvers<ContextType>;
-  Locations?: LocationsResolvers<ContextType>;
-  Episodes?: EpisodesResolvers<ContextType>;
-  Upload?: GraphQLScalarType;
-};
-
-
-/**
- * @deprecated
- * Use "Resolvers" root object instead. If you wish to get "IResolvers", add "typesPrefix: I" to your config.
- */
-export type IResolvers<ContextType = any> = Resolvers<ContextType>;

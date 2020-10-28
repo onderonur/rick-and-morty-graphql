@@ -4,7 +4,7 @@ module.exports = {
       name: "rick-and-morty",
       localSchemaFile: "graphql.schema.json",
     },
-    excludes: ["**/generated/**", "src/gql/typeDefs.ts"],
+    excludes: ["**/generated/**", "src/modules/apollo/typeDefs.ts"],
   },
 };
 

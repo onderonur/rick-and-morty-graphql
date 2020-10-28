@@ -200,12 +200,9 @@ export enum CacheControlScope {
 }
 
 
-export type GetShowDrawerQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type GetShowDrawerQuery = (
-  { __typename?: 'Query' }
-  & Pick<Query, 'showDrawer'>
+export type PageInfoFragment = (
+  { __typename?: 'Info' }
+  & Pick<Info, 'next'>
 );
 
 export type CharacterCard_CharacterFragment = (
@@ -240,6 +237,20 @@ export type CharacterGridListItem_CharacterFragment = (
   & CharacterCard_CharacterFragment
 );
 
+export type CharacterProfile_CharacterFragment = (
+  { __typename?: 'Character' }
+  & { episode?: Maybe<Array<Maybe<(
+    { __typename?: 'Episode' }
+    & EpisodeList_EpisodeFragment
+  )>>> }
+  & CharacterCard_CharacterWithSpecsFragment
+);
+
+export type EpisodeCard_EpisodeFragment = (
+  { __typename?: 'Episode' }
+  & Pick<Episode, 'id' | 'name' | 'episode' | 'air_date'>
+);
+
 export type EpisodeList_EpisodeFragment = (
   { __typename?: 'Episode' }
   & EpisodeListItem_EpisodeFragment
@@ -250,18 +261,45 @@ export type EpisodeListItem_EpisodeFragment = (
   & Pick<Episode, 'id' | 'name' | 'air_date' | 'episode'>
 );
 
-export type PageInfoFragment = (
-  { __typename?: 'Info' }
-  & Pick<Info, 'next'>
+export type EpisodeProfile_EpisodeFragment = (
+  { __typename?: 'Episode' }
+  & { characters?: Maybe<Array<Maybe<(
+    { __typename?: 'Character' }
+    & CharacterGridList_CharacterFragment
+  )>>> }
+  & EpisodeCard_EpisodeFragment
 );
 
-export type CharacterProfile_CharacterFragment = (
-  { __typename?: 'Character' }
-  & { episode?: Maybe<Array<Maybe<(
-    { __typename?: 'Episode' }
-    & EpisodeList_EpisodeFragment
+export type GetShowDrawerQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetShowDrawerQuery = (
+  { __typename?: 'Query' }
+  & Pick<Query, 'showDrawer'>
+);
+
+export type LocationCard_LocationFragment = (
+  { __typename?: 'Location' }
+  & Pick<Location, 'id' | 'name' | 'type' | 'dimension'>
+);
+
+export type LocationList_LocationFragment = (
+  { __typename?: 'Location' }
+  & LocationListItem_LocationFragment
+);
+
+export type LocationListItem_LocationFragment = (
+  { __typename?: 'Location' }
+  & Pick<Location, 'id' | 'name' | 'type'>
+);
+
+export type LocationProfile_LocationFragment = (
+  { __typename?: 'Location' }
+  & { residents?: Maybe<Array<Maybe<(
+    { __typename?: 'Character' }
+    & CharacterGridList_CharacterFragment
   )>>> }
-  & CharacterCard_CharacterWithSpecsFragment
+  & LocationCard_LocationFragment
 );
 
 export type GetCharacterQueryVariables = Exact<{
@@ -298,20 +336,6 @@ export type GetCharactersQuery = (
   )> }
 );
 
-export type EpisodeCard_EpisodeFragment = (
-  { __typename?: 'Episode' }
-  & Pick<Episode, 'id' | 'name' | 'episode' | 'air_date'>
-);
-
-export type EpisodeProfile_EpisodeFragment = (
-  { __typename?: 'Episode' }
-  & { characters?: Maybe<Array<Maybe<(
-    { __typename?: 'Character' }
-    & CharacterGridList_CharacterFragment
-  )>>> }
-  & EpisodeCard_EpisodeFragment
-);
-
 export type GetEpisodeQueryVariables = Exact<{
   id: Scalars['ID'];
 }>;
@@ -346,20 +370,6 @@ export type GetEpisodesQuery = (
   )> }
 );
 
-export type LocationCard_LocationFragment = (
-  { __typename?: 'Location' }
-  & Pick<Location, 'id' | 'name' | 'type' | 'dimension'>
-);
-
-export type LocationProfile_LocationFragment = (
-  { __typename?: 'Location' }
-  & { residents?: Maybe<Array<Maybe<(
-    { __typename?: 'Character' }
-    & CharacterGridList_CharacterFragment
-  )>>> }
-  & LocationCard_LocationFragment
-);
-
 export type GetLocationQueryVariables = Exact<{
   id: Scalars['ID'];
 }>;
@@ -372,16 +382,6 @@ export type GetLocationQuery = (
     & Pick<Location, 'name'>
     & LocationProfile_LocationFragment
   )> }
-);
-
-export type LocationList_LocationFragment = (
-  { __typename?: 'Location' }
-  & LocationListItem_LocationFragment
-);
-
-export type LocationListItem_LocationFragment = (
-  { __typename?: 'Location' }
-  & Pick<Location, 'id' | 'name' | 'type'>
 );
 
 export type GetLocationsQueryVariables = Exact<{
@@ -484,6 +484,18 @@ export const EpisodeProfile_EpisodeFragmentDoc = gql`
 }
     ${EpisodeCard_EpisodeFragmentDoc}
 ${CharacterGridList_CharacterFragmentDoc}`;
+export const LocationListItem_LocationFragmentDoc = gql`
+    fragment LocationListItem_location on Location {
+  id
+  name
+  type
+}
+    `;
+export const LocationList_LocationFragmentDoc = gql`
+    fragment LocationList_location on Location {
+  ...LocationListItem_location
+}
+    ${LocationListItem_LocationFragmentDoc}`;
 export const LocationCard_LocationFragmentDoc = gql`
     fragment LocationCard_location on Location {
   id
@@ -501,18 +513,6 @@ export const LocationProfile_LocationFragmentDoc = gql`
 }
     ${LocationCard_LocationFragmentDoc}
 ${CharacterGridList_CharacterFragmentDoc}`;
-export const LocationListItem_LocationFragmentDoc = gql`
-    fragment LocationListItem_location on Location {
-  id
-  name
-  type
-}
-    `;
-export const LocationList_LocationFragmentDoc = gql`
-    fragment LocationList_location on Location {
-  ...LocationListItem_location
-}
-    ${LocationListItem_LocationFragmentDoc}`;
 export const GetShowDrawerDocument = gql`
     query GetShowDrawer {
   showDrawer @client

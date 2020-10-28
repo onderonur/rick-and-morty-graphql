@@ -1,7 +1,7 @@
 overwrite: true
 schema:
   - "https://rickandmortyapi.com/graphql"
-  - "src/gql/typeDefs.ts"
+  - "src/modules/apollo/typeDefs.ts"
 documents:
   - "src/**/*.{ts,tsx}"
   - "!.next"

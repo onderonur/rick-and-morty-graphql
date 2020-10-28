@@ -1,3 +1,3 @@
-import Episode from "@/views/Episodes/views/Detail";
+import Episode from "@/modules/views/EpisodeDetail";
 
 export default Episode;

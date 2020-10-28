@@ -1,3 +1,3 @@
-import ErrorView from "@/views/Error";
+import ErrorView from "@/modules/views/Error";
 
 export default ErrorView;

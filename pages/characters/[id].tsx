@@ -1,3 +1,3 @@
-import Character from "@/modules/views/CharacterDetail";
+import CharacterDetailView from "@/modules/views/CharacterDetailView";
 
-export default Character;
+export default CharacterDetailView;

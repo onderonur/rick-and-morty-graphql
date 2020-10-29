@@ -1,3 +1,3 @@
-import NotFound404 from "@/modules/views/NotFound404";
+import NotFound404View from "@/modules/views/NotFound404View";
 
-export default NotFound404;
+export default NotFound404View;

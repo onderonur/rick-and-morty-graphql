@@ -1,14 +1,18 @@
 import React from "react";
 import { NextSeo, NextSeoProps } from "next-seo";
+import { Omit } from "../shared/SharedTypes";
+import { Maybe } from "graphql/jsutils/Maybe";
 
-type BaseSeoProps = NextSeoProps;
+type BaseSeoProps = Omit<NextSeoProps, "title"> & {
+  title: Maybe<string>;
+};
 
 function BaseSeo({ title, description, openGraph, ...rest }: BaseSeoProps) {
   return (
     <NextSeo
-      title={title}
+      title={title ?? undefined}
       description={description}
-      openGraph={{ title, description, ...openGraph }}
+      openGraph={{ title: title ?? undefined, description, ...openGraph }}
       {...rest}
     />
   );

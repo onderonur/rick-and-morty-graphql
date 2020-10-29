@@ -59,7 +59,7 @@ const homeLinks = [
   },
 ];
 
-function Home() {
+function HomeView() {
   const classes = useStyles();
 
   return (
@@ -110,4 +110,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default HomeView;

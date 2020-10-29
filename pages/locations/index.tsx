@@ -1,3 +1,3 @@
-import LocationsListing from "@/modules/views/LocationsListing";
+import LocationsListingView from "@/modules/views/LocationsListingView";
 
-export default LocationsListing;
+export default LocationsListingView;

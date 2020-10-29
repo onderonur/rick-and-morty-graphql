@@ -16,7 +16,7 @@ const GET_LOCATION = gql`
   ${LocationProfile.fragments.location}
 `;
 
-function LocationDetail() {
+function LocationsDetailView() {
   const router = useRouter();
   const { id } = router.query;
   const { data, loading, error } = useGetLocationQuery({
@@ -33,10 +33,10 @@ function LocationDetail() {
 
   return (
     <>
-      <BaseSeo title={location?.name || ""} />
+      <BaseSeo title={location?.name} />
       <LocationProfile location={location} loading={loading} />
     </>
   );
 }
 
-export default LocationDetail;
+export default LocationsDetailView;

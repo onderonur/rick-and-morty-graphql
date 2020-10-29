@@ -17,7 +17,6 @@ const GET_CHARACTER = gql`
   ${CharacterProfile.fragments.character}
 `;
 
-// TODO: Component ve view file naming'leri düzelt
 function CharacterDetailView() {
   const router = useRouter();
   const { id } = router.query;
@@ -36,9 +35,9 @@ function CharacterDetailView() {
   return (
     <>
       <BaseSeo
-        title={character?.name || ""}
+        title={character?.name}
         openGraph={{
-          images: [{ url: character?.image || "" }],
+          images: character?.image ? [{ url: character?.image }] : [],
         }}
       />
       <CharacterProfile character={character} loading={loading} />

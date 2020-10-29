@@ -25,7 +25,7 @@ const GET_CHARACTERS = gql`
   ${PAGE_INFO_FRAGMENT}
 `;
 
-function CharacterListing() {
+function CharactersListingView() {
   const router = useRouter();
   const { name } = router.query;
   const variables =
@@ -125,4 +125,4 @@ function CharacterListing() {
   );
 }
 
-export default CharacterListing;
+export default CharactersListingView;

@@ -1,3 +1,3 @@
-import Location from "@/modules/views/LocationsDetail";
+import LocationDetailView from "@/modules/views/LocationDetailView";
 
-export default Location;
+export default LocationDetailView;

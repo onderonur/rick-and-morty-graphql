@@ -16,7 +16,7 @@ const GET_EPISODE = gql`
   ${EpisodeProfile.fragments.episode}
 `;
 
-function EpisodeDetail() {
+function EpisodeDetailView() {
   const router = useRouter();
   const { id } = router.query;
   const { data, loading, error } = useGetEpisodeQuery({
@@ -33,10 +33,10 @@ function EpisodeDetail() {
 
   return (
     <>
-      <BaseSeo title={episode?.name || ""} />
+      <BaseSeo title={episode?.name} />
       <EpisodeProfile episode={episode} loading={loading} />
     </>
   );
 }
 
-export default EpisodeDetail;
+export default EpisodeDetailView;

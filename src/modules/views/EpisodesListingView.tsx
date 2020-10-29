@@ -1,30 +1,30 @@
 import React from "react";
 import produce from "immer";
 import InfiniteScrollWrapper from "@/modules/shared/InfiniteScrollWrapper";
-import PAGE_INFO_FRAGMENT from "@/modules/apollo/fragments";
+import EpisodeList from "@/modules/episodes/EpisodeList";
 import gql from "graphql-tag";
-import { useGetLocationsQuery } from "@/generated/graphql";
+import { useGetEpisodesQuery } from "@/generated/graphql";
 import BaseSeo from "@/modules/seo/BaseSeo";
-import LocationList from "@/modules/locations/LocationList";
+import PAGE_INFO_FRAGMENT from "@/modules/apollo/fragments";
 
-const GET_LOCATIONS = gql`
-  query GetLocations($page: Int) {
-    locations(page: $page) {
+const GET_EPISODES = gql`
+  query GetEpisodes($page: Int, $filter: FilterEpisode) {
+    episodes(page: $page, filter: $filter) {
       results {
-        ...LocationList_location
+        ...EpisodeList_episode
       }
       info {
         ...pageInfo
       }
     }
   }
-  ${LocationList.fragments.location}
+  ${EpisodeList.fragments.episode}
   ${PAGE_INFO_FRAGMENT}
 `;
 
-function LocationListing() {
-  const { data, loading, error, fetchMore } = useGetLocationsQuery({
-    query: GET_LOCATIONS,
+function EpisodesListingView() {
+  const { data, loading, error, fetchMore } = useGetEpisodesQuery({
+    query: GET_EPISODES,
     notifyOnNetworkStatusChange: true,
   });
 
@@ -32,20 +32,21 @@ function LocationListing() {
     throw error;
   }
 
-  const locations = data?.locations;
-  const results = locations?.results;
-  const next = locations?.info?.next;
+  const { episodes } = data || {};
+
+  const results = episodes?.results;
+  const next = episodes?.info?.next;
   const hasNextPage = !!next;
 
   return (
     <>
       <BaseSeo
-        title="Locations"
-        description="Location list of Rick and Morty TV Series"
+        title="Episodes"
+        description="Episode list of Rick and Morty TV Series"
         openGraph={{
           images: [
             {
-              url: `${process.env.NEXT_PUBLIC_BASE_URL}/images/locations.jpg`,
+              url: `${process.env.NEXT_PUBLIC_BASE_URL}/images/episodes.jpg`,
             },
           ],
         }}
@@ -57,19 +58,19 @@ function LocationListing() {
           fetchMore({
             // This breaks "@apollo/client 3".
             // It doesn't toggle "loading" even if the "notifyOnNetworkStatusChange" is set to "true".
-            // query: GET_LOCATIONS,
+            // query: GET_EPISODES,
             variables: { page: next },
             updateQuery: (prevResult, { fetchMoreResult }) => {
-              const newEpisodes = fetchMoreResult?.locations;
+              const newEpisodes = fetchMoreResult?.episodes;
               const newData = produce(prevResult, (draft) => {
-                let { locations } = draft;
+                let { episodes } = draft;
                 if (
-                  locations?.results &&
-                  locations.info &&
+                  episodes?.results &&
+                  episodes?.info &&
                   newEpisodes?.results
                 ) {
-                  locations.results.push(...newEpisodes.results);
-                  locations.info = newEpisodes.info;
+                  episodes.results.push(...newEpisodes.results);
+                  episodes.info = newEpisodes.info;
                 }
               });
 
@@ -78,10 +79,10 @@ function LocationListing() {
           })
         }
       >
-        <LocationList locations={results} loading={loading || hasNextPage} />
+        <EpisodeList episodes={results} loading={loading || hasNextPage} />
       </InfiniteScrollWrapper>
     </>
   );
 }
 
-export default LocationListing;
+export default EpisodesListingView;

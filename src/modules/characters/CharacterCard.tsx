@@ -79,12 +79,16 @@ function CharacterCard({
             <TextWithLabel
               label="Origin"
               text={
-                <Link
-                  href={`/locations/${character.origin.id}`}
-                  component={NextLink}
-                >
-                  {character.origin.name}
-                </Link>
+                character.origin.id ? (
+                  <Link
+                    href={`/locations/${character.origin.id}`}
+                    component={NextLink}
+                  >
+                    {character.origin.name}
+                  </Link>
+                ) : (
+                  character.origin.name
+                )
               }
             />
           )}
@@ -92,12 +96,16 @@ function CharacterCard({
             <TextWithLabel
               label="Location"
               text={
-                <Link
-                  href={`/locations/${character.location.id}`}
-                  component={NextLink}
-                >
-                  {character.location.name}
-                </Link>
+                character.location.id ? (
+                  <Link
+                    href={`/locations/${character.location.id}`}
+                    component={NextLink}
+                  >
+                    {character.location.name}
+                  </Link>
+                ) : (
+                  character.location.name
+                )
               }
             />
           )}

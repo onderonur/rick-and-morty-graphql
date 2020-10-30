@@ -4,7 +4,7 @@ import { useGetCharacterQuery } from "@/generated/graphql";
 import { useRouter } from "next/router";
 import { isNonEmptyString } from "@/modules/shared/SharedUtils";
 import BaseSeo from "@/modules/seo/BaseSeo";
-import CharacterProfile from "../characters/CharacterProfile";
+import CharacterProfile from "@/modules/characters/CharacterProfile";
 
 const GET_CHARACTER = gql`
   query GetCharacter($id: ID!) {

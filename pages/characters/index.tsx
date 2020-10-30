@@ -1,3 +1,3 @@
-import CharactersListingView from "@/modules/views/CharactersListingView";
+import CharactersListingView from "@/views/CharactersListingView";
 
 export default CharactersListingView;

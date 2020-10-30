@@ -9,7 +9,7 @@ The project was written in JavaScript at first. But I've migrated to TypeScript 
 I've used [graphql-codegen](https://graphql-code-generator.com/) to create type definitions automatically.
 Also, configured Apollo to show the GraphQL errors and warnings as explained [here](https://www.apollographql.com/docs/devtools/apollo-config/).
 
-Also, refactored the folder structure (inspired from the example made by [@ryanflorance](https://gist.github.com/ryanflorence/daafb1e3cb8ad740b346)).
+A feature based folder structure has been implemented to keep things organized.
 
 The project was created with `create-react-app`, but then I wanted to try the server-side rendering and then used the most anticipated framework for that. [Next.js](https://nextjs.org/). Migrating to `Next.js` was just easy. I just changed the routing, made some configurations for `apollo` and `material-ui`. And that's it! Most of these setups can be found from the [examples](https://github.com/zeit/next.js/tree/canary/examples) folder of `Next.js`.
 

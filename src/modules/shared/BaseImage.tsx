@@ -62,7 +62,7 @@ function BaseImage({
         className={classes.img}
         src={src}
         alt={alt}
-        unsized
+        layout="fill"
         onLoad={handleLoad}
       />
     </AspectRatio>

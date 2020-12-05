@@ -32,7 +32,7 @@ const LabeledText = React.memo(({ label, text, href }: LabeledTextProps) => {
   return (
     <div>
       <Typography color="textSecondary" variant="button">
-        {label}:
+        {label}
       </Typography>
       {href ? (
         <Link href={href} component={NextLink}>

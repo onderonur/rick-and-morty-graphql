@@ -1,7 +1,7 @@
 import React from "react";
 import { CardHeader, CardContent } from "@material-ui/core";
 import BaseCard from "@/modules/shared/BaseCard";
-import TextWithLabel from "@/modules/shared/TextWithLabel";
+import LabeledText from "@/modules/shared/LabeledText";
 import gql from "graphql-tag";
 import { EpisodeCard_EpisodeFragment } from "@/generated/graphql";
 
@@ -14,7 +14,7 @@ function EpisodeCard({ episode }: EpisodeCardProps) {
     <BaseCard>
       <CardHeader title={episode.name} subheader={episode.episode} />
       <CardContent>
-        <TextWithLabel label="Air Date" text={episode.air_date} />
+        <LabeledText label="Air Date" text={episode.air_date} />
       </CardContent>
     </BaseCard>
   );

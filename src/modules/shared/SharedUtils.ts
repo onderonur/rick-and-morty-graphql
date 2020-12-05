@@ -12,3 +12,5 @@ export function isOfType<T>(obj: any, keys: (keyof T)[]): obj is T {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const isNonEmptyString = (id: any): id is string =>
   typeof id === "string" && !!id;
+
+export const unknown = "Unknown";

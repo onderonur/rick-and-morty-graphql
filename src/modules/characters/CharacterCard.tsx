@@ -1,16 +1,15 @@
 import React from "react";
-import { CardHeader, CardContent, Link } from "@material-ui/core";
+import { CardHeader, CardContent } from "@material-ui/core";
 import BaseCard from "@/modules/shared/BaseCard";
 import BaseImage from "@/modules/shared/BaseImage";
-import TextWithLabel from "@/modules/shared/TextWithLabel";
 import gql from "graphql-tag";
 import {
   Episode,
   CharacterCard_CharacterFragment,
   CharacterCard_CharacterWithSpecsFragment,
 } from "@/generated/graphql";
-import { isOfType } from "@/modules/shared/SharedUtils";
-import NextLink from "@/modules/shared/NextLink";
+import { isOfType, unknown } from "@/modules/shared/SharedUtils";
+import LabeledTextList from "../shared/LabeledTextList";
 
 function getEpisodeAirYear(episode: Episode) {
   if (episode.air_date) {
@@ -72,43 +71,27 @@ function CharacterCard({
       />
       {hasSpecs(character) ? (
         <CardContent>
-          <TextWithLabel label="Status" text={character.status} />
-          <TextWithLabel label="Species" text={character.species} />
-          <TextWithLabel label="Gender" text={character.gender} />
-          {character.origin && (
-            <TextWithLabel
-              label="Origin"
-              text={
-                character.origin.id ? (
-                  <Link
-                    href={`/locations/${character.origin.id}`}
-                    component={NextLink}
-                  >
-                    {character.origin.name}
-                  </Link>
-                ) : (
-                  character.origin.name
-                )
-              }
-            />
-          )}
-          {character.location && (
-            <TextWithLabel
-              label="Location"
-              text={
-                character.location.id ? (
-                  <Link
-                    href={`/locations/${character.location.id}`}
-                    component={NextLink}
-                  >
-                    {character.location.name}
-                  </Link>
-                ) : (
-                  character.location.name
-                )
-              }
-            />
-          )}
+          <LabeledTextList
+            data={[
+              { label: "Status", text: character.status },
+              { label: "Species", text: character.species },
+              { label: "Gender", text: character.gender },
+              {
+                label: "Origin",
+                text: character.origin?.name ?? unknown,
+                href: character.origin?.id
+                  ? `/locations/${character.origin.id}`
+                  : null,
+              },
+              {
+                label: "Location",
+                text: character.location?.name ?? unknown,
+                href: character.location?.id
+                  ? `/locations/${character.location.id}`
+                  : null,
+              },
+            ]}
+          />
         </CardContent>
       ) : null}
     </BaseCard>

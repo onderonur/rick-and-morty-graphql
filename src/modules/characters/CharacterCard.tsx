@@ -8,7 +8,7 @@ import {
   CharacterCard_CharacterFragment,
   CharacterCard_CharacterWithSpecsFragment,
 } from "@/generated/graphql";
-import { isOfType, unknown } from "@/modules/shared/SharedUtils";
+import { isOfType, UNKNOWN } from "@/modules/shared/SharedUtils";
 import LabeledTextList from "../shared/LabeledTextList";
 
 function getEpisodeAirYear(episode: Episode) {
@@ -78,14 +78,14 @@ function CharacterCard({
               { label: "Gender", text: character.gender },
               {
                 label: "Origin",
-                text: character.origin?.name ?? unknown,
+                text: character.origin?.name ?? UNKNOWN,
                 href: character.origin?.id
                   ? `/locations/${character.origin.id}`
                   : null,
               },
               {
                 label: "Location",
-                text: character.location?.name ?? unknown,
+                text: character.location?.name ?? UNKNOWN,
                 href: character.location?.id
                   ? `/locations/${character.location.id}`
                   : null,

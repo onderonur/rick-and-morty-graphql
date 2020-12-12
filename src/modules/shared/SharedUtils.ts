@@ -13,4 +13,4 @@ export function isOfType<T>(obj: any, keys: (keyof T)[]): obj is T {
 export const isNonEmptyString = (id: any): id is string =>
   typeof id === "string" && !!id;
 
-export const unknown = "Unknown";
+export const UNKNOWN = "Unknown";

@@ -4,7 +4,7 @@ import BaseCard from "@/modules/shared/BaseCard";
 import gql from "graphql-tag";
 import { Location } from "@/generated/graphql";
 import LabeledTextList from "../shared/LabeledTextList";
-import { unknown } from "../shared/SharedUtils";
+import { UNKNOWN } from "../shared/SharedUtils";
 
 interface LocationCardProps {
   location: Location;
@@ -17,8 +17,8 @@ function LocationCard({ location }: LocationCardProps) {
       <CardContent>
         <LabeledTextList
           data={[
-            { label: "Type", text: location.type ?? unknown },
-            { label: "Dimension", text: location.dimension ?? unknown },
+            { label: "Type", text: location.type ?? UNKNOWN },
+            { label: "Dimension", text: location.dimension ?? UNKNOWN },
           ]}
         />
       </CardContent>

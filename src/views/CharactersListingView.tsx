@@ -1,7 +1,5 @@
-import React from "react";
+import React, { useCallback, useMemo } from "react";
 import { Box, Typography } from "@material-ui/core";
-import { produce } from "immer";
-import InfiniteScrollWrapper from "@/modules/shared/InfiniteScrollWrapper";
 import gql from "graphql-tag";
 import { useGetCharactersQuery } from "@/generated/graphql";
 import { useRouter } from "next/router";
@@ -9,6 +7,7 @@ import BaseSeo from "@/modules/seo/BaseSeo";
 import CharacterGridList from "@/modules/characters/CharacterGridList";
 import PAGE_INFO_FRAGMENT from "@/modules/apollo/fragments";
 import CharacterSearch from "@/modules/characters/CharacterSearch";
+import useInfiniteScroll from "react-infinite-scroll-hook";
 
 const GET_CHARACTERS = gql`
   query GetCharacters($page: Int, $filter: FilterCharacter) {
@@ -28,12 +27,15 @@ const GET_CHARACTERS = gql`
 function CharactersListingView() {
   const router = useRouter();
   const { name } = router.query;
-  const variables =
-    typeof name === "string"
-      ? {
-          filter: { name },
-        }
-      : {};
+  const variables = useMemo(
+    () =>
+      typeof name === "string"
+        ? {
+            filter: { name },
+          }
+        : {},
+    [name],
+  );
   const {
     data,
     loading,
@@ -57,9 +59,26 @@ function CharactersListingView() {
   // So we basically check this value and if it's true, we don't use previous "data".
   const characters = !isSetVariables ? data?.characters : undefined;
   const next = characters?.info?.next;
-
   const hasNextPage = Boolean(next);
   const results = characters?.results || [];
+
+  const handleLoadMore = useCallback(
+    () =>
+      fetchMore({
+        // This breaks "@apollo/client 3".
+        // It doesn't toggle "loading" even if the "notifyOnNetworkStatusChange" is set to "true".
+        // query: GET_CHARACTERS,
+        variables: { ...variables, page: next },
+      }),
+    [fetchMore, next, variables],
+  );
+
+  const [sentryRef] = useInfiniteScroll({
+    hasNextPage,
+    loading,
+    onLoadMore: handleLoadMore,
+    rootMargin: "0px 0px 400px 0px",
+  });
 
   return (
     <>
@@ -78,46 +97,18 @@ function CharactersListingView() {
         <CharacterSearch />
       </Box>
       {loading || results.length ? (
-        <InfiniteScrollWrapper
-          hasNextPage={!!next}
-          loading={loading}
-          onLoadMore={() =>
-            fetchMore({
-              // This breaks "@apollo/client 3".
-              // It doesn't toggle "loading" even if the "notifyOnNetworkStatusChange" is set to "true".
-              // query: GET_CHARACTERS,
-              variables: { ...variables, page: next },
-              updateQuery: (prevResult, { fetchMoreResult }) => {
-                const newCharacters = fetchMoreResult?.characters;
-                const newData = produce(prevResult, (draft) => {
-                  let { characters } = draft;
-                  if (
-                    characters?.results &&
-                    newCharacters?.results &&
-                    newCharacters?.info
-                  ) {
-                    characters.results.push(...newCharacters.results);
-                    characters.info = newCharacters.info;
-                  }
-                });
-
-                return newData;
-              },
-            })
-          }
-        >
-          <CharacterGridList
-            characters={results}
-            // Because this is an infinite list, loading indicator will be shown when
-            // the user scrolls to the bottom of the page if there is a next page.
-            // If we mount/unmount loading indicator and user hits the bottom of the page fast
-            // (especially on mobile devices) loading mounts, height of the scroll increases and
-            // user can not see it before scrolling down a little more.
-            // Thus, we can mount it and not unmount it when there is a next page.
-            // I suppose this is the way 9GAG does.
-            loading={loading || hasNextPage}
-          />
-        </InfiniteScrollWrapper>
+        <CharacterGridList
+          items={results}
+          // Because this is an infinite list, loading indicator will be shown when
+          // the user scrolls to the bottom of the page if there is a next page.
+          // If we mount/unmount loading indicator and user hits the bottom of the page fast
+          // (especially on mobile devices) loading mounts, height of the scroll increases and
+          // user can not see it before scrolling down a little more.
+          // Thus, we can mount it and not unmount it when there is a next page.
+          // I suppose this is the way 9GAG does.
+          loading={loading || hasNextPage}
+          loadingRef={sentryRef}
+        />
       ) : (
         <Typography>Nothing found.</Typography>
       )}

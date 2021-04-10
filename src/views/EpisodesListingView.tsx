@@ -1,11 +1,10 @@
-import React from "react";
-import produce from "immer";
-import InfiniteScrollWrapper from "@/modules/shared/InfiniteScrollWrapper";
+import React, { useCallback } from "react";
 import EpisodeList from "@/modules/episodes/EpisodeList";
 import gql from "graphql-tag";
 import { useGetEpisodesQuery } from "@/generated/graphql";
 import BaseSeo from "@/modules/seo/BaseSeo";
 import PAGE_INFO_FRAGMENT from "@/modules/apollo/fragments";
+import useInfiniteScroll from "react-infinite-scroll-hook";
 
 const GET_EPISODES = gql`
   query GetEpisodes($page: Int, $filter: FilterEpisode) {
@@ -38,6 +37,24 @@ function EpisodesListingView() {
   const next = episodes?.info?.next;
   const hasNextPage = !!next;
 
+  const handleLoadMore = useCallback(
+    () =>
+      fetchMore({
+        // This breaks "@apollo/client 3".
+        // It doesn't toggle "loading" even if the "notifyOnNetworkStatusChange" is set to "true".
+        // query: GET_EPISODES,
+        variables: { page: next },
+      }),
+    [fetchMore, next],
+  );
+
+  const [sentryRef] = useInfiniteScroll({
+    hasNextPage,
+    loading,
+    onLoadMore: handleLoadMore,
+    rootMargin: "0px 0px 400px 0px",
+  });
+
   return (
     <>
       <BaseSeo
@@ -51,36 +68,11 @@ function EpisodesListingView() {
           ],
         }}
       />
-      <InfiniteScrollWrapper
-        hasNextPage={hasNextPage}
-        loading={loading}
-        onLoadMore={() =>
-          fetchMore({
-            // This breaks "@apollo/client 3".
-            // It doesn't toggle "loading" even if the "notifyOnNetworkStatusChange" is set to "true".
-            // query: GET_EPISODES,
-            variables: { page: next },
-            updateQuery: (prevResult, { fetchMoreResult }) => {
-              const newEpisodes = fetchMoreResult?.episodes;
-              const newData = produce(prevResult, (draft) => {
-                let { episodes } = draft;
-                if (
-                  episodes?.results &&
-                  episodes?.info &&
-                  newEpisodes?.results
-                ) {
-                  episodes.results.push(...newEpisodes.results);
-                  episodes.info = newEpisodes.info;
-                }
-              });
-
-              return newData;
-            },
-          })
-        }
-      >
-        <EpisodeList episodes={results} loading={loading || hasNextPage} />
-      </InfiniteScrollWrapper>
+      <EpisodeList
+        items={results}
+        loading={loading || hasNextPage}
+        loadingRef={sentryRef}
+      />
     </>
   );
 }

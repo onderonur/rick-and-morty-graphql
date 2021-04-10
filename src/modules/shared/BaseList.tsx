@@ -6,11 +6,12 @@ import { Maybe } from "@/generated/graphql";
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const defaultItems: any[] = [];
 
-type BaseListProps<Item> = ListProps & {
+export type BaseListProps<Item> = ListProps & {
   items: Maybe<Array<Item>>;
   renderItem: (item: Item, index: number) => void;
   loading?: boolean;
   maxVisibleItemCount?: number;
+  loadingRef?: React.Ref<HTMLDivElement>;
 };
 
 function BaseList<Item>({
@@ -18,6 +19,7 @@ function BaseList<Item>({
   renderItem,
   loading,
   maxVisibleItemCount,
+  loadingRef,
   ...rest
 }: BaseListProps<Item>) {
   const [expand, setExpand] = useState(!maxVisibleItemCount);
@@ -44,7 +46,7 @@ function BaseList<Item>({
         ) : null}
         {loading ? (
           <ListItem>
-            <LoadingIndicator loading />
+            <LoadingIndicator ref={loadingRef} loading />
           </ListItem>
         ) : null}
       </List>

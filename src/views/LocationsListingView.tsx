@@ -1,11 +1,10 @@
-import React from "react";
-import produce from "immer";
-import InfiniteScrollWrapper from "@/modules/shared/InfiniteScrollWrapper";
+import React, { useCallback } from "react";
 import PAGE_INFO_FRAGMENT from "@/modules/apollo/fragments";
 import gql from "graphql-tag";
 import { useGetLocationsQuery } from "@/generated/graphql";
 import BaseSeo from "@/modules/seo/BaseSeo";
 import LocationList from "@/modules/locations/LocationList";
+import useInfiniteScroll from "react-infinite-scroll-hook";
 
 const GET_LOCATIONS = gql`
   query GetLocations($page: Int) {
@@ -37,6 +36,24 @@ function LocationsListingView() {
   const next = locations?.info?.next;
   const hasNextPage = !!next;
 
+  const handleLoadMore = useCallback(
+    () =>
+      fetchMore({
+        // This breaks "@apollo/client 3".
+        // It doesn't toggle "loading" even if the "notifyOnNetworkStatusChange" is set to "true".
+        // query: GET_LOCATIONS,
+        variables: { page: next },
+      }),
+    [fetchMore, next],
+  );
+
+  const [sentryRef] = useInfiniteScroll({
+    hasNextPage,
+    loading,
+    onLoadMore: handleLoadMore,
+    rootMargin: "0px 0px 400px 0px",
+  });
+
   return (
     <>
       <BaseSeo
@@ -50,36 +67,11 @@ function LocationsListingView() {
           ],
         }}
       />
-      <InfiniteScrollWrapper
-        hasNextPage={hasNextPage}
-        loading={loading}
-        onLoadMore={() =>
-          fetchMore({
-            // This breaks "@apollo/client 3".
-            // It doesn't toggle "loading" even if the "notifyOnNetworkStatusChange" is set to "true".
-            // query: GET_LOCATIONS,
-            variables: { page: next },
-            updateQuery: (prevResult, { fetchMoreResult }) => {
-              const newEpisodes = fetchMoreResult?.locations;
-              const newData = produce(prevResult, (draft) => {
-                let { locations } = draft;
-                if (
-                  locations?.results &&
-                  locations.info &&
-                  newEpisodes?.results
-                ) {
-                  locations.results.push(...newEpisodes.results);
-                  locations.info = newEpisodes.info;
-                }
-              });
-
-              return newData;
-            },
-          })
-        }
-      >
-        <LocationList locations={results} loading={loading || hasNextPage} />
-      </InfiniteScrollWrapper>
+      <LocationList
+        items={results}
+        loading={loading || hasNextPage}
+        loadingRef={sentryRef}
+      />
     </>
   );
 }

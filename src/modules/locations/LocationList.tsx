@@ -1,15 +1,15 @@
 import React from "react";
 import LocationListItem from "./LocationListItem";
-import BaseList from "@/modules/shared/BaseList";
+import BaseList, { BaseListProps } from "@/modules/shared/BaseList";
 import gql from "graphql-tag";
 import { LocationList_LocationFragment, Maybe } from "@/generated/graphql";
 
 type ListItem = Maybe<LocationList_LocationFragment>;
 
-interface LocationListProps {
-  locations: Maybe<Array<ListItem>>;
-  loading: boolean;
-}
+type LocationListProps = Pick<
+  BaseListProps<ListItem>,
+  "items" | "loading" | "loadingRef"
+>;
 
 function renderItem(location: ListItem) {
   if (location?.id) {
@@ -17,10 +17,8 @@ function renderItem(location: ListItem) {
   }
 }
 
-function LocationList({ locations, loading }: LocationListProps) {
-  return (
-    <BaseList items={locations} loading={loading} renderItem={renderItem} />
-  );
+function LocationList(props: LocationListProps) {
+  return <BaseList renderItem={renderItem} {...props} />;
 }
 
 LocationList.fragments = {

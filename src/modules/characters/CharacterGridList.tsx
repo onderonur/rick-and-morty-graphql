@@ -1,7 +1,7 @@
 import React from "react";
 import CharacterGridListItem from "./CharacterGridListItem";
 import gql from "graphql-tag";
-import BaseGridList from "@/modules/shared/BaseGridList";
+import BaseGridList, { BaseGridListProps } from "@/modules/shared/BaseGridList";
 import {
   CharacterGridList_CharacterFragment,
   Maybe,
@@ -17,19 +17,13 @@ function renderItem(character: ListItem) {
   return null;
 }
 
-interface CharacterGridListProps {
-  characters: Maybe<Array<ListItem>>;
-  loading?: boolean;
-}
+type CharacterGridListProps = Pick<
+  BaseGridListProps<ListItem>,
+  "loading" | "loadingRef" | "items"
+>;
 
-function CharacterGridList({ characters, loading }: CharacterGridListProps) {
-  return (
-    <BaseGridList
-      items={characters}
-      loading={loading}
-      renderItem={renderItem}
-    />
-  );
+function CharacterGridList(props: CharacterGridListProps) {
+  return <BaseGridList renderItem={renderItem} {...props} />;
 }
 
 CharacterGridList.fragments = {

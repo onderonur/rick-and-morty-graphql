@@ -18,7 +18,7 @@ function EpisodeProfile({ episode, loading }: EpisodeProfileProps) {
       infoCard={episode && <EpisodeCard episode={episode} />}
       fullWidthInfoCard
       mainSectionTitle="Characters"
-      mainSection={characters && <CharacterGridList characters={characters} />}
+      mainSection={characters && <CharacterGridList items={characters} />}
     />
   );
 }

@@ -1,16 +1,15 @@
 import React from "react";
-import BaseList from "@/modules/shared/BaseList";
+import BaseList, { BaseListProps } from "@/modules/shared/BaseList";
 import EpisodeListItem from "./EpisodeListItem";
 import gql from "graphql-tag";
 import { EpisodeList_EpisodeFragment, Maybe } from "@/generated/graphql";
 
 type ListItem = Maybe<EpisodeList_EpisodeFragment>;
 
-interface EpisodeListProps {
-  episodes: Maybe<Array<ListItem>>;
-  loading?: boolean;
-  maxVisibleItemCount?: number;
-}
+type EpisodeListProps = Pick<
+  BaseListProps<ListItem>,
+  "items" | "loading" | "loadingRef" | "maxVisibleItemCount"
+>;
 
 function renderItem(episode: ListItem) {
   if (episode?.id) {
@@ -20,21 +19,8 @@ function renderItem(episode: ListItem) {
   return null;
 }
 
-function EpisodeList({
-  episodes,
-  loading,
-  maxVisibleItemCount,
-}: EpisodeListProps) {
-  return (
-    <BaseList
-      items={episodes}
-      loading={loading}
-      maxVisibleItemCount={maxVisibleItemCount}
-      renderItem={renderItem}
-    >
-      );
-    </BaseList>
-  );
+function EpisodeList(props: EpisodeListProps) {
+  return <BaseList renderItem={renderItem} {...props} />;
 }
 
 EpisodeList.fragments = {

@@ -3,11 +3,12 @@ import { Grid, GridProps } from "@material-ui/core";
 import LoadingIndicator from "./LoadingIndicator";
 import { Maybe } from "@/generated/graphql";
 
-interface BaseGridListProps<Item> {
+export interface BaseGridListProps<Item> {
   items: Maybe<Array<Item>>;
   loading?: boolean;
   renderItem: (item: Item, index: number) => void;
   spacing?: GridProps["spacing"];
+  loadingRef?: React.Ref<HTMLDivElement>;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -18,12 +19,13 @@ function BaseGridList<Item>({
   loading,
   renderItem,
   spacing = 1,
+  loadingRef,
 }: BaseGridListProps<Item>) {
   return (
     <Grid container spacing={spacing}>
       {items?.map((item, index) => item && renderItem(item, index))}
       {loading && (
-        <Grid item xs={12}>
+        <Grid item xs={12} ref={loadingRef}>
           <LoadingIndicator loading />
         </Grid>
       )}

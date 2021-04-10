@@ -22,7 +22,7 @@ function CharacterProfile({ character, loading }: CharacterProfileProps) {
       mainSection={
         episode && (
           <EpisodeList
-            episodes={episode}
+            items={episode}
             maxVisibleItemCount={maxVisibleEpisodeCount}
           />
         )

@@ -9,7 +9,7 @@ module.exports = {
       "error",
       {
         env: "apollo",
-        schemaJson: require("./graphql.schema.json"),
+        schemaJson: require("./src/generated/graphql.schema.json"),
       },
     ],
   },

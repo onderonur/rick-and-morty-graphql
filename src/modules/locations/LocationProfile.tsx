@@ -18,7 +18,7 @@ function LocationProfile({ location, loading }: LocationProfileProps) {
       infoCard={location && <LocationCard location={location} />}
       fullWidthInfoCard
       mainSectionTitle="Residents"
-      mainSection={residents && <CharacterGridList characters={residents} />}
+      mainSection={residents && <CharacterGridList items={residents} />}
     />
   );
 }

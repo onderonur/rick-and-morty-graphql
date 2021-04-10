@@ -53,11 +53,6 @@
     "prettier": "^2.2.1",
     "typescript": "^4.2.4"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run typecheck && lint-staged"
-    }
-  },
   "lint-staged": {
     "(src|pages)/*.{js,jsx,ts,tsx}": [
       "npm run lint:fix"

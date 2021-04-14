@@ -35,6 +35,7 @@ function CharacterSearch() {
       initialValues={{
         searchValue: typeof name === "string" ? name : "",
       }}
+      enableReinitialize
       onSubmit={handleSearch}
     >
       <Form className={classes.form} autoComplete="off">

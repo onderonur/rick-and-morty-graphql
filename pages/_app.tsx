@@ -2,14 +2,14 @@ import React from "react";
 import App from "next/app";
 import { ThemeProvider } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import theme from "@/modules/theming/theme";
-import withApollo from "@/modules/apollo/withApollo";
+import theme from "@/theming/theme";
+import withApollo from "@/apollo/withApollo";
 import { getDataFromTree } from "@apollo/client/react/ssr";
 import Head from "next/head";
 import NProgress from "nprogress";
 import { Router } from "next/router";
-import AppLayout from "@/modules/layout/AppLayout";
-import AppSeo from "@/modules/seo/AppSeo";
+import AppLayout from "@/layout/AppLayout";
+import AppSeo from "@/seo/AppSeo";
 
 Router.events.on("routeChangeStart", () => {
   NProgress.start();

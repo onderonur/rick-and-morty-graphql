@@ -111,7 +111,7 @@ export type Character = {
    */
   image?: Maybe<Scalars['String']>;
   /** Episodes in which this character appeared. */
-  episode?: Maybe<Array<Maybe<Episode>>>;
+  episode: Array<Maybe<Episode>>;
   /** Time at which the character was created in the database. */
   created?: Maybe<Scalars['String']>;
 };
@@ -127,7 +127,7 @@ export type Location = {
   /** The dimension in which the location is located. */
   dimension?: Maybe<Scalars['String']>;
   /** List of characters who have been last seen in the location. */
-  residents?: Maybe<Array<Maybe<Character>>>;
+  residents: Array<Maybe<Character>>;
   /** Time at which the location was created in the database. */
   created?: Maybe<Scalars['String']>;
 };
@@ -143,7 +143,7 @@ export type Episode = {
   /** The code of the episode. */
   episode?: Maybe<Scalars['String']>;
   /** List of characters who have been seen in the episode. */
-  characters?: Maybe<Array<Maybe<Character>>>;
+  characters: Array<Maybe<Character>>;
   /** Time at which the episode was created in the database. */
   created?: Maybe<Scalars['String']>;
 };
@@ -211,10 +211,10 @@ export type PageInfoFragment = (
 export type CharacterCard_CharacterFragment = (
   { __typename?: 'Character' }
   & Pick<Character, 'id' | 'name' | 'image'>
-  & { episode?: Maybe<Array<Maybe<(
+  & { episode: Array<Maybe<(
     { __typename?: 'Episode' }
     & Pick<Episode, 'id' | 'air_date'>
-  )>>> }
+  )>> }
 );
 
 export type CharacterCard_CharacterWithSpecsFragment = (
@@ -242,10 +242,10 @@ export type CharacterGridListItem_CharacterFragment = (
 
 export type CharacterProfile_CharacterFragment = (
   { __typename?: 'Character' }
-  & { episode?: Maybe<Array<Maybe<(
+  & { episode: Array<Maybe<(
     { __typename?: 'Episode' }
     & EpisodeList_EpisodeFragment
-  )>>> }
+  )>> }
   & CharacterCard_CharacterWithSpecsFragment
 );
 
@@ -266,10 +266,10 @@ export type EpisodeListItem_EpisodeFragment = (
 
 export type EpisodeProfile_EpisodeFragment = (
   { __typename?: 'Episode' }
-  & { characters?: Maybe<Array<Maybe<(
+  & { characters: Array<Maybe<(
     { __typename?: 'Character' }
     & CharacterGridList_CharacterFragment
-  )>>> }
+  )>> }
   & EpisodeCard_EpisodeFragment
 );
 
@@ -298,10 +298,10 @@ export type LocationListItem_LocationFragment = (
 
 export type LocationProfile_LocationFragment = (
   { __typename?: 'Location' }
-  & { residents?: Maybe<Array<Maybe<(
+  & { residents: Array<Maybe<(
     { __typename?: 'Character' }
     & CharacterGridList_CharacterFragment
-  )>>> }
+  )>> }
   & LocationCard_LocationFragment
 );
 

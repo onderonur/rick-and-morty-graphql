@@ -1,9 +1,9 @@
 import React, { useCallback } from "react";
-import PAGE_INFO_FRAGMENT from "@/modules/apollo/fragments";
+import PAGE_INFO_FRAGMENT from "@/apollo/fragments";
 import gql from "graphql-tag";
 import { useGetLocationsQuery } from "@/generated/graphql";
-import BaseSeo from "@/modules/seo/BaseSeo";
-import LocationList from "@/modules/locations/LocationList";
+import BaseSeo from "@/seo/BaseSeo";
+import LocationList from "@/locations/LocationList";
 import useInfiniteScroll from "react-infinite-scroll-hook";
 
 const GET_LOCATIONS = gql`

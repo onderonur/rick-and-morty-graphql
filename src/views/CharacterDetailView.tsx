@@ -2,9 +2,9 @@ import React from "react";
 import gql from "graphql-tag";
 import { useGetCharacterQuery } from "@/generated/graphql";
 import { useRouter } from "next/router";
-import { isNonEmptyString } from "@/modules/shared/SharedUtils";
-import BaseSeo from "@/modules/seo/BaseSeo";
-import CharacterProfile from "@/modules/characters/CharacterProfile";
+import { isNonEmptyString } from "@/common/CommonUtils";
+import BaseSeo from "@/seo/BaseSeo";
+import CharacterProfile from "@/characters/CharacterProfile";
 
 const GET_CHARACTER = gql`
   query GetCharacter($id: ID!) {

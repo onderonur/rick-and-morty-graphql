@@ -502,12 +502,16 @@
             "description": "Episodes in which this character appeared.",
             "args": [],
             "type": {
-              "kind": "LIST",
+              "kind": "NON_NULL",
               "name": null,
               "ofType": {
-                "kind": "OBJECT",
-                "name": "Episode",
-                "ofType": null
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "Episode",
+                  "ofType": null
+                }
               }
             },
             "isDeprecated": false,
@@ -599,12 +603,16 @@
             "description": "List of characters who have been last seen in the location.",
             "args": [],
             "type": {
-              "kind": "LIST",
+              "kind": "NON_NULL",
               "name": null,
               "ofType": {
-                "kind": "OBJECT",
-                "name": "Character",
-                "ofType": null
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "Character",
+                  "ofType": null
+                }
               }
             },
             "isDeprecated": false,
@@ -686,12 +694,16 @@
             "description": "List of characters who have been seen in the episode.",
             "args": [],
             "type": {
-              "kind": "LIST",
+              "kind": "NON_NULL",
               "name": null,
               "ofType": {
-                "kind": "OBJECT",
-                "name": "Character",
-                "ofType": null
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "Character",
+                  "ofType": null
+                }
               }
             },
             "isDeprecated": false,

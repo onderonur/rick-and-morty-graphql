@@ -1,9 +1,9 @@
 import React, { useCallback } from "react";
-import EpisodeList from "@/modules/episodes/EpisodeList";
+import EpisodeList from "@/episodes/EpisodeList";
 import gql from "graphql-tag";
 import { useGetEpisodesQuery } from "@/generated/graphql";
-import BaseSeo from "@/modules/seo/BaseSeo";
-import PAGE_INFO_FRAGMENT from "@/modules/apollo/fragments";
+import BaseSeo from "@/seo/BaseSeo";
+import PAGE_INFO_FRAGMENT from "@/apollo/fragments";
 import useInfiniteScroll from "react-infinite-scroll-hook";
 
 const GET_EPISODES = gql`

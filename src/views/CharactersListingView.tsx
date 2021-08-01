@@ -3,10 +3,10 @@ import { Box, Typography } from "@material-ui/core";
 import gql from "graphql-tag";
 import { useGetCharactersQuery } from "@/generated/graphql";
 import { useRouter } from "next/router";
-import BaseSeo from "@/modules/seo/BaseSeo";
-import CharacterGridList from "@/modules/characters/CharacterGridList";
-import PAGE_INFO_FRAGMENT from "@/modules/apollo/fragments";
-import CharacterSearch from "@/modules/characters/CharacterSearch";
+import BaseSeo from "@/seo/BaseSeo";
+import CharacterGridList from "@/characters/CharacterGridList";
+import PAGE_INFO_FRAGMENT from "@/apollo/fragments";
+import CharacterSearch from "@/characters/CharacterSearch";
 import useInfiniteScroll from "react-infinite-scroll-hook";
 
 const GET_CHARACTERS = gql`

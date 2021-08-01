@@ -2,9 +2,9 @@ import React from "react";
 import gql from "graphql-tag";
 import { useGetEpisodeQuery } from "@/generated/graphql";
 import { useRouter } from "next/router";
-import { isNonEmptyString } from "@/modules/shared/SharedUtils";
-import BaseSeo from "@/modules/seo/BaseSeo";
-import EpisodeProfile from "@/modules/episodes/EpisodeProfile";
+import { isNonEmptyString } from "@/common/CommonUtils";
+import BaseSeo from "@/seo/BaseSeo";
+import EpisodeProfile from "@/episodes/EpisodeProfile";
 
 const GET_EPISODE = gql`
   query GetEpisode($id: ID!) {

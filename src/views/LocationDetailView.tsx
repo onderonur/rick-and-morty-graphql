@@ -2,9 +2,9 @@ import React from "react";
 import gql from "graphql-tag";
 import { useGetLocationQuery } from "@/generated/graphql";
 import { useRouter } from "next/router";
-import { isNonEmptyString } from "@/modules/shared/SharedUtils";
-import BaseSeo from "@/modules/seo/BaseSeo";
-import LocationProfile from "@/modules/locations/LocationProfile";
+import { isNonEmptyString } from "@/common/CommonUtils";
+import BaseSeo from "@/seo/BaseSeo";
+import LocationProfile from "@/locations/LocationProfile";
 
 const GET_LOCATION = gql`
   query GetLocation($id: ID!) {

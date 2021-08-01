@@ -1,4 +1,4 @@
-import proxy from "@/modules/api/proxy";
+import proxy from "@/api/proxy";
 
 // Note about CORS:
 // https://nextjs.org/docs/api-routes/introduction

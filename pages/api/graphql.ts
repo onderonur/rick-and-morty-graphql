@@ -1,4 +1,4 @@
-import proxy from "@/api/proxy";
+import proxy from '@/api/proxy';
 
 // Note about CORS:
 // https://nextjs.org/docs/api-routes/introduction
@@ -14,6 +14,6 @@ export const config = {
 export default proxy({
   target: process.env.NEXT_PUBLIC_API_URL,
   changeOrigin: true,
-  pathRewrite: { "^/api": "" },
-  logLevel: "silent",
+  pathRewrite: { '^/api': '' },
+  logLevel: 'silent',
 });

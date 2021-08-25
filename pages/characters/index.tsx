@@ -1,3 +1,1 @@
-import CharactersListingView from "@/views/CharactersListingView";
-
-export default CharactersListingView;
+export { default } from '@/views/CharactersListingView';

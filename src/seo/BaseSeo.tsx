@@ -1,9 +1,9 @@
-import React from "react";
-import { NextSeo, NextSeoProps } from "next-seo";
-import { Omit } from "../common/CommonTypes";
-import { Maybe } from "graphql/jsutils/Maybe";
+import React from 'react';
+import { NextSeo, NextSeoProps } from 'next-seo';
+import { Omit } from '../common/CommonTypes';
+import { Maybe } from 'graphql/jsutils/Maybe';
 
-type BaseSeoProps = Omit<NextSeoProps, "title"> & {
+type BaseSeoProps = Omit<NextSeoProps, 'title'> & {
   title: Maybe<string>;
 };
 

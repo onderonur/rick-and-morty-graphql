@@ -1,10 +1,11 @@
-import React from "react";
-import gql from "graphql-tag";
-import { useGetEpisodeQuery } from "@/generated/graphql";
-import { useRouter } from "next/router";
-import { isNonEmptyString } from "@/common/CommonUtils";
-import BaseSeo from "@/seo/BaseSeo";
-import EpisodeProfile from "@/episodes/EpisodeProfile";
+import React from 'react';
+import gql from 'graphql-tag';
+import { useGetEpisodeQuery } from '@/generated/graphql';
+import { isNonEmptyString } from '@/common/CommonUtils';
+import BaseSeo from '@/seo/BaseSeo';
+import EpisodeProfile from '@/episodes/EpisodeProfile';
+import { PathParams, routes } from '@/routing/routes';
+import { useRouteParams } from '@/routing/useRouteParams';
 
 const GET_EPISODE = gql`
   query GetEpisode($id: ID!) {
@@ -16,9 +17,11 @@ const GET_EPISODE = gql`
   ${EpisodeProfile.fragments.episode}
 `;
 
+type EpisodeDetailViewPathParams = PathParams<typeof routes['episode']>;
+
 function EpisodeDetailView() {
-  const router = useRouter();
-  const { id } = router.query;
+  const { routeParams } = useRouteParams<EpisodeDetailViewPathParams>();
+  const id = routeParams.get('id');
   const { data, loading, error } = useGetEpisodeQuery({
     query: GET_EPISODE,
     variables: isNonEmptyString(id) ? { id } : undefined,

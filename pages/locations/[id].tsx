@@ -1,3 +1,1 @@
-import LocationDetailView from "@/views/LocationDetailView";
-
-export default LocationDetailView;
+export { default } from '@/views/LocationDetailView';

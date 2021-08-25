@@ -1,5 +1,5 @@
-import { Maybe, PageInfoFragment } from "@/generated/graphql";
-import { makeVar, InMemoryCache, FieldPolicy } from "@apollo/client";
+import { Maybe, PageInfoFragment } from '@/generated/graphql';
+import { makeVar, InMemoryCache, FieldPolicy } from '@apollo/client';
 
 export const showDrawerVar = makeVar(false);
 
@@ -28,7 +28,7 @@ const cache = new InMemoryCache({
   typePolicies: {
     Query: {
       fields: {
-        characters: mergePagination(["filter"]),
+        characters: mergePagination(['filter']),
         locations: mergePagination(),
         episodes: mergePagination(),
         showDrawer: {

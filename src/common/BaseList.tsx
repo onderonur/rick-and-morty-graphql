@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { List, ListItem, ListItemText, ListProps } from "@material-ui/core";
-import LoadingIndicator from "./LoadingIndicator";
-import { Maybe } from "@/generated/graphql";
+import React, { useState } from 'react';
+import { List, ListItem, ListItemText, ListProps } from '@material-ui/core';
+import LoadingIndicator from './LoadingIndicator';
+import { Maybe } from '@/generated/graphql';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const defaultItems: any[] = [];
@@ -41,7 +41,7 @@ function BaseList<Item>({
         )}
         {maxVisibleItemCount && itemCount && itemCount > maxVisibleItemCount ? (
           <ListItem button onClick={toggleExpand}>
-            <ListItemText secondary={`SHOW ${expand ? "LESS" : "MORE"}`} />
+            <ListItemText secondary={`SHOW ${expand ? 'LESS' : 'MORE'}`} />
           </ListItem>
         ) : null}
         {loading ? (

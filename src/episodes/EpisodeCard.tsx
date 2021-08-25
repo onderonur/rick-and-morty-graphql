@@ -1,9 +1,9 @@
-import React from "react";
-import { CardHeader, CardContent } from "@material-ui/core";
-import BaseCard from "@/common/BaseCard";
-import LabeledText from "@/common/LabeledText";
-import gql from "graphql-tag";
-import { EpisodeCard_EpisodeFragment } from "@/generated/graphql";
+import React from 'react';
+import { CardHeader, CardContent } from '@material-ui/core';
+import BaseCard from '@/common/BaseCard';
+import LabeledText from '@/common/LabeledText';
+import gql from 'graphql-tag';
+import { EpisodeCard_EpisodeFragment } from '@/generated/graphql';
 
 interface EpisodeCardProps {
   episode: EpisodeCard_EpisodeFragment;

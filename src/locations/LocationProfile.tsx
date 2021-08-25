@@ -1,9 +1,9 @@
-import React from "react";
-import LocationCard from "./LocationCard";
-import Profile from "@/common/Profile";
-import CharacterGridList from "@/characters/CharacterGridList";
-import gql from "graphql-tag";
-import { LocationProfile_LocationFragment, Maybe } from "@/generated/graphql";
+import React from 'react';
+import LocationCard from './LocationCard';
+import Profile from '@/common/Profile';
+import CharacterGridList from '@/characters/CharacterGridList';
+import gql from 'graphql-tag';
+import { LocationProfile_LocationFragment, Maybe } from '@/generated/graphql';
 
 interface LocationProfileProps {
   location: Maybe<LocationProfile_LocationFragment>;

@@ -1,11 +1,11 @@
-import React from "react";
-import CharacterGridListItem from "./CharacterGridListItem";
-import gql from "graphql-tag";
-import BaseGridList, { BaseGridListProps } from "@/common/BaseGridList";
+import React from 'react';
+import CharacterGridListItem from './CharacterGridListItem';
+import gql from 'graphql-tag';
+import BaseGridList, { BaseGridListProps } from '@/common/BaseGridList';
 import {
   CharacterGridList_CharacterFragment,
   Maybe,
-} from "@/generated/graphql";
+} from '@/generated/graphql';
 
 type ListItem = Maybe<CharacterGridList_CharacterFragment>;
 
@@ -19,7 +19,7 @@ function renderItem(character: ListItem) {
 
 type CharacterGridListProps = Pick<
   BaseGridListProps<ListItem>,
-  "loading" | "loadingRef" | "items"
+  'loading' | 'loadingRef' | 'items'
 >;
 
 function CharacterGridList(props: CharacterGridListProps) {

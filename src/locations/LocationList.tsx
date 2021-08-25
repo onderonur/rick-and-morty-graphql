@@ -1,14 +1,14 @@
-import React from "react";
-import LocationListItem from "./LocationListItem";
-import BaseList, { BaseListProps } from "@/common/BaseList";
-import gql from "graphql-tag";
-import { LocationList_LocationFragment, Maybe } from "@/generated/graphql";
+import React from 'react';
+import LocationListItem from './LocationListItem';
+import BaseList, { BaseListProps } from '@/common/BaseList';
+import gql from 'graphql-tag';
+import { LocationList_LocationFragment, Maybe } from '@/generated/graphql';
 
 type ListItem = Maybe<LocationList_LocationFragment>;
 
 type LocationListProps = Pick<
   BaseListProps<ListItem>,
-  "items" | "loading" | "loadingRef"
+  'items' | 'loading' | 'loadingRef'
 >;
 
 function renderItem(location: ListItem) {

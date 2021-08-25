@@ -1,8 +1,8 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core";
-import { NextLinkProps } from "@/common/NextLink";
-import { useRouter } from "next/router";
-import ListItemLink from "@/common/ListItemLink";
+import React from 'react';
+import { makeStyles } from '@material-ui/core';
+import { NextLinkProps } from '@/routing/NextLink';
+import { useRouter } from 'next/router';
+import ListItemLink from '@/common/ListItemLink';
 
 const useStyles = makeStyles((theme) => ({
   emoji: {
@@ -11,8 +11,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 interface AppDrawerLinkItemProps {
-  href: NextLinkProps["href"];
-  ariaLabel: React.AriaAttributes["aria-label"];
+  href: NextLinkProps['href'];
+  ariaLabel: React.AriaAttributes['aria-label'];
   emoji: string;
   title: string;
 }

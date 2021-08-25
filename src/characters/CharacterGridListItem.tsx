@@ -1,9 +1,10 @@
-import React from "react";
-import { Grid } from "@material-ui/core";
-import gql from "graphql-tag";
-import { CharacterGridListItem_CharacterFragment } from "@/generated/graphql";
-import CharacterCard from "./CharacterCard";
-import NextLink from "@/common/NextLink";
+import React from 'react';
+import { Grid } from '@material-ui/core';
+import gql from 'graphql-tag';
+import { CharacterGridListItem_CharacterFragment } from '@/generated/graphql';
+import CharacterCard from './CharacterCard';
+import NextLink from '@/routing/NextLink';
+import { routes } from '@/routing/routes';
 
 interface CharacterGridListItemProps {
   character: CharacterGridListItem_CharacterFragment;
@@ -12,12 +13,14 @@ interface CharacterGridListItemProps {
 function CharacterGridListItem({ character }: CharacterGridListItemProps) {
   return (
     <Grid item xs={12} sm={6} md={4} lg={3}>
-      <NextLink href={`/characters/${character.id}`}>
-        <CharacterCard
-          character={character}
-          hasActionArea
-          imageAspectRatio="4:3"
-        />
+      <NextLink
+        href={
+          character.id
+            ? routes.character({ params: { id: character.id } })
+            : routes.home({})
+        }
+      >
+        <CharacterCard character={character} hasActionArea />
       </NextLink>
     </Grid>
   );

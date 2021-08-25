@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback } from 'react';
 import {
   AppBar,
   Toolbar,
@@ -6,23 +6,25 @@ import {
   Box,
   IconButton,
   makeStyles,
-} from "@material-ui/core";
-import MenuIcon from "@material-ui/icons/Menu";
-import GitHubIcon from "@material-ui/icons/GitHub";
-import NextLink from "@/common/NextLink";
-import { showDrawerVar } from "@/apollo/cache";
+} from '@material-ui/core';
+import MenuIcon from '@material-ui/icons/Menu';
+import GitHubIcon from '@material-ui/icons/GitHub';
+import NextLink from '@/routing/NextLink';
+import { showDrawerVar } from '@/apollo/cache';
+import BaseImage from '@/common/BaseImage';
+import { routes } from '@/routing/routes';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   logoLink: {
-    display: "flex",
-    alignItems: "center",
-    "& img": {
+    display: 'flex',
+    alignItems: 'center',
+    '& img': {
       width: 60,
     },
   },
 }));
 
-const AppHeader = React.forwardRef((props, ref) => {
+const AppHeader = React.forwardRef(function AppHeader(props, ref) {
   const classes = useStyles();
 
   const handleClick = useCallback(() => {
@@ -33,8 +35,14 @@ const AppHeader = React.forwardRef((props, ref) => {
     <>
       <AppBar ref={ref} position="fixed" color="default">
         <Toolbar>
-          <NextLink className={classes.logoLink} href="/">
-            <img src="/images/logo.png" alt="Rick and Morty" />
+          <NextLink className={classes.logoLink} href={routes.home({})}>
+            <BaseImage
+              src="/images/logo.png"
+              alt="Rick and Morty"
+              width={1}
+              height={1}
+              objectFit="contain"
+            />
             <Typography variant="h5" color="textPrimary">
               RICKQL
             </Typography>

@@ -1,3 +1,1 @@
-import LocationsListingView from "@/views/LocationsListingView";
-
-export default LocationsListingView;
+export { default } from '@/views/LocationsListingView';

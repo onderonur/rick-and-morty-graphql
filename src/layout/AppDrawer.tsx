@@ -1,12 +1,13 @@
-import React, { useEffect, useCallback } from "react";
-import { Drawer, List, makeStyles } from "@material-ui/core";
-import AppDrawerLinkItem from "./AppDrawerLinkItem";
-import { useRouter } from "next/router";
-import { gql } from "@apollo/client";
-import { useGetShowDrawerQuery } from "@/generated/graphql";
-import { showDrawerVar } from "@/apollo/cache";
+import React, { useEffect, useCallback } from 'react';
+import { Drawer, List, makeStyles } from '@material-ui/core';
+import AppDrawerLinkItem from './AppDrawerLinkItem';
+import { useRouter } from 'next/router';
+import { gql } from '@apollo/client';
+import { useGetShowDrawerQuery } from '@/generated/graphql';
+import { showDrawerVar } from '@/apollo/cache';
+import { routes } from '@/routing/routes';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   drawer: {
     width: 240,
   },
@@ -33,7 +34,7 @@ function AppDrawer() {
 
   // We close the drawer when a route change gets completed.
   useEffect(() => {
-    const eventType = "routeChangeComplete";
+    const eventType = 'routeChangeComplete';
 
     router.events.on(eventType, closeDrawer);
 
@@ -51,19 +52,19 @@ function AppDrawer() {
     >
       <List>
         <AppDrawerLinkItem
-          href="/characters"
+          href={routes.characters({})}
           emoji="👽"
           ariaLabel="character-emoji"
           title="Characters"
         />
         <AppDrawerLinkItem
-          href="/episodes"
+          href={routes.episodes({})}
           emoji="🎬"
           ariaLabel="episode-emoji"
           title="Episodes"
         />
         <AppDrawerLinkItem
-          href="/locations"
+          href={routes.locations({})}
           emoji="🌍"
           ariaLabel="location-emoji"
           title="Locations"

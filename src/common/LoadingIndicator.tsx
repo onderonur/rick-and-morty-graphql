@@ -1,5 +1,5 @@
-import React from "react";
-import { CircularProgress, Box, RootRef } from "@material-ui/core";
+import React from 'react';
+import { CircularProgress, Box, RootRef } from '@material-ui/core';
 
 type LoadingIndicatorProps = React.PropsWithChildren<{
   loading: boolean | undefined;

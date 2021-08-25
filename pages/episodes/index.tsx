@@ -1,3 +1,1 @@
-import EpisodesListingView from "@/views/EpisodesListingView";
-
-export default EpisodesListingView;
+export { default } from '@/views/EpisodesListingView';

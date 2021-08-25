@@ -1,10 +1,10 @@
-import React, { useCallback } from "react";
-import EpisodeList from "@/episodes/EpisodeList";
-import gql from "graphql-tag";
-import { useGetEpisodesQuery } from "@/generated/graphql";
-import BaseSeo from "@/seo/BaseSeo";
-import PAGE_INFO_FRAGMENT from "@/apollo/fragments";
-import useInfiniteScroll from "react-infinite-scroll-hook";
+import React, { useCallback } from 'react';
+import EpisodeList from '@/episodes/EpisodeList';
+import gql from 'graphql-tag';
+import { useGetEpisodesQuery } from '@/generated/graphql';
+import BaseSeo from '@/seo/BaseSeo';
+import PAGE_INFO_FRAGMENT from '@/apollo/fragments';
+import useInfiniteScroll from 'react-infinite-scroll-hook';
 
 const GET_EPISODES = gql`
   query GetEpisodes($page: Int, $filter: FilterEpisode) {
@@ -52,7 +52,7 @@ function EpisodesListingView() {
     hasNextPage,
     loading,
     onLoadMore: handleLoadMore,
-    rootMargin: "0px 0px 400px 0px",
+    rootMargin: '0px 0px 400px 0px',
   });
 
   return (

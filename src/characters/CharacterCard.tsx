@@ -1,23 +1,24 @@
-import React from "react";
-import { CardHeader, CardContent } from "@material-ui/core";
-import BaseCard from "@/common/BaseCard";
-import BaseImage from "@/common/BaseImage";
-import gql from "graphql-tag";
+import React from 'react';
+import { CardHeader, CardContent } from '@material-ui/core';
+import BaseCard from '@/common/BaseCard';
+import BaseImage from '@/common/BaseImage';
+import gql from 'graphql-tag';
 import {
   CharacterCard_CharacterFragment,
   CharacterCard_CharacterWithSpecsFragment,
-} from "@/generated/graphql";
-import { isOfType, UNKNOWN } from "@/common/CommonUtils";
-import LabeledTextList from "../common/LabeledTextList";
-import { ArrayElement } from "@/common/CommonTypes";
+} from '@/generated/graphql';
+import { isOfType, UNKNOWN } from '@/common/CommonUtils';
+import LabeledTextList from '../common/LabeledTextList';
+import { ArrayElement } from '@/common/CommonTypes';
+import { routes } from '@/routing/routes';
 
 function getEpisodeAirYear(
-  episode: ArrayElement<CharacterCard_CharacterFragment["episode"]>,
+  episode: ArrayElement<CharacterCard_CharacterFragment['episode']>,
 ) {
   if (episode?.air_date) {
     return new Date(episode.air_date).getFullYear();
   }
-  return "";
+  return '';
 }
 
 function hasSpecs(
@@ -26,11 +27,11 @@ function hasSpecs(
     | CharacterCard_CharacterWithSpecsFragment,
 ): character is CharacterCard_CharacterWithSpecsFragment {
   return isOfType<CharacterCard_CharacterWithSpecsFragment>(character, [
-    "status",
-    "species",
-    "origin",
-    "gender",
-    "location",
+    'status',
+    'species',
+    'origin',
+    'gender',
+    'location',
   ]);
 }
 
@@ -38,15 +39,10 @@ interface CharacterCardProps {
   character:
     | CharacterCard_CharacterFragment
     | CharacterCard_CharacterWithSpecsFragment;
-  imageAspectRatio?: string;
   hasActionArea?: boolean;
 }
 
-function CharacterCard({
-  character,
-  imageAspectRatio,
-  hasActionArea,
-}: CharacterCardProps) {
+function CharacterCard({ character, hasActionArea }: CharacterCardProps) {
   const { episode } = character;
 
   const firstEpisode = episode ? episode[0] : null;
@@ -58,7 +54,10 @@ function CharacterCard({
         <BaseImage
           src={character.image}
           alt={character.name}
-          aspectRatio={imageAspectRatio}
+          height={3}
+          width={4}
+          layout="responsive"
+          objectFit="cover"
         />
       )}
       <CardHeader
@@ -75,22 +74,26 @@ function CharacterCard({
         <CardContent>
           <LabeledTextList
             data={[
-              { label: "Status", text: character.status },
-              { label: "Species", text: character.species },
-              { label: "Gender", text: character.gender },
+              { label: 'Status', text: character.status },
+              { label: 'Species', text: character.species },
+              { label: 'Gender', text: character.gender },
               {
-                label: "Origin",
+                label: 'Origin',
                 text: character.origin?.name ?? UNKNOWN,
                 href: character.origin?.id
-                  ? `/locations/${character.origin.id}`
-                  : null,
+                  ? routes.location({
+                      params: { id: character.origin.id },
+                    })
+                  : undefined,
               },
               {
-                label: "Location",
+                label: 'Location',
                 text: character.location?.name ?? UNKNOWN,
                 href: character.location?.id
-                  ? `/locations/${character.location.id}`
-                  : null,
+                  ? routes.location({
+                      params: { id: character.location.id },
+                    })
+                  : undefined,
               },
             ]}
           />

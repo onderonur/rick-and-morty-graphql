@@ -1,10 +1,11 @@
-import React from "react";
-import gql from "graphql-tag";
-import { useGetCharacterQuery } from "@/generated/graphql";
-import { useRouter } from "next/router";
-import { isNonEmptyString } from "@/common/CommonUtils";
-import BaseSeo from "@/seo/BaseSeo";
-import CharacterProfile from "@/characters/CharacterProfile";
+import React from 'react';
+import gql from 'graphql-tag';
+import { useGetCharacterQuery } from '@/generated/graphql';
+import { isNonEmptyString } from '@/common/CommonUtils';
+import BaseSeo from '@/seo/BaseSeo';
+import CharacterProfile from '@/characters/CharacterProfile';
+import { PathParams, routes } from '@/routing/routes';
+import { useRouteParams } from '@/routing/useRouteParams';
 
 const GET_CHARACTER = gql`
   query GetCharacter($id: ID!) {
@@ -17,9 +18,11 @@ const GET_CHARACTER = gql`
   ${CharacterProfile.fragments.character}
 `;
 
+type CharacterDetailViewPathParams = PathParams<typeof routes['character']>;
+
 function CharacterDetailView() {
-  const router = useRouter();
-  const { id } = router.query;
+  const { routeParams } = useRouteParams<CharacterDetailViewPathParams>();
+  const id = routeParams.get('id');
   const { data, loading, error } = useGetCharacterQuery({
     query: GET_CHARACTER,
     variables: isNonEmptyString(id) ? { id } : undefined,

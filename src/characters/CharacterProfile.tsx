@@ -1,9 +1,9 @@
-import React from "react";
-import CharacterCard from "@/characters/CharacterCard";
-import Profile from "@/common/Profile";
-import EpisodeList from "@/episodes/EpisodeList";
-import gql from "graphql-tag";
-import { CharacterCard_CharacterFragment, Maybe } from "@/generated/graphql";
+import React from 'react';
+import CharacterCard from '@/characters/CharacterCard';
+import Profile from '@/common/Profile';
+import EpisodeList from '@/episodes/EpisodeList';
+import gql from 'graphql-tag';
+import { CharacterCard_CharacterFragment, Maybe } from '@/generated/graphql';
 
 const maxVisibleEpisodeCount = 5;
 

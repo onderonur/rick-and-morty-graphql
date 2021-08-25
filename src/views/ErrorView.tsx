@@ -1,6 +1,6 @@
-import React from "react";
-import { NextPage } from "next";
-import ErrorMessage from "@/common/ErrorMessage";
+import React from 'react';
+import { NextPage } from 'next';
+import ErrorMessage from '@/common/ErrorMessage';
 
 interface ErrorViewProps {
   statusCode?: number;
@@ -25,7 +25,7 @@ ErrorView.getInitialProps = async ({ res, err }) => {
   const message =
     err?.message ??
     res?.statusMessage ??
-    (statusCode === notFoundStatusCode ? "Not Found" : undefined);
+    (statusCode === notFoundStatusCode ? 'Not Found' : undefined);
   return { statusCode, message };
 };
 

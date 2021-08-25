@@ -1,14 +1,14 @@
-import React from "react";
-import BaseList, { BaseListProps } from "@/common/BaseList";
-import EpisodeListItem from "./EpisodeListItem";
-import gql from "graphql-tag";
-import { EpisodeList_EpisodeFragment, Maybe } from "@/generated/graphql";
+import React from 'react';
+import BaseList, { BaseListProps } from '@/common/BaseList';
+import EpisodeListItem from './EpisodeListItem';
+import gql from 'graphql-tag';
+import { EpisodeList_EpisodeFragment, Maybe } from '@/generated/graphql';
 
 type ListItem = Maybe<EpisodeList_EpisodeFragment>;
 
 type EpisodeListProps = Pick<
   BaseListProps<ListItem>,
-  "items" | "loading" | "loadingRef" | "maxVisibleItemCount"
+  'items' | 'loading' | 'loadingRef' | 'maxVisibleItemCount'
 >;
 
 function renderItem(episode: ListItem) {

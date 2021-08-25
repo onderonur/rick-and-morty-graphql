@@ -1,6 +1,6 @@
-import { Box } from "@material-ui/core";
-import React from "react";
-import LabeledText, { LabeledTextProps } from "./LabeledText";
+import { Box } from '@material-ui/core';
+import React from 'react';
+import LabeledText, { LabeledTextProps } from './LabeledText';
 
 const spacing = 1.25;
 

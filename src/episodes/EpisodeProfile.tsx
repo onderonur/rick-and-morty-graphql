@@ -1,9 +1,9 @@
-import React from "react";
-import Profile from "@/common/Profile";
-import CharacterGridList from "@/characters/CharacterGridList";
-import EpisodeCard from "./EpisodeCard";
-import gql from "graphql-tag";
-import { EpisodeProfile_EpisodeFragment, Maybe } from "@/generated/graphql";
+import React from 'react';
+import Profile from '@/common/Profile';
+import CharacterGridList from '@/characters/CharacterGridList';
+import EpisodeCard from './EpisodeCard';
+import gql from 'graphql-tag';
+import { EpisodeProfile_EpisodeFragment, Maybe } from '@/generated/graphql';
 
 interface EpisodeProfileProps {
   episode: Maybe<EpisodeProfile_EpisodeFragment>;

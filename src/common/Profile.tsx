@@ -1,7 +1,7 @@
-import React from "react";
-import { Typography, Container, Grid, CardContent } from "@material-ui/core";
-import BaseCard from "./BaseCard";
-import LoadingIndicator from "./LoadingIndicator";
+import React from 'react';
+import { Typography, Container, Grid, CardContent } from '@material-ui/core';
+import BaseCard from './BaseCard';
+import LoadingIndicator from './LoadingIndicator';
 
 interface ProfileProps {
   infoCard: React.ReactNode;

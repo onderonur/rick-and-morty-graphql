@@ -1,7 +1,7 @@
-import React from "react";
-import Document, { Head, Main, NextScript, Html } from "next/document";
-import { ServerStyleSheets } from "@material-ui/core/styles";
-import theme from "@/theming/theme";
+import React from 'react';
+import Document, { Head, Main, NextScript, Html } from 'next/document';
+import { ServerStyleSheets } from '@material-ui/core/styles';
+import theme from '@/theming/theme';
 
 // Example for material-ui with next-js:
 // https://github.com/mui-org/material-ui/tree/master/examples/nextjs

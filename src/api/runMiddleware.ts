@@ -1,4 +1,4 @@
-import { NextApiRequest, NextApiResponse } from "next";
+import { NextApiRequest, NextApiResponse } from 'next';
 
 // https://nextjs.org/docs/api-routes/api-middlewares
 // Helper method to wait for a middleware to execute before continuing

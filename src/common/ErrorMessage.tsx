@@ -1,6 +1,7 @@
-import React from "react";
-import { Button, Box, Typography, Toolbar } from "@material-ui/core";
-import NextLink from "@/common/NextLink";
+import React from 'react';
+import { Button, Box, Typography, Toolbar } from '@material-ui/core';
+import NextLink from '@/routing/NextLink';
+import { routes } from '@/routing/routes';
 
 interface ErrorMessageProps {
   statusCode?: number;
@@ -26,11 +27,11 @@ function ErrorMessage({ statusCode, message }: ErrorMessageProps) {
       <Toolbar />
       {statusCode && <Typography variant="h1">{statusCode}</Typography>}
       <Typography variant="h4" align="center">
-        {message || "Something went wrong"}
+        {message || 'Something went wrong'}
       </Typography>
       <Box marginTop={2}>
         <Button
-          href="/"
+          href={routes.home({})}
           color="primary"
           variant="contained"
           component={NextLink}

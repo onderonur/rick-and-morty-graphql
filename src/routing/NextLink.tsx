@@ -1,23 +1,24 @@
-import React from "react";
-import Link, { LinkProps } from "next/link";
-import { makeStyles } from "@material-ui/core";
-import clsx from "clsx";
-import { Omit } from "@/common/CommonTypes";
+import React from 'react';
+import Link, { LinkProps } from 'next/link';
+import { makeStyles, Link as MuiLink } from '@material-ui/core';
+import clsx from 'clsx';
+import { Omit } from '@/common/CommonTypes';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   anchor: {
-    textDecoration: "none",
+    textDecoration: 'none',
   },
 }));
 
 export type NextLinkProps = React.PropsWithChildren<
-  Omit<LinkProps, "passHref">
+  Omit<LinkProps, 'passHref'>
 > & {
   className?: string;
+  isMuiLink?: boolean;
 };
 
 const NextLink = React.forwardRef<HTMLAnchorElement, NextLinkProps>(
-  (
+  function NextLink(
     {
       children,
       href,
@@ -25,13 +26,16 @@ const NextLink = React.forwardRef<HTMLAnchorElement, NextLinkProps>(
       replace,
       scroll,
       shallow,
+      isMuiLink,
       // To pass the any other props like "className" etc to anchor.
       className,
       ...rest
     },
     ref,
-  ) => {
+  ) {
     const classes = useStyles();
+
+    const Anchor = isMuiLink ? MuiLink : `a`;
 
     return (
       <Link
@@ -42,7 +46,7 @@ const NextLink = React.forwardRef<HTMLAnchorElement, NextLinkProps>(
         // https://nextjs.org/docs/api-reference/next/link#if-the-child-is-a-custom-component-that-wraps-an-a-tag
         passHref={true}
       >
-        <a
+        <Anchor
           ref={ref}
           className={clsx(
             classes.anchor,
@@ -53,7 +57,7 @@ const NextLink = React.forwardRef<HTMLAnchorElement, NextLinkProps>(
           {...rest}
         >
           {children}
-        </a>
+        </Anchor>
       </Link>
     );
   },

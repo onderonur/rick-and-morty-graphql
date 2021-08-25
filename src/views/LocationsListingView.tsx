@@ -1,10 +1,10 @@
-import React, { useCallback } from "react";
-import PAGE_INFO_FRAGMENT from "@/apollo/fragments";
-import gql from "graphql-tag";
-import { useGetLocationsQuery } from "@/generated/graphql";
-import BaseSeo from "@/seo/BaseSeo";
-import LocationList from "@/locations/LocationList";
-import useInfiniteScroll from "react-infinite-scroll-hook";
+import React, { useCallback } from 'react';
+import PAGE_INFO_FRAGMENT from '@/apollo/fragments';
+import gql from 'graphql-tag';
+import { useGetLocationsQuery } from '@/generated/graphql';
+import BaseSeo from '@/seo/BaseSeo';
+import LocationList from '@/locations/LocationList';
+import useInfiniteScroll from 'react-infinite-scroll-hook';
 
 const GET_LOCATIONS = gql`
   query GetLocations($page: Int) {
@@ -51,7 +51,7 @@ function LocationsListingView() {
     hasNextPage,
     loading,
     onLoadMore: handleLoadMore,
-    rootMargin: "0px 0px 400px 0px",
+    rootMargin: '0px 0px 400px 0px',
   });
 
   return (

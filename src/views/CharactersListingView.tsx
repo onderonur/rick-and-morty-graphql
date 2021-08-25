@@ -1,13 +1,14 @@
-import React, { useCallback, useMemo } from "react";
-import { Box, Typography } from "@material-ui/core";
-import gql from "graphql-tag";
-import { useGetCharactersQuery } from "@/generated/graphql";
-import { useRouter } from "next/router";
-import BaseSeo from "@/seo/BaseSeo";
-import CharacterGridList from "@/characters/CharacterGridList";
-import PAGE_INFO_FRAGMENT from "@/apollo/fragments";
-import CharacterSearch from "@/characters/CharacterSearch";
-import useInfiniteScroll from "react-infinite-scroll-hook";
+import React, { useCallback, useMemo } from 'react';
+import { Box, Typography } from '@material-ui/core';
+import gql from 'graphql-tag';
+import { useGetCharactersQuery } from '@/generated/graphql';
+import BaseSeo from '@/seo/BaseSeo';
+import CharacterGridList from '@/characters/CharacterGridList';
+import PAGE_INFO_FRAGMENT from '@/apollo/fragments';
+import CharacterSearch from '@/characters/CharacterSearch';
+import useInfiniteScroll from 'react-infinite-scroll-hook';
+import { QueryParams, routes } from '@/routing/routes';
+import { useRouteParams } from '@/routing/useRouteParams';
 
 const GET_CHARACTERS = gql`
   query GetCharacters($page: Int, $filter: FilterCharacter) {
@@ -24,29 +25,31 @@ const GET_CHARACTERS = gql`
   ${PAGE_INFO_FRAGMENT}
 `;
 
+type CharactersListingViewQueryParams = QueryParams<
+  typeof routes['characters']
+>;
+
 function CharactersListingView() {
-  const router = useRouter();
-  const { name } = router.query;
+  const { routeParams } = useRouteParams<
+    {},
+    CharactersListingViewQueryParams
+  >();
+  const name = routeParams.get('name');
   const variables = useMemo(
     () =>
-      typeof name === "string"
+      name
         ? {
             filter: { name },
           }
         : {},
     [name],
   );
-  const {
-    data,
-    loading,
-    error,
-    fetchMore,
-    networkStatus,
-  } = useGetCharactersQuery({
-    query: GET_CHARACTERS,
-    variables,
-    notifyOnNetworkStatusChange: true,
-  });
+  const { data, loading, error, fetchMore, networkStatus } =
+    useGetCharactersQuery({
+      query: GET_CHARACTERS,
+      variables,
+      notifyOnNetworkStatusChange: true,
+    });
 
   if (error) {
     throw error;
@@ -77,7 +80,7 @@ function CharactersListingView() {
     hasNextPage,
     loading,
     onLoadMore: handleLoadMore,
-    rootMargin: "0px 0px 400px 0px",
+    rootMargin: '0px 0px 400px 0px',
   });
 
   return (

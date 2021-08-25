@@ -1,6 +1,6 @@
-import React from "react";
-import { TextField, TextFieldProps } from "@material-ui/core";
-import { useField, FieldHookConfig } from "formik";
+import React from 'react';
+import { TextField, TextFieldProps } from '@material-ui/core';
+import { useField, FieldHookConfig } from 'formik';
 
 type BaseTextFieldProps = TextFieldProps & FieldHookConfig<string>;
 

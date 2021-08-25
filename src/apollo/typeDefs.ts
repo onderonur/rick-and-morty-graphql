@@ -1,4 +1,4 @@
-import gql from "graphql-tag";
+import gql from 'graphql-tag';
 
 /* eslint-disable graphql/template-strings */
 const typeDefs = gql`

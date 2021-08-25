@@ -1,7 +1,7 @@
-import React from "react";
-import { DefaultSeo, DefaultSeoProps } from "next-seo";
-import { useRouter } from "next/router";
-import { APP_TITLE } from "@/common/CommonUtils";
+import React from 'react';
+import { DefaultSeo, DefaultSeoProps } from 'next-seo';
+import { useRouter } from 'next/router';
+import { APP_TITLE } from '@/common/CommonUtils';
 
 // https://nextjs.org/docs/api-reference/next.config.js/environment-variables
 // Trying to destructure process.env variables won't work due to the nature of webpack DefinePlugin.
@@ -15,10 +15,10 @@ const getDefaultSeoConfig = (pathname: string): DefaultSeoProps => {
     description,
     canonical: url,
     openGraph: {
-      title: "Rick and Morty GraphQL Application",
+      title: 'Rick and Morty GraphQL Application',
       description,
-      type: "website",
-      locale: "en_IE",
+      type: 'website',
+      locale: 'en_IE',
       url,
       site_name: APP_TITLE,
       images: [
@@ -32,29 +32,29 @@ const getDefaultSeoConfig = (pathname: string): DefaultSeoProps => {
           width: 600,
           height: 334,
           url: `${NEXT_PUBLIC_BASE_URL}/images/locations.jpg`,
-          alt: "Rick and Morty Locations",
+          alt: 'Rick and Morty Locations',
         },
         {
           width: 600,
           height: 337,
           url: `${NEXT_PUBLIC_BASE_URL}/images/episodes.jpg`,
-          alt: "Rick and Morty Episodes",
+          alt: 'Rick and Morty Episodes',
         },
         {
           width: 600,
           height: 341,
           url: `${NEXT_PUBLIC_BASE_URL}/images/characters.jpg`,
-          alt: "Rick and Morty Characters",
+          alt: 'Rick and Morty Characters',
         },
       ],
     },
     additionalMetaTags: [
       {
-        property: "dc:creator",
-        content: "Onur ÖNDER",
+        property: 'dc:creator',
+        content: 'Onur ÖNDER',
       },
       {
-        name: "application-name",
+        name: 'application-name',
         content: APP_TITLE,
       },
     ],

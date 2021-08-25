@@ -1,13 +1,13 @@
-import React from "react";
-import { Grid, GridProps } from "@material-ui/core";
-import LoadingIndicator from "./LoadingIndicator";
-import { Maybe } from "@/generated/graphql";
+import React from 'react';
+import { Grid, GridProps } from '@material-ui/core';
+import LoadingIndicator from './LoadingIndicator';
+import { Maybe } from '@/generated/graphql';
 
 export interface BaseGridListProps<Item> {
   items: Maybe<Array<Item>>;
   loading?: boolean;
   renderItem: (item: Item, index: number) => void;
-  spacing?: GridProps["spacing"];
+  spacing?: GridProps['spacing'];
   loadingRef?: React.Ref<HTMLDivElement>;
 }
 

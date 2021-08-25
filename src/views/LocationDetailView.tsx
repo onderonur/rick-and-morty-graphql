@@ -1,10 +1,11 @@
-import React from "react";
-import gql from "graphql-tag";
-import { useGetLocationQuery } from "@/generated/graphql";
-import { useRouter } from "next/router";
-import { isNonEmptyString } from "@/common/CommonUtils";
-import BaseSeo from "@/seo/BaseSeo";
-import LocationProfile from "@/locations/LocationProfile";
+import React from 'react';
+import gql from 'graphql-tag';
+import { useGetLocationQuery } from '@/generated/graphql';
+import { isNonEmptyString } from '@/common/CommonUtils';
+import BaseSeo from '@/seo/BaseSeo';
+import LocationProfile from '@/locations/LocationProfile';
+import { PathParams, routes } from '@/routing/routes';
+import { useRouteParams } from '@/routing/useRouteParams';
 
 const GET_LOCATION = gql`
   query GetLocation($id: ID!) {
@@ -16,9 +17,11 @@ const GET_LOCATION = gql`
   ${LocationProfile.fragments.location}
 `;
 
-function LocationsDetailView() {
-  const router = useRouter();
-  const { id } = router.query;
+type LocationDetailViewPathParams = PathParams<typeof routes['location']>;
+
+function LocationDetailView() {
+  const { routeParams } = useRouteParams<LocationDetailViewPathParams>();
+  const id = routeParams.get('id');
   const { data, loading, error } = useGetLocationQuery({
     query: GET_LOCATION,
     variables: isNonEmptyString(id) ? { id } : undefined,
@@ -39,4 +42,4 @@ function LocationsDetailView() {
   );
 }
 
-export default LocationsDetailView;
+export default LocationDetailView;

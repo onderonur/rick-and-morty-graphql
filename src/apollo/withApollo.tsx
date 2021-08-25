@@ -11,7 +11,7 @@ export default withApollo(
     const client = new ApolloClient({
       uri: IS_SERVER
         ? // We directly call the rick and morty api on the server side.
-          `${process.env.NEXT_PUBLIC_API_URL}/graphql`
+          `${process.env.API_URL}/graphql`
         : `${process.env.NEXT_PUBLIC_BASE_URL}/api/graphql`,
       typeDefs,
       cache,

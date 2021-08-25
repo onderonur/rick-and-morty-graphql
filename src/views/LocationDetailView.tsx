@@ -1,7 +1,6 @@
 import React from 'react';
 import gql from 'graphql-tag';
 import { useGetLocationQuery } from '@/generated/graphql';
-import { isNonEmptyString } from '@/common/CommonUtils';
 import BaseSeo from '@/seo/BaseSeo';
 import LocationProfile from '@/locations/LocationProfile';
 import { PathParams, routes } from '@/routing/routes';
@@ -24,8 +23,8 @@ function LocationDetailView() {
   const id = routeParams.get('id');
   const { data, loading, error } = useGetLocationQuery({
     query: GET_LOCATION,
-    variables: isNonEmptyString(id) ? { id } : undefined,
-    skip: !isNonEmptyString(id),
+    variables: id ? { id } : undefined,
+    skip: !id,
   });
 
   if (error) {

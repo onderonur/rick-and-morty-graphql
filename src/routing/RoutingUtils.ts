@@ -1,5 +1,5 @@
 import { KeyOf } from '@/common/CommonTypes';
-import { isNil, isNonEmptyString } from '@/common/CommonUtils';
+import { isNil } from '@/common/CommonUtils';
 import { ParsedUrlQuery } from 'querystring';
 
 export const parseRouteParams = <RouteParams>(query: ParsedUrlQuery) => {
@@ -31,7 +31,7 @@ export const pruneQueryParams = (query: any): ParsedUrlQuery => {
   }
   Object.keys(query).forEach((key) => {
     const value = query[key];
-    if (isNil(value) || !isNonEmptyString(value)) {
+    if (isNil(value) || (typeof value === 'string' && !value)) {
       return;
     }
     filteredQuery[key] = value;

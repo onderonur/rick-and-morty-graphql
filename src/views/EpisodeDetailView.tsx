@@ -1,7 +1,6 @@
 import React from 'react';
 import gql from 'graphql-tag';
 import { useGetEpisodeQuery } from '@/generated/graphql';
-import { isNonEmptyString } from '@/common/CommonUtils';
 import BaseSeo from '@/seo/BaseSeo';
 import EpisodeProfile from '@/episodes/EpisodeProfile';
 import { PathParams, routes } from '@/routing/routes';
@@ -24,8 +23,8 @@ function EpisodeDetailView() {
   const id = routeParams.get('id');
   const { data, loading, error } = useGetEpisodeQuery({
     query: GET_EPISODE,
-    variables: isNonEmptyString(id) ? { id } : undefined,
-    skip: !isNonEmptyString(id),
+    variables: id ? { id } : undefined,
+    skip: !id,
   });
 
   if (error) {

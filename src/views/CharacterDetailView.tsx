@@ -1,7 +1,6 @@
 import React from 'react';
 import gql from 'graphql-tag';
 import { useGetCharacterQuery } from '@/generated/graphql';
-import { isNonEmptyString } from '@/common/CommonUtils';
 import BaseSeo from '@/seo/BaseSeo';
 import CharacterProfile from '@/characters/CharacterProfile';
 import { PathParams, routes } from '@/routing/routes';
@@ -25,8 +24,8 @@ function CharacterDetailView() {
   const id = routeParams.get('id');
   const { data, loading, error } = useGetCharacterQuery({
     query: GET_CHARACTER,
-    variables: isNonEmptyString(id) ? { id } : undefined,
-    skip: !isNonEmptyString(id),
+    variables: id ? { id } : undefined,
+    skip: !id,
   });
 
   if (error) {

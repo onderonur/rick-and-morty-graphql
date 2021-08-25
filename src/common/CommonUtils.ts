@@ -13,10 +13,6 @@ export function isOfType<T>(obj: any, keys: (keyof T)[]): obj is T {
   return true;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const isNonEmptyString = (value: any): value is string =>
-  typeof value === 'string' && !!value;
-
 export const UNKNOWN = 'Unknown';
 
 export const isNil = (val: unknown): val is Nil => {

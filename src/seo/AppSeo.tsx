@@ -26,7 +26,7 @@ const getDefaultSeoConfig = (pathname: string): DefaultSeoProps => {
           width: 600,
           height: 600,
           url: `${NEXT_PUBLIC_BASE_URL}/images/logo.png`,
-          alt: `${APP_TITLE} Log`,
+          alt: `${APP_TITLE} Logo`,
         },
         {
           width: 600,

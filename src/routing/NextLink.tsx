@@ -1,6 +1,10 @@
 import React from 'react';
 import Link, { LinkProps } from 'next/link';
-import { makeStyles, Link as MuiLink } from '@material-ui/core';
+import {
+  makeStyles,
+  Link as MuiLink,
+  LinkProps as MuiLinkProps,
+} from '@material-ui/core';
 import clsx from 'clsx';
 import { Omit } from '@/common/CommonTypes';
 
@@ -12,10 +16,8 @@ const useStyles = makeStyles(() => ({
 
 export type NextLinkProps = React.PropsWithChildren<
   Omit<LinkProps, 'passHref'>
-> & {
-  className?: string;
-  isMuiLink?: boolean;
-};
+> &
+  Pick<MuiLinkProps, 'className' | 'underline' | 'color'>;
 
 const NextLink = React.forwardRef<HTMLAnchorElement, NextLinkProps>(
   function NextLink(
@@ -26,7 +28,8 @@ const NextLink = React.forwardRef<HTMLAnchorElement, NextLinkProps>(
       replace,
       scroll,
       shallow,
-      isMuiLink,
+      underline = 'none',
+      color = 'inherit',
       // To pass the any other props like "className" etc to anchor.
       className,
       ...rest
@@ -34,8 +37,6 @@ const NextLink = React.forwardRef<HTMLAnchorElement, NextLinkProps>(
     ref,
   ) {
     const classes = useStyles();
-
-    const Anchor = isMuiLink ? MuiLink : `a`;
 
     return (
       <Link
@@ -46,7 +47,7 @@ const NextLink = React.forwardRef<HTMLAnchorElement, NextLinkProps>(
         // https://nextjs.org/docs/api-reference/next/link#if-the-child-is-a-custom-component-that-wraps-an-a-tag
         passHref={true}
       >
-        <Anchor
+        <MuiLink
           ref={ref}
           className={clsx(
             classes.anchor,
@@ -54,10 +55,12 @@ const NextLink = React.forwardRef<HTMLAnchorElement, NextLinkProps>(
             // So, we need "className" prop here.
             className,
           )}
+          underline={underline}
+          color={color}
           {...rest}
         >
           {children}
-        </Anchor>
+        </MuiLink>
       </Link>
     );
   },

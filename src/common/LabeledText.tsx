@@ -38,7 +38,7 @@ const LabeledText = React.memo<LabeledTextProps>(function LabeledText({
         {label}
       </Typography>
       {href ? (
-        <NextLink href={href} isMuiLink>
+        <NextLink href={href} underline="hover" color="primary">
           {textComponent}
         </NextLink>
       ) : (

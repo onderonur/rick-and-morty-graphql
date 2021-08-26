@@ -23,6 +23,7 @@ function PageProgressBar() {
       {`
         #nprogress .bar {
           background: ${color};
+          z-index: ${theme.zIndex.appBar};
         }
 
         #nprogress .peg {

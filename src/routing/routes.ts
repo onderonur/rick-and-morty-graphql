@@ -8,6 +8,7 @@ function createRoute<T extends { params?: unknown; query?: unknown }>(
   return (args: T) => {
     const path =
       typeof pathname === 'string' ? pathname : pathname(args.params);
+    // eslint-disable-next-line deprecation/deprecation
     const search = queryString.stringify(pruneQueryParams(args.query));
     if (search) {
       return `${path}?${search}`;

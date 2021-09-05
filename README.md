@@ -13,7 +13,7 @@ A feature based folder structure has been implemented to keep things organized.
 
 The project was created with `create-react-app`, but then I wanted to try the server-side rendering and then used the most anticipated framework for that. [Next.js](https://nextjs.org/). Migrating to `Next.js` was just easy. I just changed the routing, made some configurations for `apollo` and `material-ui`. And that's it! Most of these setups can be found from the [examples](https://github.com/zeit/next.js/tree/canary/examples) folder of `Next.js`.
 
-**Live demo on Now is [here](https://rick-and-morty-graphql.now.sh/)**.
+**Live demo is [here](https://rick-and-morty-graphql.vercel.app/)**.
 
 - [Next.js](https://nextjs.org/)
 - [Apollo-Client](https://www.apollographql.com/docs/react/)
@@ -34,4 +34,4 @@ You can check it out [here](https://rickandmortyapi.com/).
 
 ### Vercel Deployment
 
-[Vercel's Now](https://vercel.com/) is one of the simplest deployment options ever. [Deploying a Next.js App](https://nextjs.org/learn/basics/deploying-a-nextjs-app) guide is just what you would need. I just downloaded the [official cli](https://vercel.com/download) and run `vercel`. That's it!
+[Vercel](https://vercel.com/) is one of the simplest deployment options ever. [Deploying a Next.js App](https://nextjs.org/learn/basics/deploying-a-nextjs-app) guide is just what you would need. I just downloaded the [official cli](https://vercel.com/download) and run `vercel`. That's it!

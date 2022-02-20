@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Box, Typography, Toolbar } from '@material-ui/core';
+import { Button, Box, Typography, Toolbar } from '@mui/material';
 import NextLink from '@/routing/NextLink';
 import { routes } from '@/routing/routes';
 

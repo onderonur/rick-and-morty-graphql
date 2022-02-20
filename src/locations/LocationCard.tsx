@@ -1,5 +1,5 @@
 import React from 'react';
-import { CardHeader, CardContent } from '@material-ui/core';
+import { CardHeader, CardContent } from '@mui/material';
 import BaseCard from '@/common/BaseCard';
 import gql from 'graphql-tag';
 import { LocationCard_LocationFragment } from '@/generated/graphql';

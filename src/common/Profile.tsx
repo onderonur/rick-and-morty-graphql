@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography, Container, Grid, CardContent } from '@material-ui/core';
+import { Typography, Container, Grid, CardContent } from '@mui/material';
 import BaseCard from './BaseCard';
 import LoadingIndicator from './LoadingIndicator';
 
@@ -19,7 +19,7 @@ function Profile({
   loading,
 }: ProfileProps) {
   return (
-    <Container maxWidth="lg">
+    <Container maxWidth="lg" sx={{ p: { xs: 0 } }}>
       <LoadingIndicator loading={loading}>
         <Grid container spacing={2}>
           <Grid item xs={12} sm={fullWidthInfoCard ? 12 : 4}>

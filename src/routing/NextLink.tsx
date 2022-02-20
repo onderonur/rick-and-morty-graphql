@@ -1,18 +1,8 @@
 import React from 'react';
 import Link, { LinkProps } from 'next/link';
-import {
-  makeStyles,
-  Link as MuiLink,
-  LinkProps as MuiLinkProps,
-} from '@material-ui/core';
+import { Link as MuiLink, LinkProps as MuiLinkProps } from '@mui/material';
 import clsx from 'clsx';
 import { Omit } from '@/common/CommonTypes';
-
-const useStyles = makeStyles(() => ({
-  anchor: {
-    textDecoration: 'none',
-  },
-}));
 
 export type NextLinkProps = React.PropsWithChildren<
   Omit<LinkProps, 'passHref'>
@@ -36,8 +26,6 @@ const NextLink = React.forwardRef<HTMLAnchorElement, NextLinkProps>(
     },
     ref,
   ) {
-    const classes = useStyles();
-
     return (
       <Link
         // If any other prop is passed to next/link,
@@ -49,8 +37,8 @@ const NextLink = React.forwardRef<HTMLAnchorElement, NextLinkProps>(
       >
         <MuiLink
           ref={ref}
+          sx={{ textDecoration: 'none' }}
           className={clsx(
-            classes.anchor,
             // Material UI passes classes sometimes.
             // So, we need "className" prop here.
             className,

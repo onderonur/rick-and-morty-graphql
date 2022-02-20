@@ -1,5 +1,4 @@
 import React from 'react';
-import { CardHeader, CardContent } from '@material-ui/core';
 import BaseCard from '@/common/BaseCard';
 import BaseImage from '@/common/BaseImage';
 import gql from 'graphql-tag';
@@ -11,6 +10,7 @@ import { isOfType, UNKNOWN } from '@/common/CommonUtils';
 import LabeledTextList from '../common/LabeledTextList';
 import { ArrayElement } from '@/common/CommonTypes';
 import { routes } from '@/routing/routes';
+import { CardContent, CardHeader } from '@mui/material';
 
 function getEpisodeAirYear(
   episode: ArrayElement<CharacterCard_CharacterFragment['episode']>,

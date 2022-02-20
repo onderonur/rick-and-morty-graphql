@@ -1,5 +1,5 @@
 import React, { useEffect, useCallback } from 'react';
-import { Drawer, List, makeStyles } from '@material-ui/core';
+import { Drawer, List, styled } from '@mui/material';
 import AppDrawerLinkItem from './AppDrawerLinkItem';
 import { useRouter } from 'next/router';
 import { gql } from '@apollo/client';
@@ -7,11 +7,11 @@ import { useGetShowDrawerQuery } from '@/generated/graphql';
 import { showDrawerVar } from '@/apollo/cache';
 import { routes } from '@/routing/routes';
 
-const useStyles = makeStyles(() => ({
-  drawer: {
+const StyledDrawer = styled(Drawer)({
+  '.MuiDrawer-paper': {
     width: 240,
   },
-}));
+});
 
 /* eslint-disable graphql/template-strings */
 const GET_SHOW_DRAWER = gql`
@@ -22,8 +22,6 @@ const GET_SHOW_DRAWER = gql`
 /* eslint-disable graphql/template-strings */
 
 function AppDrawer() {
-  const classes = useStyles();
-
   const router = useRouter();
 
   const { data } = useGetShowDrawerQuery({ query: GET_SHOW_DRAWER });
@@ -44,12 +42,7 @@ function AppDrawer() {
   }, [closeDrawer, router.events]);
 
   return (
-    <Drawer
-      classes={{ paper: classes.drawer }}
-      open={data?.showDrawer}
-      anchor="right"
-      onClose={closeDrawer}
-    >
+    <StyledDrawer open={data?.showDrawer} anchor="right" onClose={closeDrawer}>
       <List>
         <AppDrawerLinkItem
           href={routes.characters({})}
@@ -70,7 +63,7 @@ function AppDrawer() {
           title="Locations"
         />
       </List>
-    </Drawer>
+    </StyledDrawer>
   );
 }
 

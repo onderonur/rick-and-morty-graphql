@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo } from 'react';
-import { Box, Typography } from '@material-ui/core';
+import { Box, Typography } from '@mui/material';
 import gql from 'graphql-tag';
 import { useGetCharactersQuery } from '@/generated/graphql';
 import BaseSeo from '@/seo/BaseSeo';

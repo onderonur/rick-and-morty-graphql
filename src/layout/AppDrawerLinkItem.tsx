@@ -1,13 +1,11 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core';
+import { styled } from '@mui/material';
 import { NextLinkProps } from '@/routing/NextLink';
 import { useRouter } from 'next/router';
 import ListItemLink from '@/common/ListItemLink';
 
-const useStyles = makeStyles((theme) => ({
-  emoji: {
-    marginRight: theme.spacing(2),
-  },
+const Emoji = styled('span')(({ theme }) => ({
+  marginRight: theme.spacing(2),
 }));
 
 interface AppDrawerLinkItemProps {
@@ -23,16 +21,15 @@ function AppDrawerLinkItem({
   emoji,
   title,
 }: AppDrawerLinkItemProps) {
-  const classes = useStyles();
   const router = useRouter();
 
   return (
     <ListItemLink
       primary={
         <>
-          <span className={classes.emoji} role="img" aria-label={ariaLabel}>
+          <Emoji role="img" aria-label={ariaLabel}>
             {emoji}
-          </span>
+          </Emoji>
           {title}
         </>
       }

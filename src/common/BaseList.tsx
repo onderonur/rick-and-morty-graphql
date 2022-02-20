@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { List, ListItem, ListItemText, ListProps } from '@material-ui/core';
+import { List, ListItemButton, ListItemText, ListProps } from '@mui/material';
 import LoadingIndicator from './LoadingIndicator';
 import { Maybe } from '@/generated/graphql';
 
@@ -29,28 +29,25 @@ function BaseList<Item>({
   }
 
   const itemCount = items?.length;
-  const isInitialFetch = Boolean(loading && !itemCount);
 
   return (
-    <LoadingIndicator loading={isInitialFetch}>
-      <List {...rest}>
-        {items?.map((item, i) =>
-          item && (!maxVisibleItemCount || expand || i < maxVisibleItemCount)
-            ? renderItem(item, i)
-            : null,
-        )}
-        {maxVisibleItemCount && itemCount && itemCount > maxVisibleItemCount ? (
-          <ListItem button onClick={toggleExpand}>
-            <ListItemText secondary={`SHOW ${expand ? 'LESS' : 'MORE'}`} />
-          </ListItem>
-        ) : null}
-        {loading ? (
-          <ListItem>
-            <LoadingIndicator ref={loadingRef} loading />
-          </ListItem>
-        ) : null}
-      </List>
-    </LoadingIndicator>
+    <List {...rest}>
+      {items?.map((item, i) =>
+        item && (!maxVisibleItemCount || expand || i < maxVisibleItemCount)
+          ? renderItem(item, i)
+          : null,
+      )}
+      {maxVisibleItemCount && itemCount && itemCount > maxVisibleItemCount ? (
+        <ListItemButton onClick={toggleExpand}>
+          <ListItemText secondary={`SHOW ${expand ? 'LESS' : 'MORE'}`} />
+        </ListItemButton>
+      ) : null}
+      {loading ? (
+        <ListItemButton>
+          <LoadingIndicator ref={loadingRef} loading />
+        </ListItemButton>
+      ) : null}
+    </List>
   );
 }
 

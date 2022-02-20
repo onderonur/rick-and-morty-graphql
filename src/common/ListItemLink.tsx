@@ -1,15 +1,15 @@
 import React from 'react';
 import {
-  ListItem,
   ListItemText,
   ListItemTextProps,
-  ListItemProps,
-} from '@material-ui/core';
+  ListItemButton,
+  ListItemButtonProps,
+} from '@mui/material';
 import NextLink, { NextLinkProps } from '../routing/NextLink';
 
 type ListItemLinkProps = Pick<NextLinkProps, 'href'> &
   Pick<ListItemTextProps, 'primary' | 'secondary'> &
-  Pick<ListItemProps, 'selected' | 'divider'>;
+  Pick<ListItemButtonProps, 'selected' | 'divider'>;
 
 function ListItemLink({
   href,
@@ -19,15 +19,14 @@ function ListItemLink({
   divider,
 }: ListItemLinkProps) {
   return (
-    <ListItem
-      button
+    <ListItemButton
       href={href}
       selected={selected}
       divider={divider}
       component={NextLink}
     >
       <ListItemText primary={primary} secondary={secondary} />
-    </ListItem>
+    </ListItemButton>
   );
 }
 

@@ -5,37 +5,36 @@ import {
   Typography,
   Box,
   IconButton,
-  makeStyles,
-} from '@material-ui/core';
-import MenuIcon from '@material-ui/icons/Menu';
-import GitHubIcon from '@material-ui/icons/GitHub';
+  styled,
+} from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
+import GitHubIcon from '@mui/icons-material/GitHub';
 import NextLink from '@/routing/NextLink';
 import { showDrawerVar } from '@/apollo/cache';
 import BaseImage from '@/common/BaseImage';
 import { routes } from '@/routing/routes';
 
-const useStyles = makeStyles(() => ({
-  logoLink: {
-    display: 'flex',
-    alignItems: 'center',
-    '& img': {
-      width: 60,
-    },
+const StyledLink = styled(NextLink)({
+  display: 'flex',
+  alignItems: 'center',
+  '& img': {
+    width: 60,
   },
-}));
+});
 
-const AppHeader = React.forwardRef(function AppHeader(props, ref) {
-  const classes = useStyles();
-
+const AppHeader = React.forwardRef<HTMLDivElement, {}>(function AppHeader(
+  props,
+  ref,
+) {
   const handleClick = useCallback(() => {
     showDrawerVar(true);
   }, []);
 
   return (
     <>
-      <AppBar ref={ref} position="fixed" color="inherit">
+      <AppBar ref={ref} position="fixed">
         <Toolbar>
-          <NextLink className={classes.logoLink} href={routes.home({})}>
+          <StyledLink href={routes.home({})}>
             <BaseImage
               src="/images/logo.png"
               alt="Rick and Morty"
@@ -46,7 +45,7 @@ const AppHeader = React.forwardRef(function AppHeader(props, ref) {
             <Typography variant="h5" color="textPrimary">
               RICKQL
             </Typography>
-          </NextLink>
+          </StyledLink>
           <Box flexGrow={1} />
           <IconButton
             href="https://github.com/onderonur/rick-and-morty-graphql"

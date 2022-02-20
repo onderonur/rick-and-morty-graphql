@@ -1,12 +1,10 @@
 import React from 'react';
-import { Typography, makeStyles } from '@material-ui/core';
+import { Typography, styled } from '@mui/material';
 import NextLink, { NextLinkProps } from '../routing/NextLink';
 
-const useStyles = makeStyles((theme) => ({
-  text: {
-    fontWeight: theme.typography.fontWeightBold,
-  },
-}));
+const Text = styled(Typography)(({ theme }) => ({
+  fontWeight: theme.typography.fontWeightBold,
+})) as typeof Typography;
 
 export interface LabeledTextProps {
   label: string;
@@ -19,17 +17,10 @@ const LabeledText = React.memo<LabeledTextProps>(function LabeledText({
   text,
   href,
 }: LabeledTextProps) {
-  const classes = useStyles();
-
   const textComponent = (
-    <Typography
-      className={classes.text}
-      color={href ? undefined : 'secondary'}
-      variant="h6"
-      component="p"
-    >
+    <Text color={href ? undefined : 'secondary'} variant="h6" component="p">
       {text}
-    </Typography>
+    </Text>
   );
 
   return (

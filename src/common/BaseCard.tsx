@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardActionArea, CardProps } from '@material-ui/core';
+import { Card, CardActionArea, CardProps } from '@mui/material';
 
 type BaseCardProps = React.PropsWithChildren<
   CardProps & {

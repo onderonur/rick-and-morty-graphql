@@ -1,6 +1,6 @@
 import React from 'react';
-import { Container, IconButton, InputAdornment } from '@material-ui/core';
-import SearchIcon from '@material-ui/icons/Search';
+import { Container, IconButton, InputAdornment } from '@mui/material';
+import SearchIcon from '@mui/icons-material/Search';
 import { Formik, Form } from 'formik';
 import BaseTextField from '@/common/BaseTextField';
 import { QueryParams, routes } from '@/routing/routes';

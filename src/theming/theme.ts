@@ -1,16 +1,15 @@
-import { createTheme } from '@material-ui/core';
-import { common } from '@material-ui/core/colors';
+import { colors, createTheme } from '@mui/material';
 
 const theme = createTheme({
   palette: {
-    type: 'dark',
+    mode: 'dark',
     primary: {
       main: '#f0e14a',
-      contrastText: common.white,
+      contrastText: colors.common.white,
     },
     secondary: {
       main: '#97ce4c',
-      contrastText: common.white,
+      contrastText: colors.common.white,
     },
     background: {
       default: '#243447',

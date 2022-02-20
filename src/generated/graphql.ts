@@ -1,10 +1,11 @@
 import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
 export type Maybe<T> = T | null | undefined;
+export type InputMaybe<T> = T | null | undefined;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
-const defaultOptions =  {}
+const defaultOptions = {} as const;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -16,39 +17,38 @@ export type Scalars = {
   Upload: any;
 };
 
-
 export enum CacheControlScope {
-  Public = 'PUBLIC',
-  Private = 'PRIVATE'
+  Private = 'PRIVATE',
+  Public = 'PUBLIC'
 }
 
 export type Character = {
   __typename?: 'Character';
-  /** The id of the character. */
-  id?: Maybe<Scalars['ID']>;
-  /** The name of the character. */
-  name?: Maybe<Scalars['String']>;
-  /** The status of the character ('Alive', 'Dead' or 'unknown'). */
-  status?: Maybe<Scalars['String']>;
-  /** The species of the character. */
-  species?: Maybe<Scalars['String']>;
-  /** The type or subspecies of the character. */
-  type?: Maybe<Scalars['String']>;
+  /** Time at which the character was created in the database. */
+  created?: Maybe<Scalars['String']>;
+  /** Episodes in which this character appeared. */
+  episode: Array<Maybe<Episode>>;
   /** The gender of the character ('Female', 'Male', 'Genderless' or 'unknown'). */
   gender?: Maybe<Scalars['String']>;
-  /** The character's origin location */
-  origin?: Maybe<Location>;
-  /** The character's last known location */
-  location?: Maybe<Location>;
+  /** The id of the character. */
+  id?: Maybe<Scalars['ID']>;
   /**
    * Link to the character's image.
    * All images are 300x300px and most are medium shots or portraits since they are intended to be used as avatars.
    */
   image?: Maybe<Scalars['String']>;
-  /** Episodes in which this character appeared. */
-  episode: Array<Maybe<Episode>>;
-  /** Time at which the character was created in the database. */
-  created?: Maybe<Scalars['String']>;
+  /** The character's last known location */
+  location?: Maybe<Location>;
+  /** The name of the character. */
+  name?: Maybe<Scalars['String']>;
+  /** The character's origin location */
+  origin?: Maybe<Location>;
+  /** The species of the character. */
+  species?: Maybe<Scalars['String']>;
+  /** The status of the character ('Alive', 'Dead' or 'unknown'). */
+  status?: Maybe<Scalars['String']>;
+  /** The type or subspecies of the character. */
+  type?: Maybe<Scalars['String']>;
 };
 
 export type Characters = {
@@ -59,18 +59,18 @@ export type Characters = {
 
 export type Episode = {
   __typename?: 'Episode';
-  /** The id of the episode. */
-  id?: Maybe<Scalars['ID']>;
-  /** The name of the episode. */
-  name?: Maybe<Scalars['String']>;
   /** The air date of the episode. */
   air_date?: Maybe<Scalars['String']>;
-  /** The code of the episode. */
-  episode?: Maybe<Scalars['String']>;
   /** List of characters who have been seen in the episode. */
   characters: Array<Maybe<Character>>;
   /** Time at which the episode was created in the database. */
   created?: Maybe<Scalars['String']>;
+  /** The code of the episode. */
+  episode?: Maybe<Scalars['String']>;
+  /** The id of the episode. */
+  id?: Maybe<Scalars['ID']>;
+  /** The name of the episode. */
+  name?: Maybe<Scalars['String']>;
 };
 
 export type Episodes = {
@@ -80,50 +80,50 @@ export type Episodes = {
 };
 
 export type FilterCharacter = {
-  name?: Maybe<Scalars['String']>;
-  status?: Maybe<Scalars['String']>;
-  species?: Maybe<Scalars['String']>;
-  type?: Maybe<Scalars['String']>;
-  gender?: Maybe<Scalars['String']>;
+  gender?: InputMaybe<Scalars['String']>;
+  name?: InputMaybe<Scalars['String']>;
+  species?: InputMaybe<Scalars['String']>;
+  status?: InputMaybe<Scalars['String']>;
+  type?: InputMaybe<Scalars['String']>;
 };
 
 export type FilterEpisode = {
-  name?: Maybe<Scalars['String']>;
-  episode?: Maybe<Scalars['String']>;
+  episode?: InputMaybe<Scalars['String']>;
+  name?: InputMaybe<Scalars['String']>;
 };
 
 export type FilterLocation = {
-  name?: Maybe<Scalars['String']>;
-  type?: Maybe<Scalars['String']>;
-  dimension?: Maybe<Scalars['String']>;
+  dimension?: InputMaybe<Scalars['String']>;
+  name?: InputMaybe<Scalars['String']>;
+  type?: InputMaybe<Scalars['String']>;
 };
 
 export type Info = {
   __typename?: 'Info';
   /** The length of the response. */
   count?: Maybe<Scalars['Int']>;
-  /** The amount of pages. */
-  pages?: Maybe<Scalars['Int']>;
   /** Number of the next page (if it exists) */
   next?: Maybe<Scalars['Int']>;
+  /** The amount of pages. */
+  pages?: Maybe<Scalars['Int']>;
   /** Number of the previous page (if it exists) */
   prev?: Maybe<Scalars['Int']>;
 };
 
 export type Location = {
   __typename?: 'Location';
+  /** Time at which the location was created in the database. */
+  created?: Maybe<Scalars['String']>;
+  /** The dimension in which the location is located. */
+  dimension?: Maybe<Scalars['String']>;
   /** The id of the location. */
   id?: Maybe<Scalars['ID']>;
   /** The name of the location. */
   name?: Maybe<Scalars['String']>;
-  /** The type of the location. */
-  type?: Maybe<Scalars['String']>;
-  /** The dimension in which the location is located. */
-  dimension?: Maybe<Scalars['String']>;
   /** List of characters who have been last seen in the location. */
   residents: Array<Maybe<Character>>;
-  /** Time at which the location was created in the database. */
-  created?: Maybe<Scalars['String']>;
+  /** The type of the location. */
+  type?: Maybe<Scalars['String']>;
 };
 
 export type Locations = {
@@ -162,8 +162,8 @@ export type QueryCharacterArgs = {
 
 
 export type QueryCharactersArgs = {
-  page?: Maybe<Scalars['Int']>;
-  filter?: Maybe<FilterCharacter>;
+  filter?: InputMaybe<FilterCharacter>;
+  page?: InputMaybe<Scalars['Int']>;
 };
 
 
@@ -178,8 +178,8 @@ export type QueryEpisodeArgs = {
 
 
 export type QueryEpisodesArgs = {
-  page?: Maybe<Scalars['Int']>;
-  filter?: Maybe<FilterEpisode>;
+  filter?: InputMaybe<FilterEpisode>;
+  page?: InputMaybe<Scalars['Int']>;
 };
 
 
@@ -194,8 +194,8 @@ export type QueryLocationArgs = {
 
 
 export type QueryLocationsArgs = {
-  page?: Maybe<Scalars['Int']>;
-  filter?: Maybe<FilterLocation>;
+  filter?: InputMaybe<FilterLocation>;
+  page?: InputMaybe<Scalars['Int']>;
 };
 
 
@@ -203,83 +203,82 @@ export type QueryLocationsByIdsArgs = {
   ids: Array<Scalars['ID']>;
 };
 
+export type PageInfoFragment = { __typename?: 'Info', next?: number | null | undefined };
 
-export type PageInfoFragment = { __typename?: 'Info', next?: Maybe<number> };
+export type CharacterCard_CharacterFragment = { __typename?: 'Character', id?: string | null | undefined, name?: string | null | undefined, image?: string | null | undefined, episode: Array<{ __typename?: 'Episode', id?: string | null | undefined, air_date?: string | null | undefined } | null | undefined> };
 
-export type CharacterCard_CharacterFragment = { __typename?: 'Character', id?: Maybe<string>, name?: Maybe<string>, image?: Maybe<string>, episode: Array<Maybe<{ __typename?: 'Episode', id?: Maybe<string>, air_date?: Maybe<string> }>> };
+export type CharacterCard_CharacterWithSpecsFragment = { __typename?: 'Character', status?: string | null | undefined, species?: string | null | undefined, gender?: string | null | undefined, id?: string | null | undefined, name?: string | null | undefined, image?: string | null | undefined, origin?: { __typename?: 'Location', id?: string | null | undefined, name?: string | null | undefined } | null | undefined, location?: { __typename?: 'Location', id?: string | null | undefined, name?: string | null | undefined } | null | undefined, episode: Array<{ __typename?: 'Episode', id?: string | null | undefined, air_date?: string | null | undefined } | null | undefined> };
 
-export type CharacterCard_CharacterWithSpecsFragment = { __typename?: 'Character', status?: Maybe<string>, species?: Maybe<string>, gender?: Maybe<string>, id?: Maybe<string>, name?: Maybe<string>, image?: Maybe<string>, origin?: Maybe<{ __typename?: 'Location', id?: Maybe<string>, name?: Maybe<string> }>, location?: Maybe<{ __typename?: 'Location', id?: Maybe<string>, name?: Maybe<string> }>, episode: Array<Maybe<{ __typename?: 'Episode', id?: Maybe<string>, air_date?: Maybe<string> }>> };
+export type CharacterGridList_CharacterFragment = { __typename?: 'Character', id?: string | null | undefined, name?: string | null | undefined, image?: string | null | undefined, episode: Array<{ __typename?: 'Episode', id?: string | null | undefined, air_date?: string | null | undefined } | null | undefined> };
 
-export type CharacterGridList_CharacterFragment = { __typename?: 'Character', id?: Maybe<string>, name?: Maybe<string>, image?: Maybe<string>, episode: Array<Maybe<{ __typename?: 'Episode', id?: Maybe<string>, air_date?: Maybe<string> }>> };
+export type CharacterGridListItem_CharacterFragment = { __typename?: 'Character', id?: string | null | undefined, name?: string | null | undefined, image?: string | null | undefined, episode: Array<{ __typename?: 'Episode', id?: string | null | undefined, air_date?: string | null | undefined } | null | undefined> };
 
-export type CharacterGridListItem_CharacterFragment = { __typename?: 'Character', id?: Maybe<string>, name?: Maybe<string>, image?: Maybe<string>, episode: Array<Maybe<{ __typename?: 'Episode', id?: Maybe<string>, air_date?: Maybe<string> }>> };
+export type CharacterProfile_CharacterFragment = { __typename?: 'Character', status?: string | null | undefined, species?: string | null | undefined, gender?: string | null | undefined, id?: string | null | undefined, name?: string | null | undefined, image?: string | null | undefined, episode: Array<{ __typename?: 'Episode', id?: string | null | undefined, air_date?: string | null | undefined, name?: string | null | undefined, episode?: string | null | undefined } | null | undefined>, origin?: { __typename?: 'Location', id?: string | null | undefined, name?: string | null | undefined } | null | undefined, location?: { __typename?: 'Location', id?: string | null | undefined, name?: string | null | undefined } | null | undefined };
 
-export type CharacterProfile_CharacterFragment = { __typename?: 'Character', status?: Maybe<string>, species?: Maybe<string>, gender?: Maybe<string>, id?: Maybe<string>, name?: Maybe<string>, image?: Maybe<string>, episode: Array<Maybe<{ __typename?: 'Episode', id?: Maybe<string>, air_date?: Maybe<string>, name?: Maybe<string>, episode?: Maybe<string> }>>, origin?: Maybe<{ __typename?: 'Location', id?: Maybe<string>, name?: Maybe<string> }>, location?: Maybe<{ __typename?: 'Location', id?: Maybe<string>, name?: Maybe<string> }> };
+export type EpisodeCard_EpisodeFragment = { __typename?: 'Episode', id?: string | null | undefined, name?: string | null | undefined, episode?: string | null | undefined, air_date?: string | null | undefined };
 
-export type EpisodeCard_EpisodeFragment = { __typename?: 'Episode', id?: Maybe<string>, name?: Maybe<string>, episode?: Maybe<string>, air_date?: Maybe<string> };
+export type EpisodeList_EpisodeFragment = { __typename?: 'Episode', id?: string | null | undefined, name?: string | null | undefined, air_date?: string | null | undefined, episode?: string | null | undefined };
 
-export type EpisodeList_EpisodeFragment = { __typename?: 'Episode', id?: Maybe<string>, name?: Maybe<string>, air_date?: Maybe<string>, episode?: Maybe<string> };
+export type EpisodeListItem_EpisodeFragment = { __typename?: 'Episode', id?: string | null | undefined, name?: string | null | undefined, air_date?: string | null | undefined, episode?: string | null | undefined };
 
-export type EpisodeListItem_EpisodeFragment = { __typename?: 'Episode', id?: Maybe<string>, name?: Maybe<string>, air_date?: Maybe<string>, episode?: Maybe<string> };
-
-export type EpisodeProfile_EpisodeFragment = { __typename?: 'Episode', id?: Maybe<string>, name?: Maybe<string>, episode?: Maybe<string>, air_date?: Maybe<string>, characters: Array<Maybe<{ __typename?: 'Character', id?: Maybe<string>, name?: Maybe<string>, image?: Maybe<string>, episode: Array<Maybe<{ __typename?: 'Episode', id?: Maybe<string>, air_date?: Maybe<string> }>> }>> };
-
-export type LocationListItem_LocationFragment = { __typename?: 'Location', id?: Maybe<string>, name?: Maybe<string>, type?: Maybe<string> };
-
-export type LocationList_LocationFragment = { __typename?: 'Location', id?: Maybe<string>, name?: Maybe<string>, type?: Maybe<string> };
-
-export type LocationCard_LocationFragment = { __typename?: 'Location', id?: Maybe<string>, name?: Maybe<string>, type?: Maybe<string>, dimension?: Maybe<string> };
-
-export type LocationProfile_LocationFragment = { __typename?: 'Location', id?: Maybe<string>, name?: Maybe<string>, type?: Maybe<string>, dimension?: Maybe<string>, residents: Array<Maybe<{ __typename?: 'Character', id?: Maybe<string>, name?: Maybe<string>, image?: Maybe<string>, episode: Array<Maybe<{ __typename?: 'Episode', id?: Maybe<string>, air_date?: Maybe<string> }>> }>> };
+export type EpisodeProfile_EpisodeFragment = { __typename?: 'Episode', id?: string | null | undefined, name?: string | null | undefined, episode?: string | null | undefined, air_date?: string | null | undefined, characters: Array<{ __typename?: 'Character', id?: string | null | undefined, name?: string | null | undefined, image?: string | null | undefined, episode: Array<{ __typename?: 'Episode', id?: string | null | undefined, air_date?: string | null | undefined } | null | undefined> } | null | undefined> };
 
 export type GetShowDrawerQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type GetShowDrawerQuery = { __typename?: 'Query', showDrawer: boolean };
 
+export type LocationCard_LocationFragment = { __typename?: 'Location', id?: string | null | undefined, name?: string | null | undefined, type?: string | null | undefined, dimension?: string | null | undefined };
+
+export type LocationList_LocationFragment = { __typename?: 'Location', id?: string | null | undefined, name?: string | null | undefined, type?: string | null | undefined };
+
+export type LocationListItem_LocationFragment = { __typename?: 'Location', id?: string | null | undefined, name?: string | null | undefined, type?: string | null | undefined };
+
+export type LocationProfile_LocationFragment = { __typename?: 'Location', id?: string | null | undefined, name?: string | null | undefined, type?: string | null | undefined, dimension?: string | null | undefined, residents: Array<{ __typename?: 'Character', id?: string | null | undefined, name?: string | null | undefined, image?: string | null | undefined, episode: Array<{ __typename?: 'Episode', id?: string | null | undefined, air_date?: string | null | undefined } | null | undefined> } | null | undefined> };
+
 export type GetCharacterQueryVariables = Exact<{
   id: Scalars['ID'];
 }>;
 
 
-export type GetCharacterQuery = { __typename?: 'Query', character?: Maybe<{ __typename?: 'Character', name?: Maybe<string>, image?: Maybe<string>, status?: Maybe<string>, species?: Maybe<string>, gender?: Maybe<string>, id?: Maybe<string>, episode: Array<Maybe<{ __typename?: 'Episode', id?: Maybe<string>, air_date?: Maybe<string>, name?: Maybe<string>, episode?: Maybe<string> }>>, origin?: Maybe<{ __typename?: 'Location', id?: Maybe<string>, name?: Maybe<string> }>, location?: Maybe<{ __typename?: 'Location', id?: Maybe<string>, name?: Maybe<string> }> }> };
+export type GetCharacterQuery = { __typename?: 'Query', character?: { __typename?: 'Character', name?: string | null | undefined, image?: string | null | undefined, status?: string | null | undefined, species?: string | null | undefined, gender?: string | null | undefined, id?: string | null | undefined, episode: Array<{ __typename?: 'Episode', id?: string | null | undefined, air_date?: string | null | undefined, name?: string | null | undefined, episode?: string | null | undefined } | null | undefined>, origin?: { __typename?: 'Location', id?: string | null | undefined, name?: string | null | undefined } | null | undefined, location?: { __typename?: 'Location', id?: string | null | undefined, name?: string | null | undefined } | null | undefined } | null | undefined };
 
 export type GetCharactersQueryVariables = Exact<{
-  page?: Maybe<Scalars['Int']>;
-  filter?: Maybe<FilterCharacter>;
+  page?: InputMaybe<Scalars['Int']>;
+  filter?: InputMaybe<FilterCharacter>;
 }>;
 
 
-export type GetCharactersQuery = { __typename?: 'Query', characters?: Maybe<{ __typename?: 'Characters', results?: Maybe<Array<Maybe<{ __typename?: 'Character', id?: Maybe<string>, name?: Maybe<string>, image?: Maybe<string>, episode: Array<Maybe<{ __typename?: 'Episode', id?: Maybe<string>, air_date?: Maybe<string> }>> }>>>, info?: Maybe<{ __typename?: 'Info', next?: Maybe<number> }> }> };
+export type GetCharactersQuery = { __typename?: 'Query', characters?: { __typename?: 'Characters', results?: Array<{ __typename?: 'Character', id?: string | null | undefined, name?: string | null | undefined, image?: string | null | undefined, episode: Array<{ __typename?: 'Episode', id?: string | null | undefined, air_date?: string | null | undefined } | null | undefined> } | null | undefined> | null | undefined, info?: { __typename?: 'Info', next?: number | null | undefined } | null | undefined } | null | undefined };
 
 export type GetEpisodeQueryVariables = Exact<{
   id: Scalars['ID'];
 }>;
 
 
-export type GetEpisodeQuery = { __typename?: 'Query', episode?: Maybe<{ __typename?: 'Episode', name?: Maybe<string>, id?: Maybe<string>, episode?: Maybe<string>, air_date?: Maybe<string>, characters: Array<Maybe<{ __typename?: 'Character', id?: Maybe<string>, name?: Maybe<string>, image?: Maybe<string>, episode: Array<Maybe<{ __typename?: 'Episode', id?: Maybe<string>, air_date?: Maybe<string> }>> }>> }> };
+export type GetEpisodeQuery = { __typename?: 'Query', episode?: { __typename?: 'Episode', name?: string | null | undefined, id?: string | null | undefined, episode?: string | null | undefined, air_date?: string | null | undefined, characters: Array<{ __typename?: 'Character', id?: string | null | undefined, name?: string | null | undefined, image?: string | null | undefined, episode: Array<{ __typename?: 'Episode', id?: string | null | undefined, air_date?: string | null | undefined } | null | undefined> } | null | undefined> } | null | undefined };
 
 export type GetEpisodesQueryVariables = Exact<{
-  page?: Maybe<Scalars['Int']>;
-  filter?: Maybe<FilterEpisode>;
+  page?: InputMaybe<Scalars['Int']>;
+  filter?: InputMaybe<FilterEpisode>;
 }>;
 
 
-export type GetEpisodesQuery = { __typename?: 'Query', episodes?: Maybe<{ __typename?: 'Episodes', results?: Maybe<Array<Maybe<{ __typename?: 'Episode', id?: Maybe<string>, name?: Maybe<string>, air_date?: Maybe<string>, episode?: Maybe<string> }>>>, info?: Maybe<{ __typename?: 'Info', next?: Maybe<number> }> }> };
+export type GetEpisodesQuery = { __typename?: 'Query', episodes?: { __typename?: 'Episodes', results?: Array<{ __typename?: 'Episode', id?: string | null | undefined, name?: string | null | undefined, air_date?: string | null | undefined, episode?: string | null | undefined } | null | undefined> | null | undefined, info?: { __typename?: 'Info', next?: number | null | undefined } | null | undefined } | null | undefined };
 
 export type GetLocationQueryVariables = Exact<{
   id: Scalars['ID'];
 }>;
 
 
-export type GetLocationQuery = { __typename?: 'Query', location?: Maybe<{ __typename?: 'Location', name?: Maybe<string>, id?: Maybe<string>, type?: Maybe<string>, dimension?: Maybe<string>, residents: Array<Maybe<{ __typename?: 'Character', id?: Maybe<string>, name?: Maybe<string>, image?: Maybe<string>, episode: Array<Maybe<{ __typename?: 'Episode', id?: Maybe<string>, air_date?: Maybe<string> }>> }>> }> };
+export type GetLocationQuery = { __typename?: 'Query', location?: { __typename?: 'Location', name?: string | null | undefined, id?: string | null | undefined, type?: string | null | undefined, dimension?: string | null | undefined, residents: Array<{ __typename?: 'Character', id?: string | null | undefined, name?: string | null | undefined, image?: string | null | undefined, episode: Array<{ __typename?: 'Episode', id?: string | null | undefined, air_date?: string | null | undefined } | null | undefined> } | null | undefined> } | null | undefined };
 
 export type GetLocationsQueryVariables = Exact<{
-  page?: Maybe<Scalars['Int']>;
+  page?: InputMaybe<Scalars['Int']>;
 }>;
 
 
-export type GetLocationsQuery = { __typename?: 'Query', locations?: Maybe<{ __typename?: 'Locations', results?: Maybe<Array<Maybe<{ __typename?: 'Location', id?: Maybe<string>, name?: Maybe<string>, type?: Maybe<string> }>>>, info?: Maybe<{ __typename?: 'Info', next?: Maybe<number> }> }> };
+export type GetLocationsQuery = { __typename?: 'Query', locations?: { __typename?: 'Locations', results?: Array<{ __typename?: 'Location', id?: string | null | undefined, name?: string | null | undefined, type?: string | null | undefined } | null | undefined> | null | undefined, info?: { __typename?: 'Info', next?: number | null | undefined } | null | undefined } | null | undefined };
 
 export const PageInfoFragmentDoc = gql`
     fragment pageInfo on Info {

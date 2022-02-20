@@ -33,7 +33,7 @@ const AppHeader = React.forwardRef(function AppHeader(props, ref) {
 
   return (
     <>
-      <AppBar ref={ref} position="fixed" color="default">
+      <AppBar ref={ref} position="fixed" color="inherit">
         <Toolbar>
           <NextLink className={classes.logoLink} href={routes.home({})}>
             <BaseImage

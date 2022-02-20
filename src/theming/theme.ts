@@ -1,17 +1,21 @@
 import { createTheme } from '@material-ui/core';
-import { teal, orange, common } from '@material-ui/core/colors';
+import { common } from '@material-ui/core/colors';
 
 const theme = createTheme({
   palette: {
+    type: 'dark',
     primary: {
-      main: teal[600],
+      main: '#f0e14a',
       contrastText: common.white,
     },
     secondary: {
-      main: orange[700],
+      main: '#97ce4c',
       contrastText: common.white,
     },
-    type: 'dark',
+    background: {
+      default: '#243447',
+      paper: '#141d26',
+    },
   },
 });
 

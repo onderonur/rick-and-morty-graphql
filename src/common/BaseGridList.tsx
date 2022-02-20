@@ -23,7 +23,7 @@ function BaseGridList<Item>({
 }: BaseGridListProps<Item>) {
   return (
     <Grid container spacing={spacing}>
-      {items?.map((item, index) => item && renderItem(item, index))}
+      {items?.map((item, index) => renderItem(item, index))}
       {loading && (
         <Grid item xs={12} ref={loadingRef}>
           <LoadingIndicator loading />

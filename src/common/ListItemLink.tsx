@@ -4,6 +4,7 @@ import {
   ListItemTextProps,
   ListItemButton,
   ListItemButtonProps,
+  ListItem,
 } from '@mui/material';
 import NextLink, { NextLinkProps } from '../routing/NextLink';
 
@@ -19,14 +20,16 @@ function ListItemLink({
   divider,
 }: ListItemLinkProps) {
   return (
-    <ListItemButton
-      href={href}
-      selected={selected}
-      divider={divider}
-      component={NextLink}
-    >
-      <ListItemText primary={primary} secondary={secondary} />
-    </ListItemButton>
+    <ListItem disablePadding>
+      <ListItemButton
+        href={href}
+        selected={selected}
+        divider={divider}
+        component={NextLink}
+      >
+        <ListItemText primary={primary} secondary={secondary} />
+      </ListItemButton>
+    </ListItem>
   );
 }
 

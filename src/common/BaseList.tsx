@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
-import { List, ListItemButton, ListItemText, ListProps } from '@mui/material';
+import {
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
+  ListProps,
+} from '@mui/material';
 import LoadingIndicator from './LoadingIndicator';
 import { Maybe } from '@/generated/graphql';
 
@@ -38,14 +44,18 @@ function BaseList<Item>({
           : null,
       )}
       {maxVisibleItemCount && itemCount && itemCount > maxVisibleItemCount ? (
-        <ListItemButton onClick={toggleExpand}>
-          <ListItemText secondary={`SHOW ${expand ? 'LESS' : 'MORE'}`} />
-        </ListItemButton>
+        <ListItem disablePadding>
+          <ListItemButton onClick={toggleExpand}>
+            <ListItemText secondary={`SHOW ${expand ? 'LESS' : 'MORE'}`} />
+          </ListItemButton>
+        </ListItem>
       ) : null}
       {loading ? (
-        <ListItemButton>
-          <LoadingIndicator ref={loadingRef} loading />
-        </ListItemButton>
+        <ListItem disablePadding>
+          <ListItemButton>
+            <LoadingIndicator ref={loadingRef} loading />
+          </ListItemButton>
+        </ListItem>
       ) : null}
     </List>
   );

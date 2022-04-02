@@ -48,6 +48,7 @@ const AppHeader = React.forwardRef<HTMLDivElement, {}>(function AppHeader(
           </StyledLink>
           <Box flexGrow={1} />
           <IconButton
+            aria-label="Check the source code on GitHub"
             href="https://github.com/onderonur/rick-and-morty-graphql"
             target="__blank"
             // https://developers.google.com/web/tools/lighthouse/audits/noopener
@@ -59,7 +60,7 @@ const AppHeader = React.forwardRef<HTMLDivElement, {}>(function AppHeader(
           >
             <GitHubIcon />
           </IconButton>
-          <IconButton onClick={handleClick}>
+          <IconButton aria-label="Toggle menu" onClick={handleClick}>
             <MenuIcon />
           </IconButton>
         </Toolbar>

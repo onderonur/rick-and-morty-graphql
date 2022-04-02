@@ -40,7 +40,7 @@ function CharacterSearch() {
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end">
-                  <IconButton type="submit">
+                  <IconButton aria-label="Search" type="submit">
                     <SearchIcon />
                   </IconButton>
                 </InputAdornment>

@@ -27,7 +27,11 @@ function BackToTopButton() {
 
   return (
     <Grow in={trigger}>
-      <StyledFab color="secondary" onClick={handleClick}>
+      <StyledFab
+        aria-label="Back to Top"
+        color="secondary"
+        onClick={handleClick}
+      >
         <KeyboardArrowUpIcon fontSize="large" />
       </StyledFab>
     </Grow>

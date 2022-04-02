@@ -31,6 +31,7 @@ function ErrorMessage({ statusCode, message }: ErrorMessageProps) {
       </Typography>
       <Box marginTop={2}>
         <Button
+          aria-label="Go to Homepage"
           href={routes.home({})}
           color="primary"
           variant="contained"

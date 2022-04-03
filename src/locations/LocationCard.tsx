@@ -7,13 +7,17 @@ import LabeledTextList from '../common/LabeledTextList';
 import { UNKNOWN } from '../common/CommonUtils';
 
 interface LocationCardProps {
+  titleAs?: React.ElementType;
   location: LocationCard_LocationFragment;
 }
 
-function LocationCard({ location }: LocationCardProps) {
+function LocationCard({ titleAs, location }: LocationCardProps) {
   return (
     <BaseCard>
-      <CardHeader title={location.name} />
+      <CardHeader
+        title={location.name}
+        titleTypographyProps={{ component: titleAs }}
+      />
       <CardContent>
         <LabeledTextList
           data={[

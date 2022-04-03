@@ -15,7 +15,7 @@ function LocationProfile({ location, loading }: LocationProfileProps) {
   return (
     <Profile
       loading={loading}
-      infoCard={location && <LocationCard location={location} />}
+      infoCard={location && <LocationCard titleAs="h1" location={location} />}
       fullWidthInfoCard
       mainSectionTitle="Residents"
       mainSection={residents && <CharacterGridList items={residents} />}

@@ -6,13 +6,18 @@ import gql from 'graphql-tag';
 import { EpisodeCard_EpisodeFragment } from '@/generated/graphql';
 
 interface EpisodeCardProps {
+  titleAs?: React.ElementType;
   episode: EpisodeCard_EpisodeFragment;
 }
 
-function EpisodeCard({ episode }: EpisodeCardProps) {
+function EpisodeCard({ titleAs, episode }: EpisodeCardProps) {
   return (
     <BaseCard>
-      <CardHeader title={episode.name} subheader={episode.episode} />
+      <CardHeader
+        title={episode.name}
+        titleTypographyProps={{ component: titleAs }}
+        subheader={episode.episode}
+      />
       <CardContent>
         <LabeledText label="Air Date" text={episode.air_date} />
       </CardContent>

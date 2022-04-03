@@ -17,7 +17,9 @@ function CharacterProfile({ character, loading }: CharacterProfileProps) {
   return (
     <Profile
       loading={loading}
-      infoCard={character && <CharacterCard character={character} />}
+      infoCard={
+        character && <CharacterCard titleAs="h1" character={character} />
+      }
       mainSectionTitle="Episodes"
       mainSection={
         episode && (

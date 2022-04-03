@@ -35,14 +35,19 @@ function hasSpecs(
   ]);
 }
 
-interface CharacterCardProps {
+type CharacterCardProps = {
+  titleAs?: React.ElementType;
   character:
     | CharacterCard_CharacterFragment
     | CharacterCard_CharacterWithSpecsFragment;
   hasActionArea?: boolean;
-}
+};
 
-function CharacterCard({ character, hasActionArea }: CharacterCardProps) {
+function CharacterCard({
+  titleAs,
+  character,
+  hasActionArea,
+}: CharacterCardProps) {
   const { episode } = character;
 
   const firstEpisode = episode ? episode[0] : null;
@@ -62,6 +67,7 @@ function CharacterCard({ character, hasActionArea }: CharacterCardProps) {
       )}
       <CardHeader
         title={character.name}
+        titleTypographyProps={{ component: titleAs }}
         subheader={
           firstEpisode && lastEpisode
             ? `Episodes: ${episode?.length} (${getEpisodeAirYear(

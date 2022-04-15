@@ -22,51 +22,50 @@ const StyledLink = styled(NextLink)({
   },
 });
 
-const AppHeader = React.forwardRef<HTMLDivElement, {}>(function AppHeader(
-  props,
-  ref,
-) {
-  const handleClick = useCallback(() => {
-    showDrawerVar(true);
-  }, []);
+const AppHeader = React.forwardRef<React.ComponentRef<typeof AppBar>, {}>(
+  function AppHeader(props, ref) {
+    const handleClick = useCallback(() => {
+      showDrawerVar(true);
+    }, []);
 
-  return (
-    <>
-      <AppBar ref={ref} position="fixed">
-        <Toolbar>
-          <StyledLink href={routes.home({})}>
-            <BaseImage
-              src="/images/logo.png"
-              alt="Rick and Morty"
-              width={1}
-              height={1}
-              objectFit="contain"
-            />
-            <Typography variant="h5" color="textPrimary">
-              RICKQL
-            </Typography>
-          </StyledLink>
-          <Box flexGrow={1} />
-          <IconButton
-            aria-label="Check the source code on GitHub"
-            href="https://github.com/onderonur/rick-and-morty-graphql"
-            target="__blank"
-            // https://developers.google.com/web/tools/lighthouse/audits/noopener
-            // rel="noopener" prevents the new page from being able to access the window.opener
-            // property and ensures it runs in a separate process.
-            // rel="noreferrer" attribute has the same effect, but also prevents the Referer header
-            // from being sent to the new page.
-            rel="noopener"
-          >
-            <GitHubIcon />
-          </IconButton>
-          <IconButton aria-label="Toggle menu" onClick={handleClick}>
-            <MenuIcon />
-          </IconButton>
-        </Toolbar>
-      </AppBar>
-    </>
-  );
-});
+    return (
+      <>
+        <AppBar ref={ref} position="fixed">
+          <Toolbar>
+            <StyledLink href={routes.home({})}>
+              <BaseImage
+                src="/images/logo.png"
+                alt="Rick and Morty"
+                width={1}
+                height={1}
+                objectFit="contain"
+              />
+              <Typography variant="h5" color="textPrimary">
+                RICKQL
+              </Typography>
+            </StyledLink>
+            <Box flexGrow={1} />
+            <IconButton
+              aria-label="Check the source code on GitHub"
+              href="https://github.com/onderonur/rick-and-morty-graphql"
+              target="__blank"
+              // https://developers.google.com/web/tools/lighthouse/audits/noopener
+              // rel="noopener" prevents the new page from being able to access the window.opener
+              // property and ensures it runs in a separate process.
+              // rel="noreferrer" attribute has the same effect, but also prevents the Referer header
+              // from being sent to the new page.
+              rel="noopener"
+            >
+              <GitHubIcon />
+            </IconButton>
+            <IconButton aria-label="Toggle menu" onClick={handleClick}>
+              <MenuIcon />
+            </IconButton>
+          </Toolbar>
+        </AppBar>
+      </>
+    );
+  },
+);
 
 export default AppHeader;

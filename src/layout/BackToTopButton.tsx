@@ -30,9 +30,10 @@ function BackToTopButton() {
       <StyledFab
         aria-label="Back to Top"
         color="secondary"
+        size="medium"
         onClick={handleClick}
       >
-        <KeyboardArrowUpIcon fontSize="large" />
+        <KeyboardArrowUpIcon />
       </StyledFab>
     </Grow>
   );

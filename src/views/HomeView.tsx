@@ -32,7 +32,8 @@ const TitleText = styled(Typography)(({ theme }) => ({
   padding: theme.spacing(2),
 }));
 
-const StyledCard = styled(BaseCard)({
+const StyledCard = styled(BaseCard)(({ theme }) => ({
+  borderRadius: Number(theme.shape.borderRadius) * 4,
   '&:hover': {
     [`${Mask}`]: {
       opacity: 0.4,
@@ -41,7 +42,7 @@ const StyledCard = styled(BaseCard)({
       border: '4px solid currentColor',
     },
   },
-});
+}));
 
 const homeLinks = [
   {
@@ -79,6 +80,7 @@ function HomeView() {
                   height={9}
                   layout="responsive"
                   objectFit="cover"
+                  priority
                 />
                 <Mask />
                 <Title>
@@ -99,6 +101,7 @@ function HomeView() {
               height={9}
               layout="responsive"
               objectFit="cover"
+              priority
             />
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -109,6 +112,7 @@ function HomeView() {
               height={9}
               layout="responsive"
               objectFit="cover"
+              priority
             />
           </Grid>
         </Grid>

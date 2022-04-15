@@ -1,6 +1,6 @@
 import { EmptyObject } from '@/common/CommonTypes';
 import { Maybe } from '@/generated/graphql';
-import { useRouter } from 'next/dist/client/router';
+import { useRouter } from 'next/router';
 import { useCallback } from 'react';
 import { parseRouteParams, pruneQueryParams } from './RoutingUtils';
 

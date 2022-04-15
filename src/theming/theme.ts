@@ -5,11 +5,11 @@ const theme = createTheme({
     mode: 'dark',
     primary: {
       main: '#f0e14a',
-      contrastText: colors.common.white,
+      contrastText: colors.blueGrey[900],
     },
     secondary: {
       main: '#97ce4c',
-      contrastText: colors.common.white,
+      contrastText: colors.blueGrey[900],
     },
     background: {
       default: '#243447',

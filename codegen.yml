@@ -1,20 +1,20 @@
 overwrite: true
 schema:
-  - "https://rickandmortyapi.com/graphql"
-  - "src/apollo/typeDefs.ts"
+  - 'https://rickandmortyapi.com/graphql'
+  - 'src/apollo/typeDefs.ts'
 documents:
-  - "src/**/*.{ts,tsx}"
-  - "!.next"
-  - "!node_modules"
+  - 'src/**/*.{ts,tsx}'
+  - '!.next'
+  - '!node_modules'
 config:
   # https://graphql-code-generator.com/docs/generated-config/typescript#maybevalue-string-default-value-t--null
   maybeValue: T | null | undefined
 generates:
   src/generated/graphql.ts:
     plugins:
-      - "typescript"
-      - "typescript-operations"
-      - "typescript-react-apollo"
+      - 'typescript'
+      - 'typescript-operations'
+      - 'typescript-react-apollo'
     config:
       withHooks: true
       withHOC: false
@@ -23,4 +23,4 @@ generates:
       reactApolloVersion: 3
   src/generated/graphql.schema.json:
     plugins:
-      - "introspection"
+      - 'introspection'

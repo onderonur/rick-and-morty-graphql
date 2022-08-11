@@ -38,25 +38,27 @@ function BaseList<Item>({
 
   return (
     <List {...rest}>
-      {items?.map((item, i) =>
-        item && (!maxVisibleItemCount || expand || i < maxVisibleItemCount)
-          ? renderItem(item, i)
-          : null,
-      )}
-      {maxVisibleItemCount && itemCount && itemCount > maxVisibleItemCount ? (
-        <ListItem disablePadding>
-          <ListItemButton onClick={toggleExpand}>
-            <ListItemText secondary={`SHOW ${expand ? 'LESS' : 'MORE'}`} />
-          </ListItemButton>
-        </ListItem>
-      ) : null}
-      {loading ? (
-        <ListItem disablePadding>
-          <ListItemButton>
-            <LoadingIndicator ref={loadingRef} loading />
-          </ListItemButton>
-        </ListItem>
-      ) : null}
+      <>
+        {items?.map((item, i) =>
+          item && (!maxVisibleItemCount || expand || i < maxVisibleItemCount)
+            ? renderItem(item, i)
+            : null,
+        )}
+        {maxVisibleItemCount && itemCount && itemCount > maxVisibleItemCount ? (
+          <ListItem disablePadding>
+            <ListItemButton onClick={toggleExpand}>
+              <ListItemText secondary={`SHOW ${expand ? 'LESS' : 'MORE'}`} />
+            </ListItemButton>
+          </ListItem>
+        ) : null}
+        {loading ? (
+          <ListItem disablePadding>
+            <ListItemButton>
+              <LoadingIndicator ref={loadingRef} loading />
+            </ListItemButton>
+          </ListItem>
+        ) : null}
+      </>
     </List>
   );
 }

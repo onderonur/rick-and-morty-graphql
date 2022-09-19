@@ -40,21 +40,17 @@ type CharacterCardProps = {
   character:
     | CharacterCard_CharacterFragment
     | CharacterCard_CharacterWithSpecsFragment;
-  hasActionArea?: boolean;
+  href?: string;
 };
 
-function CharacterCard({
-  titleAs,
-  character,
-  hasActionArea,
-}: CharacterCardProps) {
+function CharacterCard({ titleAs, character, href }: CharacterCardProps) {
   const { episode } = character;
 
   const firstEpisode = episode ? episode[0] : null;
   const lastEpisode = episode ? episode[episode.length - 1] : null;
 
   return (
-    <BaseCard hasActionArea={hasActionArea}>
+    <BaseCard href={href}>
       {character.image && character.name && (
         <BaseImage
           src={character.image}

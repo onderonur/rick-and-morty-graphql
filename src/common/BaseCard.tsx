@@ -1,16 +1,23 @@
 import React from 'react';
 import { Card, CardActionArea, CardProps } from '@mui/material';
+import NextLink from '@/routing/NextLink';
 
 type BaseCardProps = React.PropsWithChildren<
   CardProps & {
-    hasActionArea?: boolean;
+    href?: string;
   }
 >;
 
-function BaseCard({ hasActionArea, children, ...rest }: BaseCardProps) {
+function BaseCard({ href, children, ...rest }: BaseCardProps) {
   return (
     <Card square elevation={0} {...rest}>
-      {hasActionArea ? <CardActionArea>{children}</CardActionArea> : children}
+      {href ? (
+        <CardActionArea LinkComponent={NextLink} href={href}>
+          {children}
+        </CardActionArea>
+      ) : (
+        children
+      )}
     </Card>
   );
 }

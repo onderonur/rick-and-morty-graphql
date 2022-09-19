@@ -48,13 +48,13 @@ const AppHeader = React.forwardRef<React.ComponentRef<typeof AppBar>, {}>(
             <IconButton
               aria-label="Check the source code on GitHub"
               href="https://github.com/onderonur/rick-and-morty-graphql"
-              target="__blank"
+              target="_blank"
               // https://developers.google.com/web/tools/lighthouse/audits/noopener
               // rel="noopener" prevents the new page from being able to access the window.opener
               // property and ensures it runs in a separate process.
               // rel="noreferrer" attribute has the same effect, but also prevents the Referer header
               // from being sent to the new page.
-              rel="noopener"
+              rel="noopener noreferrer"
             >
               <GitHubIcon />
             </IconButton>

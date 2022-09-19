@@ -3,7 +3,6 @@ import { Grid, Box, Typography, styled } from '@mui/material';
 import BaseGridList from '@/common/BaseGridList';
 import BaseCard from '@/common/BaseCard';
 import BaseImage from '@/common/BaseImage';
-import NextLink from '@/routing/NextLink';
 import BaseSeo from '@/seo/BaseSeo';
 import { routes } from '@/routing/routes';
 
@@ -71,23 +70,21 @@ function HomeView() {
         spacing={2}
         renderItem={(homeLink) => (
           <Grid key={homeLink.href} item xs={12} sm={4}>
-            <NextLink href={homeLink.href}>
-              <StyledCard hasActionArea>
-                <BaseImage
-                  src={homeLink.image}
-                  alt={homeLink.title}
-                  width={16}
-                  height={9}
-                  layout="responsive"
-                  objectFit="cover"
-                  priority
-                />
-                <Mask />
-                <Title>
-                  <TitleText variant="h5">{homeLink.title}</TitleText>
-                </Title>
-              </StyledCard>
-            </NextLink>
+            <StyledCard href={homeLink.href}>
+              <BaseImage
+                src={homeLink.image}
+                alt={homeLink.title}
+                width={16}
+                height={9}
+                layout="responsive"
+                objectFit="cover"
+                priority
+              />
+              <Mask />
+              <Title>
+                <TitleText variant="h5">{homeLink.title}</TitleText>
+              </Title>
+            </StyledCard>
           </Grid>
         )}
       />

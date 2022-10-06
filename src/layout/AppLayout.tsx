@@ -16,11 +16,7 @@ function AppLayout({ children }: AppLayoutProps) {
       <Toolbar />
       <AppDrawer />
       <BackToTopButton />
-      <Container
-        maxWidth="lg"
-        component="main"
-        sx={{ padding: (theme) => theme.spacing(2) }}
-      >
+      <Container maxWidth="lg" component="main" sx={{ p: 2 }}>
         <>{children}</>
       </Container>
     </>

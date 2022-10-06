@@ -1,6 +1,5 @@
 import React from 'react';
-import { Grid, Box, Typography, styled } from '@mui/material';
-import BaseGridList from '@/common/BaseGridList';
+import { Typography, Box, styled } from '@mui/material';
 import BaseCard from '@/common/BaseCard';
 import BaseImage from '@/common/BaseImage';
 import BaseSeo from '@/seo/BaseSeo';
@@ -8,10 +7,7 @@ import { routes } from '@/routing/routes';
 
 const Overlay = styled('div')({
   position: 'absolute',
-  top: 0,
-  left: 0,
-  width: '100%',
-  height: '100%',
+  inset: 0,
 });
 
 const Mask = styled(Overlay)(({ theme }) => ({
@@ -32,7 +28,7 @@ const TitleText = styled(Typography)(({ theme }) => ({
 }));
 
 const StyledCard = styled(BaseCard)(({ theme }) => ({
-  borderRadius: Number(theme.shape.borderRadius) * 4,
+  borderRadius: Number(theme.shape.borderRadius) * 2,
   '&:hover': {
     [`${Mask}`]: {
       opacity: 0.4,
@@ -43,7 +39,7 @@ const StyledCard = styled(BaseCard)(({ theme }) => ({
   },
 }));
 
-const homeLinks = [
+const homeCards = [
   {
     title: 'Characters',
     href: routes.characters({}),
@@ -59,60 +55,55 @@ const homeLinks = [
     href: routes.locations({}),
     image: '/images/locations.jpg',
   },
+  {
+    title: 'rick gif',
+    image: '/gifs/home01.webp',
+  },
+  {
+    title: 'snuffles gif',
+    image: '/gifs/home02.gif',
+  },
 ];
 
 function HomeView() {
   return (
     <>
       <BaseSeo title="Home" />
-      <BaseGridList
-        items={homeLinks}
-        spacing={2}
-        renderItem={(homeLink) => (
-          <Grid key={homeLink.href} item xs={12} sm={4}>
-            <StyledCard href={homeLink.href}>
-              <BaseImage
-                src={homeLink.image}
-                alt={homeLink.title}
-                width={16}
-                height={9}
-                layout="responsive"
-                objectFit="cover"
-                priority
-              />
-              <Mask />
-              <Title>
-                <TitleText variant="h5">{homeLink.title}</TitleText>
-              </Title>
-            </StyledCard>
-          </Grid>
-        )}
-      />
-      <Box my={1}>
-        <Grid container spacing={2}>
-          <Grid item xs={12} sm={6}>
-            <BaseImage
-              src="/gifs/home01.webp"
-              alt="rick gif"
-              width={16}
-              height={9}
-              layout="responsive"
-              objectFit="cover"
-              priority
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <BaseImage
-              src="/gifs/home02.gif"
-              alt="snuffles gif"
-              width={16}
-              height={9}
-              layout="responsive"
-              objectFit="cover"
-              priority
-            />
-          </Grid>
-        </Grid>
+      <Box
+        sx={{
+          display: 'grid',
+          gap: 1,
+          gridTemplateColumns: { xs: '1fr', sm: 'repeat(6, 1fr)' },
+        }}
+      >
+        {homeCards.map((homeCard) => {
+          return (
+            <Box
+              key={homeCard.title}
+              sx={{ gridColumn: homeCard.href ? 'span 2' : 'span 3' }}
+            >
+              <StyledCard href={homeCard.href}>
+                <BaseImage
+                  src={homeCard.image}
+                  alt={homeCard.title}
+                  width={16}
+                  height={9}
+                  layout="responsive"
+                  objectFit="cover"
+                  priority
+                />
+                {homeCard.href && (
+                  <>
+                    <Mask />
+                    <Title>
+                      <TitleText variant="h5">{homeCard.title}</TitleText>
+                    </Title>
+                  </>
+                )}
+              </StyledCard>
+            </Box>
+          );
+        })}
       </Box>
     </>
   );

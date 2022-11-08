@@ -30,7 +30,7 @@ function MyApp({
       <CacheProvider value={emotionCache}>
         <AppSeo />
         <ThemeProvider theme={theme}>
-          <CssBaseline />
+          <CssBaseline enableColorScheme />
           <PageProgressBar />
           <AppLayout>
             <Component {...pageProps} />

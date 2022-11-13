@@ -17,7 +17,7 @@ const GET_CHARACTER = gql`
   ${CharacterProfile.fragments.character}
 `;
 
-type CharacterDetailPagePathParams = PathParams<typeof routes['character']>;
+type CharacterDetailPagePathParams = PathParams<typeof routes.character>;
 
 function CharacterDetailPage() {
   const { routeParams } = useRouteParams<CharacterDetailPagePathParams>();

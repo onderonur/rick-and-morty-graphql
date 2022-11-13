@@ -13,13 +13,11 @@ import NextLink from '@/routing/NextLink';
 import { showDrawerVar } from '@/apollo/cache';
 import BaseImage from '@/common/BaseImage';
 import { routes } from '@/routing/routes';
+import logo from '@/images/logo.png';
 
 const StyledLink = styled(NextLink)({
   display: 'flex',
   alignItems: 'center',
-  '& img': {
-    width: 60,
-  },
 });
 
 const AppHeader = React.forwardRef<React.ComponentRef<typeof AppBar>, {}>(
@@ -33,13 +31,7 @@ const AppHeader = React.forwardRef<React.ComponentRef<typeof AppBar>, {}>(
         <AppBar ref={ref} position="fixed">
           <Toolbar>
             <StyledLink href={routes.home({})}>
-              <BaseImage
-                src="/images/logo.png"
-                alt="Rick and Morty"
-                width={1}
-                height={1}
-                objectFit="contain"
-              />
+              <BaseImage src={logo} alt="Rick and Morty" width={60} />
               <Typography variant="h5" color="textPrimary">
                 RICKQL
               </Typography>

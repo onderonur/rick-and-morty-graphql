@@ -1,54 +1,54 @@
-import React from 'react';
-import { Container, IconButton, InputAdornment } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import {
+  Container,
+  IconButton,
+  InputAdornment,
+  TextField,
+} from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
-import { Formik, Form } from 'formik';
-import BaseTextField from '@/common/BaseTextField';
 import { QueryParams, routes } from '@/routing/routes';
 import { useRouteParams } from '@/routing/useRouteParams';
 
-interface CharacterSearchFormValues {
-  searchValue: string;
-}
-
-type CharacterSearchQueryParams = QueryParams<typeof routes['characters']>;
+type CharacterSearchQueryParams = QueryParams<typeof routes.characters>;
 
 function CharacterSearch() {
   const { routeParams, setQueryParams } = useRouteParams<
     {},
     CharacterSearchQueryParams
   >();
-  const name = routeParams.get('name');
+  const name = routeParams.get('name') ?? '';
+  const [searchValue, setSearchValue] = useState(name);
 
-  function handleSearch({ searchValue }: CharacterSearchFormValues) {
-    setQueryParams({ name: searchValue });
-  }
+  useEffect(() => {
+    setSearchValue(name);
+  }, [name]);
 
   return (
     <Container maxWidth="sm">
-      <Formik<CharacterSearchFormValues>
-        initialValues={{
-          searchValue: typeof name === 'string' ? name : '',
+      <form
+        autoComplete="off"
+        onSubmit={(e) => {
+          e.preventDefault();
+          setQueryParams({ name: searchValue });
         }}
-        enableReinitialize
-        onSubmit={handleSearch}
       >
-        <Form autoComplete="off">
-          <BaseTextField
-            name="searchValue"
-            placeholder="Search"
-            fullWidth
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">
-                  <IconButton aria-label="Search" type="submit">
-                    <SearchIcon />
-                  </IconButton>
-                </InputAdornment>
-              ),
-            }}
-          />
-        </Form>
-      </Formik>
+        <TextField
+          name="searchValue"
+          value={searchValue}
+          onChange={(e) => setSearchValue(e.target.value)}
+          placeholder="Search"
+          fullWidth
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <IconButton aria-label="Search" type="submit">
+                  <SearchIcon />
+                </IconButton>
+              </InputAdornment>
+            ),
+          }}
+        />
+      </form>
     </Container>
   );
 }

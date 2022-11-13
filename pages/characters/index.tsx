@@ -25,9 +25,7 @@ const GET_CHARACTERS = gql`
   ${PAGE_INFO_FRAGMENT}
 `;
 
-type CharactersListingPageQueryParams = QueryParams<
-  typeof routes['characters']
->;
+type CharactersListingPageQueryParams = QueryParams<typeof routes.characters>;
 
 function CharactersListingPage() {
   const { routeParams } = useRouteParams<

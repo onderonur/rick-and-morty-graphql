@@ -1,6 +1,6 @@
 import React from 'react';
 import BaseCard from '@/common/BaseCard';
-import BaseImage from '@/common/BaseImage';
+import BaseImage, { imageProps } from '@/common/BaseImage';
 import gql from 'graphql-tag';
 import {
   CharacterCard_CharacterFragment,
@@ -55,10 +55,7 @@ function CharacterCard({ titleAs, character, href }: CharacterCardProps) {
         <BaseImage
           src={character.image}
           alt={character.name}
-          height={3}
-          width={4}
-          layout="responsive"
-          objectFit="cover"
+          {...imageProps.responsive('1')}
         />
       )}
       <CardHeader

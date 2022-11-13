@@ -16,7 +16,7 @@ const GET_LOCATION = gql`
   ${LocationProfile.fragments.location}
 `;
 
-type LocationDetailPagePathParams = PathParams<typeof routes['location']>;
+type LocationDetailPagePathParams = PathParams<typeof routes.location>;
 
 function LocationDetailPage() {
   const { routeParams } = useRouteParams<LocationDetailPagePathParams>();

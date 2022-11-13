@@ -2,6 +2,20 @@ import React from 'react';
 import Image, { ImageProps } from 'next/image';
 import { Omit } from './CommonTypes';
 
+export const imageProps = {
+  responsive: (aspectRatio: string): Partial<ImageProps> => ({
+    width: 1,
+    height: 1,
+    style: {
+      width: '100%',
+      height: 'auto',
+      display: 'block',
+      objectFit: 'cover',
+      aspectRatio,
+    },
+  }),
+};
+
 type BaseImageProps = Omit<ImageProps, 'alt'> &
   Required<Pick<ImageProps, 'alt'>>;
 

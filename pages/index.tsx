@@ -1,9 +1,14 @@
 import React from 'react';
 import { Typography, Box, styled } from '@mui/material';
 import BaseCard from '@/common/BaseCard';
-import BaseImage from '@/common/BaseImage';
+import BaseImage, { imageProps } from '@/common/BaseImage';
 import BaseSeo from '@/seo/BaseSeo';
 import { routes } from '@/routing/routes';
+import charactersPic from '@/images/characters.jpg';
+import episodesPic from '@/images/episodes.jpg';
+import locationsPic from '@/images/locations.jpg';
+import home01Gif from '@/gifs/home01.webp';
+import home02Gif from '@/gifs/home02.gif';
 
 const Overlay = styled('div')({
   position: 'absolute',
@@ -43,25 +48,25 @@ const homeCards = [
   {
     title: 'Characters',
     href: routes.characters({}),
-    image: '/images/characters.jpg',
+    image: charactersPic,
   },
   {
     title: 'Episodes',
     href: routes.episodes({}),
-    image: '/images/episodes.jpg',
+    image: episodesPic,
   },
   {
     title: 'Locations',
     href: routes.locations({}),
-    image: '/images/locations.jpg',
+    image: locationsPic,
   },
   {
     title: 'rick gif',
-    image: '/gifs/home01.webp',
+    gif: home01Gif,
   },
   {
     title: 'snuffles gif',
-    image: '/gifs/home02.gif',
+    gif: home02Gif,
   },
 ];
 
@@ -84,13 +89,9 @@ function HomePage() {
             >
               <StyledCard href={homeCard.href}>
                 <BaseImage
-                  src={homeCard.image}
+                  src={homeCard.image ?? homeCard.gif}
                   alt={homeCard.title}
-                  width={16}
-                  height={9}
-                  layout="responsive"
-                  objectFit="cover"
-                  priority
+                  {...imageProps.responsive('16 / 9')}
                 />
                 {homeCard.href && (
                   <>

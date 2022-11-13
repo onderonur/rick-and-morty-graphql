@@ -16,7 +16,7 @@ const GET_EPISODE = gql`
   ${EpisodeProfile.fragments.episode}
 `;
 
-type EpisodeDetailPagePathParams = PathParams<typeof routes['episode']>;
+type EpisodeDetailPagePathParams = PathParams<typeof routes.episode>;
 
 function EpisodeDetailPage() {
   const { routeParams } = useRouteParams<EpisodeDetailPagePathParams>();

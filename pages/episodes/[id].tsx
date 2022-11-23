@@ -2,18 +2,24 @@ import React from 'react';
 import gql from 'graphql-tag';
 import { useGetEpisodeQuery } from '@/generated/graphql';
 import BaseSeo from '@/seo/BaseSeo';
-import EpisodeProfile from '@/episodes/EpisodeProfile';
 import { PathParams, routes } from '@/routing/routes';
 import { useRouteParams } from '@/routing/useRouteParams';
+import Profile from '@/common/Profile';
+import EpisodeCard from '@/episodes/EpisodeCard';
+import CharacterGridList from '@/characters/CharacterGridList';
 
 const GET_EPISODE = gql`
   query GetEpisode($id: ID!) {
     episode(id: $id) {
       name
-      ...EpisodeProfile_episode
+      ...EpisodeCard_episode
+      characters {
+        ...CharacterGridList_character
+      }
     }
   }
-  ${EpisodeProfile.fragments.episode}
+  ${EpisodeCard.fragments.episode}
+  ${CharacterGridList.fragments.character}
 `;
 
 type EpisodeDetailPagePathParams = PathParams<typeof routes.episode>;
@@ -36,7 +42,17 @@ function EpisodeDetailPage() {
   return (
     <>
       <BaseSeo title={episode?.name} />
-      <EpisodeProfile episode={episode} loading={loading} />
+      <Profile
+        loading={loading}
+        infoCard={episode && <EpisodeCard titleAs="h1" episode={episode} />}
+        fullWidthInfoCard
+        mainSectionTitle="Characters"
+        mainSection={
+          episode?.characters && (
+            <CharacterGridList items={episode.characters} />
+          )
+        }
+      />
     </>
   );
 }

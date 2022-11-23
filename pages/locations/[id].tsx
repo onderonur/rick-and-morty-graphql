@@ -2,18 +2,24 @@ import React from 'react';
 import gql from 'graphql-tag';
 import { useGetLocationQuery } from '@/generated/graphql';
 import BaseSeo from '@/seo/BaseSeo';
-import LocationProfile from '@/locations/LocationProfile';
 import { PathParams, routes } from '@/routing/routes';
 import { useRouteParams } from '@/routing/useRouteParams';
+import CharacterGridList from '@/characters/CharacterGridList';
+import LocationCard from '@/locations/LocationCard';
+import Profile from '@/common/Profile';
 
 const GET_LOCATION = gql`
   query GetLocation($id: ID!) {
     location(id: $id) {
       name
-      ...LocationProfile_location
+      ...LocationCard_location
+      residents {
+        ...CharacterGridList_character
+      }
     }
   }
-  ${LocationProfile.fragments.location}
+  ${LocationCard.fragments.location}
+  ${CharacterGridList.fragments.character}
 `;
 
 type LocationDetailPagePathParams = PathParams<typeof routes.location>;
@@ -36,7 +42,17 @@ function LocationDetailPage() {
   return (
     <>
       <BaseSeo title={location?.name} />
-      <LocationProfile location={location} loading={loading} />
+      <Profile
+        loading={loading}
+        infoCard={location && <LocationCard titleAs="h1" location={location} />}
+        fullWidthInfoCard
+        mainSectionTitle="Residents"
+        mainSection={
+          location?.residents && (
+            <CharacterGridList items={location.residents} />
+          )
+        }
+      />
     </>
   );
 }

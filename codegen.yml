@@ -3,7 +3,7 @@ schema:
   - 'https://rickandmortyapi.com/graphql'
   - 'src/apollo/typeDefs.ts'
 documents:
-  - 'src/**/*.{ts,tsx}'
+  - '{src,pages}/**/*.{ts,tsx}'
   - '!.next'
   - '!node_modules'
 config:

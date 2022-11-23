@@ -203,39 +203,6 @@ export type QueryLocationsByIdsArgs = {
   ids: Array<Scalars['ID']>;
 };
 
-export type PageInfoFragment = { __typename?: 'Info', next?: number | null | undefined };
-
-export type CharacterCard_CharacterFragment = { __typename?: 'Character', id?: string | null | undefined, name?: string | null | undefined, image?: string | null | undefined, episode: Array<{ __typename?: 'Episode', id?: string | null | undefined, air_date?: string | null | undefined } | null | undefined> };
-
-export type CharacterCard_CharacterWithSpecsFragment = { __typename?: 'Character', status?: string | null | undefined, species?: string | null | undefined, gender?: string | null | undefined, id?: string | null | undefined, name?: string | null | undefined, image?: string | null | undefined, origin?: { __typename?: 'Location', id?: string | null | undefined, name?: string | null | undefined } | null | undefined, location?: { __typename?: 'Location', id?: string | null | undefined, name?: string | null | undefined } | null | undefined, episode: Array<{ __typename?: 'Episode', id?: string | null | undefined, air_date?: string | null | undefined } | null | undefined> };
-
-export type CharacterGridList_CharacterFragment = { __typename?: 'Character', id?: string | null | undefined, name?: string | null | undefined, image?: string | null | undefined, episode: Array<{ __typename?: 'Episode', id?: string | null | undefined, air_date?: string | null | undefined } | null | undefined> };
-
-export type CharacterGridListItem_CharacterFragment = { __typename?: 'Character', id?: string | null | undefined, name?: string | null | undefined, image?: string | null | undefined, episode: Array<{ __typename?: 'Episode', id?: string | null | undefined, air_date?: string | null | undefined } | null | undefined> };
-
-export type CharacterProfile_CharacterFragment = { __typename?: 'Character', status?: string | null | undefined, species?: string | null | undefined, gender?: string | null | undefined, id?: string | null | undefined, name?: string | null | undefined, image?: string | null | undefined, episode: Array<{ __typename?: 'Episode', id?: string | null | undefined, air_date?: string | null | undefined, name?: string | null | undefined, episode?: string | null | undefined } | null | undefined>, origin?: { __typename?: 'Location', id?: string | null | undefined, name?: string | null | undefined } | null | undefined, location?: { __typename?: 'Location', id?: string | null | undefined, name?: string | null | undefined } | null | undefined };
-
-export type EpisodeCard_EpisodeFragment = { __typename?: 'Episode', id?: string | null | undefined, name?: string | null | undefined, episode?: string | null | undefined, air_date?: string | null | undefined };
-
-export type EpisodeList_EpisodeFragment = { __typename?: 'Episode', id?: string | null | undefined, name?: string | null | undefined, air_date?: string | null | undefined, episode?: string | null | undefined };
-
-export type EpisodeListItem_EpisodeFragment = { __typename?: 'Episode', id?: string | null | undefined, name?: string | null | undefined, air_date?: string | null | undefined, episode?: string | null | undefined };
-
-export type EpisodeProfile_EpisodeFragment = { __typename?: 'Episode', id?: string | null | undefined, name?: string | null | undefined, episode?: string | null | undefined, air_date?: string | null | undefined, characters: Array<{ __typename?: 'Character', id?: string | null | undefined, name?: string | null | undefined, image?: string | null | undefined, episode: Array<{ __typename?: 'Episode', id?: string | null | undefined, air_date?: string | null | undefined } | null | undefined> } | null | undefined> };
-
-export type LocationListItem_LocationFragment = { __typename?: 'Location', id?: string | null | undefined, name?: string | null | undefined, type?: string | null | undefined };
-
-export type LocationList_LocationFragment = { __typename?: 'Location', id?: string | null | undefined, name?: string | null | undefined, type?: string | null | undefined };
-
-export type LocationCard_LocationFragment = { __typename?: 'Location', id?: string | null | undefined, name?: string | null | undefined, type?: string | null | undefined, dimension?: string | null | undefined };
-
-export type LocationProfile_LocationFragment = { __typename?: 'Location', id?: string | null | undefined, name?: string | null | undefined, type?: string | null | undefined, dimension?: string | null | undefined, residents: Array<{ __typename?: 'Character', id?: string | null | undefined, name?: string | null | undefined, image?: string | null | undefined, episode: Array<{ __typename?: 'Episode', id?: string | null | undefined, air_date?: string | null | undefined } | null | undefined> } | null | undefined> };
-
-export type GetShowDrawerQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type GetShowDrawerQuery = { __typename?: 'Query', showDrawer: boolean };
-
 export type GetCharacterQueryVariables = Exact<{
   id: Scalars['ID'];
 }>;
@@ -280,6 +247,33 @@ export type GetLocationsQueryVariables = Exact<{
 
 export type GetLocationsQuery = { __typename?: 'Query', locations?: { __typename?: 'Locations', results?: Array<{ __typename?: 'Location', id?: string | null | undefined, name?: string | null | undefined, type?: string | null | undefined } | null | undefined> | null | undefined, info?: { __typename?: 'Info', next?: number | null | undefined } | null | undefined } | null | undefined };
 
+export type PageInfoFragment = { __typename?: 'Info', next?: number | null | undefined };
+
+export type CharacterCard_CharacterFragment = { __typename?: 'Character', id?: string | null | undefined, name?: string | null | undefined, image?: string | null | undefined, episode: Array<{ __typename?: 'Episode', id?: string | null | undefined, air_date?: string | null | undefined } | null | undefined> };
+
+export type CharacterCard_CharacterWithSpecsFragment = { __typename?: 'Character', status?: string | null | undefined, species?: string | null | undefined, gender?: string | null | undefined, id?: string | null | undefined, name?: string | null | undefined, image?: string | null | undefined, origin?: { __typename?: 'Location', id?: string | null | undefined, name?: string | null | undefined } | null | undefined, location?: { __typename?: 'Location', id?: string | null | undefined, name?: string | null | undefined } | null | undefined, episode: Array<{ __typename?: 'Episode', id?: string | null | undefined, air_date?: string | null | undefined } | null | undefined> };
+
+export type CharacterGridList_CharacterFragment = { __typename?: 'Character', id?: string | null | undefined, name?: string | null | undefined, image?: string | null | undefined, episode: Array<{ __typename?: 'Episode', id?: string | null | undefined, air_date?: string | null | undefined } | null | undefined> };
+
+export type CharacterGridListItem_CharacterFragment = { __typename?: 'Character', id?: string | null | undefined, name?: string | null | undefined, image?: string | null | undefined, episode: Array<{ __typename?: 'Episode', id?: string | null | undefined, air_date?: string | null | undefined } | null | undefined> };
+
+export type EpisodeCard_EpisodeFragment = { __typename?: 'Episode', id?: string | null | undefined, name?: string | null | undefined, episode?: string | null | undefined, air_date?: string | null | undefined };
+
+export type EpisodeList_EpisodeFragment = { __typename?: 'Episode', id?: string | null | undefined, name?: string | null | undefined, air_date?: string | null | undefined, episode?: string | null | undefined };
+
+export type EpisodeListItem_EpisodeFragment = { __typename?: 'Episode', id?: string | null | undefined, name?: string | null | undefined, air_date?: string | null | undefined, episode?: string | null | undefined };
+
+export type GetShowDrawerQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetShowDrawerQuery = { __typename?: 'Query', showDrawer: boolean };
+
+export type LocationCard_LocationFragment = { __typename?: 'Location', id?: string | null | undefined, name?: string | null | undefined, type?: string | null | undefined, dimension?: string | null | undefined };
+
+export type LocationList_LocationFragment = { __typename?: 'Location', id?: string | null | undefined, name?: string | null | undefined, type?: string | null | undefined };
+
+export type LocationListItem_LocationFragment = { __typename?: 'Location', id?: string | null | undefined, name?: string | null | undefined, type?: string | null | undefined };
+
 export const PageInfoFragmentDoc = gql`
     fragment pageInfo on Info {
   next
@@ -312,6 +306,24 @@ export const CharacterCard_CharacterWithSpecsFragmentDoc = gql`
   }
 }
     ${CharacterCard_CharacterFragmentDoc}`;
+export const CharacterGridListItem_CharacterFragmentDoc = gql`
+    fragment CharacterGridListItem_character on Character {
+  ...CharacterCard_character
+}
+    ${CharacterCard_CharacterFragmentDoc}`;
+export const CharacterGridList_CharacterFragmentDoc = gql`
+    fragment CharacterGridList_character on Character {
+  ...CharacterGridListItem_character
+}
+    ${CharacterGridListItem_CharacterFragmentDoc}`;
+export const EpisodeCard_EpisodeFragmentDoc = gql`
+    fragment EpisodeCard_episode on Episode {
+  id
+  name
+  episode
+  air_date
+}
+    `;
 export const EpisodeListItem_EpisodeFragmentDoc = gql`
     fragment EpisodeListItem_episode on Episode {
   id
@@ -325,42 +337,14 @@ export const EpisodeList_EpisodeFragmentDoc = gql`
   ...EpisodeListItem_episode
 }
     ${EpisodeListItem_EpisodeFragmentDoc}`;
-export const CharacterProfile_CharacterFragmentDoc = gql`
-    fragment CharacterProfile_character on Character {
-  ...CharacterCard_characterWithSpecs
-  episode {
-    ...EpisodeList_episode
-  }
-}
-    ${CharacterCard_CharacterWithSpecsFragmentDoc}
-${EpisodeList_EpisodeFragmentDoc}`;
-export const EpisodeCard_EpisodeFragmentDoc = gql`
-    fragment EpisodeCard_episode on Episode {
+export const LocationCard_LocationFragmentDoc = gql`
+    fragment LocationCard_location on Location {
   id
   name
-  episode
-  air_date
+  type
+  dimension
 }
     `;
-export const CharacterGridListItem_CharacterFragmentDoc = gql`
-    fragment CharacterGridListItem_character on Character {
-  ...CharacterCard_character
-}
-    ${CharacterCard_CharacterFragmentDoc}`;
-export const CharacterGridList_CharacterFragmentDoc = gql`
-    fragment CharacterGridList_character on Character {
-  ...CharacterGridListItem_character
-}
-    ${CharacterGridListItem_CharacterFragmentDoc}`;
-export const EpisodeProfile_EpisodeFragmentDoc = gql`
-    fragment EpisodeProfile_episode on Episode {
-  ...EpisodeCard_episode
-  characters {
-    ...CharacterGridList_character
-  }
-}
-    ${EpisodeCard_EpisodeFragmentDoc}
-${CharacterGridList_CharacterFragmentDoc}`;
 export const LocationListItem_LocationFragmentDoc = gql`
     fragment LocationListItem_location on Location {
   id
@@ -373,64 +357,19 @@ export const LocationList_LocationFragmentDoc = gql`
   ...LocationListItem_location
 }
     ${LocationListItem_LocationFragmentDoc}`;
-export const LocationCard_LocationFragmentDoc = gql`
-    fragment LocationCard_location on Location {
-  id
-  name
-  type
-  dimension
-}
-    `;
-export const LocationProfile_LocationFragmentDoc = gql`
-    fragment LocationProfile_location on Location {
-  ...LocationCard_location
-  residents {
-    ...CharacterGridList_character
-  }
-}
-    ${LocationCard_LocationFragmentDoc}
-${CharacterGridList_CharacterFragmentDoc}`;
-export const GetShowDrawerDocument = gql`
-    query GetShowDrawer {
-  showDrawer @client
-}
-    `;
-
-/**
- * __useGetShowDrawerQuery__
- *
- * To run a query within a React component, call `useGetShowDrawerQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetShowDrawerQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useGetShowDrawerQuery({
- *   variables: {
- *   },
- * });
- */
-export function useGetShowDrawerQuery(baseOptions?: Apollo.QueryHookOptions<GetShowDrawerQuery, GetShowDrawerQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetShowDrawerQuery, GetShowDrawerQueryVariables>(GetShowDrawerDocument, options);
-      }
-export function useGetShowDrawerLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetShowDrawerQuery, GetShowDrawerQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetShowDrawerQuery, GetShowDrawerQueryVariables>(GetShowDrawerDocument, options);
-        }
-export type GetShowDrawerQueryHookResult = ReturnType<typeof useGetShowDrawerQuery>;
-export type GetShowDrawerLazyQueryHookResult = ReturnType<typeof useGetShowDrawerLazyQuery>;
-export type GetShowDrawerQueryResult = Apollo.QueryResult<GetShowDrawerQuery, GetShowDrawerQueryVariables>;
 export const GetCharacterDocument = gql`
     query GetCharacter($id: ID!) {
   character(id: $id) {
     name
     image
-    ...CharacterProfile_character
+    ...CharacterCard_characterWithSpecs
+    episode {
+      ...EpisodeList_episode
+    }
   }
 }
-    ${CharacterProfile_CharacterFragmentDoc}`;
+    ${CharacterCard_CharacterWithSpecsFragmentDoc}
+${EpisodeList_EpisodeFragmentDoc}`;
 
 /**
  * __useGetCharacterQuery__
@@ -505,10 +444,14 @@ export const GetEpisodeDocument = gql`
     query GetEpisode($id: ID!) {
   episode(id: $id) {
     name
-    ...EpisodeProfile_episode
+    ...EpisodeCard_episode
+    characters {
+      ...CharacterGridList_character
+    }
   }
 }
-    ${EpisodeProfile_EpisodeFragmentDoc}`;
+    ${EpisodeCard_EpisodeFragmentDoc}
+${CharacterGridList_CharacterFragmentDoc}`;
 
 /**
  * __useGetEpisodeQuery__
@@ -583,10 +526,14 @@ export const GetLocationDocument = gql`
     query GetLocation($id: ID!) {
   location(id: $id) {
     name
-    ...LocationProfile_location
+    ...LocationCard_location
+    residents {
+      ...CharacterGridList_character
+    }
   }
 }
-    ${LocationProfile_LocationFragmentDoc}`;
+    ${LocationCard_LocationFragmentDoc}
+${CharacterGridList_CharacterFragmentDoc}`;
 
 /**
  * __useGetLocationQuery__
@@ -656,3 +603,35 @@ export function useGetLocationsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptio
 export type GetLocationsQueryHookResult = ReturnType<typeof useGetLocationsQuery>;
 export type GetLocationsLazyQueryHookResult = ReturnType<typeof useGetLocationsLazyQuery>;
 export type GetLocationsQueryResult = Apollo.QueryResult<GetLocationsQuery, GetLocationsQueryVariables>;
+export const GetShowDrawerDocument = gql`
+    query GetShowDrawer {
+  showDrawer @client
+}
+    `;
+
+/**
+ * __useGetShowDrawerQuery__
+ *
+ * To run a query within a React component, call `useGetShowDrawerQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetShowDrawerQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetShowDrawerQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetShowDrawerQuery(baseOptions?: Apollo.QueryHookOptions<GetShowDrawerQuery, GetShowDrawerQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetShowDrawerQuery, GetShowDrawerQueryVariables>(GetShowDrawerDocument, options);
+      }
+export function useGetShowDrawerLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetShowDrawerQuery, GetShowDrawerQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetShowDrawerQuery, GetShowDrawerQueryVariables>(GetShowDrawerDocument, options);
+        }
+export type GetShowDrawerQueryHookResult = ReturnType<typeof useGetShowDrawerQuery>;
+export type GetShowDrawerLazyQueryHookResult = ReturnType<typeof useGetShowDrawerLazyQuery>;
+export type GetShowDrawerQueryResult = Apollo.QueryResult<GetShowDrawerQuery, GetShowDrawerQueryVariables>;

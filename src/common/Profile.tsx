@@ -28,7 +28,9 @@ function Profile({
           <Grid item xs={12} sm={fullWidthInfoCard ? 12 : 8}>
             <BaseCard>
               <CardContent>
-                <Typography variant="h6">{mainSectionTitle}</Typography>
+                <Typography variant="h6" component="h2">
+                  {mainSectionTitle}
+                </Typography>
                 {mainSection}
               </CardContent>
             </BaseCard>

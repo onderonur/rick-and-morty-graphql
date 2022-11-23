@@ -32,7 +32,7 @@ const AppHeader = React.forwardRef<React.ComponentRef<typeof AppBar>, {}>(
           <Toolbar>
             <StyledLink href={routes.home({})}>
               <BaseImage src={logo} alt="Rick and Morty" width={60} />
-              <Typography variant="h5" color="textPrimary">
+              <Typography variant="h5" component="div" color="textPrimary">
                 RICKQL
               </Typography>
             </StyledLink>

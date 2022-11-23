@@ -2,19 +2,25 @@ import React from 'react';
 import gql from 'graphql-tag';
 import { useGetCharacterQuery } from '@/generated/graphql';
 import BaseSeo from '@/seo/BaseSeo';
-import CharacterProfile from '@/characters/CharacterProfile';
 import { PathParams, routes } from '@/routing/routes';
 import { useRouteParams } from '@/routing/useRouteParams';
+import Profile from '@/common/Profile';
+import CharacterCard from '@/characters/CharacterCard';
+import EpisodeList from '@/episodes/EpisodeList';
 
 const GET_CHARACTER = gql`
   query GetCharacter($id: ID!) {
     character(id: $id) {
       name
       image
-      ...CharacterProfile_character
+      ...CharacterCard_characterWithSpecs
+      episode {
+        ...EpisodeList_episode
+      }
     }
   }
-  ${CharacterProfile.fragments.character}
+  ${CharacterCard.fragments.characterWithSpecs}
+  ${EpisodeList.fragments.episode}
 `;
 
 type CharacterDetailPagePathParams = PathParams<typeof routes.character>;
@@ -42,7 +48,18 @@ function CharacterDetailPage() {
           images: character?.image ? [{ url: character?.image }] : [],
         }}
       />
-      <CharacterProfile character={character} loading={loading} />
+      <Profile
+        loading={loading}
+        infoCard={
+          character && <CharacterCard titleAs="h1" character={character} />
+        }
+        mainSectionTitle="Episodes"
+        mainSection={
+          character?.episode && (
+            <EpisodeList items={character.episode} maxVisibleItemCount={5} />
+          )
+        }
+      />
     </>
   );
 }

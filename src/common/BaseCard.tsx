@@ -1,4 +1,3 @@
-import React from 'react';
 import { Card, CardActionArea, CardProps } from '@mui/material';
 import NextLink from '@/routing/NextLink';
 

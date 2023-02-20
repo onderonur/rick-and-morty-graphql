@@ -1,4 +1,3 @@
-import React from 'react';
 import CharacterGridListItem from './CharacterGridListItem';
 import gql from 'graphql-tag';
 import BaseGridList, { BaseGridListProps } from '@/common/BaseGridList';

@@ -1,4 +1,3 @@
-import React from 'react';
 import BaseCard from '@/common/BaseCard';
 import BaseImage, { imageProps } from '@/common/BaseImage';
 import gql from 'graphql-tag';

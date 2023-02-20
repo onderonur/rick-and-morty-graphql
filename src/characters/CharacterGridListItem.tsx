@@ -1,4 +1,3 @@
-import React from 'react';
 import { Grid } from '@mui/material';
 import gql from 'graphql-tag';
 import { CharacterGridListItem_CharacterFragment } from '@/generated/graphql';

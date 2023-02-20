@@ -1,12 +1,13 @@
-import React from 'react';
 import gql from 'graphql-tag';
-import { useGetLocationQuery } from '@/generated/graphql';
+import { GetLocationDocument, useGetLocationQuery } from '@/generated/graphql';
 import BaseSeo from '@/seo/BaseSeo';
 import { PathParams, routes } from '@/routing/routes';
 import { useRouteParams } from '@/routing/useRouteParams';
 import CharacterGridList from '@/characters/CharacterGridList';
 import LocationCard from '@/locations/LocationCard';
 import Profile from '@/common/Profile';
+import { GetServerSideProps } from 'next';
+import { addApolloState, initializeApollo } from '@/apollo/apollo';
 
 const GET_LOCATION = gql`
   query GetLocation($id: ID!) {
@@ -56,5 +57,18 @@ function LocationDetailPage() {
     </>
   );
 }
+
+export const getServerSideProps: GetServerSideProps = async (req) => {
+  const apolloClient = initializeApollo();
+
+  await apolloClient.query({
+    query: GetLocationDocument,
+    variables: { id: req.params?.id },
+  });
+
+  return addApolloState(apolloClient, {
+    props: {},
+  });
+};
 
 export default LocationDetailPage;

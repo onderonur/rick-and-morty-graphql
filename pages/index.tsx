@@ -1,4 +1,3 @@
-import React from 'react';
 import { Typography, Box, styled } from '@mui/material';
 import BaseCard from '@/common/BaseCard';
 import BaseImage, { imageProps } from '@/common/BaseImage';

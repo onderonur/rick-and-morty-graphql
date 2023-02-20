@@ -1,10 +1,15 @@
-import React, { useCallback } from 'react';
+import { useCallback } from 'react';
 import PAGE_INFO_FRAGMENT from '@/apollo/fragments';
 import gql from 'graphql-tag';
-import { useGetLocationsQuery } from '@/generated/graphql';
+import {
+  GetLocationsDocument,
+  useGetLocationsQuery,
+} from '@/generated/graphql';
 import BaseSeo from '@/seo/BaseSeo';
 import LocationList from '@/locations/LocationList';
 import useInfiniteScroll from 'react-infinite-scroll-hook';
+import { GetServerSideProps } from 'next';
+import { addApolloState, initializeApollo } from '@/apollo/apollo';
 
 const GET_LOCATIONS = gql`
   query GetLocations($page: Int) {
@@ -75,5 +80,17 @@ function LocationsListingPage() {
     </>
   );
 }
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const apolloClient = initializeApollo();
+
+  await apolloClient.query({
+    query: GetLocationsDocument,
+  });
+
+  return addApolloState(apolloClient, {
+    props: {},
+  });
+};
 
 export default LocationsListingPage;

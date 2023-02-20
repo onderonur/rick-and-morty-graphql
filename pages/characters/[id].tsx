@@ -1,12 +1,16 @@
-import React from 'react';
 import gql from 'graphql-tag';
-import { useGetCharacterQuery } from '@/generated/graphql';
+import {
+  GetCharacterDocument,
+  useGetCharacterQuery,
+} from '@/generated/graphql';
 import BaseSeo from '@/seo/BaseSeo';
 import { PathParams, routes } from '@/routing/routes';
 import { useRouteParams } from '@/routing/useRouteParams';
 import Profile from '@/common/Profile';
 import CharacterCard from '@/characters/CharacterCard';
 import EpisodeList from '@/episodes/EpisodeList';
+import { addApolloState, initializeApollo } from '@/apollo/apollo';
+import { GetServerSideProps } from 'next';
 
 const GET_CHARACTER = gql`
   query GetCharacter($id: ID!) {
@@ -63,5 +67,18 @@ function CharacterDetailPage() {
     </>
   );
 }
+
+export const getServerSideProps: GetServerSideProps = async (req) => {
+  const apolloClient = initializeApollo();
+
+  await apolloClient.query({
+    query: GetCharacterDocument,
+    variables: { id: req.params?.id },
+  });
+
+  return addApolloState(apolloClient, {
+    props: {},
+  });
+};
 
 export default CharacterDetailPage;

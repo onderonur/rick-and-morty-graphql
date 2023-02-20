@@ -1,7 +1,11 @@
-import React, { useCallback, useMemo } from 'react';
+import { useCallback } from 'react';
 import { Box, Typography } from '@mui/material';
 import gql from 'graphql-tag';
-import { useGetCharactersQuery } from '@/generated/graphql';
+import {
+  GetCharactersDocument,
+  GetCharactersQueryVariables,
+  useGetCharactersQuery,
+} from '@/generated/graphql';
 import BaseSeo from '@/seo/BaseSeo';
 import CharacterGridList from '@/characters/CharacterGridList';
 import PAGE_INFO_FRAGMENT from '@/apollo/fragments';
@@ -9,6 +13,9 @@ import CharacterSearch from '@/characters/CharacterSearch';
 import useInfiniteScroll from 'react-infinite-scroll-hook';
 import { QueryParams, routes } from '@/routing/routes';
 import { useRouteParams } from '@/routing/useRouteParams';
+import { addApolloState, initializeApollo } from '@/apollo/apollo';
+import { GetServerSideProps } from 'next';
+import { ParsedRouteParams, parseRouteParams } from '@/routing/RoutingUtils';
 
 const GET_CHARACTERS = gql`
   query GetCharacters($page: Int, $filter: FilterCharacter) {
@@ -27,21 +34,25 @@ const GET_CHARACTERS = gql`
 
 type CharactersListingPageQueryParams = QueryParams<typeof routes.characters>;
 
+function getVariables(
+  parsedRouteParams: ParsedRouteParams<CharactersListingPageQueryParams>,
+): GetCharactersQueryVariables {
+  const name = parsedRouteParams.get('name');
+
+  if (!name) {
+    return {};
+  }
+
+  return { filter: { name } };
+}
+
 function CharactersListingPage() {
   const { routeParams } = useRouteParams<
     {},
     CharactersListingPageQueryParams
   >();
-  const name = routeParams.get('name');
-  const variables = useMemo(
-    () =>
-      name
-        ? {
-            filter: { name },
-          }
-        : {},
-    [name],
-  );
+  const variables = getVariables(routeParams);
+
   const { data, loading, error, fetchMore, networkStatus } =
     useGetCharactersQuery({
       query: GET_CHARACTERS,
@@ -116,5 +127,22 @@ function CharactersListingPage() {
     </>
   );
 }
+
+export const getServerSideProps: GetServerSideProps = async (req) => {
+  const apolloClient = initializeApollo();
+
+  const parsedRouteParams = parseRouteParams<CharactersListingPageQueryParams>(
+    req.query,
+  );
+
+  await apolloClient.query({
+    query: GetCharactersDocument,
+    variables: getVariables(parsedRouteParams),
+  });
+
+  return addApolloState(apolloClient, {
+    props: {},
+  });
+};
 
 export default CharactersListingPage;

@@ -1,4 +1,3 @@
-import React from 'react';
 import { Grid, GridProps } from '@mui/material';
 import LoadingIndicator from './LoadingIndicator';
 import { Maybe } from '@/generated/graphql';

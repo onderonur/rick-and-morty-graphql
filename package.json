@@ -30,7 +30,7 @@
     "react-infinite-scroll-hook": "^4.0.4"
   },
   "devDependencies": {
-    "@emotion/babel-plugin": "^11.10.0",
+    "@emotion/babel-plugin": "^11.10.6",
     "@graphql-codegen/cli": "^3.0.0",
     "@graphql-codegen/fragment-matcher": "^4.0.0",
     "@graphql-codegen/introspection": "^3.0.0",

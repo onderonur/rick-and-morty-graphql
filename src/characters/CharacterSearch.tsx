@@ -7,7 +7,7 @@ import {
 } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import { QueryParams, routes } from '@/routing/routes';
-import { useRouteParams } from '@/routing/useRouteParams';
+import { useRouteParams } from '@/routing/RoutingHooks';
 
 type CharacterSearchQueryParams = QueryParams<typeof routes.characters>;
 

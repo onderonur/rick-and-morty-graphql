@@ -5,7 +5,7 @@ import {
 } from '@/generated/graphql';
 import BaseSeo from '@/seo/BaseSeo';
 import { PathParams, routes } from '@/routing/routes';
-import { useRouteParams } from '@/routing/useRouteParams';
+import { useRouteParams } from '@/routing/RoutingHooks';
 import Profile from '@/common/Profile';
 import CharacterCard from '@/characters/CharacterCard';
 import EpisodeList from '@/episodes/EpisodeList';

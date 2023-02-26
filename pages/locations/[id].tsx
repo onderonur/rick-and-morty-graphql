@@ -2,7 +2,7 @@ import gql from 'graphql-tag';
 import { GetLocationDocument, useGetLocationQuery } from '@/generated/graphql';
 import BaseSeo from '@/seo/BaseSeo';
 import { PathParams, routes } from '@/routing/routes';
-import { useRouteParams } from '@/routing/useRouteParams';
+import { useRouteParams } from '@/routing/RoutingHooks';
 import CharacterGridList from '@/characters/CharacterGridList';
 import LocationCard from '@/locations/LocationCard';
 import Profile from '@/common/Profile';

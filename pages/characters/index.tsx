@@ -12,7 +12,7 @@ import PAGE_INFO_FRAGMENT from '@/apollo/fragments';
 import CharacterSearch from '@/characters/CharacterSearch';
 import useInfiniteScroll from 'react-infinite-scroll-hook';
 import { QueryParams, routes } from '@/routing/routes';
-import { useRouteParams } from '@/routing/useRouteParams';
+import { useRouteParams } from '@/routing/RoutingHooks';
 import { addApolloState, initializeApollo } from '@/apollo/apollo';
 import { GetServerSideProps } from 'next';
 import { ParsedRouteParams, parseRouteParams } from '@/routing/RoutingUtils';

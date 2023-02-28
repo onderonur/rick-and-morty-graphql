@@ -2,10 +2,10 @@ module.exports = {
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
-    'prettier',
+    'plugin:prettier/recommended',
     'next/core-web-vitals',
   ],
-  plugins: ['graphql', '@typescript-eslint', 'prettier', 'deprecation'],
+  plugins: ['graphql', '@typescript-eslint', 'deprecation'],
   parser: '@typescript-eslint/parser',
   // For eslint-plugin-deprecation:
   // https://stackoverflow.com/a/64488474/10876256
@@ -23,10 +23,11 @@ module.exports = {
     'deprecation/deprecation': 'warn',
     'no-console': 'warn',
     'no-alert': 'warn',
+    'prefer-destructuring': 'warn',
+    'prefer-const': 'warn',
     'object-shorthand': 'warn',
     curly: 'warn',
-    '@typescript-eslint/explicit-module-boundary-types': 'off',
-    '@typescript-eslint/ban-types': 'off',
+    eqeqeq: 'warn',
     'graphql/template-strings': [
       'error',
       {

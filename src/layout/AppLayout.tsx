@@ -5,7 +5,7 @@ import { Container, Toolbar } from '@mui/material';
 import AppDrawer from '@/layout/AppDrawer';
 import BackToTopButton from '@/layout/BackToTopButton';
 
-type AppLayoutProps = React.PropsWithChildren<{}>;
+type AppLayoutProps = React.PropsWithChildren;
 
 function AppLayout({ children }: AppLayoutProps) {
   return (

@@ -5,7 +5,7 @@ import { APP_TITLE } from '@/common/CommonUtils';
 
 // https://nextjs.org/docs/api-reference/next.config.js/environment-variables
 // Trying to destructure process.env variables won't work due to the nature of webpack DefinePlugin.
-const NEXT_PUBLIC_BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+const { NEXT_PUBLIC_BASE_URL } = process.env;
 
 const getDefaultSeoConfig = (pathname: string): DefaultSeoProps => {
   const url = `${NEXT_PUBLIC_BASE_URL}${pathname}`;

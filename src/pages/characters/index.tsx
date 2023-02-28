@@ -16,6 +16,7 @@ import { useRouteParams } from '@/routing/RoutingHooks';
 import { addApolloState, initializeApollo } from '@/apollo/apollo';
 import { GetServerSideProps } from 'next';
 import { ParsedRouteParams, parseRouteParams } from '@/routing/RoutingUtils';
+import { EmptyObject } from '@/common/CommonTypes';
 
 const GET_CHARACTERS = gql`
   query GetCharacters($page: Int, $filter: FilterCharacter) {
@@ -48,7 +49,7 @@ function getVariables(
 
 function CharactersListingPage() {
   const { routeParams } = useRouteParams<
-    {},
+    EmptyObject,
     CharactersListingPageQueryParams
   >();
   const variables = getVariables(routeParams);

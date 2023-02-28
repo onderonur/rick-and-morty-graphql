@@ -1,6 +1,6 @@
 import React from 'react';
 import { Typography, styled } from '@mui/material';
-import NextLink, { NextLinkProps } from '../routing/NextLink';
+import NextLink, { NextLinkProps } from '@/routing/NextLink';
 
 const Text = styled(Typography)(({ theme }) => ({
   fontWeight: theme.typography.fontWeightBold,

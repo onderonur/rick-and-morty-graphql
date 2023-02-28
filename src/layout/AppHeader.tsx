@@ -20,7 +20,7 @@ const StyledLink = styled(NextLink)({
   alignItems: 'center',
 });
 
-const AppHeader = React.forwardRef<React.ComponentRef<typeof AppBar>, {}>(
+const AppHeader = React.forwardRef<React.ComponentRef<typeof AppBar>>(
   function AppHeader(props, ref) {
     const handleClick = useCallback(() => {
       showDrawerVar(true);

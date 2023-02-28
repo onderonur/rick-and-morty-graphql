@@ -6,7 +6,7 @@ import {
   CharacterCard_CharacterWithSpecsFragment,
 } from '@/generated/graphql';
 import { isOfType, UNKNOWN } from '@/common/CommonUtils';
-import LabeledTextList from '../common/LabeledTextList';
+import LabeledTextList from '@/common/LabeledTextList';
 import { ArrayElement } from '@/common/CommonTypes';
 import { routes } from '@/routing/routes';
 import { CardContent, CardHeader } from '@mui/material';
@@ -40,9 +40,15 @@ type CharacterCardProps = {
     | CharacterCard_CharacterFragment
     | CharacterCard_CharacterWithSpecsFragment;
   href?: string;
+  imgPriority?: boolean;
 };
 
-function CharacterCard({ titleAs, character, href }: CharacterCardProps) {
+function CharacterCard({
+  titleAs,
+  character,
+  href,
+  imgPriority,
+}: CharacterCardProps) {
   const { episode } = character;
 
   const firstEpisode = episode ? episode[0] : null;
@@ -54,6 +60,7 @@ function CharacterCard({ titleAs, character, href }: CharacterCardProps) {
         <BaseImage
           src={character.image}
           alt={character.name}
+          priority={imgPriority}
           {...imageProps.responsive('1')}
         />
       )}

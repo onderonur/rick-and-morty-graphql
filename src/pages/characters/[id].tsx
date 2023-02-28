@@ -55,7 +55,9 @@ function CharacterDetailPage() {
       <Profile
         loading={loading}
         infoCard={
-          character && <CharacterCard titleAs="h1" character={character} />
+          character && (
+            <CharacterCard titleAs="h1" character={character} imgPriority />
+          )
         }
         mainSectionTitle="Episodes"
         mainSection={

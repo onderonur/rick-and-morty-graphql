@@ -6,7 +6,7 @@ import {
   ListItemButtonProps,
   ListItem,
 } from '@mui/material';
-import NextLink, { NextLinkProps } from '../routing/NextLink';
+import NextLink, { NextLinkProps } from '@/routing/NextLink';
 
 type ListItemLinkProps = Pick<NextLinkProps, 'href'> &
   Pick<ListItemTextProps, 'primary' | 'secondary'> &

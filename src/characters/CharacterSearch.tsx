@@ -8,12 +8,13 @@ import {
 import SearchIcon from '@mui/icons-material/Search';
 import { QueryParams, routes } from '@/routing/routes';
 import { useRouteParams } from '@/routing/RoutingHooks';
+import { EmptyObject } from '@/common/CommonTypes';
 
 type CharacterSearchQueryParams = QueryParams<typeof routes.characters>;
 
 function CharacterSearch() {
   const { routeParams, setQueryParams } = useRouteParams<
-    {},
+    EmptyObject,
     CharacterSearchQueryParams
   >();
   const name = routeParams.get('name') ?? '';

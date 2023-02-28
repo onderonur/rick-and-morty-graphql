@@ -3,8 +3,8 @@ import { CardHeader, CardContent } from '@mui/material';
 import BaseCard from '@/common/BaseCard';
 import gql from 'graphql-tag';
 import { LocationCard_LocationFragment } from '@/generated/graphql';
-import LabeledTextList from '../common/LabeledTextList';
-import { UNKNOWN } from '../common/CommonUtils';
+import LabeledTextList from '@/common/LabeledTextList';
+import { UNKNOWN } from '@/common/CommonUtils';
 
 interface LocationCardProps {
   titleAs?: React.ElementType;

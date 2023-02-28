@@ -90,6 +90,7 @@ function HomePage() {
                 <BaseImage
                   src={homeCard.image ?? homeCard.gif}
                   alt={homeCard.title}
+                  priority
                   {...imageProps.responsive('16 / 9')}
                 />
                 {homeCard.href && (

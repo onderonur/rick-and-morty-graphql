@@ -1,15 +1,12 @@
 import { useCallback } from 'react';
 import PAGE_INFO_FRAGMENT from '@/apollo/fragments';
-import gql from 'graphql-tag';
-import {
-  GetLocationsDocument,
-  useGetLocationsQuery,
-} from '@/generated/graphql';
+import { GetLocationsDocument, useGetLocationsQuery } from '@/gql/graphql';
 import BaseSeo from '@/seo/BaseSeo';
 import LocationList from '@/locations/LocationList';
 import useInfiniteScroll from 'react-infinite-scroll-hook';
 import { GetServerSideProps } from 'next';
 import { addApolloState, initializeApollo } from '@/apollo/apollo';
+import { gql } from '@apollo/client';
 
 const GET_LOCATIONS = gql`
   query GetLocations($page: Int) {

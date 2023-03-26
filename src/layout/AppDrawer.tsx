@@ -3,7 +3,7 @@ import { Drawer, List, styled } from '@mui/material';
 import AppDrawerLinkItem from './AppDrawerLinkItem';
 import { useRouter } from 'next/router';
 import { gql } from '@apollo/client';
-import { useGetShowDrawerQuery } from '@/generated/graphql';
+import { useGetShowDrawerQuery } from '@/gql/graphql';
 import { showDrawerVar } from '@/apollo/cache';
 import { routes } from '@/routing/routes';
 

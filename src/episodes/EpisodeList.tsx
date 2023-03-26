@@ -1,8 +1,7 @@
-import React from 'react';
 import BaseList, { BaseListProps } from '@/common/BaseList';
 import EpisodeListItem from './EpisodeListItem';
-import gql from 'graphql-tag';
-import { EpisodeList_EpisodeFragment, Maybe } from '@/generated/graphql';
+import { EpisodeList_EpisodeFragment, Maybe } from '@/gql/graphql';
+import { gql } from '@apollo/client';
 
 type ListItem = Maybe<EpisodeList_EpisodeFragment>;
 

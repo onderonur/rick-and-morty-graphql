@@ -1,10 +1,9 @@
-import React from 'react';
 import { CardHeader, CardContent } from '@mui/material';
 import BaseCard from '@/common/BaseCard';
-import gql from 'graphql-tag';
-import { LocationCard_LocationFragment } from '@/generated/graphql';
+import { LocationCard_LocationFragment } from '@/gql/graphql';
 import LabeledTextList from '@/common/LabeledTextList';
 import { UNKNOWN } from '@/common/CommonUtils';
+import { gql } from '@apollo/client';
 
 interface LocationCardProps {
   titleAs?: React.ElementType;

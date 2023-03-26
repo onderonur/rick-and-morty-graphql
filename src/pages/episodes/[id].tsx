@@ -1,5 +1,4 @@
-import gql from 'graphql-tag';
-import { GetEpisodeDocument, useGetEpisodeQuery } from '@/generated/graphql';
+import { GetEpisodeDocument, useGetEpisodeQuery } from '@/gql/graphql';
 import BaseSeo from '@/seo/BaseSeo';
 import { PathParams, routes } from '@/routing/routes';
 import { useRouteParams } from '@/routing/RoutingHooks';
@@ -8,6 +7,7 @@ import EpisodeCard from '@/episodes/EpisodeCard';
 import CharacterGridList from '@/characters/CharacterGridList';
 import { GetServerSideProps } from 'next';
 import { addApolloState, initializeApollo } from '@/apollo/apollo';
+import { gql } from '@apollo/client';
 
 const GET_EPISODE = gql`
   query GetEpisode($id: ID!) {

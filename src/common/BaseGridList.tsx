@@ -1,6 +1,6 @@
 import { Grid, GridProps } from '@mui/material';
 import LoadingIndicator from './LoadingIndicator';
-import { Maybe } from '@/generated/graphql';
+import { Maybe } from '@/gql/graphql';
 
 export interface BaseGridListProps<Item> {
   items: Maybe<Array<Item>>;

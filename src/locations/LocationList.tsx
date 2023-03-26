@@ -1,8 +1,7 @@
-import React from 'react';
 import LocationListItem from './LocationListItem';
 import BaseList, { BaseListProps } from '@/common/BaseList';
-import gql from 'graphql-tag';
-import { LocationList_LocationFragment, Maybe } from '@/generated/graphql';
+import { LocationList_LocationFragment, Maybe } from '@/gql/graphql';
+import { gql } from '@apollo/client';
 
 type ListItem = Maybe<LocationList_LocationFragment>;
 

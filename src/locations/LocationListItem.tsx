@@ -1,8 +1,7 @@
-import React from 'react';
 import ListItemLink from '@/common/ListItemLink';
-import gql from 'graphql-tag';
-import { LocationListItem_LocationFragment } from '@/generated/graphql';
+import { LocationListItem_LocationFragment } from '@/gql/graphql';
 import { routes } from '@/routing/routes';
+import { gql } from '@apollo/client';
 
 interface LocationListItemProps {
   location: LocationListItem_LocationFragment;

@@ -1,15 +1,15 @@
 import BaseCard from '@/common/BaseCard';
 import BaseImage, { imageProps } from '@/common/BaseImage';
-import gql from 'graphql-tag';
 import {
   CharacterCard_CharacterFragment,
   CharacterCard_CharacterWithSpecsFragment,
-} from '@/generated/graphql';
+} from '@/gql/graphql';
 import { isOfType, UNKNOWN } from '@/common/CommonUtils';
 import LabeledTextList from '@/common/LabeledTextList';
 import { ArrayElement } from '@/common/CommonTypes';
 import { routes } from '@/routing/routes';
 import { CardContent, CardHeader } from '@mui/material';
+import { gql } from '@apollo/client';
 
 function getEpisodeAirYear(
   episode: ArrayElement<CharacterCard_CharacterFragment['episode']>,

@@ -1,12 +1,12 @@
 import { useCallback } from 'react';
 import EpisodeList from '@/episodes/EpisodeList';
-import gql from 'graphql-tag';
-import { GetEpisodesDocument, useGetEpisodesQuery } from '@/generated/graphql';
+import { GetEpisodesDocument, useGetEpisodesQuery } from '@/gql/graphql';
 import BaseSeo from '@/seo/BaseSeo';
 import PAGE_INFO_FRAGMENT from '@/apollo/fragments';
 import useInfiniteScroll from 'react-infinite-scroll-hook';
 import { GetServerSideProps } from 'next';
 import { addApolloState, initializeApollo } from '@/apollo/apollo';
+import { gql } from '@apollo/client';
 
 const GET_EPISODES = gql`
   query GetEpisodes($page: Int, $filter: FilterEpisode) {

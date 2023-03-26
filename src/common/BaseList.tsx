@@ -7,7 +7,7 @@ import {
   ListProps,
 } from '@mui/material';
 import LoadingIndicator from './LoadingIndicator';
-import { Maybe } from '@/generated/graphql';
+import { Maybe } from '@/gql/graphql';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const defaultItems: any[] = [];

@@ -1,10 +1,7 @@
 import CharacterGridListItem from './CharacterGridListItem';
-import gql from 'graphql-tag';
 import BaseGridList, { BaseGridListProps } from '@/common/BaseGridList';
-import {
-  CharacterGridList_CharacterFragment,
-  Maybe,
-} from '@/generated/graphql';
+import { CharacterGridList_CharacterFragment, Maybe } from '@/gql/graphql';
+import { gql } from '@apollo/client';
 
 type ListItem = Maybe<CharacterGridList_CharacterFragment>;
 

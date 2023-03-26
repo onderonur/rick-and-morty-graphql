@@ -1,8 +1,8 @@
 import { Grid } from '@mui/material';
-import gql from 'graphql-tag';
-import { CharacterGridListItem_CharacterFragment } from '@/generated/graphql';
+import { CharacterGridListItem_CharacterFragment } from '@/gql/graphql';
 import CharacterCard from './CharacterCard';
 import { routes } from '@/routing/routes';
+import { gql } from '@apollo/client';
 
 interface CharacterGridListItemProps {
   character: CharacterGridListItem_CharacterFragment;

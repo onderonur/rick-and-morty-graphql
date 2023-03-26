@@ -1,8 +1,4 @@
-import gql from 'graphql-tag';
-import {
-  GetCharacterDocument,
-  useGetCharacterQuery,
-} from '@/generated/graphql';
+import { GetCharacterDocument, useGetCharacterQuery } from '@/gql/graphql';
 import BaseSeo from '@/seo/BaseSeo';
 import { PathParams, routes } from '@/routing/routes';
 import { useRouteParams } from '@/routing/RoutingHooks';
@@ -11,6 +7,7 @@ import CharacterCard from '@/characters/CharacterCard';
 import EpisodeList from '@/episodes/EpisodeList';
 import { addApolloState, initializeApollo } from '@/apollo/apollo';
 import { GetServerSideProps } from 'next';
+import { gql } from '@apollo/client';
 
 const GET_CHARACTER = gql`
   query GetCharacter($id: ID!) {

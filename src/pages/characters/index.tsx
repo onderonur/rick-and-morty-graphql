@@ -1,11 +1,10 @@
 import { useCallback } from 'react';
 import { Box, Typography } from '@mui/material';
-import gql from 'graphql-tag';
 import {
   GetCharactersDocument,
   GetCharactersQueryVariables,
   useGetCharactersQuery,
-} from '@/generated/graphql';
+} from '@/gql/graphql';
 import BaseSeo from '@/seo/BaseSeo';
 import CharacterGridList from '@/characters/CharacterGridList';
 import PAGE_INFO_FRAGMENT from '@/apollo/fragments';
@@ -17,6 +16,7 @@ import { addApolloState, initializeApollo } from '@/apollo/apollo';
 import { GetServerSideProps } from 'next';
 import { ParsedRouteParams, parseRouteParams } from '@/routing/RoutingUtils';
 import { EmptyObject } from '@/common/CommonTypes';
+import { gql } from '@apollo/client';
 
 const GET_CHARACTERS = gql`
   query GetCharacters($page: Int, $filter: FilterCharacter) {

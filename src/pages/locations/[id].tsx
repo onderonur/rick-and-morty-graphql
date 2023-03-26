@@ -1,5 +1,4 @@
-import gql from 'graphql-tag';
-import { GetLocationDocument, useGetLocationQuery } from '@/generated/graphql';
+import { GetLocationDocument, useGetLocationQuery } from '@/gql/graphql';
 import BaseSeo from '@/seo/BaseSeo';
 import { PathParams, routes } from '@/routing/routes';
 import { useRouteParams } from '@/routing/RoutingHooks';
@@ -8,6 +7,7 @@ import LocationCard from '@/locations/LocationCard';
 import Profile from '@/common/Profile';
 import { GetServerSideProps } from 'next';
 import { addApolloState, initializeApollo } from '@/apollo/apollo';
+import { gql } from '@apollo/client';
 
 const GET_LOCATION = gql`
   query GetLocation($id: ID!) {

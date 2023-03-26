@@ -2,8 +2,8 @@ import React from 'react';
 import { CardHeader, CardContent } from '@mui/material';
 import BaseCard from '@/common/BaseCard';
 import LabeledText from '@/common/LabeledText';
-import gql from 'graphql-tag';
-import { EpisodeCard_EpisodeFragment } from '@/generated/graphql';
+import { EpisodeCard_EpisodeFragment } from '@/gql/graphql';
+import { gql } from '@apollo/client';
 
 interface EpisodeCardProps {
   titleAs?: React.ElementType;

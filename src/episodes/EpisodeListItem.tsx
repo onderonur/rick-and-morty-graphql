@@ -1,8 +1,7 @@
-import React from 'react';
-import gql from 'graphql-tag';
-import { EpisodeListItem_EpisodeFragment } from '@/generated/graphql';
+import { EpisodeListItem_EpisodeFragment } from '@/gql/graphql';
 import ListItemLink from '@/common/ListItemLink';
 import { routes } from '@/routing/routes';
+import { gql } from '@apollo/client';
 
 interface EpisodeListItemProps {
   episode: EpisodeListItem_EpisodeFragment;

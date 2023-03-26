@@ -1,4 +1,4 @@
-import { Maybe, PageInfoFragment } from '@/generated/graphql';
+import { Maybe, PageInfoFragment } from '@/gql/graphql';
 import { makeVar, InMemoryCache, FieldPolicy } from '@apollo/client';
 
 export const showDrawerVar = makeVar(false);

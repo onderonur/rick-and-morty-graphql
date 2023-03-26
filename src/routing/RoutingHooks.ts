@@ -1,5 +1,5 @@
 import { EmptyObject } from '@/common/CommonTypes';
-import { Maybe } from '@/generated/graphql';
+import { Maybe } from '@/gql/graphql';
 import { useRouter } from 'next/router';
 import { useCallback } from 'react';
 import { parseRouteParams, pruneQueryParams } from './RoutingUtils';

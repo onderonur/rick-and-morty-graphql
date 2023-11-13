@@ -1,20 +1,21 @@
-import { gql } from '@apollo/client';
-import * as Apollo from '@apollo/client';
-export type Maybe<T> = T | null | undefined;
-export type InputMaybe<T> = T | null | undefined;
+/* eslint-disable */
+import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core';
+export type Maybe<T> = T | null;
+export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
-const defaultOptions = {} as const;
+export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = { [_ in K]?: never };
+export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
-  ID: string;
-  String: string;
-  Boolean: boolean;
-  Int: number;
-  Float: number;
+  ID: { input: string; output: string; }
+  String: { input: string; output: string; }
+  Boolean: { input: boolean; output: boolean; }
+  Int: { input: number; output: number; }
+  Float: { input: number; output: number; }
   /** The `Upload` scalar type represents a file upload. */
-  Upload: any;
+  Upload: { input: any; output: any; }
 };
 
 export enum CacheControlScope {
@@ -25,30 +26,30 @@ export enum CacheControlScope {
 export type Character = {
   __typename?: 'Character';
   /** Time at which the character was created in the database. */
-  created?: Maybe<Scalars['String']>;
+  created?: Maybe<Scalars['String']['output']>;
   /** Episodes in which this character appeared. */
   episode: Array<Maybe<Episode>>;
   /** The gender of the character ('Female', 'Male', 'Genderless' or 'unknown'). */
-  gender?: Maybe<Scalars['String']>;
+  gender?: Maybe<Scalars['String']['output']>;
   /** The id of the character. */
-  id?: Maybe<Scalars['ID']>;
+  id?: Maybe<Scalars['ID']['output']>;
   /**
    * Link to the character's image.
    * All images are 300x300px and most are medium shots or portraits since they are intended to be used as avatars.
    */
-  image?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']['output']>;
   /** The character's last known location */
   location?: Maybe<Location>;
   /** The name of the character. */
-  name?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']['output']>;
   /** The character's origin location */
   origin?: Maybe<Location>;
   /** The species of the character. */
-  species?: Maybe<Scalars['String']>;
+  species?: Maybe<Scalars['String']['output']>;
   /** The status of the character ('Alive', 'Dead' or 'unknown'). */
-  status?: Maybe<Scalars['String']>;
+  status?: Maybe<Scalars['String']['output']>;
   /** The type or subspecies of the character. */
-  type?: Maybe<Scalars['String']>;
+  type?: Maybe<Scalars['String']['output']>;
 };
 
 export type Characters = {
@@ -60,17 +61,17 @@ export type Characters = {
 export type Episode = {
   __typename?: 'Episode';
   /** The air date of the episode. */
-  air_date?: Maybe<Scalars['String']>;
+  air_date?: Maybe<Scalars['String']['output']>;
   /** List of characters who have been seen in the episode. */
   characters: Array<Maybe<Character>>;
   /** Time at which the episode was created in the database. */
-  created?: Maybe<Scalars['String']>;
+  created?: Maybe<Scalars['String']['output']>;
   /** The code of the episode. */
-  episode?: Maybe<Scalars['String']>;
+  episode?: Maybe<Scalars['String']['output']>;
   /** The id of the episode. */
-  id?: Maybe<Scalars['ID']>;
+  id?: Maybe<Scalars['ID']['output']>;
   /** The name of the episode. */
-  name?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']['output']>;
 };
 
 export type Episodes = {
@@ -80,50 +81,50 @@ export type Episodes = {
 };
 
 export type FilterCharacter = {
-  gender?: InputMaybe<Scalars['String']>;
-  name?: InputMaybe<Scalars['String']>;
-  species?: InputMaybe<Scalars['String']>;
-  status?: InputMaybe<Scalars['String']>;
-  type?: InputMaybe<Scalars['String']>;
+  gender?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  species?: InputMaybe<Scalars['String']['input']>;
+  status?: InputMaybe<Scalars['String']['input']>;
+  type?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type FilterEpisode = {
-  episode?: InputMaybe<Scalars['String']>;
-  name?: InputMaybe<Scalars['String']>;
+  episode?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type FilterLocation = {
-  dimension?: InputMaybe<Scalars['String']>;
-  name?: InputMaybe<Scalars['String']>;
-  type?: InputMaybe<Scalars['String']>;
+  dimension?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  type?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type Info = {
   __typename?: 'Info';
   /** The length of the response. */
-  count?: Maybe<Scalars['Int']>;
+  count?: Maybe<Scalars['Int']['output']>;
   /** Number of the next page (if it exists) */
-  next?: Maybe<Scalars['Int']>;
+  next?: Maybe<Scalars['Int']['output']>;
   /** The amount of pages. */
-  pages?: Maybe<Scalars['Int']>;
+  pages?: Maybe<Scalars['Int']['output']>;
   /** Number of the previous page (if it exists) */
-  prev?: Maybe<Scalars['Int']>;
+  prev?: Maybe<Scalars['Int']['output']>;
 };
 
 export type Location = {
   __typename?: 'Location';
   /** Time at which the location was created in the database. */
-  created?: Maybe<Scalars['String']>;
+  created?: Maybe<Scalars['String']['output']>;
   /** The dimension in which the location is located. */
-  dimension?: Maybe<Scalars['String']>;
+  dimension?: Maybe<Scalars['String']['output']>;
   /** The id of the location. */
-  id?: Maybe<Scalars['ID']>;
+  id?: Maybe<Scalars['ID']['output']>;
   /** The name of the location. */
-  name?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']['output']>;
   /** List of characters who have been last seen in the location. */
   residents: Array<Maybe<Character>>;
   /** The type of the location. */
-  type?: Maybe<Scalars['String']>;
+  type?: Maybe<Scalars['String']['output']>;
 };
 
 export type Locations = {
@@ -152,486 +153,147 @@ export type Query = {
   locations?: Maybe<Locations>;
   /** Get a list of locations selected by ids */
   locationsByIds?: Maybe<Array<Maybe<Location>>>;
-  showDrawer: Scalars['Boolean'];
 };
 
 
 export type QueryCharacterArgs = {
-  id: Scalars['ID'];
+  id: Scalars['ID']['input'];
 };
 
 
 export type QueryCharactersArgs = {
   filter?: InputMaybe<FilterCharacter>;
-  page?: InputMaybe<Scalars['Int']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
 };
 
 
 export type QueryCharactersByIdsArgs = {
-  ids: Array<Scalars['ID']>;
+  ids: Array<Scalars['ID']['input']>;
 };
 
 
 export type QueryEpisodeArgs = {
-  id: Scalars['ID'];
+  id: Scalars['ID']['input'];
 };
 
 
 export type QueryEpisodesArgs = {
   filter?: InputMaybe<FilterEpisode>;
-  page?: InputMaybe<Scalars['Int']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
 };
 
 
 export type QueryEpisodesByIdsArgs = {
-  ids: Array<Scalars['ID']>;
+  ids: Array<Scalars['ID']['input']>;
 };
 
 
 export type QueryLocationArgs = {
-  id: Scalars['ID'];
+  id: Scalars['ID']['input'];
 };
 
 
 export type QueryLocationsArgs = {
   filter?: InputMaybe<FilterLocation>;
-  page?: InputMaybe<Scalars['Int']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
 };
 
 
 export type QueryLocationsByIdsArgs = {
-  ids: Array<Scalars['ID']>;
+  ids: Array<Scalars['ID']['input']>;
 };
 
-export type PageInfoFragment = { __typename?: 'Info', next?: number | null | undefined };
-
-export type CharacterCard_CharacterFragment = { __typename?: 'Character', id?: string | null | undefined, name?: string | null | undefined, image?: string | null | undefined, episode: Array<{ __typename?: 'Episode', id?: string | null | undefined, air_date?: string | null | undefined } | null | undefined> };
-
-export type CharacterCard_CharacterWithSpecsFragment = { __typename?: 'Character', status?: string | null | undefined, species?: string | null | undefined, gender?: string | null | undefined, id?: string | null | undefined, name?: string | null | undefined, image?: string | null | undefined, origin?: { __typename?: 'Location', id?: string | null | undefined, name?: string | null | undefined } | null | undefined, location?: { __typename?: 'Location', id?: string | null | undefined, name?: string | null | undefined } | null | undefined, episode: Array<{ __typename?: 'Episode', id?: string | null | undefined, air_date?: string | null | undefined } | null | undefined> };
-
-export type CharacterGridList_CharacterFragment = { __typename?: 'Character', id?: string | null | undefined, name?: string | null | undefined, image?: string | null | undefined, episode: Array<{ __typename?: 'Episode', id?: string | null | undefined, air_date?: string | null | undefined } | null | undefined> };
-
-export type CharacterGridListItem_CharacterFragment = { __typename?: 'Character', id?: string | null | undefined, name?: string | null | undefined, image?: string | null | undefined, episode: Array<{ __typename?: 'Episode', id?: string | null | undefined, air_date?: string | null | undefined } | null | undefined> };
-
-export type EpisodeCard_EpisodeFragment = { __typename?: 'Episode', id?: string | null | undefined, name?: string | null | undefined, episode?: string | null | undefined, air_date?: string | null | undefined };
-
-export type EpisodeList_EpisodeFragment = { __typename?: 'Episode', id?: string | null | undefined, name?: string | null | undefined, air_date?: string | null | undefined, episode?: string | null | undefined };
-
-export type EpisodeListItem_EpisodeFragment = { __typename?: 'Episode', id?: string | null | undefined, name?: string | null | undefined, air_date?: string | null | undefined, episode?: string | null | undefined };
-
-export type GetShowDrawerQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type GetShowDrawerQuery = { __typename?: 'Query', showDrawer: boolean };
-
-export type LocationCard_LocationFragment = { __typename?: 'Location', id?: string | null | undefined, name?: string | null | undefined, type?: string | null | undefined, dimension?: string | null | undefined };
-
-export type LocationList_LocationFragment = { __typename?: 'Location', id?: string | null | undefined, name?: string | null | undefined, type?: string | null | undefined };
-
-export type LocationListItem_LocationFragment = { __typename?: 'Location', id?: string | null | undefined, name?: string | null | undefined, type?: string | null | undefined };
-
-export type GetCharacterQueryVariables = Exact<{
-  id: Scalars['ID'];
+export type CharacterPage_QueryQueryVariables = Exact<{
+  id: Scalars['ID']['input'];
 }>;
 
 
-export type GetCharacterQuery = { __typename?: 'Query', character?: { __typename?: 'Character', name?: string | null | undefined, image?: string | null | undefined, status?: string | null | undefined, species?: string | null | undefined, gender?: string | null | undefined, id?: string | null | undefined, episode: Array<{ __typename?: 'Episode', id?: string | null | undefined, air_date?: string | null | undefined, name?: string | null | undefined, episode?: string | null | undefined } | null | undefined>, origin?: { __typename?: 'Location', id?: string | null | undefined, name?: string | null | undefined } | null | undefined, location?: { __typename?: 'Location', id?: string | null | undefined, name?: string | null | undefined } | null | undefined } | null | undefined };
+export type CharacterPage_QueryQuery = { __typename?: 'Query', character?: (
+    { __typename?: 'Character', id?: string | null, name?: string | null, image?: string | null, episode: Array<(
+      { __typename?: 'Episode', id?: string | null }
+      & { ' $fragmentRefs'?: { 'EpisodeListItem_EpisodeFragmentFragment': EpisodeListItem_EpisodeFragmentFragment } }
+    ) | null> }
+    & { ' $fragmentRefs'?: { 'CharacterDetails_CharacterFragmentFragment': CharacterDetails_CharacterFragmentFragment } }
+  ) | null };
 
-export type GetCharactersQueryVariables = Exact<{
-  page?: InputMaybe<Scalars['Int']>;
-  filter?: InputMaybe<FilterCharacter>;
+export type EpisodePage_QueryQueryVariables = Exact<{
+  id: Scalars['ID']['input'];
 }>;
 
 
-export type GetCharactersQuery = { __typename?: 'Query', characters?: { __typename?: 'Characters', results?: Array<{ __typename?: 'Character', id?: string | null | undefined, name?: string | null | undefined, image?: string | null | undefined, episode: Array<{ __typename?: 'Episode', id?: string | null | undefined, air_date?: string | null | undefined } | null | undefined> } | null | undefined> | null | undefined, info?: { __typename?: 'Info', next?: number | null | undefined } | null | undefined } | null | undefined };
+export type EpisodePage_QueryQuery = { __typename?: 'Query', episode?: { __typename?: 'Episode', id?: string | null, name?: string | null, episode?: string | null, air_date?: string | null, characters: Array<(
+      { __typename?: 'Character', id?: string | null }
+      & { ' $fragmentRefs'?: { 'CharacterCard_CharacterFragmentFragment': CharacterCard_CharacterFragmentFragment } }
+    ) | null> } | null };
 
-export type GetEpisodeQueryVariables = Exact<{
-  id: Scalars['ID'];
+export type LocationPage_QueryQueryVariables = Exact<{
+  id: Scalars['ID']['input'];
 }>;
 
 
-export type GetEpisodeQuery = { __typename?: 'Query', episode?: { __typename?: 'Episode', name?: string | null | undefined, id?: string | null | undefined, episode?: string | null | undefined, air_date?: string | null | undefined, characters: Array<{ __typename?: 'Character', id?: string | null | undefined, name?: string | null | undefined, image?: string | null | undefined, episode: Array<{ __typename?: 'Episode', id?: string | null | undefined, air_date?: string | null | undefined } | null | undefined> } | null | undefined> } | null | undefined };
+export type LocationPage_QueryQuery = { __typename?: 'Query', location?: { __typename?: 'Location', id?: string | null, name?: string | null, type?: string | null, dimension?: string | null, residents: Array<(
+      { __typename?: 'Character', id?: string | null }
+      & { ' $fragmentRefs'?: { 'CharacterCard_CharacterFragmentFragment': CharacterCard_CharacterFragmentFragment } }
+    ) | null> } | null };
 
-export type GetEpisodesQueryVariables = Exact<{
-  page?: InputMaybe<Scalars['Int']>;
-  filter?: InputMaybe<FilterEpisode>;
+export type CharacterCard_CharacterFragmentFragment = { __typename?: 'Character', id?: string | null, name?: string | null, status?: string | null, image?: string | null } & { ' $fragmentName'?: 'CharacterCard_CharacterFragmentFragment' };
+
+export type CharacterDetails_CharacterFragmentFragment = (
+  { __typename?: 'Character', id?: string | null, name?: string | null, image?: string | null, episodeSummary: Array<(
+    { __typename?: 'Episode' }
+    & { ' $fragmentRefs'?: { 'CharacterEpisodeSummary_EpisodeFragmentFragment': CharacterEpisodeSummary_EpisodeFragmentFragment } }
+  ) | null> }
+  & { ' $fragmentRefs'?: { 'CharacterSpecs_CharacterFragmentFragment': CharacterSpecs_CharacterFragmentFragment } }
+) & { ' $fragmentName'?: 'CharacterDetails_CharacterFragmentFragment' };
+
+export type CharacterEpisodeSummary_EpisodeFragmentFragment = { __typename?: 'Episode', id?: string | null, air_date?: string | null } & { ' $fragmentName'?: 'CharacterEpisodeSummary_EpisodeFragmentFragment' };
+
+export type CharacterInfiniteList_QueryQueryVariables = Exact<{
+  page?: InputMaybe<Scalars['Int']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
 }>;
 
 
-export type GetEpisodesQuery = { __typename?: 'Query', episodes?: { __typename?: 'Episodes', results?: Array<{ __typename?: 'Episode', id?: string | null | undefined, name?: string | null | undefined, air_date?: string | null | undefined, episode?: string | null | undefined } | null | undefined> | null | undefined, info?: { __typename?: 'Info', next?: number | null | undefined } | null | undefined } | null | undefined };
+export type CharacterInfiniteList_QueryQuery = { __typename?: 'Query', characters?: { __typename?: 'Characters', info?: { __typename?: 'Info', next?: number | null } | null, results?: Array<(
+      { __typename?: 'Character', id?: string | null }
+      & { ' $fragmentRefs'?: { 'CharacterCard_CharacterFragmentFragment': CharacterCard_CharacterFragmentFragment } }
+    ) | null> | null } | null };
 
-export type GetLocationQueryVariables = Exact<{
-  id: Scalars['ID'];
+export type CharacterSpecs_CharacterFragmentFragment = { __typename?: 'Character', id?: string | null, status?: string | null, species?: string | null, gender?: string | null, origin?: { __typename?: 'Location', id?: string | null, name?: string | null } | null, location?: { __typename?: 'Location', id?: string | null, name?: string | null } | null } & { ' $fragmentName'?: 'CharacterSpecs_CharacterFragmentFragment' };
+
+export type EpisodeInfiniteList_QueryQueryVariables = Exact<{
+  page?: InputMaybe<Scalars['Int']['input']>;
 }>;
 
 
-export type GetLocationQuery = { __typename?: 'Query', location?: { __typename?: 'Location', name?: string | null | undefined, id?: string | null | undefined, type?: string | null | undefined, dimension?: string | null | undefined, residents: Array<{ __typename?: 'Character', id?: string | null | undefined, name?: string | null | undefined, image?: string | null | undefined, episode: Array<{ __typename?: 'Episode', id?: string | null | undefined, air_date?: string | null | undefined } | null | undefined> } | null | undefined> } | null | undefined };
+export type EpisodeInfiniteList_QueryQuery = { __typename?: 'Query', episodes?: { __typename?: 'Episodes', info?: { __typename?: 'Info', next?: number | null } | null, results?: Array<(
+      { __typename?: 'Episode', id?: string | null }
+      & { ' $fragmentRefs'?: { 'EpisodeListItem_EpisodeFragmentFragment': EpisodeListItem_EpisodeFragmentFragment } }
+    ) | null> | null } | null };
 
-export type GetLocationsQueryVariables = Exact<{
-  page?: InputMaybe<Scalars['Int']>;
+export type EpisodeListItem_EpisodeFragmentFragment = { __typename?: 'Episode', id?: string | null, name?: string | null, episode?: string | null, air_date?: string | null } & { ' $fragmentName'?: 'EpisodeListItem_EpisodeFragmentFragment' };
+
+export type LocationInfiniteList_QueryQueryVariables = Exact<{
+  page?: InputMaybe<Scalars['Int']['input']>;
 }>;
 
 
-export type GetLocationsQuery = { __typename?: 'Query', locations?: { __typename?: 'Locations', results?: Array<{ __typename?: 'Location', id?: string | null | undefined, name?: string | null | undefined, type?: string | null | undefined } | null | undefined> | null | undefined, info?: { __typename?: 'Info', next?: number | null | undefined } | null | undefined } | null | undefined };
+export type LocationInfiniteList_QueryQuery = { __typename?: 'Query', locations?: { __typename?: 'Locations', info?: { __typename?: 'Info', next?: number | null } | null, results?: Array<(
+      { __typename?: 'Location', id?: string | null }
+      & { ' $fragmentRefs'?: { 'LocationListItem_LocationFragmentFragment': LocationListItem_LocationFragmentFragment } }
+    ) | null> | null } | null };
 
-export const PageInfoFragmentDoc = gql`
-    fragment pageInfo on Info {
-  next
-}
-    `;
-export const CharacterCard_CharacterFragmentDoc = gql`
-    fragment CharacterCard_character on Character {
-  id
-  name
-  image
-  episode {
-    id
-    air_date
-  }
-}
-    `;
-export const CharacterCard_CharacterWithSpecsFragmentDoc = gql`
-    fragment CharacterCard_characterWithSpecs on Character {
-  ...CharacterCard_character
-  status
-  species
-  gender
-  origin {
-    id
-    name
-  }
-  location {
-    id
-    name
-  }
-}
-    ${CharacterCard_CharacterFragmentDoc}`;
-export const CharacterGridListItem_CharacterFragmentDoc = gql`
-    fragment CharacterGridListItem_character on Character {
-  ...CharacterCard_character
-}
-    ${CharacterCard_CharacterFragmentDoc}`;
-export const CharacterGridList_CharacterFragmentDoc = gql`
-    fragment CharacterGridList_character on Character {
-  ...CharacterGridListItem_character
-}
-    ${CharacterGridListItem_CharacterFragmentDoc}`;
-export const EpisodeCard_EpisodeFragmentDoc = gql`
-    fragment EpisodeCard_episode on Episode {
-  id
-  name
-  episode
-  air_date
-}
-    `;
-export const EpisodeListItem_EpisodeFragmentDoc = gql`
-    fragment EpisodeListItem_episode on Episode {
-  id
-  name
-  air_date
-  episode
-}
-    `;
-export const EpisodeList_EpisodeFragmentDoc = gql`
-    fragment EpisodeList_episode on Episode {
-  ...EpisodeListItem_episode
-}
-    ${EpisodeListItem_EpisodeFragmentDoc}`;
-export const LocationCard_LocationFragmentDoc = gql`
-    fragment LocationCard_location on Location {
-  id
-  name
-  type
-  dimension
-}
-    `;
-export const LocationListItem_LocationFragmentDoc = gql`
-    fragment LocationListItem_location on Location {
-  id
-  name
-  type
-}
-    `;
-export const LocationList_LocationFragmentDoc = gql`
-    fragment LocationList_location on Location {
-  ...LocationListItem_location
-}
-    ${LocationListItem_LocationFragmentDoc}`;
-export const GetShowDrawerDocument = gql`
-    query GetShowDrawer {
-  showDrawer @client
-}
-    `;
+export type LocationListItem_LocationFragmentFragment = { __typename?: 'Location', id?: string | null, name?: string | null, type?: string | null, dimension?: string | null } & { ' $fragmentName'?: 'LocationListItem_LocationFragmentFragment' };
 
-/**
- * __useGetShowDrawerQuery__
- *
- * To run a query within a React component, call `useGetShowDrawerQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetShowDrawerQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useGetShowDrawerQuery({
- *   variables: {
- *   },
- * });
- */
-export function useGetShowDrawerQuery(baseOptions?: Apollo.QueryHookOptions<GetShowDrawerQuery, GetShowDrawerQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetShowDrawerQuery, GetShowDrawerQueryVariables>(GetShowDrawerDocument, options);
-      }
-export function useGetShowDrawerLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetShowDrawerQuery, GetShowDrawerQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetShowDrawerQuery, GetShowDrawerQueryVariables>(GetShowDrawerDocument, options);
-        }
-export type GetShowDrawerQueryHookResult = ReturnType<typeof useGetShowDrawerQuery>;
-export type GetShowDrawerLazyQueryHookResult = ReturnType<typeof useGetShowDrawerLazyQuery>;
-export type GetShowDrawerQueryResult = Apollo.QueryResult<GetShowDrawerQuery, GetShowDrawerQueryVariables>;
-export const GetCharacterDocument = gql`
-    query GetCharacter($id: ID!) {
-  character(id: $id) {
-    name
-    image
-    ...CharacterCard_characterWithSpecs
-    episode {
-      ...EpisodeList_episode
-    }
-  }
-}
-    ${CharacterCard_CharacterWithSpecsFragmentDoc}
-${EpisodeList_EpisodeFragmentDoc}`;
-
-/**
- * __useGetCharacterQuery__
- *
- * To run a query within a React component, call `useGetCharacterQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetCharacterQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useGetCharacterQuery({
- *   variables: {
- *      id: // value for 'id'
- *   },
- * });
- */
-export function useGetCharacterQuery(baseOptions: Apollo.QueryHookOptions<GetCharacterQuery, GetCharacterQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetCharacterQuery, GetCharacterQueryVariables>(GetCharacterDocument, options);
-      }
-export function useGetCharacterLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetCharacterQuery, GetCharacterQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetCharacterQuery, GetCharacterQueryVariables>(GetCharacterDocument, options);
-        }
-export type GetCharacterQueryHookResult = ReturnType<typeof useGetCharacterQuery>;
-export type GetCharacterLazyQueryHookResult = ReturnType<typeof useGetCharacterLazyQuery>;
-export type GetCharacterQueryResult = Apollo.QueryResult<GetCharacterQuery, GetCharacterQueryVariables>;
-export const GetCharactersDocument = gql`
-    query GetCharacters($page: Int, $filter: FilterCharacter) {
-  characters(page: $page, filter: $filter) {
-    results {
-      ...CharacterGridList_character
-    }
-    info {
-      ...pageInfo
-    }
-  }
-}
-    ${CharacterGridList_CharacterFragmentDoc}
-${PageInfoFragmentDoc}`;
-
-/**
- * __useGetCharactersQuery__
- *
- * To run a query within a React component, call `useGetCharactersQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetCharactersQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useGetCharactersQuery({
- *   variables: {
- *      page: // value for 'page'
- *      filter: // value for 'filter'
- *   },
- * });
- */
-export function useGetCharactersQuery(baseOptions?: Apollo.QueryHookOptions<GetCharactersQuery, GetCharactersQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetCharactersQuery, GetCharactersQueryVariables>(GetCharactersDocument, options);
-      }
-export function useGetCharactersLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetCharactersQuery, GetCharactersQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetCharactersQuery, GetCharactersQueryVariables>(GetCharactersDocument, options);
-        }
-export type GetCharactersQueryHookResult = ReturnType<typeof useGetCharactersQuery>;
-export type GetCharactersLazyQueryHookResult = ReturnType<typeof useGetCharactersLazyQuery>;
-export type GetCharactersQueryResult = Apollo.QueryResult<GetCharactersQuery, GetCharactersQueryVariables>;
-export const GetEpisodeDocument = gql`
-    query GetEpisode($id: ID!) {
-  episode(id: $id) {
-    name
-    ...EpisodeCard_episode
-    characters {
-      ...CharacterGridList_character
-    }
-  }
-}
-    ${EpisodeCard_EpisodeFragmentDoc}
-${CharacterGridList_CharacterFragmentDoc}`;
-
-/**
- * __useGetEpisodeQuery__
- *
- * To run a query within a React component, call `useGetEpisodeQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetEpisodeQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useGetEpisodeQuery({
- *   variables: {
- *      id: // value for 'id'
- *   },
- * });
- */
-export function useGetEpisodeQuery(baseOptions: Apollo.QueryHookOptions<GetEpisodeQuery, GetEpisodeQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetEpisodeQuery, GetEpisodeQueryVariables>(GetEpisodeDocument, options);
-      }
-export function useGetEpisodeLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetEpisodeQuery, GetEpisodeQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetEpisodeQuery, GetEpisodeQueryVariables>(GetEpisodeDocument, options);
-        }
-export type GetEpisodeQueryHookResult = ReturnType<typeof useGetEpisodeQuery>;
-export type GetEpisodeLazyQueryHookResult = ReturnType<typeof useGetEpisodeLazyQuery>;
-export type GetEpisodeQueryResult = Apollo.QueryResult<GetEpisodeQuery, GetEpisodeQueryVariables>;
-export const GetEpisodesDocument = gql`
-    query GetEpisodes($page: Int, $filter: FilterEpisode) {
-  episodes(page: $page, filter: $filter) {
-    results {
-      ...EpisodeList_episode
-    }
-    info {
-      ...pageInfo
-    }
-  }
-}
-    ${EpisodeList_EpisodeFragmentDoc}
-${PageInfoFragmentDoc}`;
-
-/**
- * __useGetEpisodesQuery__
- *
- * To run a query within a React component, call `useGetEpisodesQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetEpisodesQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useGetEpisodesQuery({
- *   variables: {
- *      page: // value for 'page'
- *      filter: // value for 'filter'
- *   },
- * });
- */
-export function useGetEpisodesQuery(baseOptions?: Apollo.QueryHookOptions<GetEpisodesQuery, GetEpisodesQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetEpisodesQuery, GetEpisodesQueryVariables>(GetEpisodesDocument, options);
-      }
-export function useGetEpisodesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetEpisodesQuery, GetEpisodesQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetEpisodesQuery, GetEpisodesQueryVariables>(GetEpisodesDocument, options);
-        }
-export type GetEpisodesQueryHookResult = ReturnType<typeof useGetEpisodesQuery>;
-export type GetEpisodesLazyQueryHookResult = ReturnType<typeof useGetEpisodesLazyQuery>;
-export type GetEpisodesQueryResult = Apollo.QueryResult<GetEpisodesQuery, GetEpisodesQueryVariables>;
-export const GetLocationDocument = gql`
-    query GetLocation($id: ID!) {
-  location(id: $id) {
-    name
-    ...LocationCard_location
-    residents {
-      ...CharacterGridList_character
-    }
-  }
-}
-    ${LocationCard_LocationFragmentDoc}
-${CharacterGridList_CharacterFragmentDoc}`;
-
-/**
- * __useGetLocationQuery__
- *
- * To run a query within a React component, call `useGetLocationQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetLocationQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useGetLocationQuery({
- *   variables: {
- *      id: // value for 'id'
- *   },
- * });
- */
-export function useGetLocationQuery(baseOptions: Apollo.QueryHookOptions<GetLocationQuery, GetLocationQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetLocationQuery, GetLocationQueryVariables>(GetLocationDocument, options);
-      }
-export function useGetLocationLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetLocationQuery, GetLocationQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetLocationQuery, GetLocationQueryVariables>(GetLocationDocument, options);
-        }
-export type GetLocationQueryHookResult = ReturnType<typeof useGetLocationQuery>;
-export type GetLocationLazyQueryHookResult = ReturnType<typeof useGetLocationLazyQuery>;
-export type GetLocationQueryResult = Apollo.QueryResult<GetLocationQuery, GetLocationQueryVariables>;
-export const GetLocationsDocument = gql`
-    query GetLocations($page: Int) {
-  locations(page: $page) {
-    results {
-      ...LocationList_location
-    }
-    info {
-      ...pageInfo
-    }
-  }
-}
-    ${LocationList_LocationFragmentDoc}
-${PageInfoFragmentDoc}`;
-
-/**
- * __useGetLocationsQuery__
- *
- * To run a query within a React component, call `useGetLocationsQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetLocationsQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useGetLocationsQuery({
- *   variables: {
- *      page: // value for 'page'
- *   },
- * });
- */
-export function useGetLocationsQuery(baseOptions?: Apollo.QueryHookOptions<GetLocationsQuery, GetLocationsQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetLocationsQuery, GetLocationsQueryVariables>(GetLocationsDocument, options);
-      }
-export function useGetLocationsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetLocationsQuery, GetLocationsQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetLocationsQuery, GetLocationsQueryVariables>(GetLocationsDocument, options);
-        }
-export type GetLocationsQueryHookResult = ReturnType<typeof useGetLocationsQuery>;
-export type GetLocationsLazyQueryHookResult = ReturnType<typeof useGetLocationsLazyQuery>;
-export type GetLocationsQueryResult = Apollo.QueryResult<GetLocationsQuery, GetLocationsQueryVariables>;
+export const CharacterCard_CharacterFragmentFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CharacterCard_CharacterFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Character"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"status"}},{"kind":"Field","name":{"kind":"Name","value":"image"}}]}}]} as unknown as DocumentNode<CharacterCard_CharacterFragmentFragment, unknown>;
+export const CharacterSpecs_CharacterFragmentFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CharacterSpecs_CharacterFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Character"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"status"}},{"kind":"Field","name":{"kind":"Name","value":"species"}},{"kind":"Field","name":{"kind":"Name","value":"gender"}},{"kind":"Field","name":{"kind":"Name","value":"origin"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}},{"kind":"Field","name":{"kind":"Name","value":"location"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]} as unknown as DocumentNode<CharacterSpecs_CharacterFragmentFragment, unknown>;
+export const CharacterEpisodeSummary_EpisodeFragmentFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CharacterEpisodeSummary_EpisodeFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Episode"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"air_date"}}]}}]} as unknown as DocumentNode<CharacterEpisodeSummary_EpisodeFragmentFragment, unknown>;
+export const CharacterDetails_CharacterFragmentFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CharacterDetails_CharacterFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Character"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"image"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CharacterSpecs_CharacterFragment"}},{"kind":"Field","alias":{"kind":"Name","value":"episodeSummary"},"name":{"kind":"Name","value":"episode"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CharacterEpisodeSummary_EpisodeFragment"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CharacterSpecs_CharacterFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Character"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"status"}},{"kind":"Field","name":{"kind":"Name","value":"species"}},{"kind":"Field","name":{"kind":"Name","value":"gender"}},{"kind":"Field","name":{"kind":"Name","value":"origin"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}},{"kind":"Field","name":{"kind":"Name","value":"location"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CharacterEpisodeSummary_EpisodeFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Episode"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"air_date"}}]}}]} as unknown as DocumentNode<CharacterDetails_CharacterFragmentFragment, unknown>;
+export const EpisodeListItem_EpisodeFragmentFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"EpisodeListItem_EpisodeFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Episode"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"episode"}},{"kind":"Field","name":{"kind":"Name","value":"air_date"}}]}}]} as unknown as DocumentNode<EpisodeListItem_EpisodeFragmentFragment, unknown>;
+export const LocationListItem_LocationFragmentFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"LocationListItem_LocationFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Location"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"dimension"}}]}}]} as unknown as DocumentNode<LocationListItem_LocationFragmentFragment, unknown>;
+export const CharacterPage_QueryDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"CharacterPage_Query"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"character"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"image"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CharacterDetails_CharacterFragment"}},{"kind":"Field","name":{"kind":"Name","value":"episode"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"EpisodeListItem_EpisodeFragment"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CharacterSpecs_CharacterFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Character"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"status"}},{"kind":"Field","name":{"kind":"Name","value":"species"}},{"kind":"Field","name":{"kind":"Name","value":"gender"}},{"kind":"Field","name":{"kind":"Name","value":"origin"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}},{"kind":"Field","name":{"kind":"Name","value":"location"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CharacterEpisodeSummary_EpisodeFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Episode"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"air_date"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CharacterDetails_CharacterFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Character"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"image"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CharacterSpecs_CharacterFragment"}},{"kind":"Field","alias":{"kind":"Name","value":"episodeSummary"},"name":{"kind":"Name","value":"episode"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CharacterEpisodeSummary_EpisodeFragment"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"EpisodeListItem_EpisodeFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Episode"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"episode"}},{"kind":"Field","name":{"kind":"Name","value":"air_date"}}]}}]} as unknown as DocumentNode<CharacterPage_QueryQuery, CharacterPage_QueryQueryVariables>;
+export const EpisodePage_QueryDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"EpisodePage_Query"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"episode"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"episode"}},{"kind":"Field","name":{"kind":"Name","value":"air_date"}},{"kind":"Field","name":{"kind":"Name","value":"characters"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CharacterCard_CharacterFragment"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CharacterCard_CharacterFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Character"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"status"}},{"kind":"Field","name":{"kind":"Name","value":"image"}}]}}]} as unknown as DocumentNode<EpisodePage_QueryQuery, EpisodePage_QueryQueryVariables>;
+export const LocationPage_QueryDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"LocationPage_Query"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"location"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"dimension"}},{"kind":"Field","name":{"kind":"Name","value":"residents"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CharacterCard_CharacterFragment"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CharacterCard_CharacterFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Character"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"status"}},{"kind":"Field","name":{"kind":"Name","value":"image"}}]}}]} as unknown as DocumentNode<LocationPage_QueryQuery, LocationPage_QueryQueryVariables>;
+export const CharacterInfiniteList_QueryDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"CharacterInfiniteList_Query"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"page"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"name"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"characters"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"page"},"value":{"kind":"Variable","name":{"kind":"Name","value":"page"}}},{"kind":"Argument","name":{"kind":"Name","value":"filter"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"name"},"value":{"kind":"Variable","name":{"kind":"Name","value":"name"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"info"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"next"}}]}},{"kind":"Field","name":{"kind":"Name","value":"results"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CharacterCard_CharacterFragment"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CharacterCard_CharacterFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Character"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"status"}},{"kind":"Field","name":{"kind":"Name","value":"image"}}]}}]} as unknown as DocumentNode<CharacterInfiniteList_QueryQuery, CharacterInfiniteList_QueryQueryVariables>;
+export const EpisodeInfiniteList_QueryDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"EpisodeInfiniteList_Query"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"page"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"episodes"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"page"},"value":{"kind":"Variable","name":{"kind":"Name","value":"page"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"info"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"next"}}]}},{"kind":"Field","name":{"kind":"Name","value":"results"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"EpisodeListItem_EpisodeFragment"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"EpisodeListItem_EpisodeFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Episode"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"episode"}},{"kind":"Field","name":{"kind":"Name","value":"air_date"}}]}}]} as unknown as DocumentNode<EpisodeInfiniteList_QueryQuery, EpisodeInfiniteList_QueryQueryVariables>;
+export const LocationInfiniteList_QueryDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"LocationInfiniteList_Query"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"page"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"locations"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"page"},"value":{"kind":"Variable","name":{"kind":"Name","value":"page"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"info"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"next"}}]}},{"kind":"Field","name":{"kind":"Name","value":"results"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"LocationListItem_LocationFragment"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"LocationListItem_LocationFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Location"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"dimension"}}]}}]} as unknown as DocumentNode<LocationInfiniteList_QueryQuery, LocationInfiniteList_QueryQueryVariables>;

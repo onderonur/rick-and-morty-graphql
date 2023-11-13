@@ -1,6 +1,5 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-# https://typicode.github.io/husky/#/?id=migrate-from-v4-to-v6
-npm run typecheck
 npx lint-staged
+npm run typecheck

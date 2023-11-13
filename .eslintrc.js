@@ -1,39 +1,17 @@
 module.exports = {
+  plugins: ['unicorn'],
   extends: [
-    'eslint:recommended',
-    'plugin:@typescript-eslint/recommended',
-    'plugin:prettier/recommended',
+    // https://nextjs.org/docs/pages/building-your-application/configuring/eslint#additional-configurations
+    './config/eslint/javascript',
+    './config/eslint/typescript',
+    './config/eslint/unicorn',
+    'prettier',
     'next/core-web-vitals',
   ],
-  plugins: ['graphql', '@typescript-eslint', 'deprecation'],
-  parser: '@typescript-eslint/parser',
-  // For eslint-plugin-deprecation:
-  // https://stackoverflow.com/a/64488474/10876256
-  overrides: [
-    {
-      files: ['*.ts', '*.tsx'],
-      parserOptions: {
-        // for eslint-plugin-deprecation
-        project: ['./tsconfig.json'],
-      },
-    },
-  ],
-  rules: {
-    'prettier/prettier': 'warn',
-    'deprecation/deprecation': 'warn',
-    'no-console': 'warn',
-    'no-alert': 'warn',
-    'prefer-destructuring': 'warn',
-    'prefer-const': 'warn',
-    'object-shorthand': 'warn',
-    curly: 'warn',
-    eqeqeq: 'warn',
-    'graphql/template-strings': [
-      'error',
-      {
-        env: 'apollo',
-        schemaJson: require('./src/gql/graphql.schema.json'),
-      },
-    ],
-  },
+  reportUnusedDisableDirectives: true,
+  // Files starting with . are ignored by default.
+  // This was causing a warning for lint-staged
+  // and since we have --max-warnings 0, the check was failing.
+  // So, we removed these files by using "!" from ignoredPatterns.
+  ignorePatterns: ['!.*.{js,ts}', 'src/gql'],
 };

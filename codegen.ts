@@ -1,25 +1,19 @@
+// https://the-guild.dev/graphql/codegen/docs/guides/react-vue
 import type { CodegenConfig } from '@graphql-codegen/cli';
 
 const config: CodegenConfig = {
-  overwrite: true,
-  schema: ['https://rickandmortyapi.com/graphql', 'src/apollo/typeDefs.ts'],
+  schema: 'https://rickandmortyapi.com/graphql',
   documents: ['src/**/*.{ts,tsx}'],
-  ignoreNoDocuments: true, // for better experience with the watcher
   generates: {
-    'src/gql/graphql.ts': {
-      plugins: [
-        'typescript',
-        'typescript-operations',
-        // https://the-guild.dev/graphql/codegen/plugins/typescript/typescript-react-apollo
-        'typescript-react-apollo',
-      ],
-      config: {
-        // https://the-guild.dev/graphql/codegen/plugins/typescript/typescript#maybevalue-string-default-value-t--null
-        maybeValue: 'T | null | undefined',
-      },
+    './src/gql/': {
+      preset: 'client',
+      plugins: [],
     },
-    'src/gql/graphql.schema.json': {
+    './src/gql/introspection.json': {
       plugins: ['introspection'],
+      config: {
+        minify: true,
+      },
     },
   },
 };

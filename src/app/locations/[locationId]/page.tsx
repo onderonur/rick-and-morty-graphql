@@ -76,10 +76,9 @@ export default async function LocationPage({
 
   return (
     <div className="flex flex-col gap-2">
-      {/* section vs kullanımlarına bi genel bak. */}
       <Card>
         <CardContent>
-          <h1 className="font-semibold text-lg">{location.name}</h1>
+          <h1 className="text-lg font-semibold">{location.name}</h1>
           <div className="flex flex-wrap gap-4">
             <Spec title="Type" value={location.type} />
             <Spec title="Dimension" value={location.dimension} />

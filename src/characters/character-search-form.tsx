@@ -12,6 +12,7 @@ export default function CharacterSearchForm() {
 
   return (
     <form
+      role="search"
       className="flex flex-wrap justify-end"
       onSubmit={(e) => {
         e.preventDefault();
@@ -25,6 +26,7 @@ export default function CharacterSearchForm() {
         key={keyword}
         id="search"
         name="keyword"
+        type="search"
         defaultValue={keyword}
         aria-label="Search keyword"
         placeholder="Type to search..."

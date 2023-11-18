@@ -7,16 +7,17 @@ import ListItem from './list-item';
 import ListItemTitle from './list-item-title';
 import List from './list';
 import { useOnRouteChange } from '@/routing/routing-hooks';
+import Popper from './popper';
 
 type NavMenuProps = {
   headerRef: React.RefObject<React.ElementRef<'header'>>;
 };
 
 export default function NavMenu({ headerRef }: NavMenuProps) {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useOnRouteChange(() => {
-    setIsMenuOpen(false);
+    setIsMobileMenuOpen(false);
   });
 
   const listItems = (
@@ -51,23 +52,25 @@ export default function NavMenu({ headerRef }: NavMenuProps) {
       <div className="sm:hidden">
         <Button
           className="text-xs"
+          aria-label="Open navigation menu"
           onClick={() => {
-            setIsMenuOpen((current) => !current);
+            setIsMobileMenuOpen((current) => !current);
           }}
         >
           ▼
         </Button>
-        {isMenuOpen && (
-          <div
-            className="p-4 absolute left-0 right-0 z-10 bg-slate-800 border-4 border-slate-300 -mt-1"
-            style={{
-              top: headerRef.current?.getBoundingClientRect().bottom,
+        {isMobileMenuOpen && (
+          <Popper
+            className="left-0 right-0 -mt-1"
+            parentRef={headerRef}
+            onClickOutside={() => {
+              setIsMobileMenuOpen(false);
             }}
           >
             <nav>
               <List>{listItems}</List>
             </nav>
-          </div>
+          </Popper>
         )}
       </div>
     </div>

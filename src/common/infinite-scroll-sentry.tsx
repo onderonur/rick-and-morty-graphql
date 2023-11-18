@@ -1,14 +1,14 @@
 'use client';
 
 import useInfiniteScroll from 'react-infinite-scroll-hook';
-import Loading from './loading';
+import { Loading } from './loading';
 
 type InfiniteScrollSentryProps = Pick<
   Parameters<typeof useInfiniteScroll>[0],
   'hasNextPage' | 'loading' | 'onLoadMore'
 >;
 
-export default function InfiniteScrollSentry({
+export function InfiniteScrollSentry({
   hasNextPage,
   loading,
   onLoadMore,

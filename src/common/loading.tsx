@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import { forwardRef } from 'react';
 
-const Loading = forwardRef<React.ElementRef<'div'>>(
+export const Loading = forwardRef<React.ElementRef<'div'>>(
   function Loading(props, ref) {
     const dotClassName = 'bg-white h-4 w-4 animate-ping rounded-md';
 
@@ -14,5 +14,3 @@ const Loading = forwardRef<React.ElementRef<'div'>>(
     );
   },
 );
-
-export default Loading;

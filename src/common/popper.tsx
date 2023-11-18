@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import Backdrop from './backdrop';
+import { Backdrop } from './backdrop';
 import { useOnClickOutside } from './common-hooks';
 
 type PopperProps = React.PropsWithChildren<{
@@ -8,7 +8,7 @@ type PopperProps = React.PropsWithChildren<{
   onClickOutside: VoidFunction;
 }>;
 
-export default function Popper({
+export function Popper({
   parentRef,
   className,
   children,

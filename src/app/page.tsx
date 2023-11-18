@@ -1,12 +1,10 @@
-import NextLink from '@/common/next-link';
+import { NextLink } from '@/common/next-link';
 import charactersPic from '@/images/characters.jpg';
 import episodesPic from '@/images/episodes.jpg';
 import locationsPic from '@/images/locations.jpg';
 import home01Gif from '@/gifs/home01.webp';
 import home02Gif from '@/gifs/home02.gif';
-import Card from '@/common/card';
-import CardImage from '@/common/card-image';
-import CardTitle from '@/common/card-title';
+import { Card, CardImage, CardTitle } from '@/common/card';
 import { getMetadata } from '@/seo/seo-utils';
 
 export const metadata = getMetadata({

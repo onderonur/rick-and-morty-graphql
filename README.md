@@ -14,7 +14,7 @@ A feature based folder structure has been implemented to keep things organized.
 
 - [Next.js](https://nextjs.org/)
 - [TanStack Query](https://tanstack.com/query/latest)
-- [NES-style CSS Framework](https://nostalgic-css.github.io/NES.css/)
+- [NES.css](https://nostalgic-css.github.io/NES.css/)
 - [Tailwind CSS](https://tailwindcss.com/)
 - [GraphQL Code Generator](https://the-guild.dev/graphql/codegen)
 - [ESLint](https://eslint.org/)

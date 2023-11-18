@@ -3,10 +3,8 @@
 import { graphql } from '@/gql/gql';
 import type { FragmentType } from '@/gql';
 import { useFragment } from '@/gql';
-import NextLink from '@/common/next-link';
-import Card from '@/common/card';
-import CardImage from '@/common/card-image';
-import CardTitle from '@/common/card-title';
+import { NextLink } from '@/common/next-link';
+import { Card, CardImage, CardTitle } from '@/common/card';
 
 // https://the-guild.dev/blog/unleash-the-power-of-fragments-with-graphql-codegen
 const CharacterCard_CharacterFragment = graphql(/* GraphQL */ `
@@ -22,7 +20,7 @@ type CharacterCardProps = {
   character: FragmentType<typeof CharacterCard_CharacterFragment>;
 };
 
-export default function CharacterCard({ character }: CharacterCardProps) {
+export function CharacterCard({ character }: CharacterCardProps) {
   const characterFragment = useFragment(
     CharacterCard_CharacterFragment,
     character,

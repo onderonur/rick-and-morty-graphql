@@ -1,14 +1,12 @@
-import CharacterList from '@/characters/character-list';
-import CharacterCard from '@/characters/character-card';
-import Card from '@/common/card';
-import CardContent from '@/common/card-content';
-import CardTitle from '@/common/card-title';
+import { CharacterList } from '@/characters/character-list';
+import { CharacterCard } from '@/characters/character-card';
+import { Card, CardContent, CardTitle } from '@/common/card';
 import { API_URL } from '@/common/common-utils';
 import { graphql } from '@/gql';
 import { getQueryClient } from '@/query-client/query-client-utils';
 import request from 'graphql-request';
 import { notFound } from 'next/navigation';
-import Spec from '@/common/spec';
+import { Spec } from '@/common/spec';
 import type { Metadata } from 'next';
 import { getMetadata } from '@/seo/seo-utils';
 

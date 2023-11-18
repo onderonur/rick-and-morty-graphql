@@ -1,19 +1,17 @@
 'use client';
 
 import { useState } from 'react';
-import Button from './button';
-import NextLink from './next-link';
-import ListItem from './list-item';
-import ListItemTitle from './list-item-title';
-import List from './list';
+import { Button } from './button';
+import { NextLink } from './next-link';
+import { List, ListItem, ListItemTitle } from './list';
 import { useOnRouteChange } from '@/routing/routing-hooks';
-import Popper from './popper';
+import { Popper } from './popper';
 
 type NavMenuProps = {
   headerRef: React.RefObject<React.ElementRef<'header'>>;
 };
 
-export default function NavMenu({ headerRef }: NavMenuProps) {
+export function NavMenu({ headerRef }: NavMenuProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useOnRouteChange(() => {

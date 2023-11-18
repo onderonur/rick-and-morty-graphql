@@ -1,23 +1,23 @@
 'use client';
 
-import NextLink from '@/common/next-link';
-import GitHubIcon from '@/icons/github-icon';
+import { NextLink } from '@/common/next-link';
+import { GitHubIcon } from '@/icons/github-icon';
 import { APP_TITLE } from '@/common/common-utils';
-import NavMenu from '@/common/nav-menu';
+import { NavMenu } from '@/common/nav-menu';
 import { useRef } from 'react';
 
 type AppLayoutProps = React.PropsWithChildren;
 
-export default function AppLayout({ children }: AppLayoutProps) {
+export function AppLayout({ children }: AppLayoutProps) {
   const headerRef = useRef<React.ElementRef<'header'>>(null);
 
   return (
     <>
       <header
         ref={headerRef}
-        className="flex gap-4 items-center py-2 px-6 border-b-4"
+        className="flex items-center gap-4 border-b-4 px-6 py-2"
       >
-        <NextLink href="/" className="font-black text-lg">
+        <NextLink href="/" className="text-lg font-black">
           {APP_TITLE}
         </NextLink>
         <div className="flex-1" />
@@ -31,7 +31,7 @@ export default function AppLayout({ children }: AppLayoutProps) {
           <GitHubIcon />
         </NextLink>
       </header>
-      <main className="max-w-screen-xl w-full mx-auto px-2 py-3 md:p-4">
+      <main className="mx-auto w-full max-w-screen-xl px-2 py-3 md:p-4">
         {children}
       </main>
     </>

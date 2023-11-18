@@ -3,13 +3,13 @@ type SpecProps = {
   value: React.ReactNode;
 };
 
-export default function Spec({ title, value }: SpecProps) {
+export function Spec({ title, value }: SpecProps) {
   return (
     <div>
-      <div className="text-xs font-semibold text-slate-300 uppercase">
+      <div className="text-xs font-semibold uppercase text-slate-300">
         {title}:
       </div>
-      <div className="text-yellow-400 mt-1">{value}</div>
+      <div className="mt-1 text-yellow-400">{value}</div>
     </div>
   );
 }

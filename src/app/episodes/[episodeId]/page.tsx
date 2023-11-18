@@ -1,8 +1,6 @@
-import CharacterList from '@/characters/character-list';
-import CharacterCard from '@/characters/character-card';
-import Card from '@/common/card';
-import CardContent from '@/common/card-content';
-import CardTitle from '@/common/card-title';
+import { CharacterList } from '@/characters/character-list';
+import { CharacterCard } from '@/characters/character-card';
+import { Card, CardContent, CardTitle } from '@/common/card';
 import { API_URL } from '@/common/common-utils';
 import { graphql } from '@/gql';
 import { getQueryClient } from '@/query-client/query-client-utils';
@@ -77,10 +75,10 @@ export default async function EpisodePage({
     <div className="flex flex-col gap-2">
       <Card>
         <CardContent>
-          <div className="flex gap-3 justify-between flex-wrap">
+          <div className="flex flex-wrap justify-between gap-3">
             <div>
-              <h1 className="font-semibold text-lg">{episode.name}</h1>
-              <p className="text-slate-400 mt-2">{episode.episode}</p>
+              <h1 className="text-lg font-semibold">{episode.name}</h1>
+              <p className="mt-2 text-slate-400">{episode.episode}</p>
             </div>
             <div className="text-slate-400">{episode.air_date}</div>
           </div>

@@ -1,10 +1,8 @@
-import CharacterDetails from '@/characters/character-details';
-import Card from '@/common/card';
-import CardContent from '@/common/card-content';
-import CardTitle from '@/common/card-title';
+import { CharacterDetails } from '@/characters/character-details';
+import { Card, CardContent, CardTitle } from '@/common/card';
 import { API_URL } from '@/common/common-utils';
-import List from '@/common/list';
-import EpisodeListItem from '@/episodes/episode-list-item';
+import { List } from '@/common/list';
+import { EpisodeListItem } from '@/episodes/episode-list-item';
 import { graphql } from '@/gql';
 import { getQueryClient } from '@/query-client/query-client-utils';
 import { getMetadata } from '@/seo/seo-utils';
@@ -81,7 +79,7 @@ export default async function CharacterPage({
 
   return (
     <div className="grid gap-2 md:grid-cols-[theme(spacing.80)_1fr]">
-      <div className="max-w-md mx-auto">
+      <div className="mx-auto max-w-md">
         <CharacterDetails character={character} />
       </div>
       <section>

@@ -30,7 +30,7 @@ type CharacterEpisodeSummaryProps = {
   >;
 };
 
-export default function CharacterEpisodeSummary({
+export function CharacterEpisodeSummary({
   className,
   episodes,
 }: CharacterEpisodeSummaryProps) {

@@ -1,13 +1,13 @@
 'use client';
 
 import { useInfiniteQuery } from '@tanstack/react-query';
-import CharacterCard from './character-card';
-import InfiniteScrollSentry from '@/common/infinite-scroll-sentry';
+import { CharacterCard } from './character-card';
+import { InfiniteScrollSentry } from '@/common/infinite-scroll-sentry';
 import { useSearchParams } from 'next/navigation';
-import CharacterList from './character-list';
+import { CharacterList } from './character-list';
 import { characterInfiniteListQueryOptions } from './character-infinite-list-query';
 
-export default function CharacterInfiniteList() {
+export function CharacterInfiniteList() {
   const searchParams = useSearchParams();
   const keyword = searchParams.get('keyword');
   const { data, isFetching, hasNextPage, fetchNextPage } = useInfiniteQuery(

@@ -1,5 +1,5 @@
-import NextLink from '@/common/next-link';
-import Spec from '@/common/spec';
+import { NextLink } from '@/common/next-link';
+import { Spec } from '@/common/spec';
 import type { FragmentType } from '@/gql';
 import { graphql, useFragment } from '@/gql';
 
@@ -24,7 +24,7 @@ type CharacterSpecsProps = {
   character: FragmentType<typeof CharacterSpecs_CharacterFragment>;
 };
 
-export default function CharacterSpecs({ character }: CharacterSpecsProps) {
+export function CharacterSpecs({ character }: CharacterSpecsProps) {
   const specs = useFragment(CharacterSpecs_CharacterFragment, character);
 
   return (

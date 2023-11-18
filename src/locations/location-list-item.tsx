@@ -1,9 +1,7 @@
 import type { FragmentType } from '@/gql';
 import { graphql, useFragment } from '@/gql';
-import ListItem from '@/common/list-item';
-import NextLink from '@/common/next-link';
-import ListItemTitle from '@/common/list-item-title';
-import ListItemSubtitle from '@/common/list-item-subtitle';
+import { NextLink } from '@/common/next-link';
+import { ListItem, ListItemTitle, ListItemSubtitle } from '@/common/list';
 
 const LocationListItem_LocationFragment = graphql(/* GraphQL */ `
   fragment LocationListItem_LocationFragment on Location {
@@ -18,7 +16,7 @@ type LocationListItemProps = {
   location: FragmentType<typeof LocationListItem_LocationFragment>;
 };
 
-export default function LocationListItem({ location }: LocationListItemProps) {
+export function LocationListItem({ location }: LocationListItemProps) {
   const locationFragment = useFragment(
     LocationListItem_LocationFragment,
     location,

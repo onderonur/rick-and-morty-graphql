@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 type NextLinkProps = React.ComponentPropsWithoutRef<typeof Link>;
 
-export default function NextLink({ className, ...rest }: NextLinkProps) {
+export function NextLink({ className, ...rest }: NextLinkProps) {
   return (
     <Link
       prefetch={false}

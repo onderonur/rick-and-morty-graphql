@@ -1,9 +1,7 @@
 import type { FragmentType } from '@/gql';
 import { graphql, useFragment } from '@/gql';
-import ListItem from '@/common/list-item';
-import NextLink from '@/common/next-link';
-import ListItemTitle from '@/common/list-item-title';
-import ListItemSubtitle from '@/common/list-item-subtitle';
+import { NextLink } from '@/common/next-link';
+import { ListItem, ListItemTitle, ListItemSubtitle } from '@/common/list';
 
 const EpisodeListItem_EpisodeFragment = graphql(/* GraphQL */ `
   fragment EpisodeListItem_EpisodeFragment on Episode {
@@ -18,7 +16,7 @@ type EpisodeListItemProps = {
   episode: FragmentType<typeof EpisodeListItem_EpisodeFragment>;
 };
 
-export default function EpisodeListItem({ episode }: EpisodeListItemProps) {
+export function EpisodeListItem({ episode }: EpisodeListItemProps) {
   const episodeFragment = useFragment(EpisodeListItem_EpisodeFragment, episode);
 
   return (

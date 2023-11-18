@@ -1,11 +1,11 @@
 'use client';
 
-import Button from '@/common/button';
-import Input from '@/form-items/input';
+import { Button } from '@/common/button';
+import { Input } from '@/form-items/input';
 import { createUrl } from '@/routing/routing-utils';
 import { useRouter, useSearchParams } from 'next/navigation';
 
-export default function CharacterSearchForm() {
+export function CharacterSearchForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const keyword = searchParams.get('keyword') ?? '';

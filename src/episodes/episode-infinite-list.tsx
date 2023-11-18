@@ -1,12 +1,12 @@
 'use client';
 
 import { useInfiniteQuery } from '@tanstack/react-query';
-import InfiniteScrollSentry from '@/common/infinite-scroll-sentry';
-import List from '@/common/list';
-import EpisodeListItem from './episode-list-item';
+import { InfiniteScrollSentry } from '@/common/infinite-scroll-sentry';
+import { List } from '@/common/list';
+import { EpisodeListItem } from './episode-list-item';
 import { episodeInfiniteListQueryOptions } from './episode-infinite-list-query';
 
-export default function EpisodeInfiniteList() {
+export function EpisodeInfiniteList() {
   const { data, isFetching, hasNextPage, fetchNextPage } = useInfiniteQuery(
     episodeInfiniteListQueryOptions(),
   );

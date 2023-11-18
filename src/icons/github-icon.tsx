@@ -1,3 +1,3 @@
-export default function GitHubIcon() {
+export function GitHubIcon() {
   return <i className="nes-icon github" />;
 }

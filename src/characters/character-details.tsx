@@ -1,9 +1,6 @@
-import CharacterEpisodeSummary from '@/characters/character-episodes-summary';
-import CharacterSpecs from '@/characters/character-specs';
-import Card from '@/common/card';
-import CardContent from '@/common/card-content';
-import CardImage from '@/common/card-image';
-import CardTitle from '@/common/card-title';
+import { CharacterEpisodeSummary } from '@/characters/character-episodes-summary';
+import { CharacterSpecs } from '@/characters/character-specs';
+import { Card, CardContent, CardImage, CardTitle } from '@/common/card';
 import type { FragmentType } from '@/gql';
 import { graphql, useFragment } from '@/gql';
 
@@ -23,7 +20,7 @@ type CharacterDetailsProps = {
   character: FragmentType<typeof CharacterDetails_CharacterFragment>;
 };
 
-export default function CharacterDetails({ character }: CharacterDetailsProps) {
+export function CharacterDetails({ character }: CharacterDetailsProps) {
   const characterDetails = useFragment(
     CharacterDetails_CharacterFragment,
     character,
@@ -44,7 +41,7 @@ export default function CharacterDetails({ character }: CharacterDetailsProps) {
       </CardTitle>
       <CardContent>
         <CharacterEpisodeSummary
-          className="text-slate-300 text-sm"
+          className="text-sm text-slate-300"
           episodes={characterDetails.episodeSummary}
         />
         <CharacterSpecs character={characterDetails} />

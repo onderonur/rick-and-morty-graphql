@@ -1,12 +1,12 @@
 'use client';
 
 import { useInfiniteQuery } from '@tanstack/react-query';
-import InfiniteScrollSentry from '@/common/infinite-scroll-sentry';
-import List from '@/common/list';
-import LocationListItem from './location-list-item';
+import { InfiniteScrollSentry } from '@/common/infinite-scroll-sentry';
+import { List } from '@/common/list';
+import { LocationListItem } from './location-list-item';
 import { locationInfiniteListQueryOptions } from './location-infinite-list-query';
 
-export default function LocationInfiniteList() {
+export function LocationInfiniteList() {
   const { data, isFetching, hasNextPage, fetchNextPage } = useInfiniteQuery(
     locationInfiniteListQueryOptions(),
   );

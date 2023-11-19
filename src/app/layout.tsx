@@ -2,7 +2,8 @@ import 'nes.css/css/nes.min.css';
 import '@/styles/globals.css';
 import { Press_Start_2P } from 'next/font/google';
 import { BaseQueryClientProvider } from '@/query-client/base-query-client-provider';
-import { AppLayout } from '@/app-layout/app-layout';
+import { Layout } from '@/layout/layout';
+import type { Viewport } from 'next';
 
 const pressStart2P = Press_Start_2P({
   subsets: ['latin'],
@@ -11,11 +12,13 @@ const pressStart2P = Press_Start_2P({
   weight: ['400'],
 });
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export const viewport: Viewport = {
+  themeColor: '#212529',
+};
+
+type RootLayoutProps = React.PropsWithChildren;
+
+export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html
       lang="en"
@@ -24,7 +27,7 @@ export default function RootLayout({
     >
       <body className={pressStart2P.className}>
         <BaseQueryClientProvider>
-          <AppLayout>{children}</AppLayout>
+          <Layout>{children}</Layout>
         </BaseQueryClientProvider>
       </body>
     </html>

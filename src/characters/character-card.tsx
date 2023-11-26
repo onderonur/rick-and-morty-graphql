@@ -36,7 +36,13 @@ export function CharacterCard({ character }: CharacterCardProps) {
             fill
           />
         </div>
-        <CardTitle>{characterFragment.name}</CardTitle>
+        <CardTitle
+          as="h1"
+          className="fixed-leading-6 fixed-line-clamp-2"
+          title={characterFragment.name as string}
+        >
+          {characterFragment.name}
+        </CardTitle>
       </Card>
     </NextLink>
   );

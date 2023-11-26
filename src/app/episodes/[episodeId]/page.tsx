@@ -56,7 +56,7 @@ export async function generateMetadata({
   const { episode } = await getPageData(episodeId);
 
   if (!episode) {
-    return notFound();
+    notFound();
   }
 
   return getMetadata({

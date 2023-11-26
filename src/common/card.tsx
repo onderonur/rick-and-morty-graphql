@@ -20,13 +20,18 @@ export function Card({ className, withTitle, ...rest }: CardProps) {
   );
 }
 
-type CardTitleProps = React.PropsWithChildren<{
-  as?: keyof React.JSX.IntrinsicElements;
-  className?: string;
-}>;
+type CardTitleProps<T extends React.ElementType> =
+  React.ComponentPropsWithoutRef<T> & {
+    as?: T;
+    className?: string;
+  };
 
-export function CardTitle({ as = 'p', className, ...rest }: CardTitleProps) {
-  const As = as;
+export function CardTitle<T extends React.ElementType>({
+  as,
+  className,
+  ...rest
+}: CardTitleProps<T>) {
+  const As = as ?? 'p';
 
   return (
     <As

@@ -3,16 +3,6 @@
 @tailwind utilities;
 
 @layer base {
-  html {
-    /* fluid font-size: 12px - 16px for 320px - 1024px viewport */
-    font-size: clamp(0.75rem, 0.636rem + 0.57vw, 1rem);
-    color-scheme: dark;
-  }
-
-  body {
-    @apply bg-[#212529] text-base text-white;
-  }
-
   ::-webkit-scrollbar {
     @apply w-4;
   }
@@ -22,7 +12,7 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    @apply bg-slate-400 border-2 border-solid border-slate-900 shadow-[inset_-0.25rem_-0.25rem] shadow-slate-500;
+    @apply border-2 border-solid border-slate-900 bg-slate-400 shadow-[inset_-0.25rem_-0.25rem] shadow-slate-500;
   }
 
   ::-webkit-scrollbar-thumb:hover {

@@ -57,7 +57,7 @@ export async function generateMetadata({
   const { location } = await getPageData(locationId);
 
   if (!location) {
-    return notFound();
+    notFound();
   }
 
   return getMetadata({

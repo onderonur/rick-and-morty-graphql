@@ -1,6 +1,6 @@
-import classNames from 'classnames';
 import type { BaseImageProps } from './base-image';
 import { BaseImage } from './base-image';
+import { twMerge } from 'tailwind-merge';
 
 type CardProps = React.PropsWithChildren<{
   className?: string;
@@ -11,10 +11,10 @@ export function Card({ className, withTitle, ...rest }: CardProps) {
   return (
     <div
       {...rest}
-      className={classNames(
-        className,
+      className={twMerge(
         'nes-container is-rounded is-dark !m-0 flex flex-col gap-2',
         withTitle && 'with-title',
+        className,
       )}
     />
   );
@@ -35,13 +35,13 @@ export function CardTitle<T extends React.ElementType>({
 
   return (
     <As
-      className={classNames(
-        className,
+      className={twMerge(
         'title font-semibold',
         // To make it work with `with-title` class of `nes-container`.
         'w-fit',
         // To disable bottom margin applied by `with-title` class of `nes-container`.
         '!mb-0',
+        className,
       )}
       {...rest}
     />

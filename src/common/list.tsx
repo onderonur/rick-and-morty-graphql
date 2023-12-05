@@ -1,4 +1,4 @@
-import classNames from 'classnames';
+import { twMerge } from 'tailwind-merge';
 
 type ListProps = React.PropsWithChildren<{
   direction?: 'vertical' | 'horizontal';
@@ -12,12 +12,12 @@ export function List({
 }: ListProps) {
   return (
     <ul
-      className={classNames(
-        className,
+      className={twMerge(
         'flex [&>li]:border-slate-400',
         direction === 'horizontal'
           ? 'gap-3'
           : 'flex-col [&>li:last-child]:border-b-0 [&>li]:border-b-2',
+        className,
       )}
       {...rest}
     />

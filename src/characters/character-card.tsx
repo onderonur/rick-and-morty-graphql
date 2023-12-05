@@ -1,5 +1,3 @@
-'use client';
-
 import { graphql } from '@/gql/gql';
 import type { FragmentType } from '@/gql';
 import { useFragment } from '@/gql';

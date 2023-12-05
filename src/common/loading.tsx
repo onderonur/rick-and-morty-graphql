@@ -1,5 +1,5 @@
-import classNames from 'classnames';
 import { forwardRef } from 'react';
+import { twJoin } from 'tailwind-merge';
 
 export const Loading = forwardRef<React.ElementRef<'div'>>(
   function Loading(props, ref) {
@@ -8,8 +8,8 @@ export const Loading = forwardRef<React.ElementRef<'div'>>(
     return (
       <div ref={ref} className="flex justify-center gap-4 py-6">
         <div className={dotClassName} />
-        <div className={classNames(dotClassName, 'animation-delay-150')} />
-        <div className={classNames(dotClassName, 'animation-delay-300')} />
+        <div className={twJoin(dotClassName, 'animation-delay-150')} />
+        <div className={twJoin(dotClassName, 'animation-delay-300')} />
       </div>
     );
   },

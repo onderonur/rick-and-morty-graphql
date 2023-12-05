@@ -1,5 +1,3 @@
-'use client';
-
 import useInfiniteScroll from 'react-infinite-scroll-hook';
 import { Loading } from './loading';
 

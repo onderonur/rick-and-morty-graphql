@@ -1,5 +1,3 @@
-'use client';
-
 import { useState } from 'react';
 import { Button } from './button';
 import { NextLink } from './next-link';

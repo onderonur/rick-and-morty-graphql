@@ -4,7 +4,7 @@ import type {
   CharacterEpisodeSummary_EpisodeFragmentFragment,
   Maybe,
 } from '@/gql/graphql';
-import classNames from 'classnames';
+import { twMerge } from 'tailwind-merge';
 
 const CharacterEpisodeSummary_EpisodeFragment = graphql(/* GraphQL */ `
   fragment CharacterEpisodeSummary_EpisodeFragment on Episode {
@@ -43,7 +43,7 @@ export function CharacterEpisodeSummary({
   const lastEpisode = episodesFragment[episodesFragment.length - 1];
 
   return (
-    <div className={classNames(className, 'leading-relaxed text-slate-400')}>
+    <div className={twMerge('leading-relaxed text-slate-400', className)}>
       <p>Episodes: {episodesFragment.length}</p>
       <p>
         {firstEpisode &&

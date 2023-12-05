@@ -1,9 +1,9 @@
-import classNames from 'classnames';
+import { twMerge } from 'tailwind-merge';
 
 type InputProps = React.ComponentPropsWithoutRef<'input'>;
 
 export function Input({ className, ...rest }: InputProps) {
   return (
-    <input className={classNames(className, 'nes-input is-dark')} {...rest} />
+    <input className={twMerge('nes-input is-dark', className)} {...rest} />
   );
 }

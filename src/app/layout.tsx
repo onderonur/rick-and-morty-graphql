@@ -4,7 +4,7 @@ import { Press_Start_2P } from 'next/font/google';
 import { BaseQueryClientProvider } from '@/query-client/base-query-client-provider';
 import { Layout } from '@/layout/layout';
 import type { Viewport } from 'next';
-import classNames from 'classnames';
+import { twJoin } from 'tailwind-merge';
 
 const pressStart2P = Press_Start_2P({
   subsets: ['latin'],
@@ -24,7 +24,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
     <html
       lang="en"
       // https://www.radix-ui.com/themes/docs/theme/typography#with-nextfont
-      className={classNames(
+      className={twJoin(
         pressStart2P.variable,
         '[color-scheme:dark]',
         // fluid font-size:
@@ -33,10 +33,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       )}
     >
       <body
-        className={classNames(
-          pressStart2P.className,
-          'bg-[#212529] text-white',
-        )}
+        className={twJoin(pressStart2P.className, 'bg-[#212529] text-white')}
       >
         <BaseQueryClientProvider>
           <Layout>{children}</Layout>

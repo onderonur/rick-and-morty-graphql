@@ -20,7 +20,7 @@
     "typecheck": "tsc"
   },
   "dependencies": {
-    "@tanstack/react-query": "^5.13.4",
+    "@tanstack/react-query": "^5.17.8",
     "graphql": "^16.8.1",
     "graphql-request": "^6.1.0",
     "nes.css": "^2.3.0",
@@ -28,31 +28,32 @@
     "react": "^18",
     "react-dom": "^18",
     "react-infinite-scroll-hook": "^4.1.1",
-    "tailwind-merge": "^2.1.0"
+    "tailwind-merge": "^2.2.0"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^5.0.0",
     "@graphql-codegen/client-preset": "^4.1.0",
     "@graphql-codegen/introspection": "^4.0.0",
     "@parcel/watcher": "^2.3.0",
-    "@types/node": "^20.10.4",
-    "@types/react": "^18.2.43",
-    "@types/react-dom": "^18.2.17",
-    "@typescript-eslint/eslint-plugin": "^6.14.0",
-    "@typescript-eslint/parser": "^6.14.0",
+    "@types/node": "^20.10.6",
+    "@types/react": "^18.2.47",
+    "@types/react-dom": "^18.2.18",
+    "@typescript-eslint/eslint-plugin": "^6.18.0",
+    "@typescript-eslint/parser": "^6.18.0",
     "autoprefixer": "^10.0.1",
-    "eslint": "^8.55.0",
+    "eslint": "^8.56.0",
     "eslint-config-next": "^14.0.4",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-deprecation": "^2.0.0",
-    "eslint-plugin-unicorn": "^49.0.0",
+    "eslint-plugin-only-warn": "^1.1.0",
+    "eslint-plugin-unicorn": "^50.0.1",
     "husky": "^8.0.3",
     "npm-run-all": "^4.1.5",
-    "postcss": "^8.4.32",
+    "postcss": "^8.4.33",
     "prettier": "^3.1.1",
-    "prettier-plugin-packagejson": "^2.4.7",
-    "prettier-plugin-tailwindcss": "^0.5.9",
-    "tailwindcss": "^3.3.6",
+    "prettier-plugin-packagejson": "^2.4.9",
+    "prettier-plugin-tailwindcss": "^0.5.11",
+    "tailwindcss": "^3.4.1",
     "typescript": "^5.3.3"
   }
 }

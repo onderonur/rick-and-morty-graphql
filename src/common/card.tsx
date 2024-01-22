@@ -1,5 +1,4 @@
-import type { BaseImageProps } from './base-image';
-import { BaseImage } from './base-image';
+import Image, { ImageProps } from 'next/image';
 import { twMerge } from 'tailwind-merge';
 
 type CardProps = React.PropsWithChildren<{
@@ -54,8 +53,8 @@ export function CardContent(props: CardContentProps) {
   return <div className="flex flex-col gap-3" {...props} />;
 }
 
-type CardImageProps = Pick<BaseImageProps, 'src' | 'alt' | 'fill' | 'priority'>;
+type CardImageProps = Pick<ImageProps, 'src' | 'alt' | 'fill' | 'priority'>;
 
 export function CardImage(props: CardImageProps) {
-  return <BaseImage className={'rounded-md object-cover'} {...props} />;
+  return <Image className={'rounded-md object-cover'} {...props} />;
 }

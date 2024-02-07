@@ -56,10 +56,6 @@ export async function generateMetadata({
 }: LocationPageProps): Promise<Metadata> {
   const { location } = await getPageData(locationId);
 
-  if (!location) {
-    notFound();
-  }
-
   return getMetadata({
     title: location.name,
     description: `Check out details of "${location.name}" location form Rick and Morty series.`,

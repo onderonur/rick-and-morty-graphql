@@ -16,7 +16,7 @@ const CharacterEpisodeSummary_EpisodeFragment = graphql(/* GraphQL */ `
 function getEpisodeAirYear(
   episode: CharacterEpisodeSummary_EpisodeFragmentFragment,
 ) {
-  if (episode?.air_date) {
+  if (episode.air_date) {
     return new Date(episode.air_date).getFullYear();
   }
 
@@ -39,8 +39,15 @@ export function CharacterEpisodeSummary({
     episodes as FragmentType<typeof CharacterEpisodeSummary_EpisodeFragment>[],
   );
 
-  const [firstEpisode] = episodesFragment;
-  const lastEpisode = episodesFragment[episodesFragment.length - 1];
+  let firstEpisode: Maybe<CharacterEpisodeSummary_EpisodeFragmentFragment> =
+    null;
+  let lastEpisode: Maybe<CharacterEpisodeSummary_EpisodeFragmentFragment> =
+    null;
+
+  if (episodes.length) {
+    [firstEpisode] = episodesFragment;
+    lastEpisode = episodesFragment[episodesFragment.length - 1];
+  }
 
   return (
     <div className={twMerge('leading-relaxed text-slate-400', className)}>

@@ -1,4 +1,5 @@
-import Image, { ImageProps } from 'next/image';
+import type { ImageProps } from 'next/image';
+import Image from 'next/image';
 import { twMerge } from 'tailwind-merge';
 
 type CardProps = React.PropsWithChildren<{
@@ -55,6 +56,6 @@ export function CardContent(props: CardContentProps) {
 
 type CardImageProps = Pick<ImageProps, 'src' | 'alt' | 'fill' | 'priority'>;
 
-export function CardImage(props: CardImageProps) {
-  return <Image className={'rounded-md object-cover'} {...props} />;
+export function CardImage({ alt, ...rest }: CardImageProps) {
+  return <Image className={'rounded-md object-cover'} alt={alt} {...rest} />;
 }

@@ -20,7 +20,7 @@ export function useOnClickOutside<
     function handleClickOutside(e: MouseEvent) {
       const savedCallback = savedCallbackRef.current;
 
-      if (node && !node.contains(e.target as Node)) {
+      if (!node.contains(e.target as Node)) {
         savedCallback();
       }
     }

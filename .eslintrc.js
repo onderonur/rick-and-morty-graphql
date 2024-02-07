@@ -15,5 +15,5 @@ module.exports = {
   // This was causing a warning for lint-staged
   // and since we have --max-warnings 0, the check was failing.
   // So, we removed these files by using "!" from ignoredPatterns.
-  ignorePatterns: ['!.*.{js,ts}'],
+  ignorePatterns: ['!.*.{js,ts}', 'src/gql'],
 };

@@ -55,10 +55,6 @@ export async function generateMetadata({
 }: EpisodePageProps): Promise<Metadata> {
   const { episode } = await getPageData(episodeId);
 
-  if (!episode) {
-    notFound();
-  }
-
   return getMetadata({
     title: episode.name,
     description: `Check out details of "${episode.name}" episode of Rick and Morty series.`,

@@ -12,7 +12,7 @@ export function Header() {
   return (
     <header
       ref={headerRef}
-      className="flex items-center gap-4 border-b-4 px-6 py-2"
+      className="flex min-h-16 items-center gap-4 border-b-4 px-6"
     >
       <NextLink href="/" className="text-lg font-black">
         {APP_TITLE}

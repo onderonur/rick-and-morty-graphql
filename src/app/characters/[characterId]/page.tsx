@@ -84,7 +84,7 @@ export default async function CharacterPage({
       </div>
       <section>
         <Card withTitle>
-          <CardTitle>Episodes</CardTitle>
+          <CardTitle as="h2">Episodes</CardTitle>
           <CardContent>
             <List>
               {character.episode.map((episode) => {

@@ -20,29 +20,32 @@ const links = [
 
 export default function Home() {
   return (
-    <div className="grid sm:grid-cols-6">
-      {links.map((link) => {
-        return (
-          <div key={link.href} className="sm:col-span-2">
-            <NextLink href={link.href}>
-              <Card withTitle>
-                <CardTitle>{link.title}</CardTitle>
-                <CardImage src={link.imageSrc} alt={link.title} priority />
-              </Card>
-            </NextLink>
-          </div>
-        );
-      })}
-      <div className="sm:col-span-3">
-        <Card>
-          <CardImage src={home01Gif} alt="Rick dancing gif" />
-        </Card>
+    <>
+      <h1 className="sr-only">Home</h1>
+      <div className="grid sm:grid-cols-6">
+        {links.map((link) => {
+          return (
+            <div key={link.href} className="sm:col-span-2">
+              <NextLink href={link.href}>
+                <Card withTitle>
+                  <CardTitle>{link.title}</CardTitle>
+                  <CardImage src={link.imageSrc} alt={link.title} priority />
+                </Card>
+              </NextLink>
+            </div>
+          );
+        })}
+        <div className="sm:col-span-3">
+          <Card>
+            <CardImage src={home01Gif} alt="Rick dancing gif" />
+          </Card>
+        </div>
+        <div className="sm:col-span-3">
+          <Card>
+            <CardImage src={home02Gif} alt="Snuffles gif" />
+          </Card>
+        </div>
       </div>
-      <div className="sm:col-span-3">
-        <Card>
-          <CardImage src={home02Gif} alt="Snuffles gif" />
-        </Card>
-      </div>
-    </div>
+    </>
   );
 }

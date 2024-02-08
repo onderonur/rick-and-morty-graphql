@@ -1,3 +1,4 @@
+import type { Maybe } from '@/gql/graphql';
 import { useCallback, useEffect, useRef } from 'react';
 
 export function useOnClickOutside<
@@ -10,7 +11,7 @@ export function useOnClickOutside<
     savedCallbackRef.current = callback;
   }, [callback]);
 
-  const nodeRef = useCallback((node: Element) => {
+  const nodeRef = useCallback((node: Maybe<Element>) => {
     const clickHandler = clickOutsideHandlerRef.current;
 
     if (clickHandler) {
@@ -20,7 +21,7 @@ export function useOnClickOutside<
     function handleClickOutside(e: MouseEvent) {
       const savedCallback = savedCallbackRef.current;
 
-      if (!node.contains(e.target as Node)) {
+      if (node && !node.contains(e.target as Node)) {
         savedCallback();
       }
     }

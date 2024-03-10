@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "build": "next build",
-    "codequality": "npm run format && npm run lint",
-    "codequality:fix": "npm run format:fix && npm run lint:fix",
+    "codequality": "npm run format && npm run lint && npm run typecheck",
+    "codequality:fix": "npm run format:fix && npm run lint:fix && npm run typecheck",
     "dev": "next dev",
     "dev:all": "npm-run-all --parallel dev gql-codegen:watch",
     "dev:all:about": "echo 'https://the-guild.dev/graphql/codegen/docs/getting-started/development-workflow#watch-mode'",

@@ -2,8 +2,8 @@ import { NextLink } from '@/common/next-link';
 import charactersPic from '@/images/characters.jpg';
 import episodesPic from '@/images/episodes.jpg';
 import locationsPic from '@/images/locations.jpg';
-import home01Gif from '@/gifs/home01.webp';
-import home02Gif from '@/gifs/home02.gif';
+import runningPic from '@/images/running.jpg';
+import snufflesPic from '@/images/snuffles.jpg';
 import { Card, CardImage, CardTitle } from '@/common/card';
 import { getMetadata } from '@/seo/seo-utils';
 
@@ -37,12 +37,12 @@ export default function Home() {
         })}
         <div className="sm:col-span-3">
           <Card>
-            <CardImage src={home01Gif} alt="Rick dancing gif" />
+            <CardImage src={runningPic} alt="Rick and Morty are running" />
           </Card>
         </div>
         <div className="sm:col-span-3">
           <Card>
-            <CardImage src={home02Gif} alt="Snuffles gif" />
+            <CardImage src={snufflesPic} alt="Snuffles" />
           </Card>
         </div>
       </div>

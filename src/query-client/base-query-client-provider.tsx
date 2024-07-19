@@ -1,8 +1,8 @@
 // https://tanstack.com/query/latest/docs/react/guides/advanced-ssr#initial-setup
 'use client';
 
-import { useState } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { useState } from 'react';
 
 type BaseQueryClientProviderProps = React.PropsWithChildren;
 

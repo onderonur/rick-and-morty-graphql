@@ -1,9 +1,9 @@
-import 'nes.css/css/nes.min.css';
-import '@/styles/globals.css';
-import { Press_Start_2P } from 'next/font/google';
-import { BaseQueryClientProvider } from '@/query-client/base-query-client-provider';
 import { Layout } from '@/layout/layout';
+import { BaseQueryClientProvider } from '@/query-client/base-query-client-provider';
+import '@/styles/globals.css';
+import 'nes.css/css/nes.min.css';
 import type { Viewport } from 'next';
+import { Press_Start_2P } from 'next/font/google';
 import { twJoin } from 'tailwind-merge';
 
 const pressStart2P = Press_Start_2P({

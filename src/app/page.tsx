@@ -1,10 +1,10 @@
-import { NextLink } from '@/common/next-link';
+import { Card, CardImage, CardTitle } from '@/common/card';
 import charactersPic from '@/images/characters.jpg';
 import episodesPic from '@/images/episodes.jpg';
 import locationsPic from '@/images/locations.jpg';
 import runningPic from '@/images/running.jpg';
 import snufflesPic from '@/images/snuffles.jpg';
-import { Card, CardImage, CardTitle } from '@/common/card';
+import { NextLink } from '@/routing/next-link';
 import { getMetadata } from '@/seo/seo-utils';
 
 export const metadata = getMetadata({

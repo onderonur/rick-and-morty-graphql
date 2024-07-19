@@ -1,9 +1,9 @@
 'use client';
 
-import { NextLink } from '@/common/next-link';
-import { GitHubIcon } from '@/icons/github-icon';
 import { APP_TITLE } from '@/common/common-utils';
 import { MobileNavMenu, NavMenu } from '@/common/nav-menu';
+import { GitHubIcon } from '@/icons/github-icon';
+import { NextLink } from '@/routing/next-link';
 import { Suspense, useRef } from 'react';
 
 export function Header() {

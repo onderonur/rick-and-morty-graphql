@@ -1,6 +1,6 @@
+import { twMerge } from 'tailwind-merge';
 import { Backdrop } from './backdrop';
 import { useOnClickOutside } from './common-hooks';
-import { twMerge } from 'tailwind-merge';
 
 type PopperProps = React.PropsWithChildren<{
   parentRef: React.RefObject<HTMLElement>;

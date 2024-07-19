@@ -1,10 +1,10 @@
-import type { Metadata } from 'next';
-import { HydrationBoundary, dehydrate } from '@tanstack/react-query';
-import { getQueryClient } from '@/query-client/query-client-utils';
-import { LocationInfiniteList } from '@/locations/location-infinite-list';
-import { getMetadata } from '@/seo/seo-utils';
 import { Card, CardContent, CardTitle } from '@/common/card';
+import { LocationInfiniteList } from '@/locations/location-infinite-list';
 import { locationInfiniteListQueryOptions } from '@/locations/location-infinite-list-query';
+import { getQueryClient } from '@/query-client/query-client-utils';
+import { getMetadata } from '@/seo/seo-utils';
+import { HydrationBoundary, dehydrate } from '@tanstack/react-query';
+import type { Metadata } from 'next';
 
 export const metadata: Metadata = getMetadata({
   title: 'Locations',

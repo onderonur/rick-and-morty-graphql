@@ -1,9 +1,9 @@
-import { useState } from 'react';
-import { Button } from './button';
-import { NextLink } from './next-link';
-import { List, ListItem, ListItemTitle } from './list';
+import { NextLink } from '@/routing/next-link';
 import { useOnRouteChange } from '@/routing/routing-hooks';
-import { Popper } from './popper';
+import { useState } from 'react';
+import { Button } from '../common/button';
+import { List, ListItem, ListItemTitle } from '../common/list';
+import { Popper } from '../common/popper';
 
 function NavMenuItems() {
   return (

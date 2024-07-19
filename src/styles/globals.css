@@ -16,6 +16,6 @@
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    @apply bg-slate-500  shadow-slate-600;
+    @apply bg-slate-500 shadow-slate-600;
   }
 }

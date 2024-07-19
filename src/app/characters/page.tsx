@@ -1,11 +1,11 @@
-import type { Metadata } from 'next';
-import { HydrationBoundary, dehydrate } from '@tanstack/react-query';
-import { getQueryClient } from '@/query-client/query-client-utils';
 import { CharacterInfiniteList } from '@/characters/character-infinite-list';
-import { CharacterSearchForm } from '@/characters/character-search-form';
-import { getMetadata } from '@/seo/seo-utils';
-import { Card, CardContent, CardTitle } from '@/common/card';
 import { characterInfiniteListQueryOptions } from '@/characters/character-infinite-list-query';
+import { CharacterSearchForm } from '@/characters/character-search-form';
+import { Card, CardContent, CardTitle } from '@/common/card';
+import { getQueryClient } from '@/query-client/query-client-utils';
+import { getMetadata } from '@/seo/seo-utils';
+import { HydrationBoundary, dehydrate } from '@tanstack/react-query';
+import type { Metadata } from 'next';
 
 export const metadata: Metadata = getMetadata({
   title: 'Characters',

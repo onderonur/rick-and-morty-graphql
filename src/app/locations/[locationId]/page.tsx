@@ -1,14 +1,14 @@
-import { CharacterList } from '@/characters/character-list';
 import { CharacterCard } from '@/characters/character-card';
+import { CharacterList } from '@/characters/character-list';
 import { Card, CardContent, CardTitle } from '@/common/card';
 import { API_URL } from '@/common/common-utils';
+import { Spec } from '@/common/spec';
 import { graphql } from '@/gql';
 import { getQueryClient } from '@/query-client/query-client-utils';
-import request from 'graphql-request';
-import { notFound } from 'next/navigation';
-import { Spec } from '@/common/spec';
-import type { Metadata } from 'next';
 import { getMetadata } from '@/seo/seo-utils';
+import request from 'graphql-request';
+import type { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 
 const LocationPage_Query = graphql(/* GraphQL */ `
   query LocationPage_Query($id: ID!) {

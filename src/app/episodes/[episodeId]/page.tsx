@@ -1,13 +1,13 @@
-import { CharacterList } from '@/characters/character-list';
 import { CharacterCard } from '@/characters/character-card';
+import { CharacterList } from '@/characters/character-list';
 import { Card, CardContent, CardTitle } from '@/common/card';
 import { API_URL } from '@/common/common-utils';
 import { graphql } from '@/gql';
 import { getQueryClient } from '@/query-client/query-client-utils';
-import request from 'graphql-request';
-import { notFound } from 'next/navigation';
-import type { Metadata } from 'next';
 import { getMetadata } from '@/seo/seo-utils';
+import request from 'graphql-request';
+import type { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 
 const EpisodePage_Query = graphql(/* GraphQL */ `
   query EpisodePage_Query($id: ID!) {

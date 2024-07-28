@@ -46,7 +46,7 @@ export function CharacterEpisodeSummary({
 
   if (episodes.length) {
     [firstEpisode] = episodesFragment;
-    lastEpisode = episodesFragment[episodesFragment.length - 1];
+    lastEpisode = episodesFragment.at(-1) ?? null;
   }
 
   return (

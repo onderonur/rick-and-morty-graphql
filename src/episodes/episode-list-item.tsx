@@ -1,7 +1,7 @@
+import { ListItem, ListItemSubtitle, ListItemTitle } from '@/common/list';
 import type { FragmentType } from '@/gql';
 import { graphql, useFragment } from '@/gql';
-import { NextLink } from '@/common/next-link';
-import { ListItem, ListItemTitle, ListItemSubtitle } from '@/common/list';
+import { NextLink } from '@/routing/next-link';
 
 const EpisodeListItem_EpisodeFragment = graphql(/* GraphQL */ `
   fragment EpisodeListItem_EpisodeFragment on Episode {

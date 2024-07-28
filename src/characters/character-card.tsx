@@ -1,8 +1,8 @@
-import { graphql } from '@/gql/gql';
+import { Card, CardImage, CardTitle } from '@/common/card';
 import type { FragmentType } from '@/gql';
 import { useFragment } from '@/gql';
-import { NextLink } from '@/common/next-link';
-import { Card, CardImage, CardTitle } from '@/common/card';
+import { graphql } from '@/gql/gql';
+import { NextLink } from '@/routing/next-link';
 
 // https://the-guild.dev/blog/unleash-the-power-of-fragments-with-graphql-codegen
 const CharacterCard_CharacterFragment = graphql(/* GraphQL */ `
@@ -35,7 +35,7 @@ export function CharacterCard({ character }: CharacterCardProps) {
           />
         </div>
         <CardTitle
-          className="fixed-leading-6 fixed-line-clamp-2"
+          className="line-clamp-2 min-h-[2lh]"
           title={characterFragment.name as string}
         >
           {characterFragment.name}

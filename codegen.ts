@@ -7,7 +7,6 @@ const config: CodegenConfig = {
   generates: {
     './src/gql/': {
       preset: 'client',
-      plugins: [],
     },
     './src/gql/introspection.json': {
       plugins: ['introspection'],

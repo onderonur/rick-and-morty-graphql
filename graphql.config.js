@@ -1,7 +1,7 @@
 // For VSCode GraphQL: Language Feature Support extension:
 // https://marketplace.visualstudio.com/items?itemName=GraphQL.vscode-graphql
 module.exports = {
-  schema: './src/gql/introspection.json',
+  schema: './src/core/gql/introspection.json',
   documents: ['src/**/*.{ts,tsx}'],
 };
 

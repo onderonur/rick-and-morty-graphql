@@ -1,8 +1,8 @@
-import { Card, CardContent, CardTitle } from '@/common/card';
-import { LocationInfiniteList } from '@/locations/location-infinite-list';
-import { locationInfiniteListQueryOptions } from '@/locations/location-infinite-list-query';
-import { getQueryClient } from '@/query-client/query-client-utils';
-import { getMetadata } from '@/seo/seo-utils';
+import { getQueryClient } from '@/core/query-client/query-client.utils';
+import { getMetadata } from '@/core/seo/seo.utils';
+import { Card, CardTitle } from '@/core/ui/components/card';
+import { LocationInfiniteList } from '@/features/locations/components/location-infinite-list';
+import { locationInfiniteListQueryOptions } from '@/features/locations/locations.queries';
 import { HydrationBoundary, dehydrate } from '@tanstack/react-query';
 import type { Metadata } from 'next';
 
@@ -19,12 +19,12 @@ export default async function LocationsPage() {
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <Card withTitle>
-        <CardTitle as="h1">Locations</CardTitle>
-        <CardContent>
+      <main>
+        <Card>
+          <CardTitle className="text-4xl">Locations</CardTitle>
           <LocationInfiniteList />
-        </CardContent>
-      </Card>
+        </Card>
+      </main>
     </HydrationBoundary>
   );
 }

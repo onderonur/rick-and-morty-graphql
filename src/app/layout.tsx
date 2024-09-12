@@ -1,20 +1,18 @@
-import { Layout } from '@/layout/layout';
-import { BaseQueryClientProvider } from '@/query-client/base-query-client-provider';
-import '@/styles/globals.css';
-import 'nes.css/css/nes.min.css';
+import { Layout } from '@/core/layout/components/layout';
+import { BaseQueryClientProvider } from '@/core/query-client/components/base-query-client-provider';
+import '@/core/styles/globals.css';
 import type { Viewport } from 'next';
-import { Press_Start_2P } from 'next/font/google';
+import { Fredoka } from 'next/font/google';
 import { twJoin } from 'tailwind-merge';
 
-const pressStart2P = Press_Start_2P({
+const fredoka = Fredoka({
   subsets: ['latin'],
   display: 'swap',
-  variable: '--font-press-start-2p',
-  weight: ['400'],
+  variable: '--font-fredoka',
 });
 
 export const viewport: Viewport = {
-  themeColor: '#212529',
+  themeColor: '#fff',
 };
 
 type RootLayoutProps = React.PropsWithChildren;
@@ -23,17 +21,20 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html
       lang="en"
-      // https://www.radix-ui.com/themes/docs/theme/typography#with-nextfont
       className={twJoin(
-        pressStart2P.variable,
-        '[color-scheme:dark]',
+        fredoka.variable,
+        'font-fredoka',
         // fluid font-size:
         // 12px - 16px for 320px - 1024px viewport
         'text-[clamp(0.75rem,0.636rem+0.57vw,1rem)]',
       )}
     >
       <body
-        className={twJoin(pressStart2P.className, 'bg-[#212529] text-white')}
+        className={twJoin(
+          'bg-gradient-to-b from-background to-transparent bg-fixed',
+          // Disable body scrolling when a `<dialog>` is open
+          'has-[dialog[open]]:overflow-hidden',
+        )}
       >
         <BaseQueryClientProvider>
           <Layout>{children}</Layout>

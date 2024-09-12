@@ -1,0 +1,46 @@
+import type { FragmentType } from '@/core/gql';
+import { useFragment } from '@/core/gql';
+import { graphql } from '@/core/gql/gql';
+import { NextLink } from '@/core/routing/components/next-link';
+import { Card, CardImage, CardTitle } from '@/core/ui/components/card';
+
+// https://the-guild.dev/blog/unleash-the-power-of-fragments-with-graphql-codegen
+const CharacterCard_CharacterFragment = graphql(/* GraphQL */ `
+  fragment CharacterCard_CharacterFragment on Character {
+    id
+    name
+    status
+    image
+  }
+`);
+
+type CharacterCardProps = {
+  character: FragmentType<typeof CharacterCard_CharacterFragment>;
+};
+
+export function CharacterCard({ character }: CharacterCardProps) {
+  const characterFragment = useFragment(
+    CharacterCard_CharacterFragment,
+    character,
+  );
+
+  return (
+    <NextLink href={`/characters/${characterFragment.id}`}>
+      <Card>
+        <CardImage
+          src={characterFragment.image as string}
+          alt={characterFragment.name as string}
+          width={300}
+          height={300}
+        />
+        <CardTitle
+          as="h2"
+          className="line-clamp-2 min-h-[2lh]"
+          title={characterFragment.name as string}
+        >
+          {characterFragment.name}
+        </CardTitle>
+      </Card>
+    </NextLink>
+  );
+}

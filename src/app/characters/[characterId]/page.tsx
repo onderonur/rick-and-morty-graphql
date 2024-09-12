@@ -1,11 +1,11 @@
-import { CharacterDetails } from '@/characters/character-details';
-import { Card, CardContent, CardTitle } from '@/common/card';
-import { API_URL } from '@/common/common-utils';
-import { List } from '@/common/list';
-import { EpisodeListItem } from '@/episodes/episode-list-item';
-import { graphql } from '@/gql';
-import { getQueryClient } from '@/query-client/query-client-utils';
-import { getMetadata } from '@/seo/seo-utils';
+import { API_URL } from '@/core/core.utils';
+import { graphql } from '@/core/gql';
+import { getQueryClient } from '@/core/query-client/query-client.utils';
+import { getMetadata } from '@/core/seo/seo.utils';
+import { Card, CardTitle } from '@/core/ui/components/card';
+import { List } from '@/core/ui/components/list';
+import { CharacterDetails } from '@/features/characters/components/character-details';
+import { EpisodeListItem } from '@/features/episodes/components/episode-list-item';
 import request from 'graphql-request';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
@@ -78,26 +78,26 @@ export default async function CharacterPage({
   const { character } = await getPageData(characterId);
 
   return (
-    <div className="grid gap-2 md:grid-cols-[theme(spacing.80)_1fr]">
+    <main className="grid gap-4 md:grid-cols-[theme(spacing.80)_1fr]">
       <div className="mx-auto max-w-md">
         <CharacterDetails character={character} />
       </div>
-      <section>
-        <Card withTitle>
-          <CardTitle as="h2">Episodes</CardTitle>
-          <CardContent>
-            <List>
-              {character.episode.map((episode) => {
-                if (!episode) {
-                  return null;
-                }
+      <section aria-labelledby="episodes-title">
+        <Card>
+          <CardTitle id="episodes-title" as="h2">
+            Episodes
+          </CardTitle>
+          <List>
+            {character.episode.map((episode) => {
+              if (!episode) {
+                return null;
+              }
 
-                return <EpisodeListItem key={episode.id} episode={episode} />;
-              })}
-            </List>
-          </CardContent>
+              return <EpisodeListItem key={episode.id} episode={episode} />;
+            })}
+          </List>
         </Card>
       </section>
-    </div>
+    </main>
   );
 }

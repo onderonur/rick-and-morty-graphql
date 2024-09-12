@@ -1,10 +1,10 @@
-import { CharacterCard } from '@/characters/character-card';
-import { CharacterList } from '@/characters/character-list';
-import { Card, CardContent, CardTitle } from '@/common/card';
-import { API_URL } from '@/common/common-utils';
-import { graphql } from '@/gql';
-import { getQueryClient } from '@/query-client/query-client-utils';
-import { getMetadata } from '@/seo/seo-utils';
+import { API_URL } from '@/core/core.utils';
+import { graphql } from '@/core/gql';
+import { getQueryClient } from '@/core/query-client/query-client.utils';
+import { getMetadata } from '@/core/seo/seo.utils';
+import { Card, CardDescription, CardTitle } from '@/core/ui/components/card';
+import { CharacterCard } from '@/features/characters/components/character-card';
+import { CharacterList } from '@/features/characters/components/character-list';
 import request from 'graphql-request';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
@@ -68,38 +68,36 @@ export default async function EpisodePage({
   const { episode } = await getPageData(episodeId);
 
   return (
-    <div className="flex flex-col gap-2">
+    <main className="flex flex-col gap-4">
       <Card>
-        <CardContent>
-          <div className="flex flex-wrap justify-between gap-3">
-            <div>
-              <h1 className="text-lg font-semibold">{episode.name}</h1>
-              <p className="mt-2 text-slate-400">{episode.episode}</p>
-            </div>
-            <div className="text-slate-400">{episode.air_date}</div>
+        <div className="flex flex-wrap justify-between gap-3">
+          <div className="flex flex-col gap-2">
+            <CardTitle>{episode.name}</CardTitle>
+            <CardDescription>{episode.episode}</CardDescription>
           </div>
-        </CardContent>
+          <CardDescription>{episode.air_date}</CardDescription>
+        </div>
       </Card>
-      <section>
-        <Card withTitle>
-          <CardTitle as="h2">Characters</CardTitle>
-          <CardContent>
-            <CharacterList>
-              {episode.characters.map((character) => {
-                if (!character) {
-                  return null;
-                }
+      <section aria-labelledby="characters-title">
+        <Card>
+          <CardTitle id="characters-title" as="h2">
+            Characters
+          </CardTitle>
+          <CharacterList>
+            {episode.characters.map((character) => {
+              if (!character) {
+                return null;
+              }
 
-                return (
-                  <li key={character.id}>
-                    <CharacterCard character={character} />
-                  </li>
-                );
-              })}
-            </CharacterList>
-          </CardContent>
+              return (
+                <li key={character.id}>
+                  <CharacterCard character={character} />
+                </li>
+              );
+            })}
+          </CharacterList>
         </Card>
       </section>
-    </div>
+    </main>
   );
 }

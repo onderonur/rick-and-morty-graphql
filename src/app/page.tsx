@@ -1,11 +1,11 @@
-import { Card, CardImage, CardTitle } from '@/common/card';
-import charactersPic from '@/images/characters.jpg';
-import episodesPic from '@/images/episodes.jpg';
-import locationsPic from '@/images/locations.jpg';
-import runningPic from '@/images/running.jpg';
-import snufflesPic from '@/images/snuffles.jpg';
-import { NextLink } from '@/routing/next-link';
-import { getMetadata } from '@/seo/seo-utils';
+import { NextLink } from '@/core/routing/components/next-link';
+import { getMetadata } from '@/core/seo/seo.utils';
+import { Card, CardImage, CardTitle } from '@/core/ui/components/card';
+import charactersPic from '@/features/images/characters.jpg';
+import episodesPic from '@/features/images/episodes.jpg';
+import locationsPic from '@/features/images/locations.jpg';
+import runningPic from '@/features/images/running.jpg';
+import snufflesPic from '@/features/images/snuffles.jpg';
 
 export const metadata = getMetadata({
   title: 'Home',
@@ -20,15 +20,17 @@ const links = [
 
 export default function Home() {
   return (
-    <>
+    <main>
       <h1 className="sr-only">Home</h1>
-      <div className="grid sm:grid-cols-6">
+      <div className="grid gap-4 sm:grid-cols-6">
         {links.map((link) => {
           return (
             <div key={link.href} className="sm:col-span-2">
               <NextLink href={link.href}>
-                <Card withTitle>
-                  <CardTitle>{link.title}</CardTitle>
+                <Card>
+                  <CardTitle as="h2" className="text-3xl">
+                    {link.title}
+                  </CardTitle>
                   <CardImage src={link.imageSrc} alt={link.title} priority />
                 </Card>
               </NextLink>
@@ -37,15 +39,19 @@ export default function Home() {
         })}
         <div className="sm:col-span-3">
           <Card>
-            <CardImage src={runningPic} alt="Rick and Morty are running" />
+            <CardImage
+              src={runningPic}
+              alt="Rick and Morty are running"
+              priority
+            />
           </Card>
         </div>
         <div className="sm:col-span-3">
           <Card>
-            <CardImage src={snufflesPic} alt="Snuffles" />
+            <CardImage src={snufflesPic} alt="Snuffles" priority />
           </Card>
         </div>
       </div>
-    </>
+    </main>
   );
 }

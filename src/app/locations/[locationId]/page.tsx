@@ -1,11 +1,11 @@
-import { CharacterCard } from '@/characters/character-card';
-import { CharacterList } from '@/characters/character-list';
-import { Card, CardContent, CardTitle } from '@/common/card';
-import { API_URL } from '@/common/common-utils';
-import { Spec } from '@/common/spec';
-import { graphql } from '@/gql';
-import { getQueryClient } from '@/query-client/query-client-utils';
-import { getMetadata } from '@/seo/seo-utils';
+import { API_URL } from '@/core/core.utils';
+import { graphql } from '@/core/gql';
+import { getQueryClient } from '@/core/query-client/query-client.utils';
+import { getMetadata } from '@/core/seo/seo.utils';
+import { Card, CardTitle } from '@/core/ui/components/card';
+import { Specs } from '@/core/ui/components/specs';
+import { CharacterCard } from '@/features/characters/components/character-card';
+import { CharacterList } from '@/features/characters/components/character-list';
 import request from 'graphql-request';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
@@ -69,36 +69,36 @@ export default async function LocationPage({
   const { location } = await getPageData(locationId);
 
   return (
-    <div className="flex flex-col gap-2">
+    <main className="flex flex-col gap-4">
       <Card>
-        <CardContent>
-          <h1 className="text-lg font-semibold">{location.name}</h1>
-          <div className="flex flex-wrap gap-4">
-            <Spec title="Type" value={location.type} />
-            <Spec title="Dimension" value={location.dimension} />
-          </div>
-        </CardContent>
+        <CardTitle>{location.name}</CardTitle>
+        <Specs
+          specs={[
+            { title: 'Type', value: location.type },
+            { title: 'Dimension', value: location.dimension },
+          ]}
+        />
       </Card>
-      <section>
-        <Card withTitle>
-          <CardTitle as="h2">Characters</CardTitle>
-          <CardContent>
-            <CharacterList>
-              {location.residents.map((character) => {
-                if (!character) {
-                  return null;
-                }
+      <section aria-labelledby="characters-title">
+        <Card>
+          <CardTitle id="characters-title" as="h2">
+            Characters
+          </CardTitle>
+          <CharacterList>
+            {location.residents.map((character) => {
+              if (!character) {
+                return null;
+              }
 
-                return (
-                  <li key={character.id}>
-                    <CharacterCard character={character} />
-                  </li>
-                );
-              })}
-            </CharacterList>
-          </CardContent>
+              return (
+                <li key={character.id}>
+                  <CharacterCard character={character} />
+                </li>
+              );
+            })}
+          </CharacterList>
         </Card>
       </section>
-    </div>
+    </main>
   );
 }

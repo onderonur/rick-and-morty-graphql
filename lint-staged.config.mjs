@@ -8,10 +8,10 @@ const buildEslintCommand = (filenames) =>
 
 const config = {
   '*': 'prettier --write --ignore-unknown',
-  // `!src/gql` is added, since that folder is ignored in ESLint config
+  // `!src/core/gql` is added, since that folder is ignored in ESLint config
   // and `lint-staged` throws "File ignored because of a matching ignore pattern." warning
   // if we don't add this.
-  '*.{js,jsx,ts,tsx},!src/gql': [buildEslintCommand],
+  '*.{js,jsx,ts,tsx},!src/core/gql': [buildEslintCommand],
 };
 
 export default config;

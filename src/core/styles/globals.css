@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 204 50% 89%;
+    --foreground: 255 50% 10%;
+
+    --card: 255 100% 100%;
+    --card-foreground: 0 0% 0%;
+
+    --muted: 233 9% 50%;
+    --muted-foreground: 255 100% 100%;
+
+    --primary: 150 45% 36%;
+    --primary-foreground: 255 100% 100%;
+
+    --secondary: 0 90% 70%;
+    --secondary-foreground: 255 100% 100%;
+
+    --scrollbar-track: 240 5% 96%;
+    --scrollbar-thumb: 240 4.8% 80%;
+    --scrollbar-thumb-hover: 240 4.8% 76%;
+
+    --border: 240 4% 16%;
+    --ring: 192 84% 40%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  a,
+  input,
+  button {
+    @apply focus-visible:outline-offset-2 focus-visible:outline-ring;
+  }
+
+  ::-webkit-scrollbar {
+    @apply size-3;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-scrollbar-track;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply rounded-lg bg-scrollbar-thumb hover:bg-scrollbar-thumb-hover;
+  }
+}

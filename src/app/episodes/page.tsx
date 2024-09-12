@@ -1,8 +1,8 @@
-import { Card, CardContent, CardTitle } from '@/common/card';
-import { EpisodeInfiniteList } from '@/episodes/episode-infinite-list';
-import { episodeInfiniteListQueryOptions } from '@/episodes/episode-infinite-list-query';
-import { getQueryClient } from '@/query-client/query-client-utils';
-import { getMetadata } from '@/seo/seo-utils';
+import { getQueryClient } from '@/core/query-client/query-client.utils';
+import { getMetadata } from '@/core/seo/seo.utils';
+import { Card, CardTitle } from '@/core/ui/components/card';
+import { EpisodeInfiniteList } from '@/features/episodes/components/episode-infinite-list';
+import { episodeInfiniteListQueryOptions } from '@/features/episodes/episodes.queries';
 import { HydrationBoundary, dehydrate } from '@tanstack/react-query';
 import type { Metadata } from 'next';
 
@@ -19,12 +19,12 @@ export default async function EpisodesPage() {
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <Card withTitle>
-        <CardTitle as="h1">Episodes</CardTitle>
-        <CardContent>
+      <main>
+        <Card>
+          <CardTitle className="text-4xl">Episodes</CardTitle>
           <EpisodeInfiniteList />
-        </CardContent>
-      </Card>
+        </Card>
+      </main>
     </HydrationBoundary>
   );
 }

@@ -6,7 +6,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        'font-fredoka': ['var(--font-fredoka)'],
+        fredoka: ['var(--font-fredoka)'],
       },
       colors: {
         background: 'hsl(var(--background) / <alpha-value>)',

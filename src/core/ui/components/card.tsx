@@ -33,7 +33,10 @@ export function CardTitle<As extends React.ElementType>({
 
   return (
     <As
-      className={twMerge('text-2xl font-bold drop-shadow-clay', className)}
+      className={twMerge(
+        'cursor-default text-2xl font-bold drop-shadow-clay',
+        className,
+      )}
       {...rest}
     />
   );
@@ -44,7 +47,9 @@ type CardDescriptionProps = {
 };
 
 export function CardDescription(props: CardDescriptionProps) {
-  return <p className="text-lg font-semibold text-muted" {...props} />;
+  return (
+    <p className="cursor-default text-lg font-semibold text-muted" {...props} />
+  );
 }
 
 type CardImageProps = Pick<

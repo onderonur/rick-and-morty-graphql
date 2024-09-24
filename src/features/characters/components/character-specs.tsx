@@ -32,11 +32,11 @@ export function CharacterSpecs({ character }: CharacterSpecsProps) {
       specs={[
         {
           title: 'Status',
-          value: specs.status,
+          value: <span className="cursor-default">{specs.status}</span>,
         },
         {
           title: 'Species',
-          value: specs.species,
+          value: <span className="cursor-default">{specs.species}</span>,
         },
         {
           title: 'Origin',

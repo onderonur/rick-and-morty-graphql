@@ -11,7 +11,7 @@ export function Card({ className, ...rest }: CardProps) {
     <div
       {...rest}
       className={twMerge(
-        'flex flex-col gap-3 rounded-3xl bg-card p-8 shadow-clay',
+        'flex flex-col gap-4 rounded-3xl bg-card p-8 shadow-clay',
         className,
       )}
     />

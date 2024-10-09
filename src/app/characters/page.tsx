@@ -30,7 +30,7 @@ export default async function CharactersPage({
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <main>
+      <main className="flex flex-col gap-6">
         <Card>
           <CardTitle className="text-4xl">Characters</CardTitle>
           <div className="flex flex-col gap-6">
@@ -43,9 +43,9 @@ export default async function CharactersPage({
                 </span>
               </p>
             )}
-            <CharacterInfiniteList />
           </div>
         </Card>
+        <CharacterInfiniteList />
       </main>
     </HydrationBoundary>
   );

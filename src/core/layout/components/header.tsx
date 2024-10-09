@@ -1,8 +1,8 @@
 'use client';
 
-import { APP_TITLE } from '@/core/core.utils';
 import { MobileNavMenu, NavMenu } from '@/core/layout/components/nav-menu';
 import { NextLink } from '@/core/routing/components/next-link';
+import { APP_TITLE } from '@/core/shared/shared.utils';
 import { Suspense } from 'react';
 import { RxGithubLogo } from 'react-icons/rx';
 

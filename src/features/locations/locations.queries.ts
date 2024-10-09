@@ -1,8 +1,8 @@
 // Since we use `locationInfiniteListQueryOptions` in both server and client components,
 // we can not colocate it with `LocationInfiniteList`, because it is a client component.
 // So, we created a separate file for the query.
-import { API_URL, FIRST_PAGE } from '@/core/core.utils';
 import { graphql } from '@/core/gql';
+import { API_URL, FIRST_PAGE } from '@/core/shared/shared.utils';
 import { infiniteQueryOptions } from '@tanstack/react-query';
 import request from 'graphql-request';
 

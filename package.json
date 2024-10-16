@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "build": "next build",
-    "codequality:check": "npm run format:check && npm run lint:check && npm run types:check",
-    "codequality:fix": "npm run format:fix && npm run lint:fix && npm run types:check",
+    "codequality:check": "pnpm format:check && pnpm lint:check && pnpm types:check",
+    "codequality:fix": "pnpm format:fix && pnpm lint:fix && pnpm types:check",
     "dev": "next dev",
     "dev:all": "npm-run-all --parallel dev gql-codegen:watch",
     "dev:all:about": "echo 'https://the-guild.dev/graphql/codegen/docs/getting-started/development-workflow#watch-mode'",
@@ -36,6 +36,7 @@
     "@graphql-codegen/cli": "^5.0.2",
     "@graphql-codegen/client-preset": "^4.3.3",
     "@graphql-codegen/introspection": "^4.0.3",
+    "@graphql-typed-document-node/core": "^3.2.0",
     "@parcel/watcher": "^2.4.1",
     "@types/node": "^22.5.4",
     "@types/react": "^18.3.5",
@@ -51,6 +52,7 @@
     "eslint-plugin-unicorn": "^55.0.0",
     "husky": "^9.1.5",
     "knip": "^5.30.0",
+    "lint-staged": "^15.2.10",
     "npm-check-updates": "^17.1.1",
     "npm-run-all": "^4.1.5",
     "postcss": "^8.4.45",
@@ -60,5 +62,6 @@
     "prettier-plugin-tailwindcss": "^0.6.6",
     "tailwindcss": "^3.4.10",
     "typescript": "^5.5.4"
-  }
+  },
+  "packageManager": "pnpm@9.12.2"
 }

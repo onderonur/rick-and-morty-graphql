@@ -31,13 +31,13 @@ A feature based folder structure has been implemented to keep things organized.
 First, we need to install the dependencies:
 
 ```bash
-npm install
+pnpm install
 ```
 
 And run the project in development mode:
 
 ```bash
-npm run dev
+pnpm dev
 ```
 
 <!-- TODO: Add other script usages like `dev:all` -->

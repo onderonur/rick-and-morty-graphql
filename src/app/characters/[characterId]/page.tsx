@@ -46,14 +46,16 @@ async function getPageData(characterId: string) {
 }
 
 type CharacterPageProps = {
-  params: {
+  params: Promise<{
     characterId: string;
-  };
+  }>;
 };
 
-export async function generateMetadata({
-  params: { characterId },
-}: CharacterPageProps): Promise<Metadata> {
+export async function generateMetadata(
+  props: CharacterPageProps,
+): Promise<Metadata> {
+  const { characterId } = await props.params;
+
   const { character } = await getPageData(characterId);
 
   return getMetadata({
@@ -72,9 +74,9 @@ export async function generateMetadata({
   });
 }
 
-export default async function CharacterPage({
-  params: { characterId },
-}: CharacterPageProps) {
+export default async function CharacterPage(props: CharacterPageProps) {
+  const { characterId } = await props.params;
+
   const { character } = await getPageData(characterId);
 
   return (

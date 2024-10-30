@@ -1,6 +1,6 @@
 import { useOnRouteChange } from '@/core/routing/routing.hooks';
 import { Button } from '@/core/ui/components/button';
-import React, { forwardRef, useImperativeHandle, useRef } from 'react';
+import React, { useImperativeHandle, useRef } from 'react';
 import { RxCross2 } from 'react-icons/rx';
 
 export type DialogRef = {
@@ -8,14 +8,12 @@ export type DialogRef = {
 };
 
 type DialogProps = {
+  ref: React.Ref<DialogRef>;
   title: string;
   children: React.ReactNode;
 };
 
-export const Dialog = forwardRef<DialogRef, DialogProps>(function Dialog(
-  { title, children },
-  ref,
-) {
+export function Dialog({ ref, title, children }: DialogProps) {
   const dialogRef = useRef<HTMLDialogElement>(null);
 
   useImperativeHandle(ref, () => {
@@ -50,4 +48,4 @@ export const Dialog = forwardRef<DialogRef, DialogProps>(function Dialog(
       </div>
     </dialog>
   );
-});
+}

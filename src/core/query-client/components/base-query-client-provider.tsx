@@ -4,7 +4,9 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useState } from 'react';
 
-type BaseQueryClientProviderProps = React.PropsWithChildren;
+type BaseQueryClientProviderProps = {
+  children: React.ReactNode;
+};
 
 export function BaseQueryClientProvider({
   children,

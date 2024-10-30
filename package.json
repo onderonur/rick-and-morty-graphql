@@ -6,7 +6,7 @@
     "build": "next build",
     "codequality:check": "pnpm format:check && pnpm lint:check && pnpm types:check",
     "codequality:fix": "pnpm format:fix && pnpm lint:fix && pnpm types:check",
-    "dev": "next dev",
+    "dev": "next dev --turbopack",
     "dev:all": "npm-run-all --parallel dev gql-codegen:watch",
     "dev:all:about": "echo 'https://the-guild.dev/graphql/codegen/docs/getting-started/development-workflow#watch-mode'",
     "format:check": "prettier --check --ignore-unknown .",
@@ -25,9 +25,9 @@
     "@tanstack/react-query": "^5.55.4",
     "graphql": "^16.9.0",
     "graphql-request": "^7.1.0",
-    "next": "^14.2.8",
-    "react": "^18",
-    "react-dom": "^18",
+    "next": "15.0.2",
+    "react": "19.0.0-rc-02c0e824-20241028",
+    "react-dom": "19.0.0-rc-02c0e824-20241028",
     "react-icons": "^5.3.0",
     "react-infinite-scroll-hook": "^5.0.1",
     "tailwind-merge": "^2.5.2"
@@ -39,13 +39,13 @@
     "@graphql-typed-document-node/core": "^3.2.0",
     "@parcel/watcher": "^2.4.1",
     "@types/node": "^22.5.4",
-    "@types/react": "^18.3.5",
-    "@types/react-dom": "^18.3.0",
+    "@types/react": "npm:types-react@19.0.0-rc.1",
+    "@types/react-dom": "npm:types-react-dom@19.0.0-rc.1",
     "@typescript-eslint/eslint-plugin": "^7.18.0",
     "@typescript-eslint/parser": "^7.18.0",
     "autoprefixer": "^10.4.20",
     "eslint": "^8.57.0",
-    "eslint-config-next": "^14.2.8",
+    "eslint-config-next": "15.0.2",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-deprecation": "^3.0.0",
     "eslint-plugin-only-warn": "^1.1.0",
@@ -63,5 +63,11 @@
     "tailwindcss": "^3.4.10",
     "typescript": "^5.5.4"
   },
-  "packageManager": "pnpm@9.12.2"
+  "packageManager": "pnpm@9.12.2",
+  "pnpm": {
+    "overrides": {
+      "@types/react": "npm:types-react@19.0.0-rc.1",
+      "@types/react-dom": "npm:types-react-dom@19.0.0-rc.1"
+    }
+  }
 }

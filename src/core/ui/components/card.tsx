@@ -2,9 +2,10 @@ import type { ImageProps } from 'next/image';
 import Image from 'next/image';
 import { twMerge } from 'tailwind-merge';
 
-type CardProps = React.PropsWithChildren<{
+type CardProps = {
   className?: string;
-}>;
+  children: React.ReactNode;
+};
 
 export function Card({ className, ...rest }: CardProps) {
   return (

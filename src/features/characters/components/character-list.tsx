@@ -1,4 +1,6 @@
-type CharacterListProps = React.PropsWithChildren;
+type CharacterListProps = {
+  children: React.ReactNode;
+};
 
 export function CharacterList({ children }: CharacterListProps) {
   return (

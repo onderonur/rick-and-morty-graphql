@@ -14,14 +14,14 @@ export const metadata: Metadata = getMetadata({
 });
 
 type CharactersPageProps = {
-  searchParams: {
+  searchParams: Promise<{
     keyword?: string;
-  };
+  }>;
 };
 
-export default async function CharactersPage({
-  searchParams: { keyword },
-}: CharactersPageProps) {
+export default async function CharactersPage(props: CharactersPageProps) {
+  const { keyword } = await props.searchParams;
+
   const queryClient = getQueryClient();
 
   await queryClient.prefetchInfiniteQuery(

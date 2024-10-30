@@ -46,14 +46,16 @@ async function getPageData(locationId: string) {
 }
 
 type LocationPageProps = {
-  params: {
+  params: Promise<{
     locationId: string;
-  };
+  }>;
 };
 
-export async function generateMetadata({
-  params: { locationId },
-}: LocationPageProps): Promise<Metadata> {
+export async function generateMetadata(
+  props: LocationPageProps,
+): Promise<Metadata> {
+  const { locationId } = await props.params;
+
   const { location } = await getPageData(locationId);
 
   return getMetadata({
@@ -63,9 +65,9 @@ export async function generateMetadata({
   });
 }
 
-export default async function LocationPage({
-  params: { locationId },
-}: LocationPageProps) {
+export default async function LocationPage(props: LocationPageProps) {
+  const { locationId } = await props.params;
+
   const { location } = await getPageData(locationId);
 
   return (

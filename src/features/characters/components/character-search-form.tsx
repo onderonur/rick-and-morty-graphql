@@ -1,44 +1,29 @@
-'use client';
-
 import { Input } from '@/core/forms/components/input';
-import { createUrl } from '@/core/routing/routing.utils';
-import { Button } from '@/core/ui/components/button';
-import { useRouter, useSearchParams } from 'next/navigation';
-import { useState } from 'react';
+import { SubmitButton } from '@/core/forms/components/submit-button';
+import Form from 'next/form';
 import { RxMagnifyingGlass } from 'react-icons/rx';
 
 export function CharacterSearchForm() {
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  const [keyword, setKeyword] = useState(searchParams.get('keyword') ?? '');
-
   return (
     <search>
-      <form
+      <Form
+        // If you pass an empty string "" to action, the form will navigate to the same route with updated search params.
+        // https://nextjs.org/docs/app/api-reference/components/form#search-form-that-leads-to-a-search-result-page
+        action=""
         className="flex justify-end gap-2"
-        onSubmit={(e) => {
-          e.preventDefault();
-          router.push(
-            createUrl('/characters', new URLSearchParams({ keyword })),
-          );
-        }}
       >
         <Input
           name="keyword"
           type="search"
-          value={keyword}
-          onChange={(e) => {
-            setKeyword(e.target.value);
-          }}
           aria-label="Search keyword"
           placeholder="Search characters..."
           className="flex-1"
           autoComplete="off"
         />
-        <Button aria-label="Search" type="submit">
+        <SubmitButton aria-label="Search">
           <RxMagnifyingGlass className="text-xl" />
-        </Button>
-      </form>
+        </SubmitButton>
+      </Form>
     </search>
   );
 }

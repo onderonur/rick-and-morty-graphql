@@ -45,14 +45,16 @@ async function getPageData(episodeId: string) {
 }
 
 type EpisodePageProps = {
-  params: {
+  params: Promise<{
     episodeId: string;
-  };
+  }>;
 };
 
-export async function generateMetadata({
-  params: { episodeId },
-}: EpisodePageProps): Promise<Metadata> {
+export async function generateMetadata(
+  props: EpisodePageProps,
+): Promise<Metadata> {
+  const { episodeId } = await props.params;
+
   const { episode } = await getPageData(episodeId);
 
   return getMetadata({
@@ -62,9 +64,9 @@ export async function generateMetadata({
   });
 }
 
-export default async function EpisodePage({
-  params: { episodeId },
-}: EpisodePageProps) {
+export default async function EpisodePage(props: EpisodePageProps) {
+  const { episodeId } = await props.params;
+
   const { episode } = await getPageData(episodeId);
 
   return (

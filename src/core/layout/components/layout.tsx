@@ -1,6 +1,8 @@
 import { Header } from '@/core/layout/components/header';
 
-type LayoutProps = React.PropsWithChildren;
+type LayoutProps = {
+  children: React.ReactNode;
+};
 
 export function Layout({ children }: LayoutProps) {
   return (

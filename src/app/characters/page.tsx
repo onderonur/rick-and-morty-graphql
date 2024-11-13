@@ -1,4 +1,7 @@
 import { getQueryClient } from '@/core/query-client/query-client.utils';
+import { searchParamParser } from '@/core/routing/routing.schemas';
+import type { SearchParams } from '@/core/routing/routing.types';
+import { parseSearchParams } from '@/core/routing/routing.utils';
 import { getMetadata } from '@/core/seo/seo.utils';
 import { Card, CardTitle } from '@/core/ui/components/card';
 import { characterInfiniteListQueryOptions } from '@/features/characters/characters.queries';
@@ -6,6 +9,13 @@ import { CharacterInfiniteList } from '@/features/characters/components/characte
 import { CharacterSearchForm } from '@/features/characters/components/character-search-form';
 import { HydrationBoundary, dehydrate } from '@tanstack/react-query';
 import type { Metadata } from 'next';
+import { z } from 'zod';
+
+const searchParamsSchema = z
+  .object({
+    keyword: searchParamParser.toSingle(z.string()),
+  })
+  .partial();
 
 export const metadata: Metadata = getMetadata({
   title: 'Characters',
@@ -14,18 +24,22 @@ export const metadata: Metadata = getMetadata({
 });
 
 type CharactersPageProps = {
-  searchParams: Promise<{
-    keyword?: string;
-  }>;
+  searchParams: Promise<SearchParams>;
 };
 
 export default async function CharactersPage(props: CharactersPageProps) {
-  const { keyword } = await props.searchParams;
+  const searchParams = await props.searchParams;
+  const { keyword } = parseSearchParams({
+    searchParamsSchema,
+    searchParams,
+  });
 
   const queryClient = getQueryClient();
 
   await queryClient.prefetchInfiniteQuery(
-    characterInfiniteListQueryOptions({ keyword: keyword ?? null }),
+    characterInfiniteListQueryOptions({
+      keyword: keyword ?? null,
+    }),
   );
 
   return (

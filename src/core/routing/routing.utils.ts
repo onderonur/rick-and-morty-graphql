@@ -1,17 +1,15 @@
-export function createUrl(pathname: string, urlSearchParams?: URLSearchParams) {
-  if (!urlSearchParams?.toString()) {
-    return pathname;
-  }
+import { notFound } from 'next/navigation';
+import type { z } from 'zod';
+import type { SearchParams } from './routing.types';
 
-  const nonEmptyUrlSearchParams = new URLSearchParams();
-
-  urlSearchParams.forEach((value, key) => {
-    if (value) {
-      nonEmptyUrlSearchParams.append(key, value);
-    }
-  });
-
-  const paramsString = nonEmptyUrlSearchParams.toString();
-  const queryString = paramsString ? `?${paramsString}` : '';
-  return `${pathname}${queryString}`;
+export function parseSearchParams<Output, Def extends z.ZodTypeDef, Input>({
+  searchParamsSchema,
+  searchParams,
+}: {
+  searchParamsSchema: z.ZodSchema<Output, Def, Input>;
+  searchParams: SearchParams;
+}) {
+  const result = searchParamsSchema.safeParse(searchParams);
+  if (!result.success) notFound();
+  return result.data;
 }

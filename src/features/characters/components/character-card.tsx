@@ -33,12 +33,10 @@ export function CharacterCard({ character }: CharacterCardProps) {
           width={300}
           height={300}
         />
-        <CardTitle
-          as="h2"
-          className="line-clamp-2 min-h-[2lh]"
-          title={characterFragment.name as string}
-        >
-          {characterFragment.name}
+        <CardTitle asChild className="line-clamp-2 min-h-[2lh]">
+          <h2 title={characterFragment.name as string}>
+            {characterFragment.name}
+          </h2>
         </CardTitle>
       </Card>
     </NextLink>

@@ -28,8 +28,8 @@ export default function Home() {
             <div key={link.href} className="sm:col-span-2">
               <NextLink href={link.href}>
                 <Card>
-                  <CardTitle as="h2" className="text-3xl">
-                    {link.title}
+                  <CardTitle asChild className="text-3xl">
+                    <h2>{link.title}</h2>
                   </CardTitle>
                   <CardImage src={link.imageSrc} alt={link.title} priority />
                 </Card>

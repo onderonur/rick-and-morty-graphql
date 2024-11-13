@@ -1,6 +1,8 @@
 import type { ImageProps } from 'next/image';
 import Image from 'next/image';
 import { twMerge } from 'tailwind-merge';
+import type { AsChildProps } from './slot';
+import { Slot } from './slot';
 
 type CardProps = {
   className?: string;
@@ -19,21 +21,15 @@ export function Card({ className, ...rest }: CardProps) {
   );
 }
 
-type CardTitleProps<As extends React.ElementType> =
-  React.ComponentPropsWithoutRef<As> & {
-    as?: As;
-    className?: string;
-  };
+type CardTitleProps = AsChildProps & {
+  className?: string;
+};
 
-export function CardTitle<As extends React.ElementType>({
-  as,
-  className,
-  ...rest
-}: CardTitleProps<As>) {
-  const As = as ?? 'h1';
+export function CardTitle({ asChild, className, ...rest }: CardTitleProps) {
+  const Component = asChild ? Slot : 'h1';
 
   return (
-    <As
+    <Component
       className={twMerge('text-2xl font-bold drop-shadow-clay', className)}
       {...rest}
     />

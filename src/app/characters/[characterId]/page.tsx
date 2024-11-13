@@ -86,8 +86,8 @@ export default async function CharacterPage(props: CharacterPageProps) {
       </div>
       <section aria-labelledby="episodes-title">
         <Card>
-          <CardTitle id="episodes-title" as="h2">
-            Episodes
+          <CardTitle asChild>
+            <h2 id="episodes-title">Episodes</h2>
           </CardTitle>
           <List>
             {character.episode.map((episode) => {

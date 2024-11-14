@@ -8,7 +8,7 @@ It uses React Server Components and [TanStack Query](https://www.apollographql.c
 
 A feature based folder structure has been implemented to keep things organized.
 
-**🚀 Live demo is [here](https://rick-and-morty-graphql.vercel.app/)**.
+**🚀 Live demo is [here](https://next-rickql.vercel.app/)**.
 
 ## 💻 Tech Stack
 

@@ -10,7 +10,7 @@ export function Specs({ specs }: SpecsProps) {
 
         return (
           <div key={spec.title}>
-            <dt className="text-sm font-semibold uppercase text-muted">
+            <dt className="text-sm font-semibold uppercase text-muted-foreground">
               {spec.title}
             </dt>
             <dd className="font-semibold">{spec.value}</dd>

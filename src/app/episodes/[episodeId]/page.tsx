@@ -72,9 +72,9 @@ export default async function EpisodePage(props: EpisodePageProps) {
   return (
     <main className="flex flex-col gap-4">
       <Card>
-        <div className="flex flex-wrap justify-between gap-3">
+        <div className="flex flex-wrap justify-between gap-2">
           <div className="flex flex-col gap-2">
-            <CardTitle>{episode.name}</CardTitle>
+            <CardTitle className="text-2xl">{episode.name}</CardTitle>
             <CardDescription>{episode.episode}</CardDescription>
           </div>
           <CardDescription>{episode.air_date}</CardDescription>
@@ -82,7 +82,7 @@ export default async function EpisodePage(props: EpisodePageProps) {
       </Card>
       <section aria-labelledby="characters-title">
         <Card>
-          <CardTitle asChild>
+          <CardTitle asChild className="text-xl">
             <h2 id="characters-title">Characters</h2>
           </CardTitle>
           <CharacterList>

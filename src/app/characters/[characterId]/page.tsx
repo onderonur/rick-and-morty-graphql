@@ -80,8 +80,8 @@ export default async function CharacterPage(props: CharacterPageProps) {
   const { character } = await getPageData(characterId);
 
   return (
-    <main className="grid gap-4 md:grid-cols-[theme(spacing.80)_1fr]">
-      <div className="mx-auto max-w-md">
+    <main className="grid gap-2 md:grid-cols-[theme(spacing.80)_1fr]">
+      <div className="mx-auto max-w-xs">
         <CharacterDetails character={character} />
       </div>
       <section aria-labelledby="episodes-title">

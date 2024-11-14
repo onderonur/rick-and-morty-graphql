@@ -44,13 +44,13 @@ export default async function CharactersPage(props: CharactersPageProps) {
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <main className="flex flex-col gap-6">
+      <main className="flex flex-col gap-2">
         <Card>
-          <CardTitle className="text-4xl">Characters</CardTitle>
-          <div className="flex flex-col gap-6">
+          <CardTitle className="text-2xl">Characters</CardTitle>
+          <div className="flex flex-col gap-4">
             <CharacterSearchForm />
             {keyword && (
-              <p className="text-lg text-muted">
+              <p className="text-muted-foreground">
                 Search results for{' '}
                 <span className="font-semibold text-foreground">
                   &quot;{keyword}&quot;

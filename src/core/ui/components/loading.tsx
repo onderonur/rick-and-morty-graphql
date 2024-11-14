@@ -5,7 +5,7 @@ type LoadingProps = {
 };
 
 export function Loading(props: LoadingProps) {
-  const dotClassName = 'bg-emerald-500 size-4 animate-ping rounded-full';
+  const dotClassName = 'bg-emerald-500 size-2 animate-ping rounded-full';
 
   return (
     <div className="flex justify-center gap-4 py-6" {...props}>

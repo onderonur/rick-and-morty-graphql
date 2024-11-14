@@ -20,8 +20,8 @@ export default async function EpisodesPage() {
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
       <main>
-        <Card>
-          <CardTitle className="text-4xl">Episodes</CardTitle>
+        <Card className="mx-auto max-w-screen-md">
+          <CardTitle className="text-2xl">Episodes</CardTitle>
           <EpisodeInfiniteList />
         </Card>
       </main>

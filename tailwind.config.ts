@@ -35,12 +35,6 @@ export default {
         border: 'hsl(var(--border) / <alpha-value>)',
         ring: 'hsl(var(--ring) / <alpha-value>)',
       },
-      boxShadow: {
-        clay: '8px 8px 16px 0 rgba(0,0,0,.25), inset -8px -8px 16px 0 rgba(0,0,0,.25), inset 8px 8px 16px 0 hsla(0,0%,100%,.2)',
-      },
-      dropShadow: {
-        clay: '0 .075em hsla(0 0 0 / 17%)',
-      },
     },
   },
   plugins: [
@@ -56,6 +50,22 @@ export default {
         },
         {
           values: theme('transitionDelay'),
+        },
+      );
+    }),
+
+    // eslint-disable-next-line @typescript-eslint/unbound-method
+    plugin(({ matchUtilities, theme }) => {
+      matchUtilities(
+        {
+          'grid-cols-autofill': (value: string) => {
+            return {
+              'grid-template-columns': `repeat(auto-fill, minmax(min(${value}, 100%), 1fr))`,
+            };
+          },
+        },
+        {
+          values: theme('spacing'),
         },
       );
     }),

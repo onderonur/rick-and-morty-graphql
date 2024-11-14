@@ -73,7 +73,7 @@ export default async function LocationPage(props: LocationPageProps) {
   return (
     <main className="flex flex-col gap-4">
       <Card>
-        <CardTitle>{location.name}</CardTitle>
+        <CardTitle className="text-2xl">{location.name}</CardTitle>
         <Specs
           specs={[
             { title: 'Type', value: location.type },
@@ -83,7 +83,7 @@ export default async function LocationPage(props: LocationPageProps) {
       </Card>
       <section aria-labelledby="characters-title">
         <Card>
-          <CardTitle asChild>
+          <CardTitle asChild className="text-xl">
             <h2 id="characters-title">Characters</h2>
           </CardTitle>
           <CharacterList>

@@ -14,7 +14,7 @@ export function List({
   return (
     <ul
       className={twMerge(
-        'flex [&>li]:border-slate-300',
+        'flex',
         direction === 'horizontal'
           ? 'gap-3'
           : 'flex-col [&>li:last-child]:border-none [&>li]:border-b',
@@ -38,7 +38,7 @@ type ListItemTitleProps = {
 };
 
 export function ListItemTitle(props: ListItemTitleProps) {
-  return <div className="text-lg font-semibold" {...props} />;
+  return <div className="font-semibold" {...props} />;
 }
 
 type ListItemSubtitleProps = {
@@ -46,5 +46,10 @@ type ListItemSubtitleProps = {
 };
 
 export function ListItemSubtitle(props: ListItemSubtitleProps) {
-  return <div className="mt-1 font-semibold text-muted" {...props} />;
+  return (
+    <div
+      className="mt-1 text-sm font-semibold text-muted-foreground"
+      {...props}
+    />
+  );
 }

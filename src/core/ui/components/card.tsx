@@ -14,7 +14,7 @@ export function Card({ className, ...rest }: CardProps) {
     <div
       {...rest}
       className={twMerge(
-        'flex flex-col gap-4 rounded-3xl bg-card p-8 shadow-clay',
+        'flex flex-col gap-4 rounded-lg border bg-card p-6 shadow',
         className,
       )}
     />
@@ -30,7 +30,7 @@ export function CardTitle({ asChild, className, ...rest }: CardTitleProps) {
 
   return (
     <Component
-      className={twMerge('text-2xl font-bold drop-shadow-clay', className)}
+      className={twMerge('text-lg font-semibold', className)}
       {...rest}
     />
   );
@@ -41,7 +41,9 @@ type CardDescriptionProps = {
 };
 
 export function CardDescription(props: CardDescriptionProps) {
-  return <p className="text-lg font-semibold text-muted" {...props} />;
+  return (
+    <p className="text-lg font-semibold text-muted-foreground" {...props} />
+  );
 }
 
 type CardImageProps = Pick<
@@ -51,6 +53,6 @@ type CardImageProps = Pick<
 
 export function CardImage({ alt, ...rest }: CardImageProps) {
   return (
-    <Image className={'w-full rounded-3xl object-cover'} alt={alt} {...rest} />
+    <Image className={'w-full rounded object-cover'} alt={alt} {...rest} />
   );
 }

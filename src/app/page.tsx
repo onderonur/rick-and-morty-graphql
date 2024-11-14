@@ -1,11 +1,10 @@
 import { NextLink } from '@/core/routing/components/next-link';
 import { getMetadata } from '@/core/seo/seo.utils';
+import { APP_TITLE } from '@/core/shared/shared.utils';
 import { Card, CardImage, CardTitle } from '@/core/ui/components/card';
 import charactersPic from '@/features/images/characters.jpg';
 import episodesPic from '@/features/images/episodes.jpg';
 import locationsPic from '@/features/images/locations.jpg';
-import runningPic from '@/features/images/running.jpg';
-import snufflesPic from '@/features/images/snuffles.jpg';
 
 export const metadata = getMetadata({
   title: 'Home',
@@ -20,37 +19,31 @@ const links = [
 
 export default function Home() {
   return (
-    <main>
-      <h1 className="sr-only">Home</h1>
-      <div className="grid gap-4 sm:grid-cols-6">
+    <main className="flex flex-col gap-12">
+      <div className="mt-12 flex flex-col gap-4 text-center">
+        <h1 className="text-7xl font-black text-primary sm:text-8xl">
+          {APP_TITLE}
+        </h1>
+        <p className="text-xl font-semibold text-muted-foreground sm:text-2xl">
+          {APP_TITLE} is a web built by using Next.js, GraphQL & TanStack Query.
+        </p>
+      </div>
+
+      <div className="flex flex-wrap justify-center gap-2">
         {links.map((link) => {
           return (
-            <div key={link.href} className="sm:col-span-2">
+            <div key={link.href} className="max-w-[21rem]">
               <NextLink href={link.href}>
                 <Card>
-                  <CardTitle asChild className="text-3xl">
+                  <CardImage src={link.imageSrc} alt={link.title} priority />
+                  <CardTitle asChild className="text-xl">
                     <h2>{link.title}</h2>
                   </CardTitle>
-                  <CardImage src={link.imageSrc} alt={link.title} priority />
                 </Card>
               </NextLink>
             </div>
           );
         })}
-        <div className="sm:col-span-3">
-          <Card>
-            <CardImage
-              src={runningPic}
-              alt="Rick and Morty are running"
-              priority
-            />
-          </Card>
-        </div>
-        <div className="sm:col-span-3">
-          <Card>
-            <CardImage src={snufflesPic} alt="Snuffles" priority />
-          </Card>
-        </div>
       </div>
     </main>
   );

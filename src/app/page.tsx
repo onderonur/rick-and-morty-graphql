@@ -25,7 +25,7 @@ export default function Home() {
           {APP_TITLE}
         </h1>
         <p className="text-xl font-semibold text-muted-foreground sm:text-2xl">
-          {APP_TITLE} is a web built by using Next.js, GraphQL & TanStack Query.
+          {APP_TITLE} is a web app built by using Next.js, GraphQL & TanStack Query.
         </p>
       </div>
 

@@ -1,4 +1,4 @@
-## RickQL - Rick And Morty GraphQL App
+## next-rickql
 
 This is a client application which consumes the [Rick and Morty API](https://rickandmortyapi.com/).
 

@@ -13,7 +13,7 @@ function LayoutHeader() {
       <MobileNavMenu />
       <div className="flex-1" />
       <NextLink
-        href="https://github.com/onderonur/rick-and-morty-graphql"
+        href="https://github.com/onderonur/next-rickql"
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Check the source code on GitHub"
@@ -27,7 +27,7 @@ function LayoutHeader() {
 function LayoutFooter() {
   return (
     <footer className="sticky bottom-0 grid min-h-14 place-content-center border-t bg-background/60 px-6 backdrop-blur">
-      RickQL
+      {APP_TITLE}
     </footer>
   );
 }
@@ -43,7 +43,7 @@ export function Layout({ children }: LayoutProps) {
       <div className="bg-pattern">
         <div className="h-full bg-background/60">
           <div className="fixed inset-0 -z-10 grid place-content-center">
-            <div className="size-[32rem] rounded-full bg-emerald-400/60 blur-[16rem]" />
+            <div className="size-[32rem] rounded-full bg-primary/60 blur-[16rem]" />
           </div>
           <div className="mx-auto max-w-screen-md p-2 sm:p-6">{children}</div>
         </div>

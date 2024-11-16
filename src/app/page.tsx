@@ -19,29 +19,32 @@ const links = [
 
 export default function Home() {
   return (
-    <main className="flex flex-col gap-12">
-      <div className="mt-12 flex flex-col gap-4 text-center">
+    <main className="flex flex-col gap-12 py-24">
+      <div className="flex flex-col gap-4 text-center">
         <h1 className="text-7xl font-black text-primary sm:text-8xl">
           {APP_TITLE}
         </h1>
         <p className="text-xl font-semibold text-muted-foreground sm:text-2xl">
-          {APP_TITLE} is a web app built by using Next.js, GraphQL & TanStack Query.
+          {APP_TITLE} is a web app built by using Next.js, GraphQL & TanStack
+          Query.
         </p>
       </div>
 
       <div className="flex flex-wrap justify-center gap-2">
         {links.map((link) => {
           return (
-            <div key={link.href} className="max-w-[21rem]">
-              <NextLink href={link.href}>
-                <Card>
-                  <CardImage src={link.imageSrc} alt={link.title} priority />
-                  <CardTitle asChild className="text-xl">
-                    <h2>{link.title}</h2>
-                  </CardTitle>
-                </Card>
-              </NextLink>
-            </div>
+            <NextLink
+              key={link.href}
+              href={link.href}
+              className="fancy-border delay max-w-[21rem]"
+            >
+              <Card>
+                <CardImage src={link.imageSrc} alt={link.title} priority />
+                <CardTitle asChild className="text-xl">
+                  <h2>{link.title}</h2>
+                </CardTitle>
+              </Card>
+            </NextLink>
           );
         })}
       </div>

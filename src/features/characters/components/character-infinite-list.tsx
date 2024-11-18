@@ -1,9 +1,9 @@
 'use client';
 
 import { InfiniteScrollSentry } from '@/core/ui/components/infinite-scroll-sentry';
-import { characterInfiniteListQueryOptions } from '@/features/characters/characters.queries';
 import { CharacterCard } from '@/features/characters/components/character-card';
 import { CharacterList } from '@/features/characters/components/character-list';
+import { characterInfiniteListQueryOptions } from '@/features/characters/queries';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { useSearchParams } from 'next/navigation';
 

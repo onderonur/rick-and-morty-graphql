@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 import type { z } from 'zod';
-import type { SearchParams } from './routing.types';
+import type { SearchParams } from './types';
 
 export function parseSearchParams<Output, Def extends z.ZodTypeDef, Input>({
   searchParamsSchema,

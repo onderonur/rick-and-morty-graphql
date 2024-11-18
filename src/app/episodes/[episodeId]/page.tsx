@@ -1,7 +1,7 @@
 import { graphql } from '@/core/gql';
-import { getQueryClient } from '@/core/query-client/query-client.utils';
-import { getMetadata } from '@/core/seo/seo.utils';
-import { API_URL } from '@/core/shared/shared.utils';
+import { getQueryClient } from '@/core/query-client/utils';
+import { getMetadata } from '@/core/seo/utils';
+import { API_URL } from '@/core/shared/utils';
 import { Card, CardDescription, CardTitle } from '@/core/ui/components/card';
 import { CharacterCard } from '@/features/characters/components/character-card';
 import { CharacterList } from '@/features/characters/components/character-list';

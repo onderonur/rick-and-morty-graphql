@@ -1,4 +1,4 @@
-import { getMetadata } from '@/core/seo/seo.utils';
+import { getMetadata } from '@/core/seo/utils';
 
 export const metadata = getMetadata({
   title: 'Not Found',

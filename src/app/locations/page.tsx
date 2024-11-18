@@ -1,8 +1,8 @@
-import { getQueryClient } from '@/core/query-client/query-client.utils';
-import { getMetadata } from '@/core/seo/seo.utils';
+import { getQueryClient } from '@/core/query-client/utils';
+import { getMetadata } from '@/core/seo/utils';
 import { Card, CardTitle } from '@/core/ui/components/card';
 import { LocationInfiniteList } from '@/features/locations/components/location-infinite-list';
-import { locationInfiniteListQueryOptions } from '@/features/locations/locations.queries';
+import { locationInfiniteListQueryOptions } from '@/features/locations/queries';
 import { HydrationBoundary, dehydrate } from '@tanstack/react-query';
 import type { Metadata } from 'next';
 

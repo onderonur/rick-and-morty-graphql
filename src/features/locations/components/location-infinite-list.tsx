@@ -3,7 +3,7 @@
 import { InfiniteScrollSentry } from '@/core/ui/components/infinite-scroll-sentry';
 import { List } from '@/core/ui/components/list';
 import { LocationListItem } from '@/features/locations/components/location-list-item';
-import { locationInfiniteListQueryOptions } from '@/features/locations/locations.queries';
+import { locationInfiniteListQueryOptions } from '@/features/locations/queries';
 import { useInfiniteQuery } from '@tanstack/react-query';
 
 export function LocationInfiniteList() {

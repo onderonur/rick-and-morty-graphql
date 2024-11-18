@@ -1,6 +1,6 @@
 import { NextLink } from '@/core/routing/components/next-link';
-import { getMetadata } from '@/core/seo/seo.utils';
-import { APP_TITLE } from '@/core/shared/shared.utils';
+import { getMetadata } from '@/core/seo/utils';
+import { APP_TITLE } from '@/core/shared/utils';
 import { Card, CardImage, CardTitle } from '@/core/ui/components/card';
 import charactersPic from '@/features/images/characters.jpg';
 import episodesPic from '@/features/images/episodes.jpg';

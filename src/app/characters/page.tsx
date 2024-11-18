@@ -1,12 +1,12 @@
-import { getQueryClient } from '@/core/query-client/query-client.utils';
-import { searchParamParser } from '@/core/routing/routing.schemas';
-import type { SearchParams } from '@/core/routing/routing.types';
-import { parseSearchParams } from '@/core/routing/routing.utils';
-import { getMetadata } from '@/core/seo/seo.utils';
+import { getQueryClient } from '@/core/query-client/utils';
+import { searchParamParser } from '@/core/routing/schemas';
+import type { SearchParams } from '@/core/routing/types';
+import { parseSearchParams } from '@/core/routing/utils';
+import { getMetadata } from '@/core/seo/utils';
 import { Card, CardTitle } from '@/core/ui/components/card';
-import { characterInfiniteListQueryOptions } from '@/features/characters/characters.queries';
 import { CharacterInfiniteList } from '@/features/characters/components/character-infinite-list';
 import { CharacterSearchForm } from '@/features/characters/components/character-search-form';
+import { characterInfiniteListQueryOptions } from '@/features/characters/queries';
 import { HydrationBoundary, dehydrate } from '@tanstack/react-query';
 import type { Metadata } from 'next';
 import { z } from 'zod';

@@ -1,4 +1,4 @@
-import { useOnRouteChange } from '@/core/routing/routing.hooks';
+import { useOnRouteChange } from '@/core/routing/hooks';
 import { Button } from '@/core/ui/components/button';
 import React, { useImperativeHandle, useRef } from 'react';
 import { RxCross2 } from 'react-icons/rx';

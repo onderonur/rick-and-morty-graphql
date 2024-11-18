@@ -3,7 +3,7 @@
 import { InfiniteScrollSentry } from '@/core/ui/components/infinite-scroll-sentry';
 import { List } from '@/core/ui/components/list';
 import { EpisodeListItem } from '@/features/episodes/components/episode-list-item';
-import { episodeInfiniteListQueryOptions } from '@/features/episodes/episodes.queries';
+import { episodeInfiniteListQueryOptions } from '@/features/episodes/queries';
 import { useInfiniteQuery } from '@tanstack/react-query';
 
 export function EpisodeInfiniteList() {

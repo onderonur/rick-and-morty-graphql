@@ -1,5 +1,5 @@
 import { NextLink } from '@/core/routing/components/next-link';
-import { APP_TITLE } from '@/core/shared/shared.utils';
+import { APP_TITLE } from '@/core/shared/utils';
 import { RxGithubLogo } from 'react-icons/rx';
 import { MobileNavMenu, NavMenu } from './nav-menu';
 

@@ -236,17 +236,6 @@ export type LocationPage_QueryQuery = { __typename?: 'Query', location?: { __typ
       & { ' $fragmentRefs'?: { 'CharacterCard_CharacterFragmentFragment': CharacterCard_CharacterFragmentFragment } }
     ) | null> } | null };
 
-export type CharacterInfiniteList_QueryQueryVariables = Exact<{
-  page?: InputMaybe<Scalars['Int']['input']>;
-  name?: InputMaybe<Scalars['String']['input']>;
-}>;
-
-
-export type CharacterInfiniteList_QueryQuery = { __typename?: 'Query', characters?: { __typename?: 'Characters', info?: { __typename?: 'Info', next?: number | null } | null, results?: Array<(
-      { __typename?: 'Character', id?: string | null }
-      & { ' $fragmentRefs'?: { 'CharacterCard_CharacterFragmentFragment': CharacterCard_CharacterFragmentFragment } }
-    ) | null> | null } | null };
-
 export type CharacterCard_CharacterFragmentFragment = { __typename?: 'Character', id?: string | null, name?: string | null, status?: string | null, image?: string | null } & { ' $fragmentName'?: 'CharacterCard_CharacterFragmentFragment' };
 
 export type CharacterDetails_CharacterFragmentFragment = (
@@ -260,6 +249,17 @@ export type CharacterDetails_CharacterFragmentFragment = (
 export type CharacterEpisodeSummary_EpisodeFragmentFragment = { __typename?: 'Episode', id?: string | null, air_date?: string | null } & { ' $fragmentName'?: 'CharacterEpisodeSummary_EpisodeFragmentFragment' };
 
 export type CharacterSpecs_CharacterFragmentFragment = { __typename?: 'Character', id?: string | null, status?: string | null, species?: string | null, gender?: string | null, origin?: { __typename?: 'Location', id?: string | null, name?: string | null } | null, location?: { __typename?: 'Location', id?: string | null, name?: string | null } | null } & { ' $fragmentName'?: 'CharacterSpecs_CharacterFragmentFragment' };
+
+export type CharacterInfiniteList_QueryQueryVariables = Exact<{
+  page?: InputMaybe<Scalars['Int']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+}>;
+
+
+export type CharacterInfiniteList_QueryQuery = { __typename?: 'Query', characters?: { __typename?: 'Characters', info?: { __typename?: 'Info', next?: number | null } | null, results?: Array<(
+      { __typename?: 'Character', id?: string | null }
+      & { ' $fragmentRefs'?: { 'CharacterCard_CharacterFragmentFragment': CharacterCard_CharacterFragmentFragment } }
+    ) | null> | null } | null };
 
 export type EpisodeListItem_EpisodeFragmentFragment = { __typename?: 'Episode', id?: string | null, name?: string | null, episode?: string | null, air_date?: string | null } & { ' $fragmentName'?: 'EpisodeListItem_EpisodeFragmentFragment' };
 

@@ -1,12 +1,18 @@
+
+
 // For VSCode GraphQL: Language Feature Support extension:
 // https://marketplace.visualstudio.com/items?itemName=GraphQL.vscode-graphql
-module.exports = {
+const config = {
   schema: './src/core/gql/introspection.json',
   documents: ['src/**/*.{ts,tsx}'],
 };
 
+
 // Or without introspection:
-// module.exports = {
+// const config = {
 //   schema: 'https://rickandmortyapi.com/graphql',
 //   documents: ['src/**/*.{ts,tsx}'],
 // };
+
+
+export default config

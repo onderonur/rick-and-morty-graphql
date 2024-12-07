@@ -12,10 +12,16 @@ const nextConfig: NextConfig = {
     // To make `next lint` check files and folders besides the default folders (`src`, `app` etc.):
     // https://nextjs.org/docs/app/building-your-application/configuring/eslint#linting-custom-directories-and-files
     dirs: [
+      'config',
       'src',
+      'codegen.ts',
+      'eslint.config.mjs',
+      'graphql.config.ts',
+      'knip.config.ts',
       'lint-staged.config.mjs',
+      'next.config.ts',
       'postcss.config.js',
-      'prettier.config.js',
+      'prettier.config.mjs',
       'tailwind.config.ts',
     ],
   },

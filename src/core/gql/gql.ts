@@ -11,16 +11,17 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * 3. It does not support dead code elimination, so it will add unused operations.
  *
  * Therefore it is highly recommended to use the babel or swc plugin for production.
+ * Learn more about it here: https://the-guild.dev/graphql/codegen/plugins/presets/preset-client#reducing-bundle-size
  */
 const documents = {
     "\n  query CharacterPage_Query($id: ID!) {\n    character(id: $id) {\n      id\n      name\n      image\n      ...CharacterDetails_CharacterFragment\n      episode {\n        id\n        ...EpisodeListItem_EpisodeFragment\n      }\n    }\n  }\n": types.CharacterPage_QueryDocument,
     "\n  query EpisodePage_Query($id: ID!) {\n    episode(id: $id) {\n      id\n      name\n      episode\n      air_date\n      characters {\n        id\n        ...CharacterCard_CharacterFragment\n      }\n    }\n  }\n": types.EpisodePage_QueryDocument,
     "\n  query LocationPage_Query($id: ID!) {\n    location(id: $id) {\n      id\n      name\n      type\n      dimension\n      residents {\n        id\n        ...CharacterCard_CharacterFragment\n      }\n    }\n  }\n": types.LocationPage_QueryDocument,
-    "\n  query CharacterInfiniteList_Query($page: Int, $name: String) {\n    characters(page: $page, filter: { name: $name }) {\n      info {\n        next\n      }\n      results {\n        id\n        ...CharacterCard_CharacterFragment\n      }\n    }\n  }\n": types.CharacterInfiniteList_QueryDocument,
     "\n  fragment CharacterCard_CharacterFragment on Character {\n    id\n    name\n    status\n    image\n  }\n": types.CharacterCard_CharacterFragmentFragmentDoc,
     "\n  fragment CharacterDetails_CharacterFragment on Character {\n    id\n    name\n    image\n    ...CharacterSpecs_CharacterFragment\n    episodeSummary: episode {\n      ...CharacterEpisodeSummary_EpisodeFragment\n    }\n  }\n": types.CharacterDetails_CharacterFragmentFragmentDoc,
     "\n  fragment CharacterEpisodeSummary_EpisodeFragment on Episode {\n    id\n    air_date\n  }\n": types.CharacterEpisodeSummary_EpisodeFragmentFragmentDoc,
     "\n  fragment CharacterSpecs_CharacterFragment on Character {\n    id\n    status\n    species\n    gender\n    origin {\n      id\n      name\n    }\n    location {\n      id\n      name\n    }\n  }\n": types.CharacterSpecs_CharacterFragmentFragmentDoc,
+    "\n  query CharacterInfiniteList_Query($page: Int, $name: String) {\n    characters(page: $page, filter: { name: $name }) {\n      info {\n        next\n      }\n      results {\n        id\n        ...CharacterCard_CharacterFragment\n      }\n    }\n  }\n": types.CharacterInfiniteList_QueryDocument,
     "\n  fragment EpisodeListItem_EpisodeFragment on Episode {\n    id\n    name\n    episode\n    air_date\n  }\n": types.EpisodeListItem_EpisodeFragmentFragmentDoc,
     "\n  query EpisodeInfiniteList_Query($page: Int) {\n    episodes(page: $page) {\n      info {\n        next\n      }\n      results {\n        id\n        ...EpisodeListItem_EpisodeFragment\n      }\n    }\n  }\n": types.EpisodeInfiniteList_QueryDocument,
     "\n  fragment LocationListItem_LocationFragment on Location {\n    id\n    name\n    type\n    dimension\n  }\n": types.LocationListItem_LocationFragmentFragmentDoc,
@@ -56,10 +57,6 @@ export function graphql(source: "\n  query LocationPage_Query($id: ID!) {\n    l
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n  query CharacterInfiniteList_Query($page: Int, $name: String) {\n    characters(page: $page, filter: { name: $name }) {\n      info {\n        next\n      }\n      results {\n        id\n        ...CharacterCard_CharacterFragment\n      }\n    }\n  }\n"): (typeof documents)["\n  query CharacterInfiniteList_Query($page: Int, $name: String) {\n    characters(page: $page, filter: { name: $name }) {\n      info {\n        next\n      }\n      results {\n        id\n        ...CharacterCard_CharacterFragment\n      }\n    }\n  }\n"];
-/**
- * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
 export function graphql(source: "\n  fragment CharacterCard_CharacterFragment on Character {\n    id\n    name\n    status\n    image\n  }\n"): (typeof documents)["\n  fragment CharacterCard_CharacterFragment on Character {\n    id\n    name\n    status\n    image\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
@@ -73,6 +70,10 @@ export function graphql(source: "\n  fragment CharacterEpisodeSummary_EpisodeFra
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "\n  fragment CharacterSpecs_CharacterFragment on Character {\n    id\n    status\n    species\n    gender\n    origin {\n      id\n      name\n    }\n    location {\n      id\n      name\n    }\n  }\n"): (typeof documents)["\n  fragment CharacterSpecs_CharacterFragment on Character {\n    id\n    status\n    species\n    gender\n    origin {\n      id\n      name\n    }\n    location {\n      id\n      name\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  query CharacterInfiniteList_Query($page: Int, $name: String) {\n    characters(page: $page, filter: { name: $name }) {\n      info {\n        next\n      }\n      results {\n        id\n        ...CharacterCard_CharacterFragment\n      }\n    }\n  }\n"): (typeof documents)["\n  query CharacterInfiniteList_Query($page: Int, $name: String) {\n    characters(page: $page, filter: { name: $name }) {\n      info {\n        next\n      }\n      results {\n        id\n        ...CharacterCard_CharacterFragment\n      }\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
